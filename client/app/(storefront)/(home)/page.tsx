@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function StorefrontHomePage() {
   return (
-    <div className="space-y-16 py-8">
+    <div className="space-y-16 py-0">
       <Hero />
       <FlashDeals />
     </div>
