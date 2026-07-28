@@ -46,6 +46,7 @@ export function Hero() {
 
   useEffect(() => {
     if (!emblaApi) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     onSelect();
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);

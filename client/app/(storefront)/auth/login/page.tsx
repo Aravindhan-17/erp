@@ -157,7 +157,7 @@ export default function StorefrontLoginPage() {
 
           <div className="text-center pt-2">
             <p className="text-xs text-foreground/70">
-              Don't have an account yet?{" "}
+              Don&apos;t have an account yet?{" "}
               <Link href="/auth/register" id="link-to-register" className="font-bold text-secondary hover:underline">
                 Create Account
               </Link>

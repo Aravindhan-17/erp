@@ -1,17 +1,10 @@
 import React from "react";
 import {
-  Smartphone,
-  CookingPot,
-  ShoppingBag,
-  Watch,
-  Sparkles,
-  Trophy,
   IndianRupee,
   Clock3,
   Package,
   ShieldCheck,
   Star,
-  ArrowRight,
   ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
@@ -90,7 +83,7 @@ const features = [
 ];
 const Category = () => {
   return (
-<section className="relative w-full max-w-[1920px] mx-auto xl:h-[800px] px-4 md:px-8 xl:px-10 pt-8 pb-12 xl:pt-0 xl:pb-0">
+<section className="relative w-full max-w-480 mx-auto h-auto px-4 md:px-8 xl:px-10 pt-8 pb-12 xl:pt-0 xl:pb-0">
   <div className="w-full mx-auto">
           {/* Heading */}
       <div className="flex justify-between items-center mb-8">
@@ -134,7 +127,7 @@ const Category = () => {
 
     return (
       <div key={index} className="flex gap-4 ">
-        <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-violet-100 flex-shrink-0 my-auto">
+        <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-violet-100 shrink-0 my-auto">
   <Icon
     size={24}
     strokeWidth={2}
@@ -144,8 +137,8 @@ const Category = () => {
 
         <div>
           <h3 className="font-semibold text-xl mb-3">{item.title}</h3>
-          <p className="text-sm text-black/90 leading-[22px] ">{item.subtitle}</p>
-          <p className="text-sm text-black/90 leading-[22px] ">{item.desc}</p>
+          <p className="text-sm text-black/90 leading-5.5 ">{item.subtitle}</p>
+          <p className="text-sm text-black/90 leading-5.5 ">{item.desc}</p>
         </div>
       </div>
     );

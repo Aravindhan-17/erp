@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function StorefrontHomePage() {
   return (
-    <div className="space-y-16 py-0">
+    <div className="space-y-15 pt-0 pb-15">
       <Hero />
       <FlashDeals />
       <Category />

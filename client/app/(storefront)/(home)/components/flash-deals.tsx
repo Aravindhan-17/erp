@@ -8,7 +8,7 @@ const deals = [
     status: "Live Now",
     badge: "#017B24",
     badgeText: "text-white",
-    image: "/images/product-1.svg",
+    image: "/images/Product-1.svg",
     title: "Summer Electronics Flash Sale",
     description: "Unbeatable deals on top electronics.",
     products: 12,
@@ -22,7 +22,7 @@ const deals = [
     status: "Starting Soon",
     badge: "#FEB305",
     badgeText: "text-black",
-    image: "/images/product-2.svg",
+    image: "/images/Product-2.svg",
     title: "Home Appliances Bonanza",
     description: "Exclusive discounts on premium appliances.",
     products: 20,
@@ -36,7 +36,7 @@ const deals = [
     status: "Upcoming",
     badge: " #4E148C",
     badgeText: "text-white",
-    image: "/images/product-3.svg",
+    image: "/images/Product-3.svg",
     title: "Fashion Mega Deals",
     description: "Trending styles at crazy prices.",
     products: 18,
@@ -50,7 +50,7 @@ const deals = [
     status: "Ended",
     badge: "#555555",
     badgeText: "text-white",
-    image: "/images/product-4.svg",
+    image: "/images/Product-4.svg",
     title: "Smartphone Clearance",
     description: "This flash deal has ended.",
     products: 15,
@@ -60,13 +60,7 @@ const deals = [
     type: "ended",
   },
 ];
-const tabs = [
-  { id: "all", label: "All Deals" },
-  { id: "live", label: "Live Now" },
-  { id: "starting", label: "Starting Soon" },
-  { id: "upcoming", label: "Upcoming" },
-  { id: "ended", label: "Ended" },
-];
+
 
 
 function Countdown() {
@@ -119,7 +113,7 @@ function Countdown() {
   );
 }
 
-function FlashCard({ deal }: any) {
+function FlashCard({ deal }: { deal: { id: number; status: string; badge: string; badgeText: string; image: string; title: string; description: string; products: number; minOrder: string; button: string; buttonStyle: string; type: string } }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg duration-300 p-3 h-full flex flex-col">
 
