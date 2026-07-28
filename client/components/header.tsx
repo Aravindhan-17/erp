@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, Bell, ShoppingCart, ChevronDown, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface NavItem {
   label: string;
@@ -31,7 +32,7 @@ export default function Header({
     { label: "Home", href: "/", active: true },
     { label: "Flash Deals", href: "/flash-deals" },
     { label: "Categories", href: "/categories" },
-    { label: "How it Works", href: "/#how-it-works" },
+    { label: "How it Works", href: "/how-it-works" },
   ],
   userName = "John",
   userAvatar = "/images/user.png",
@@ -41,6 +42,7 @@ export default function Header({
   style,
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header
@@ -48,10 +50,10 @@ export default function Header({
       className={`w-full max-w-[1920px] min-h-[80px] xl:h-[152px] flex items-center justify-between rotate-0 opacity-100 px-4 md:px-8 xl:px-[40px] py-4 xl:py-0 box-border mx-auto bg-white transition-all duration-200 relative ${className}`}
     >
       {/* 1. Left Section: Logo Container */}
-      <div className="flex items-center flex-shrink-0">
+      <div className="flex items-center shrink-0">
         <Link
           href="/"
-          className="flex items-center w-[140px] sm:w-[180px] md:w-[200px] xl:w-[248px] h-auto xl:h-[60px] rotate-0 opacity-100 box-border group"
+          className="flex items-center w-35 sm:w-45 md:w-50 xl:w-62 h-auto xl:h-15 rotate-0 opacity-100 box-border group"
         >
           <Image
             src={logoSrc}
@@ -67,7 +69,7 @@ export default function Header({
       </div>
 
       {/* 2. Right Section: Navigation & Action Content Container */}
-      <div className="flex-1 xl:w-[1453px] max-w-full min-h-[48px] xl:h-[72px] flex items-center justify-end gap-3 sm:gap-4 xl:gap-[20px] rotate-0 opacity-100 box-border ml-2 md:ml-4 xl:ml-0">
+      <div className="flex-1 xl:w-363.25 max-w-full min-h-12 xl:h-18 flex items-center justify-end gap-3 sm:gap-4 xl:gap-5 rotate-0 opacity-100 box-border ml-2 md:ml-4 xl:ml-0">
         
         {/* Mobile Menu Icon (shown only on small screens) */}
         <button 
@@ -79,15 +81,15 @@ export default function Header({
         </button>
 
         {/* Navigation Layout Container */}
-        <nav className="hidden xl:flex items-center w-[511px] max-w-full h-[72px] gap-[30px] rotate-0 opacity-100 font-sans">
+        <nav className="hidden xl:flex items-center w-127.75 max-w-full h-18 gap-7.5 rotate-0 opacity-100 font-sans">
           {navLinks.map((link, index) => (
             <Link
               key={index}
               href={link.href}
-              className={`h-[72px] pt-[21px] pb-[21px] flex items-center justify-center gap-[10px] font-['Poppins',sans-serif] text-[20px] font-semibold leading-none tracking-normal rotate-0 transition-all duration-150 box-border ${
-                link.active
-                  ? "text-[#F3380B] opacity-100"
-                  : "text-[#09090B] hover:text-[#F3380B] opacity-95"
+              className={`h-18 pt-5.25 pb-5.25 flex items-center justify-center gap-2.5 font-poppins text-[20px] font-semibold leading-none tracking-normal rotate-0 transition-all duration-150 box-border ${
+                (link.active ?? pathname === link.href)
+                  ? "text-secondary opacity-100"
+                  : "text-[#09090B] hover:text-secondary opacity-95"
               }`}
             >
               {link.label}
@@ -96,7 +98,7 @@ export default function Header({
         </nav>
 
         {/* Search Bar Container */}
-        <div className="hidden md:flex flex-1 xl:flex-none xl:w-[483px] max-w-full h-[40px] xl:h-[72px] items-center justify-between gap-2 xl:gap-[40px] rotate-0 opacity-100 rounded-[8px] px-3 xl:p-[20px] bg-[#F6F6F6] box-border">
+        <div className="hidden md:flex flex-1 xl:flex-none xl:w-120.75 max-w-full h-10 xl:h-18 items-center justify-between gap-2 xl:gap-10 rotate-0 opacity-100 rounded-lg px-3 xl:p-5 bg-[#F6F6F6] box-border">
           <input
             type="text"
             placeholder="Search for products, brands, categories..."
@@ -184,7 +186,7 @@ export default function Header({
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`font-['Poppins',sans-serif] text-[18px] font-semibold leading-none tracking-normal py-2 ${
-                  link.active
+                  (link.active ?? pathname === link.href)
                     ? "text-[#F3380B]"
                     : "text-[#09090B] hover:text-[#F3380B]"
                 }`}

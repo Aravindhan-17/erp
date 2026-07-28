@@ -12,10 +12,10 @@ export default function StorefrontLayout({
       <Header
         logoSrc="/images/erp-logo.svg"
         navLinks={[
-          { label: "Home", href: "/", active: true },
+          { label: "Home", href: "/" },
           { label: "Flash Deals", href: "/flash-deals" },
           { label: "Categories", href: "/categories" },
-          { label: "How it Works", href: "#how-it-works" },
+          { label: "How it Works", href: "/how-it-works" },
         ]}
         userName="John"
         userAvatar="/images/user.png"
