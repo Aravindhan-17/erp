@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Hero } from "./components/hero";
 import { FlashDeals } from "./components/flash-deals";
+import { HowItWorks } from "./components/how-it-works";
 import Category from "./components/category";
 
 export const metadata: Metadata = {
@@ -13,7 +14,8 @@ export default function StorefrontHomePage() {
     <div className="space-y-16 py-0">
       <Hero />
       <FlashDeals />
-      <Category/>
+      <Category />
+      <HowItWorks />
     </div>
   );
 }
