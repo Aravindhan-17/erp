@@ -34,10 +34,10 @@ const stepsData = [
 
 export function HowItWorks() {
   return (
-    <div className="w-460 max-w-full h-99.75 flex gap-15 opacity-100 mx-auto box-border relative">
+    <div className="w-full max-w-460 flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-15 opacity-100 mx-auto box-border relative px-4 xl:px-0">
       
-      {/* First Layout */}
-      <div className="w-143 max-w-full h-99.75 opacity-100 rounded-lg box-border relative overflow-hidden bg-[#240046]">
+      {/* First Layout - Banner */}
+      <div className="w-full lg:w-85 xl:w-143 min-h-87.5 lg:h-auto xl:h-99.75 opacity-100 rounded-lg box-border relative overflow-hidden bg-[#240046] flex flex-col justify-center p-6 lg:p-8 xl:p-10 shrink-0">
         
         {/* Mask group layout */}
         <div className="absolute inset-0 w-full h-full opacity-100">
@@ -56,82 +56,78 @@ export function HowItWorks() {
         />
 
         {/* Content for first layout */}
-        <div className="relative z-10 w-full h-full">
-          {/* Inside first layout inner container */}
-          <div className="absolute top-10 left-10 w-119.75 max-w-full h-51.5 flex flex-col gap-5 opacity-100 box-border">
-            
-            <div className="w-119.75 max-w-full h-9 opacity-100 box-border flex items-center">
-              <h2 className="font-poppins font-bold text-2xl leading-none uppercase tracking-normal bg-white bg-clip-text text-transparent m-0">
-                Be Ready. Be Fast. Get the best deals!
-              </h2>
-            </div>
+        <div className="relative z-10 w-full flex flex-col gap-4 lg:gap-3 xl:gap-5">
+          <h2 className="font-poppins font-bold text-2xl lg:text-xl xl:text-7 leading-tight uppercase tracking-normal bg-white bg-clip-text text-transparent m-0 max-w-100">
+            Be Ready. Be Fast. Get the best deals!
+          </h2>
 
-            <div className="w-111 max-w-full h-15 opacity-100 box-border flex items-center">
-              <p className="font-poppins font-medium text-xl leading-none tracking-normal bg-white bg-clip-text text-transparent m-0">
-                Register for any flash deal with just ₹ 1<br />and get early access to unbelievable prices.
-              </p>
-            </div>
+          <p className="font-poppins font-medium text-lg lg:text-base xl:text-xl leading-snug tracking-normal bg-white bg-clip-text text-transparent m-0 max-w-95">
+            Register for any flash deal with just ₹ 1<br className="hidden sm:block" />and get early access to unbelievable prices.
+          </p>
 
-            <button className="w-56.75 max-w-full h-17.5 bg-secondary rounded-lg p-5 flex items-center justify-center gap-2.5 opacity-100 hover:bg-secondary/90 transition-colors box-border border-none cursor-pointer">
-              <span className="w-46.75 h-7.5 font-poppins font-bold text-xl leading-none tracking-normal bg-white bg-clip-text text-transparent m-0 flex items-center justify-center">
-                Explore Deals Now
-              </span>
-            </button>
-
-          </div>
+          <button className="w-full sm:w-fit bg-secondary rounded-lg px-8 lg:px-6 xl:px-8 py-4 lg:py-3 xl:py-4 flex items-center justify-center hover:bg-secondary/90 transition-colors border-none cursor-pointer mt-2">
+            <span className="font-poppins font-bold text-lg lg:text-base xl:text-xl leading-none bg-white bg-clip-text text-transparent m-0">
+              Explore Deals Now
+            </span>
+          </button>
         </div>
       </div>
 
-      {/* Second Layout */}
-      <div className="w-307 max-w-full h-99.75 flex flex-col gap-10 p-10 opacity-100 rounded-lg box-border relative bg-[#4E148C08]">
+      {/* Second Layout - Steps Section */}
+      <div className="flex-1 w-full lg:max-w-none xl:max-w-307 h-auto lg:min-h-99.75 xl:h-99.75 flex flex-col gap-8 xl:gap-10 p-6 lg:p-8 xl:p-10 opacity-100 rounded-lg box-border relative bg-[#4E148C08] justify-center">
         
-        {/* First inner layout (Header) */}
-        <div className="w-287 max-w-full h-12 opacity-100 box-border flex items-center">
-          <h2 className="font-poppins font-bold text-3xl leading-none tracking-normal bg-black bg-clip-text text-transparent m-0">
+        {/* Header */}
+        <div className="w-full box-border flex items-center justify-center lg:justify-start">
+          <h2 className="font-poppins font-bold text-2xl lg:text-xl xl:text-3xl leading-none tracking-normal bg-black bg-clip-text text-transparent m-0 text-center lg:text-left">
             How Flash Deals Work?
           </h2>
         </div>
 
-        {/* Second inner layout (Steps) */}
-        <div className="w-287 max-w-full h-57.75 flex justify-between items-center opacity-100 box-border relative">
+        {/* Steps Grid */}
+        <div className="w-full h-auto flex flex-col md:flex-row justify-between items-center md:items-start opacity-100 box-border relative gap-8 md:gap-2 xl:gap-0 mt-4 md:mt-0">
           
           {stepsData.map((step, index) => (
             <React.Fragment key={step.id}>
               
               {/* Step */}
-              <div className="w-41 h-57.75 flex flex-col gap-2.5 opacity-100 box-border">
+              <div className="w-full sm:w-41 md:flex-1 xl:flex-none xl:w-41 flex flex-col items-center gap-3 xl:gap-2.5 opacity-100 box-border">
                 {/* Number Circle */}
-                <div className="w-25 h-25 bg-white rounded-[100px] border border-[#00000040] relative opacity-100 box-border mx-auto">
+                <div className="w-20 h-20 md:w-17.5 md:h-17.5 xl:w-25 xl:h-25 bg-white rounded-full border border-[#00000040] relative opacity-100 box-border shrink-0">
                   {/* Inner tinted circle */}
-                  <div className="w-15 h-15 bg-primary opacity-10 rounded-[80px] absolute top-5 left-5 box-border" />
+                  <div className="w-12 h-12 md:w-10.5 md:h-10.5 xl:w-15 xl:h-15 bg-primary opacity-10 rounded-full absolute top-4 left-4 md:top-3.5 md:left-3.5 xl:top-5 xl:left-5" />
                   
                   {/* Number text */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-100 box-border">
-                    <span className="font-poppins font-semibold text-[28px] leading-none tracking-normal text-center text-primary m-0 block">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-poppins font-semibold text-6 md:text-5 xl:text-7 leading-none text-center text-primary m-0 block">
                       {step.id}
                     </span>
                   </div>
                 </div>
                 
-                {/* Title layout */}
-                <div className="w-41 max-w-full h-7.5 opacity-100 box-border flex items-center justify-center">
-                  <h3 className="font-poppins font-semibold text-xl leading-none tracking-normal text-center bg-black bg-clip-text text-transparent m-0 w-full">
+                {/* Title */}
+                <div className="w-full flex items-center justify-center mt-1 xl:mt-0">
+                  <h3 className="font-poppins font-semibold text-lg md:text-sm xl:text-xl leading-tight text-center bg-black bg-clip-text text-transparent m-0 w-full px-2 xl:px-0">
                     {step.title}
                   </h3>
                 </div>
 
-                {/* Subtext layout */}
-                <div className="w-41 max-w-full h-20.25 opacity-50 box-border flex items-start justify-center">
-                  <p className="font-poppins font-medium text-lg leading-normal tracking-normal text-center bg-black bg-clip-text text-transparent m-0 w-full whitespace-pre-wrap">
+                {/* Subtext */}
+                <div className="w-full opacity-50 flex items-start justify-center">
+                  <p className="font-poppins font-medium text-base md:text-[11px] xl:text-lg leading-snug text-center bg-black bg-clip-text text-transparent m-0 w-full whitespace-pre-wrap px-4 md:px-1 xl:px-0">
                     {step.description}
                   </p>
                 </div>
               </div>
 
-              {/* Arrow (only render between steps) */}
+              {/* Arrow separator (rotated on mobile) */}
               {index < 4 && (
-                <div className="w-10.5 h-6 opacity-50 flex items-center justify-center box-border">
-                  <ArrowRight className="w-full h-full text-primary" />
+                <div className="hidden md:flex md:w-6 md:h-4 xl:w-10.5 xl:h-6 opacity-50 items-center justify-center shrink-0 mt-8 xl:mt-10">
+                  <ArrowRight className="w-full h-full text-primary transition-transform" />
+                </div>
+              )}
+              {index < 4 && (
+                <div className="flex md:hidden opacity-50 items-center justify-center shrink-0 my-2">
+                  <ArrowRight className="w-8 h-8 text-primary rotate-90 transition-transform" />
                 </div>
               )}
               
