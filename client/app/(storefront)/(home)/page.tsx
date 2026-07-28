@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Hero } from "./components/hero";
 import { FlashDeals } from "./components/flash-deals";
+import Category from "./components/category";
 
 export const metadata: Metadata = {
   title: "FlashERP — Live B2C Flash Deals & Urgency Sales",
@@ -12,6 +13,7 @@ export default function StorefrontHomePage() {
     <div className="space-y-16 py-0">
       <Hero />
       <FlashDeals />
+      <Category/>
     </div>
   );
 }
