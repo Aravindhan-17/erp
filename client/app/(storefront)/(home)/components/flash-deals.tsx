@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { Package, IndianRupee, Bell, ChevronRight} from "lucide-react";
+import Image from "next/image";
 const deals = [
   {
     id: 1,
@@ -124,11 +125,13 @@ function FlashCard({ deal }: any) {
 
       <div className="relative">
 
-        <img
-          src={deal.image}
-          alt={deal.title}
-          className="w-full h-52 object-cover rounded-[10px]"
-        />
+        <Image
+  src={deal.image}
+  alt={deal.title}
+  width={500}
+  height={300}
+  className="w-full h-52 object-cover rounded-[10px]"
+/>
 
         <span
   style={{ backgroundColor: deal.badge }}
@@ -210,15 +213,15 @@ function FlashCard({ deal }: any) {
 export function FlashDeals() {
 
   return (
-       <section className="bg-[#f8fafc] py-16">
+       <section className="relative w-full max-w-[1920px] mx-auto xl:h-200 px-4 md:px-8 xl:px-10 flex items-center justify-center pt-8 pb-12 xl:pt-0 xl:pb-0">
 
-   <div className="max-w-[1440px] mx-auto">
+   <div className="w-full mx-auto">
 
         <div className="flex flex-col md:flex-row justify-between items-center">
 
           <div>
 
-            <span className="text-3xl font-semibold tracking-wider">
+            <span className="text-3xl font-bold tracking-wider">
 
               Flash Deals
 
