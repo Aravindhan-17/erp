@@ -1,109 +1,273 @@
-export function FlashDeals() {
+"use client"
+import { useEffect, useState } from "react";
+import { Package, IndianRupee, Bell, ChevronRight} from "lucide-react";
+const deals = [
+  {
+    id: 1,
+    status: "Live Now",
+    badge: "#017B24",
+    badgeText: "text-white",
+    image: "/images/product-1.svg",
+    title: "Summer Electronics Flash Sale",
+    description: "Unbeatable deals on top electronics.",
+    products: 12,
+    minOrder: "Min. Order ₹ 5,000",
+    button: "Register for ₹1",
+     buttonStyle: "orange",
+    type: "live",
+  },
+  {
+    id: 2,
+    status: "Starting Soon",
+    badge: "#FEB305",
+    badgeText: "text-black",
+    image: "/images/product-2.svg",
+    title: "Home Appliances Bonanza",
+    description: "Exclusive discounts on premium appliances.",
+    products: 20,
+    minOrder: "Min. Order ₹ 5,000",
+    button: "Notify Me",
+    buttonStyle: "yellow",
+    type: "starting",
+  },
+  {
+    id: 3,
+    status: "Upcoming",
+    badge: " #4E148C",
+    badgeText: "text-white",
+    image: "/images/product-3.svg",
+    title: "Fashion Mega Deals",
+    description: "Trending styles at crazy prices.",
+    products: 18,
+    minOrder: "Min. Order ₹ 5,000",
+    button: "Notify Me",
+   buttonStyle: "primary",
+    type: "upcoming",
+  },
+  {
+    id: 4,
+    status: "Ended",
+    badge: "#555555",
+    badgeText: "text-white",
+    image: "/images/product-4.svg",
+    title: "Smartphone Clearance",
+    description: "This flash deal has ended.",
+    products: 15,
+    minOrder: "Min. Order ₹ 5,000",
+    button: "Closed",
+     buttonStyle: "white",
+    type: "ended",
+  },
+];
+const tabs = [
+  { id: "all", label: "All Deals" },
+  { id: "live", label: "Live Now" },
+  { id: "starting", label: "Starting Soon" },
+  { id: "upcoming", label: "Upcoming" },
+  { id: "ended", label: "Ended" },
+];
+
+
+function Countdown() {
+  const [time, setTime] = useState({
+    h: 2,
+    m: 34,
+    s: 18,
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime((prev) => {
+        let { h, m, s } = prev;
+
+        if (s > 0) s--;
+        else {
+          s = 59;
+          if (m > 0) m--;
+          else {
+            m = 59;
+            if (h > 0) h--;
+          }
+        }
+
+        return { h, m, s };
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="mt-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-extrabold flex items-center gap-2">
-          🔥 Active Flash Drops
+<div>
+  {/* Timer */}
+  <div className="flex items-center gap-2 text-2xl font-semibold leading-none text-slate-900">
+    <span>{String(time.h).padStart(2, "0")}</span>
+    <span>:</span>
+    <span>{String(time.m).padStart(2, "0")}</span>
+    <span>:</span>
+    <span>{String(time.s).padStart(2, "0")}</span>
+  </div>
+
+  {/* Labels */}
+  <div className="flex items-center gap-[33px] mt-2 text-[11px] uppercase text-gray-500 font-medium">
+    <span>HRS</span>
+    <span>MIN</span>
+    <span>SEC</span>
+  </div>
+</div>
+  );
+}
+
+function FlashCard({ deal }: any) {
+  return (
+    <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg duration-300 p-3 h-full flex flex-col">
+
+      <div className="relative">
+
+        <img
+          src={deal.image}
+          alt={deal.title}
+          className="w-full h-52 object-cover rounded-[10px]"
+        />
+
+        <span
+  style={{ backgroundColor: deal.badge }}
+  className={`${deal.badgeText} absolute top-4 left-4 px-4 py-2 rounded-lg text-xs font-semibold uppercase`}
+>
+  {deal.status}
+</span>
+      </div>
+
+      <div className="pt-3 flex flex-col flex-1">
+
+      <div className="h-[95px]">
+        <h2 className="font-semibold text-[20px] leading-7 line-clamp-2">
+          {deal.title}
         </h2>
-        <span className="text-xs font-mono bg-muted px-3 py-1 rounded-full border border-border">
-          Server Time: <span className="font-bold text-primary">12:00:45 PM</span>
-        </span>
-      </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="bg-background rounded-2xl p-5 border border-border shadow-sm space-y-4 hover:shadow-md transition-shadow">
-          <div className="h-40 bg-primary/5 rounded-xl flex items-center justify-center text-5xl">
-            📱
-          </div>
-          <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-wider text-secondary">
-              Limited 50 Units
-            </span>
-            <h3 className="font-bold text-base mt-0.5">Flagship Smartphone Pro</h3>
-          </div>
-          <div className="flex items-baseline justify-between">
-            <span className="text-secondary font-black text-2xl">₹999</span>
-            <span className="line-through text-foreground/50 text-sm">₹29,999</span>
-          </div>
-          <div className="space-y-1.5 pt-2 border-t border-border">
-            <div className="flex justify-between text-xs font-bold">
-              <span>Reserved: 48/50</span>
-              <span className="text-secondary">Only 2 Left!</span>
-            </div>
-            <div className="w-full h-2.5 bg-muted rounded-full overflow-hidden">
-              <div className="w-[96%] h-full bg-secondary rounded-full" />
-            </div>
-          </div>
-          <button
-            id="deal-btn-1"
-            className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-xl shadow transition-all"
-          >
-            Reserve Item (10:00) ⚡
-          </button>
+        <p className="mt-2 text-black/50 font-medium line-clamp-2">
+          {deal.description}
+        </p>
         </div>
 
-        <div className="bg-background rounded-2xl p-5 border border-border shadow-sm space-y-4 hover:shadow-md transition-shadow">
-          <div className="h-40 bg-primary/5 rounded-xl flex items-center justify-center text-5xl">
-            🎧
-          </div>
-          <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-wider text-primary">
-              Limited 100 Units
-            </span>
-            <h3 className="font-bold text-base mt-0.5">Wireless ANC Earbuds</h3>
-          </div>
-          <div className="flex items-baseline justify-between">
-            <span className="text-secondary font-black text-2xl">₹299</span>
-            <span className="line-through text-foreground/50 text-sm">₹4,999</span>
-          </div>
-          <div className="space-y-1.5 pt-2 border-t border-border">
-            <div className="flex justify-between text-xs font-bold">
-              <span>Reserved: 85/100</span>
-              <span className="text-primary">15 Available</span>
-            </div>
-            <div className="w-full h-2.5 bg-muted rounded-full overflow-hidden">
-              <div className="w-[85%] h-full bg-primary rounded-full" />
-            </div>
-          </div>
-          <button
-            id="deal-btn-2"
-            className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-xl shadow transition-all"
-          >
-            Reserve Item (10:00) ⚡
-          </button>
-        </div>
+        <div className="mt-5">
 
-        <div className="bg-background rounded-2xl p-5 border border-border shadow-sm space-y-4 hover:shadow-md transition-shadow">
-          <div className="h-40 bg-primary/5 rounded-xl flex items-center justify-center text-5xl">
-            ⌚
-          </div>
-          <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-wider text-primary">
-              Limited 150 Units
-            </span>
-            <h3 className="font-bold text-base mt-0.5">Smart Watch Ultra 2</h3>
-          </div>
-          <div className="flex items-baseline justify-between">
-            <span className="text-secondary font-black text-2xl">₹499</span>
-            <span className="line-through text-foreground/50 text-sm">₹8,999</span>
-          </div>
-          <div className="space-y-1.5 pt-2 border-t border-border">
-            <div className="flex justify-between text-xs font-bold">
-              <span>Reserved: 120/150</span>
-              <span className="text-primary">30 Available</span>
-            </div>
-            <div className="w-full h-2.5 bg-muted rounded-full overflow-hidden">
-              <div className="w-[80%] h-full bg-primary rounded-full" />
-            </div>
-          </div>
-          <button
-            id="deal-btn-3"
-            className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-xl shadow transition-all"
-          >
-            Reserve Item (10:00) ⚡
-          </button>
+          <p className="text-gray-500 text-sm mb-2">
+            Ends In
+          </p>
+
+          <Countdown />
+
         </div>
-      </div>
+<div className="flex justify-between items-center mt-6 text-sm text-gray-600">
+
+  <div className="flex items-center gap-2">
+    <Package size={20} strokeWidth={1.8} className="text-gray-500" />
+    <span className="font-medium">{deal.products} Products</span>
+  </div>
+
+  <div className="flex items-center gap-1">
+    <div className="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center">
+      <IndianRupee size={10} strokeWidth={2} className="text-gray-500 font-medium"/>
     </div>
+    <span className="font-medium">{deal.minOrder}</span>
+  </div>
+
+</div>
+<div className="grid grid-cols-2 gap-3 mt-auto pt-6">
+
+  <button
+    className={`rounded-xl py-3 font-semibold flex items-center justify-center gap-4 ${
+      deal.buttonStyle === "orange"
+        ? "bg-secondary hover:bg-orange-600 text-white"
+        : deal.buttonStyle === "yellow"
+        ? "bg-yellow-400 hover:bg-yellow-500 text-black"
+        : deal.buttonStyle === "primary"
+        ? "bg-primary hover:opacity-90 text-white"
+        : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
+    }`}
+  >
+    {(deal.buttonStyle === "yellow" || deal.buttonStyle === "primary") && (
+      <Bell size={25} />
+    )}
+
+    {deal.button}
+  </button>
+
+
+  <button className="border border-gray-200 rounded-xl py-3 hover:bg-gray-100 font-semibold">
+    View Products
+  </button>
+
+</div>
+
+      </div>
+
+    </div>
+  );
+}
+
+export function FlashDeals() {
+
+  return (
+       <section className="bg-[#f8fafc] py-16">
+
+   <div className="max-w-[1440px] mx-auto">
+
+        <div className="flex flex-col md:flex-row justify-between items-center">
+
+          <div>
+
+            <span className="text-3xl font-semibold tracking-wider">
+
+              Flash Deals
+
+            </span>
+          </div>
+
+          <button className="mt-5 md:mt-0 text-secondary px-6 py-3 rounded-xl font-semibold flex items-center gap-2">
+             View All Deals
+             <ChevronRight size={26} />
+          </button>
+
+        </div>
+
+<div className="flex flex-wrap gap-4 mt-5">
+
+  <button className="px-6 py-3 rounded-xl font-semibold bg-[#F3380B1A] text-secondary hover:bg-gray-100">
+    All Deals
+  </button>
+
+  <button className="px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">
+    Live Now
+  </button>
+
+  <button className="px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">   
+     Starting Soon
+  </button>
+
+  <button className="px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">
+    Upcoming
+  </button>
+
+  <button className="px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">
+    Ended
+  </button>
+
+</div>
+
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-10">
+
+  {deals.map((deal) => (
+
+    <FlashCard key={deal.id} deal={deal} />
+
+  ))}
+
+</div>
+
+      </div>
+
+    </section>
   );
 }
