@@ -3,6 +3,7 @@ import { Hero } from "./components/hero";
 import { FlashDeals } from "./components/flash-deals";
 import { HowItWorks } from "./components/how-it-works";
 import Category from "./components/category";
+import { TopBrands } from "./components/top-brands";
 
 export const metadata: Metadata = {
   title: "FlashERP — Live B2C Flash Deals & Urgency Sales",
@@ -16,6 +17,7 @@ export default function StorefrontHomePage() {
       <FlashDeals />
       <Category />
       <HowItWorks />
+      <TopBrands />
     </div>
   );
 }
