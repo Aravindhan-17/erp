@@ -4,6 +4,7 @@ import { FlashDeals } from "./components/flash-deals";
 import { HowItWorks } from "./components/how-it-works";
 import Category from "./components/category";
 import { TopBrands } from "./components/top-brands";
+import Subscribe from "./components/subscribe";
 
 export const metadata: Metadata = {
   title: "FlashERP — Live B2C Flash Deals & Urgency Sales",
@@ -18,6 +19,8 @@ export default function StorefrontHomePage() {
       <Category />
       <HowItWorks />
       <TopBrands />
+      <Category/>
+      <Subscribe/>
     </div>
   );
 }
