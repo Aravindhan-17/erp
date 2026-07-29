@@ -16,10 +16,9 @@ export default function StorefrontHomePage() {
     <div className="space-y-15 pt-0 pb-15">
       <Hero />
       <FlashDeals />
-      <Category />
+      <Category/>
       <HowItWorks />
       <TopBrands />
-      <Category/>
       <Subscribe/>
     </div>
   );

@@ -24,6 +24,14 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.11",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@types/estree": "^1.0.6"
+  },
+  "overrides": {
+    "postcss": "^8.5.24",
+    "sharp": "^0.35.3"
+  },
+  "allowScripts": {
+    "unrs-resolver@1.12.2": true
   }
 }
