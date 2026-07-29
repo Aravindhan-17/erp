@@ -37,3 +37,11 @@ export { default as ErpLogoWhite } from './logos/erp-logo-white.svg';
 
 export { default as AppStoreBadge } from './badges/appstore.svg';
 export { default as PlayStoreBadge } from './badges/playstore.svg';
+
+export { default as LoginBg } from './login/signin_bg.svg'
+export { default as Loginsales} from './login/signin_sale.svg'
+export { default as LoginOff} from './login/signin_off.svg'
+
+export { default as LoginGoogle } from './login/Google.png'
+export { default as LoginFacebook} from './login/Facebook.png'
+export { default as LoginApple} from './login/Apple.png'
