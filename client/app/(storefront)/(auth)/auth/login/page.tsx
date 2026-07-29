@@ -9,7 +9,7 @@ export default function StorefrontLoginPage() {
       <AuthBackground variant="login" />
 
       {/* Main Layout Card */}
-      <div className="max-w-212.5 z-10 flex w-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-xl sm:gap-10 sm:p-10">
+      <div className="z-10 flex w-full max-w-xl lg:max-w-3xl 2xl:max-w-212.5 flex-col gap-6 lg:gap-8 rounded-3xl bg-white p-6 shadow-xl sm:gap-10 sm:p-10">
         <AuthHeader title="Welcome Back!" subtitle="Sign in to your account" />
 
         <LoginForm />

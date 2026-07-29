@@ -10,13 +10,13 @@ export function SocialAuth() {
       <div className="flex h-8 w-auto items-center gap-6 sm:w-44 sm:gap-10">
         {/* Social Icons */}
         <div className="relative h-8 w-8 shrink-0 cursor-pointer transition-opacity hover:opacity-80">
-          <Image src={GoogleIcon} alt="Google" fill className="object-contain" />
+          <Image src={GoogleIcon} alt="Google" fill sizes="32px" className="object-contain" />
         </div>
         <div className="relative h-8 w-8 shrink-0 cursor-pointer transition-opacity hover:opacity-80">
-          <Image src={FacebookIcon} alt="Facebook" fill className="object-contain" />
+          <Image src={FacebookIcon} alt="Facebook" fill sizes="32px" className="object-contain" />
         </div>
         <div className="relative h-8 w-8 shrink-0 cursor-pointer transition-opacity hover:opacity-80">
-          <Image src={AppleIcon} alt="Apple" fill className="object-contain" />
+          <Image src={AppleIcon} alt="Apple" fill sizes="32px" className="object-contain" />
         </div>
       </div>
     </div>
