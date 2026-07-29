@@ -37,11 +37,18 @@ export { default as ErpLogoWhite } from './logos/erp-logo-white.svg';
 
 export { default as AppStoreBadge } from './badges/appstore.svg';
 export { default as PlayStoreBadge } from './badges/playstore.svg';
+export { default as LoginBg } from './login/signin_bg.svg';
+export { default as Loginsales} from './login/signin_sale.svg';
+export { default as LoginOff} from './login/signin_off.svg';
 
-export { default as LoginBg } from './login/signin_bg.svg'
-export { default as Loginsales} from './login/signin_sale.svg'
-export { default as LoginOff} from './login/signin_off.svg'
+export { default as LoginGoogle } from './login/Google.png';
+export { default as LoginFacebook} from './login/Facebook.png';
+export { default as LoginApple} from './login/Apple.png';
 
-export { default as LoginGoogle } from './login/Google.png'
-export { default as LoginFacebook} from './login/Facebook.png'
-export { default as LoginApple} from './login/Apple.png'
+export { default as RegisterBg } from './backgrounds/register-bg.svg';
+
+export { default as DealBag } from './illustrations/bag-1.png';
+export { default as GiftBox } from './illustrations/box-1.png';
+export { default as GoogleIcon } from './illustrations/google.png';
+export { default as FacebookIcon } from './illustrations/facebook.png';
+export { default as AppleIcon } from './illustrations/apple.png';

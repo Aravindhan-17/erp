@@ -3,7 +3,6 @@
 import { Clock, IndianRupee, Package, Star } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { BannerImg1, BannerImg2, BannerImg3 } from "@/assets/images";
