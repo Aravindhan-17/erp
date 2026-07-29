@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Search, Bell, ShoppingCart, ChevronDown, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
+import type { StaticImageData } from "next/image";
+
 interface NavItem {
   label: string;
   href: string;
@@ -13,11 +15,11 @@ interface NavItem {
 }
 
 interface HeaderProps {
-  logoSrc?: string;
+  logoSrc?: string | StaticImageData;
   logoAlt?: string;
   navLinks?: NavItem[];
   userName?: string;
-  userAvatar?: string;
+  userAvatar?: string | StaticImageData;
   notificationCount?: number;
   cartCount?: number;
   onSearch?: (query: string) => void;
@@ -26,7 +28,7 @@ interface HeaderProps {
 }
 
 export default function Header({
-  logoSrc = "/images/erp-logo.svg",
+  logoSrc = "/images/logos/erp-logo.svg",
   logoAlt = "ERP Flash Deal",
   navLinks = [
     { label: "Home", href: "/", active: true },
@@ -35,7 +37,7 @@ export default function Header({
     { label: "How it Works", href: "/how-it-works" },
   ],
   userName = "John",
-  userAvatar = "/images/user.png",
+  userAvatar = "/images/users/user.png",
   notificationCount = 3,
   cartCount = 2,
   className = "",
@@ -55,16 +57,15 @@ export default function Header({
           href="/"
           className="flex items-center w-35 sm:w-45 md:w-50 xl:w-62 h-auto xl:h-15 rotate-0 opacity-100 box-border group"
         >
-          <Image
+          {logoSrc && <Image
             src={logoSrc}
             alt={logoAlt}
             width={248}
             height={60}
             quality={100}
-            unoptimized
             className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105"
             priority
-          />
+          />}
         </Link>
       </div>
 
@@ -151,14 +152,13 @@ export default function Header({
         <div className="w-auto h-auto xl:h-18 flex items-center gap-2 xl:gap-2.5 rotate-0 opacity-100 cursor-pointer group select-none box-border">
           {/* Profile Image */}
           <div className="relative w-8 h-8 sm:w-12 sm:h-12 xl:w-18 xl:h-18 rounded-full overflow-hidden shrink-0 rotate-0 opacity-100 border border-gray-200 xl:border-none">
-            <Image
+            {userAvatar && <Image
               src={userAvatar}
               alt={userName}
               width={72}
               height={72}
               className="w-full h-full object-cover"
-              unoptimized
-            />
+            />}
           </div>
 
           {/* Profile Text Layout (hidden on small screens) */}
@@ -199,7 +199,7 @@ export default function Header({
           <div className="mt-6 pt-6 border-t border-gray-100 flex flex-col gap-4">
             <div className="flex items-center gap-3">
                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-200">
-                  <Image src={userAvatar} alt={userName} width={48} height={48} className="w-full h-full object-cover" unoptimized />
+                  {userAvatar && <Image src={userAvatar} alt={userName} width={48} height={48} className="w-full h-full object-cover" />}
                </div>
                <span className="font-poppins text-4 font-medium text-[#000000]">
                  Hello, {userName}

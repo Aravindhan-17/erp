@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ErpLogoWhite, PlayStoreBadge, AppStoreBadge } from "@/assets/images";
 
 export interface FooterProps {
   className?: string;
@@ -20,12 +21,10 @@ export default function Footer({ className = "", style }: FooterProps) {
         <div className="flex flex-col gap-[20px] w-full xl:w-[381px] sm:col-span-2 lg:col-span-1">
           <Link href="/" className="flex items-center w-[200px] sm:w-[248px] h-[50px] sm:h-[60px] group">
             <Image
-              src="/images/erp-logo-white.svg"
+              src={ErpLogoWhite}
               alt="ERP Flash Deal"
               width={248}
               height={60}
-              quality={100}
-              unoptimized
               className="w-full h-full object-contain"
               priority
             />
@@ -112,10 +111,10 @@ export default function Footer({ className = "", style }: FooterProps) {
           </p>
           <div className="flex flex-col sm:flex-row xl:flex-col gap-[16px]">
             <a href="#" className="block hover:opacity-90 transition-opacity w-[200px] sm:w-[236.25px] h-[60px] sm:h-[70px]">
-              <Image src="/images/playstore.svg" alt="Get it on Google Play" width={236} height={70} className="w-full h-full object-contain" />
+              <Image src={PlayStoreBadge} alt="Get it on Google Play" width={236} height={70} className="w-full h-full object-contain" />
             </a>
             <a href="#" className="block hover:opacity-90 transition-opacity w-[200px] sm:w-[236.25px] h-[60px] sm:h-[70px]">
-              <Image src="/images/appstore.svg" alt="Download on the App Store" width={236} height={70} className="w-full h-full object-contain" />
+              <Image src={AppStoreBadge} alt="Download on the App Store" width={236} height={70} className="w-full h-full object-contain" />
             </a>
           </div>
         </div>

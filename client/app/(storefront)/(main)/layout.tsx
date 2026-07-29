@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { ErpLogo, UserAvatar } from "@/assets/images";
 
 export default function StorefrontLayout({
   children,
@@ -10,7 +11,7 @@ export default function StorefrontLayout({
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       {/* Header matching user design specs */}
       <Header
-        logoSrc="/images/erp-logo.svg"
+        logoSrc={ErpLogo}
         navLinks={[
           { label: "Home", href: "/" },
           { label: "Flash Deals", href: "/flash-deals" },
@@ -18,7 +19,7 @@ export default function StorefrontLayout({
           { label: "How it Works", href: "/how-it-works" },
         ]}
         userName="John"
-        userAvatar="/images/user.png"
+        userAvatar={UserAvatar}
         notificationCount={3}
         cartCount={2}
       />

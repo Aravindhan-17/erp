@@ -3,28 +3,30 @@
 import { Clock, IndianRupee, Package, Star } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import { BannerImg1, BannerImg2, BannerImg3 } from "@/assets/images";
 
 const SLIDES = [
   {
     title: "Summer Electronics\nFlash Sale",
     subtitle: "Unbeatable deals on top electronics",
-    bgImage: "/images/banner-img-1.svg",
+    bgImage: BannerImg1,
     fee: "₹ 1",
     minOrder: "₹ 5,000",
   },
   {
     title: "Premium Gadgets\nClearance",
     subtitle: "Huge discounts on laptops and more",
-    bgImage: "/images/banner-img-2.png",
+    bgImage: BannerImg2,
     fee: "Free",
     minOrder: "₹ 2,000",
   },
   {
     title: "Smart Home\nFestival",
     subtitle: "Transform your home with smart tech",
-    bgImage: "/images/banner-img-3.png",
+    bgImage: BannerImg3,
     fee: "₹ 50",
     minOrder: "₹ 10,000",
   },

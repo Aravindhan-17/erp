@@ -1,15 +1,26 @@
 import Image from "next/image";
 import React from "react";
 
+import {
+  TopBrand1,
+  TopBrand2,
+  TopBrand3,
+  TopBrand4,
+  TopBrand5,
+  TopBrand6,
+  TopBrand7,
+  TopBrand8,
+} from "@/assets/images";
+
 const brandImages = [
-  "/images/top-brand-1.svg",
-  "/images/top-brand-2.svg",
-  "/images/top-brand-3.svg",
-  "/images/top-brand-4.svg",
-  "/images/top-brand-5.svg",
-  "/images/top-brand-6.svg",
-  "/images/top-brand-7.svg",
-  "/images/top-brand-8.svg",
+  TopBrand1,
+  TopBrand2,
+  TopBrand3,
+  TopBrand4,
+  TopBrand5,
+  TopBrand6,
+  TopBrand7,
+  TopBrand8,
 ];
 
 export function TopBrands() {

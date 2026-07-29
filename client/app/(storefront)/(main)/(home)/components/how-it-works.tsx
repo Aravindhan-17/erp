@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { HowItWorksMask } from "@/assets/images";
 
 const stepsData = [
   {
@@ -42,7 +43,7 @@ export function HowItWorks() {
         {/* Mask group layout */}
         <div className="absolute inset-0 w-full h-full opacity-100">
           <Image
-            src="/images/how-it-works-mask-group.svg"
+            src={HowItWorksMask}
             alt="Flash Deals background mask"
             fill
             className="object-cover"

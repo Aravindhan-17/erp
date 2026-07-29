@@ -9,12 +9,14 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
-import electronics from "../../../../public/images/Category-1.svg";
-import homeAppliances from "../../../../public/images/Category-2.svg";
-import fashion from "../../../../public/images/Category-3.svg";
-import accessories from "../../../../public/images/Category-4.svg";
-import beauty from "../../../../public/images/Category-5.svg";
-import sports from "../../../../public/images/Category-6.svg";
+import {
+  CategoryElectronics as electronics,
+  CategoryHomeAppliances as homeAppliances,
+  CategoryFashion as fashion,
+  CategoryAccessories as accessories,
+  CategoryBeauty as beauty,
+  CategorySports as sports,
+} from "@/assets/images";
 
 const categories = [
   {

@@ -2,13 +2,14 @@
 import { useEffect, useState } from "react";
 import { Package, IndianRupee, Bell, ChevronRight} from "lucide-react";
 import Image from "next/image";
+import { Product1, Product2, Product3, Product4 } from "@/assets/images";
 const deals = [
   {
     id: 1,
     status: "Live Now",
     badge: "#017B24",
     badgeText: "text-white",
-    image: "/images/Product-1.svg",
+    image: Product1,
     title: "Summer Electronics Flash Sale",
     description: "Unbeatable deals on top electronics.",
     products: 12,
@@ -22,7 +23,7 @@ const deals = [
     status: "Starting Soon",
     badge: "#FEB305",
     badgeText: "text-black",
-    image: "/images/Product-2.svg",
+    image: Product2,
     title: "Home Appliances Bonanza",
     description: "Exclusive discounts on premium appliances.",
     products: 20,
@@ -36,7 +37,7 @@ const deals = [
     status: "Upcoming",
     badge: " #4E148C",
     badgeText: "text-white",
-    image: "/images/Product-3.svg",
+    image: Product3,
     title: "Fashion Mega Deals",
     description: "Trending styles at crazy prices.",
     products: 18,
@@ -50,7 +51,7 @@ const deals = [
     status: "Ended",
     badge: "#555555",
     badgeText: "text-white",
-    image: "/images/Product-4.svg",
+    image: Product4,
     title: "Smartphone Clearance",
     description: "This flash deal has ended.",
     products: 15,

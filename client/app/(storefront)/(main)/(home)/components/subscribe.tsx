@@ -7,12 +7,14 @@ import {
   Mail,
 } from "lucide-react";
 
-import user1 from "../../../../public/images/user-1.svg";
-import user2 from "../../../../public/images/user-2.svg";
-import user3 from "../../../../public/images/user-3.svg";
-import user4 from "../../../../public/images/user-4.svg";
 import Image from "next/image";
-import leftBg from "../../../../public/images/subscribe-image.png";
+import {
+  User1 as user1,
+  User2 as user2,
+  User3 as user3,
+  User4 as user4,
+  SubscribeImage as leftBg,
+} from "@/assets/images";
 // import shieldBg from "@/assets/shield-bg.png";
 const features = [
   {
