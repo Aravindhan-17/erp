@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  IndianRupee,
-  Clock3,
-  Package,
-  ShieldCheck,
-  Star,
-  ChevronRight,
-} from "lucide-react";
+import { IndianRupee, Clock3, Package, ShieldCheck, Star, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 import {
@@ -85,69 +78,57 @@ const features = [
 ];
 const Category = () => {
   return (
-<section className="relative w-full max-w-[1920px] mx-auto h-auto px-4 md:px-8 xl:px-10 pt-8 pb-12 xl:pt-0 xl:pb-0">
-  <div className="w-full mx-auto">
-          {/* Heading */}
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold">Shop by Category</h2>
+    <section className="relative mx-auto h-auto w-full max-w-[1920px] px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+      <div className="mx-auto w-full">
+        {/* Heading */}
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-3xl font-bold">Shop by Category</h2>
 
-         <button className="mt-5 md:mt-0 text-secondary px-6 py-3 rounded-xl font-semibold flex items-center gap-2">
-             View All Deals
-             <ChevronRight size={26} />
+          <button className="text-secondary mt-5 flex items-center gap-2 rounded-xl px-6 py-3 font-semibold md:mt-0">
+            View All Deals
+            <ChevronRight size={26} />
           </button>
-      </div>
+        </div>
 
-      {/* Categories */}
-     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 mb-10">
-  {categories.map((item, index) => (
-    <div
-      key={index}
-      className="border border-gray-200 rounded-2xl bg-white p-6 text-center hover:shadow-lg transition duration-300"
-    >
-      <div className="flex justify-center mb-5">
-        <Image
-          src={item.image}
-          alt={item.title}
-          className="w-50 h-30 object-contain"
-        />
-      </div>
+        {/* Categories */}
+        <div className="mb-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+          {categories.map((item, index) => (
+            <div
+              key={index}
+              className="rounded-2xl border border-gray-200 bg-white p-6 text-center transition duration-300 hover:shadow-lg"
+            >
+              <div className="mb-5 flex justify-center">
+                <Image src={item.image} alt={item.title} className="w-50 h-30 object-contain" />
+              </div>
 
-      <h3 className="font-semibold text-lg">{item.title}</h3>
+              <h3 className="text-lg font-semibold">{item.title}</h3>
 
-      <p className="text-black/50 font-medium text-sm mt-1">
-        {item.products} Products
-      </p>
-    </div>
-  ))}
-</div>
+              <p className="mt-1 text-sm font-medium text-black/50">{item.products} Products</p>
+            </div>
+          ))}
+        </div>
 
-      {/* Bottom Features */}
-     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border border-gray-200 rounded-2xl bg-white p-6">
-        
-  {features.map((item, index) => {
-    const Icon = item.icon;
+        {/* Bottom Features */}
+        <div className="grid grid-cols-1 rounded-2xl border border-gray-200 bg-white p-6 sm:grid-cols-2 lg:grid-cols-5">
+          {features.map((item, index) => {
+            const Icon = item.icon;
 
-    return (
-      <div key={index} className="flex gap-4 ">
-        <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-violet-100 shrink-0 my-auto">
-  <Icon
-    size={24}
-    strokeWidth={2}
-    className="text-primary"
-  />
-</div>
+            return (
+              <div key={index} className="flex gap-4 ">
+                <div className="my-auto flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-violet-100">
+                  <Icon size={24} strokeWidth={2} className="text-primary" />
+                </div>
 
-        <div>
-          <h3 className="font-semibold text-xl mb-3">{item.title}</h3>
-          <p className="text-sm text-black/90 leading-5.5 ">{item.subtitle}</p>
-          <p className="text-sm text-black/90 leading-5.5 ">{item.desc}</p>
+                <div>
+                  <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
+                  <p className="leading-5.5 text-sm text-black/90 ">{item.subtitle}</p>
+                  <p className="leading-5.5 text-sm text-black/90 ">{item.desc}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-    );
-  })}
-  
-</div>
-</div>
     </section>
   );
 };

@@ -35,10 +35,7 @@ export function Hero() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 5000 })]);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi]
-  );
+  const scrollTo = useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -54,126 +51,174 @@ export function Hero() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="relative w-full max-w-[1920px] mx-auto xl:h-200 px-4 md:px-8 xl:px-10 flex items-center justify-center pt-8 pb-12 xl:pt-0 xl:pb-0">
-      <div 
-        className="w-full h-full max-w-[1840px] mx-auto rounded-3xl relative overflow-hidden"
+    <section className="xl:h-200 relative mx-auto flex w-full max-w-[1920px] items-center justify-center px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+      <div
+        className="relative mx-auto h-full w-full max-w-[1840px] overflow-hidden rounded-3xl"
         ref={emblaRef}
       >
-        <div className="flex touch-pan-y w-full h-full">
+        <div className="flex h-full w-full touch-pan-y">
           {SLIDES.map((slide, index) => (
-            <div 
-              key={index} 
-              className="relative flex-[0_0_100%] min-w-0 p-8 xl:p-20 flex flex-col justify-center h-full min-h-150 xl:min-h-full overflow-hidden"
+            <div
+              key={index}
+              className="min-h-150 relative flex h-full min-w-0 flex-[0_0_100%] flex-col justify-center overflow-hidden p-8 xl:min-h-full xl:p-20"
             >
-              <div className="absolute inset-0 z-0 pointer-events-none">
+              <div className="pointer-events-none absolute inset-0 z-0">
                 <Image
                   src={slide.bgImage}
-                  alt={slide.title.replace('\n', ' ')}
+                  alt={slide.title.replace("\n", " ")}
                   fill
                   priority={index === 0}
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-linear-to-b from-transparent from-[15.38%] to-black/50 to-[81.11%]" />
+                <div className="bg-linear-to-b absolute inset-0 from-transparent from-[15.38%] to-black/50 to-[81.11%]" />
               </div>
-              <div className="flex flex-col w-full max-w-7xl gap-6 md:gap-8 xl:gap-10 relative z-10 pb-10">
-                <div className="flex flex-col w-full max-w-2xl gap-3 md:gap-4 xl:gap-5">
-                  <div className="flex items-center w-36 h-12.5 rounded-xl p-2.5 gap-2.5 bg-[#D40215] opacity-100">
-                    <div className="w-4.5 h-4.5 rounded-full bg-white opacity-100 shrink-0"></div>
-                    <span className="w-24 h-7.5 font-poppins font-semibold text-[20px] leading-none tracking-normal uppercase text-white flex items-center justify-center opacity-100 whitespace-nowrap">
+              <div className="relative z-10 flex w-full max-w-7xl flex-col gap-6 pb-10 md:gap-8 xl:gap-10">
+                <div className="flex w-full max-w-2xl flex-col gap-3 md:gap-4 xl:gap-5">
+                  <div className="h-12.5 flex w-36 items-center gap-2.5 rounded-xl bg-[#D40215] p-2.5 opacity-100">
+                    <div className="w-4.5 h-4.5 shrink-0 rounded-full bg-white opacity-100"></div>
+                    <span className="h-7.5 font-poppins flex w-24 items-center justify-center whitespace-nowrap text-[20px] font-semibold uppercase leading-none tracking-normal text-white opacity-100">
                       Live now
                     </span>
                   </div>
-                  <h1 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl xl:text-6xl text-white whitespace-pre-line leading-tight">
+                  <h1 className="font-poppins whitespace-pre-line text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl xl:text-6xl">
                     {slide.title}
                   </h1>
-                  <p className="font-poppins font-normal text-base md:text-lg xl:text-2xl text-white opacity-90">
+                  <p className="font-poppins text-base font-normal text-white opacity-90 md:text-lg xl:text-2xl">
                     {slide.subtitle}
                   </p>
                 </div>
-                
-                <div className="flex flex-col md:flex-row md:flex-wrap xl:flex-nowrap xl:items-center w-full max-w-5xl gap-4 md:gap-6 xl:gap-10">
-                  <div className="md:border-r border-white/30 md:pr-6 xl:pr-10 flex flex-col gap-1 md:gap-2">
+
+                <div className="flex w-full max-w-5xl flex-col gap-4 md:flex-row md:flex-wrap md:gap-6 xl:flex-nowrap xl:items-center xl:gap-10">
+                  <div className="flex flex-col gap-1 border-white/30 md:gap-2 md:border-r md:pr-6 xl:pr-10">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 text-white" />
-                      <span className="font-poppins font-normal text-base md:text-lg xl:text-xl text-white">
+                      <Clock className="h-4 w-4 text-white md:h-5 md:w-5 xl:h-6 xl:w-6" />
+                      <span className="font-poppins text-base font-normal text-white md:text-lg xl:text-xl">
                         Ends In
                       </span>
                     </div>
-                    <div className="flex items-start justify-between w-48 xl:w-60">
+                    <div className="flex w-48 items-start justify-between xl:w-60">
                       <div className="flex flex-col items-center">
-                        <span className="font-poppins font-semibold text-2xl md:text-3xl xl:text-4xl text-white">02</span>
-                        <span className="font-poppins font-medium text-[10px] md:text-xs xl:text-sm uppercase text-white opacity-90">HRS</span>
+                        <span className="font-poppins text-2xl font-semibold text-white md:text-3xl xl:text-4xl">
+                          02
+                        </span>
+                        <span className="font-poppins text-[10px] font-medium uppercase text-white opacity-90 md:text-xs xl:text-sm">
+                          HRS
+                        </span>
                       </div>
-                      <span className="font-poppins font-semibold text-2xl md:text-3xl xl:text-4xl text-white">:</span>
+                      <span className="font-poppins text-2xl font-semibold text-white md:text-3xl xl:text-4xl">
+                        :
+                      </span>
                       <div className="flex flex-col items-center">
-                        <span className="font-poppins font-semibold text-2xl md:text-3xl xl:text-4xl text-white">34</span>
-                        <span className="font-poppins font-medium text-[10px] md:text-xs xl:text-sm uppercase text-white opacity-90">MIN</span>
+                        <span className="font-poppins text-2xl font-semibold text-white md:text-3xl xl:text-4xl">
+                          34
+                        </span>
+                        <span className="font-poppins text-[10px] font-medium uppercase text-white opacity-90 md:text-xs xl:text-sm">
+                          MIN
+                        </span>
                       </div>
-                      <span className="font-poppins font-semibold text-2xl md:text-3xl xl:text-4xl text-white">:</span>
+                      <span className="font-poppins text-2xl font-semibold text-white md:text-3xl xl:text-4xl">
+                        :
+                      </span>
                       <div className="flex flex-col items-center">
-                        <span className="font-poppins font-semibold text-2xl md:text-3xl xl:text-4xl text-white">18</span>
-                        <span className="font-poppins font-medium text-[10px] md:text-xs xl:text-sm uppercase text-white opacity-90">SEC</span>
+                        <span className="font-poppins text-2xl font-semibold text-white md:text-3xl xl:text-4xl">
+                          18
+                        </span>
+                        <span className="font-poppins text-[10px] font-medium uppercase text-white opacity-90 md:text-xs xl:text-sm">
+                          SEC
+                        </span>
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="md:border-r border-white/30 md:pr-6 xl:pr-10 flex flex-col gap-1 md:gap-2">
+
+                  <div className="flex flex-col gap-1 border-white/30 md:gap-2 md:border-r md:pr-6 xl:pr-10">
                     <div className="flex items-center gap-2">
-                      <IndianRupee className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 text-white" />
-                      <span className="font-poppins font-normal text-base md:text-lg xl:text-xl text-white">
+                      <IndianRupee className="h-4 w-4 text-white md:h-5 md:w-5 xl:h-6 xl:w-6" />
+                      <span className="font-poppins text-base font-normal text-white md:text-lg xl:text-xl">
                         Registration Fee
                       </span>
                     </div>
-                    <span className="font-poppins font-semibold text-2xl md:text-3xl xl:text-4xl text-white">{slide.fee}</span>
+                    <span className="font-poppins text-2xl font-semibold text-white md:text-3xl xl:text-4xl">
+                      {slide.fee}
+                    </span>
                   </div>
-                  
+
                   <div className="flex flex-col gap-1 md:gap-2">
                     <div className="flex items-center gap-2">
-                      <Package className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 text-white" />
-                      <span className="font-poppins font-normal text-base md:text-lg xl:text-xl text-white">
+                      <Package className="h-4 w-4 text-white md:h-5 md:w-5 xl:h-6 xl:w-6" />
+                      <span className="font-poppins text-base font-normal text-white md:text-lg xl:text-xl">
                         Min. Order Value
                       </span>
                     </div>
-                    <span className="font-poppins font-semibold text-2xl md:text-3xl xl:text-4xl text-white">{slide.minOrder}</span>
+                    <span className="font-poppins text-2xl font-semibold text-white md:text-3xl xl:text-4xl">
+                      {slide.minOrder}
+                    </span>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 w-full gap-4 md:gap-6 xl:gap-8 mt-1">
-                  <div className="flex items-start gap-2 md:gap-3 border-r border-white/30 pr-3 md:pr-4 xl:pr-8">
-                    <IndianRupee className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8 text-[#FEB305]" strokeWidth={2} />
+                <div className="mt-1 grid w-full grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4 xl:gap-8">
+                  <div className="flex items-start gap-2 border-r border-white/30 pr-3 md:gap-3 md:pr-4 xl:pr-8">
+                    <IndianRupee
+                      className="h-5 w-5 text-[#FEB305] md:h-6 md:w-6 xl:h-8 xl:w-8"
+                      strokeWidth={2}
+                    />
                     <div className="flex flex-col">
-                      <span className="font-poppins font-semibold text-sm md:text-lg xl:text-xl text-white leading-tight">₹ 1 Registration</span>
-                      <span className="font-poppins font-normal text-xs xl:text-base text-white opacity-80 mt-0.5">One-Time Fee</span>
+                      <span className="font-poppins text-sm font-semibold leading-tight text-white md:text-lg xl:text-xl">
+                        ₹ 1 Registration
+                      </span>
+                      <span className="font-poppins mt-0.5 text-xs font-normal text-white opacity-80 xl:text-base">
+                        One-Time Fee
+                      </span>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2 md:gap-3 lg:border-r border-white/30 pr-3 md:pr-4 xl:pr-8">
-                    <Clock className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8 text-[#FEB305]" strokeWidth={2} />
+                  <div className="flex items-start gap-2 border-white/30 pr-3 md:gap-3 md:pr-4 lg:border-r xl:pr-8">
+                    <Clock
+                      className="h-5 w-5 text-[#FEB305] md:h-6 md:w-6 xl:h-8 xl:w-8"
+                      strokeWidth={2}
+                    />
                     <div className="flex flex-col">
-                      <span className="font-poppins font-semibold text-sm md:text-lg xl:text-xl text-white leading-tight">10 Min Cart</span>
-                      <span className="font-poppins font-normal text-xs xl:text-base text-white opacity-80 mt-0.5">Hurry! Limited Time</span>
+                      <span className="font-poppins text-sm font-semibold leading-tight text-white md:text-lg xl:text-xl">
+                        10 Min Cart
+                      </span>
+                      <span className="font-poppins mt-0.5 text-xs font-normal text-white opacity-80 xl:text-base">
+                        Hurry! Limited Time
+                      </span>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2 md:gap-3 border-r border-white/30 pr-3 md:pr-4 xl:pr-8">
-                    <Package className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8 text-[#FEB305]" strokeWidth={2} />
+                  <div className="flex items-start gap-2 border-r border-white/30 pr-3 md:gap-3 md:pr-4 xl:pr-8">
+                    <Package
+                      className="h-5 w-5 text-[#FEB305] md:h-6 md:w-6 xl:h-8 xl:w-8"
+                      strokeWidth={2}
+                    />
                     <div className="flex flex-col">
-                      <span className="font-poppins font-semibold text-sm md:text-lg xl:text-xl text-white leading-tight">Min. 2 Products</span>
-                      <span className="font-poppins font-normal text-xs xl:text-base text-white opacity-80 mt-0.5">OR ₹ 5k min value</span>
+                      <span className="font-poppins text-sm font-semibold leading-tight text-white md:text-lg xl:text-xl">
+                        Min. 2 Products
+                      </span>
+                      <span className="font-poppins mt-0.5 text-xs font-normal text-white opacity-80 xl:text-base">
+                        OR ₹ 5k min value
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-start gap-2 md:gap-3">
-                    <Star className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8 text-[#FEB305]" strokeWidth={2} />
+                    <Star
+                      className="h-5 w-5 text-[#FEB305] md:h-6 md:w-6 xl:h-8 xl:w-8"
+                      strokeWidth={2}
+                    />
                     <div className="flex flex-col">
-                      <span className="font-poppins font-semibold text-sm md:text-lg xl:text-xl text-white leading-tight">Top Brands</span>
-                      <span className="font-poppins font-normal text-xs xl:text-base text-white opacity-80 mt-0.5">100% Original Products</span>
+                      <span className="font-poppins text-sm font-semibold leading-tight text-white md:text-lg xl:text-xl">
+                        Top Brands
+                      </span>
+                      <span className="font-poppins mt-0.5 text-xs font-normal text-white opacity-80 xl:text-base">
+                        100% Original Products
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 mt-2 xl:mt-4">
-                  <button className="flex items-center justify-center w-full sm:w-64 xl:w-72 h-12 xl:h-16 rounded-lg bg-secondary font-poppins font-bold text-base md:text-lg xl:text-xl text-white hover:opacity-90 transition-opacity">
+                <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row md:gap-4 xl:mt-4">
+                  <button className="bg-secondary font-poppins flex h-12 w-full items-center justify-center rounded-lg text-base font-bold text-white transition-opacity hover:opacity-90 sm:w-64 md:text-lg xl:h-16 xl:w-72 xl:text-xl">
                     Register for {slide.fee}
                   </button>
-                  <button className="flex items-center justify-center w-full sm:w-64 xl:w-72 h-12 xl:h-16 rounded-lg border border-white font-poppins font-bold text-base md:text-lg xl:text-xl text-white hover:bg-white/10 transition-colors">
+                  <button className="font-poppins flex h-12 w-full items-center justify-center rounded-lg border border-white text-base font-bold text-white transition-colors hover:bg-white/10 sm:w-64 md:text-lg xl:h-16 xl:w-72 xl:text-xl">
                     View Details
                   </button>
                 </div>
@@ -183,13 +228,13 @@ export function Hero() {
         </div>
 
         {/* Slider layout */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center justify-center gap-5 z-20">
+        <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center gap-5">
           {SLIDES.map((_, index) => (
             <button
               key={index}
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`w-8 h-3.5 rounded-full cursor-pointer transition-colors ${
+              className={`h-3.5 w-8 cursor-pointer rounded-full transition-colors ${
                 index === selectedIndex ? "bg-secondary" : "bg-white"
               }`}
             />

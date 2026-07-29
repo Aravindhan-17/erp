@@ -49,48 +49,49 @@ export default function Header({
   return (
     <header
       style={style}
-      className={`w-full max-w-480 min-h-20 xl:h-38 flex items-center justify-between rotate-0 opacity-100 px-4 md:px-8 xl:px-10 py-4 xl:py-0 box-border mx-auto bg-white transition-all duration-200 relative ${className}`}
+      className={`max-w-480 xl:h-38 relative mx-auto box-border flex min-h-20 w-full rotate-0 items-center justify-between bg-white px-4 py-4 opacity-100 transition-all duration-200 md:px-8 xl:px-10 xl:py-0 ${className}`}
     >
       {/* 1. Left Section: Logo Container */}
-      <div className="flex items-center shrink-0">
+      <div className="flex shrink-0 items-center">
         <Link
           href="/"
-          className="flex items-center w-35 sm:w-45 md:w-50 xl:w-62 h-auto xl:h-15 rotate-0 opacity-100 box-border group"
+          className="w-35 sm:w-45 md:w-50 xl:w-62 xl:h-15 group box-border flex h-auto rotate-0 items-center opacity-100"
         >
-          {logoSrc && <Image
-            src={logoSrc}
-            alt={logoAlt}
-            width={248}
-            height={60}
-            quality={100}
-            className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105"
-            priority
-          />}
+          {logoSrc && (
+            <Image
+              src={logoSrc}
+              alt={logoAlt}
+              width={248}
+              height={60}
+              quality={100}
+              className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-105"
+              priority
+            />
+          )}
         </Link>
       </div>
 
       {/* 2. Right Section: Navigation & Action Content Container */}
-      <div className="flex-1 max-w-full min-h-12 xl:h-18 flex items-center justify-end gap-3 sm:gap-4 xl:gap-5 rotate-0 opacity-100 box-border ml-2 md:ml-4 xl:ml-0">
-        
+      <div className="xl:h-18 ml-2 box-border flex min-h-12 max-w-full flex-1 rotate-0 items-center justify-end gap-3 opacity-100 sm:gap-4 md:ml-4 xl:ml-0 xl:gap-5">
         {/* Mobile Menu Icon (shown only on small screens) */}
-        <button 
-          className="xl:hidden p-2 text-[#000000]" 
+        <button
+          className="p-2 text-[#000000] xl:hidden"
           aria-label="Menu"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
         {/* Navigation Layout Container */}
-        <nav className="hidden xl:flex items-center w-auto max-w-full h-18 gap-3.75 2xl:gap-7.5 rotate-0 opacity-100 font-sans">
+        <nav className="h-18 gap-3.75 2xl:gap-7.5 hidden w-auto max-w-full rotate-0 items-center font-sans opacity-100 xl:flex">
           {navLinks.map((link, index) => (
             <Link
               key={index}
               href={link.href}
-              className={`h-18 pt-5.25 pb-5.25 flex items-center justify-center gap-2.5 font-poppins text-4 2xl:text-5 font-semibold leading-none tracking-normal rotate-0 transition-all duration-150 box-border ${
+              className={`h-18 pt-5.25 pb-5.25 font-poppins text-4 2xl:text-5 box-border flex rotate-0 items-center justify-center gap-2.5 font-semibold leading-none tracking-normal transition-all duration-150 ${
                 (link.active ?? pathname === link.href)
                   ? "text-[#F3380B] opacity-100"
-                  : "text-[#09090B] hover:text-[#F3380B] opacity-95"
+                  : "text-[#09090B] opacity-95 hover:text-[#F3380B]"
               }`}
             >
               {link.label}
@@ -99,32 +100,36 @@ export default function Header({
         </nav>
 
         {/* Search Bar Container */}
-        <div className="hidden md:flex flex-1 max-w-120.75 h-10 xl:h-18 items-center justify-between gap-2 xl:gap-10 rotate-0 opacity-100 rounded-2 px-3 xl:p-5 bg-[#F6F6F6] box-border">
+        <div className="max-w-120.75 xl:h-18 rounded-2 box-border hidden h-10 flex-1 rotate-0 items-center justify-between gap-2 bg-[#F6F6F6] px-3 opacity-100 md:flex xl:gap-10 xl:p-5">
           <input
             type="text"
             placeholder="Search for products, brands, categories..."
-            className="w-full h-full xl:h-6.75 font-poppins text-3.5 xl:text-4.5 font-medium leading-none tracking-normal opacity-50 placeholder:opacity-50 text-[#000000] placeholder-[#000000] outline-none border-none bg-transparent"
+            className="xl:h-6.75 font-poppins text-3.5 xl:text-4.5 h-full w-full border-none bg-transparent font-medium leading-none tracking-normal text-[#000000] placeholder-[#000000] opacity-50 outline-none placeholder:opacity-50"
           />
-          <Search className="w-5 h-5 xl:w-8 xl:h-8 rotate-0 opacity-50 text-[#000000] shrink-0 pointer-events-none" />
+          <Search className="pointer-events-none h-5 w-5 shrink-0 rotate-0 text-[#000000] opacity-50 xl:h-8 xl:w-8" />
         </div>
 
         {/* Mobile Search Icon (shown only on small screens) */}
-        <button className="md:hidden p-2 text-[#000000] opacity-50" aria-label="Search" onClick={() => setIsMobileMenuOpen(true)}>
-          <Search className="w-5 h-5" />
+        <button
+          className="p-2 text-[#000000] opacity-50 md:hidden"
+          aria-label="Search"
+          onClick={() => setIsMobileMenuOpen(true)}
+        >
+          <Search className="h-5 w-5" />
         </button>
 
         {/* Icons Layout Container */}
-        <div className="w-auto xl:w-38.5 max-w-full min-h-12 xl:h-18 flex items-center gap-1 sm:gap-2 xl:gap-2.5 rotate-0 opacity-100 box-border">
+        <div className="xl:w-38.5 xl:h-18 box-border flex min-h-12 w-auto max-w-full rotate-0 items-center gap-1 opacity-100 sm:gap-2 xl:gap-2.5">
           {/* Bell Icon */}
           <button
             aria-label="Notifications"
-            className="relative w-9 h-9 sm:w-12 sm:h-12 xl:w-18 xl:h-18 rotate-0 opacity-100 flex items-center justify-center text-[#000000] cursor-pointer"
+            className="xl:w-18 xl:h-18 relative flex h-9 w-9 rotate-0 cursor-pointer items-center justify-center text-[#000000] opacity-100 sm:h-12 sm:w-12"
           >
-            <div className="relative xl:absolute xl:top-1.5 xl:left-4.5 w-full h-full xl:w-12 xl:h-14.5 rotate-0 opacity-100 pointer-events-none flex items-center justify-center xl:block">
-              <Bell className="xl:absolute xl:top-4 xl:left-0 w-5 h-5 xl:w-9 xl:h-10.5 rotate-0 opacity-100 text-[#000000] stroke-2" />
-              
+            <div className="xl:left-4.5 xl:h-14.5 pointer-events-none relative flex h-full w-full rotate-0 items-center justify-center opacity-100 xl:absolute xl:top-1.5 xl:block xl:w-12">
+              <Bell className="xl:h-10.5 h-5 w-5 rotate-0 stroke-2 text-[#000000] opacity-100 xl:absolute xl:left-0 xl:top-4 xl:w-9" />
+
               {notificationCount > 0 && (
-                <span className="absolute -top-1 -right-1 xl:top-0 xl:right-0 w-3.5 h-3.5 xl:w-5 xl:h-5.25 rotate-0 opacity-100 gap-2.5 rounded-full p-0.5 xl:p-1 bg-[#E53935] text-white text-2 xl:text-2.75 font-bold flex items-center justify-center border border-white leading-none">
+                <span className="xl:h-5.25 text-2 xl:text-2.75 absolute -right-1 -top-1 flex h-3.5 w-3.5 rotate-0 items-center justify-center gap-2.5 rounded-full border border-white bg-[#E53935] p-0.5 font-bold leading-none text-white opacity-100 xl:right-0 xl:top-0 xl:w-5 xl:p-1">
                   {notificationCount}
                 </span>
               )}
@@ -134,13 +139,13 @@ export default function Header({
           {/* Shopping Cart Icon */}
           <button
             aria-label="Shopping Cart"
-            className="relative w-9 h-9 sm:w-12 sm:h-12 xl:w-18 xl:h-18 rotate-0 opacity-100 flex items-center justify-center text-[#000000] cursor-pointer"
+            className="xl:w-18 xl:h-18 relative flex h-9 w-9 rotate-0 cursor-pointer items-center justify-center text-[#000000] opacity-100 sm:h-12 sm:w-12"
           >
-            <div className="relative xl:absolute xl:top-1.5 xl:left-4.5 w-full h-full xl:w-12 xl:h-14.5 rotate-0 opacity-100 pointer-events-none flex items-center justify-center xl:block">
-              <ShoppingCart className="xl:absolute xl:top-4 xl:left-0 w-5 h-5 xl:w-9 xl:h-10.5 rotate-0 opacity-100 text-[#000000] stroke-2" />
-              
+            <div className="xl:left-4.5 xl:h-14.5 pointer-events-none relative flex h-full w-full rotate-0 items-center justify-center opacity-100 xl:absolute xl:top-1.5 xl:block xl:w-12">
+              <ShoppingCart className="xl:h-10.5 h-5 w-5 rotate-0 stroke-2 text-[#000000] opacity-100 xl:absolute xl:left-0 xl:top-4 xl:w-9" />
+
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 xl:top-0 xl:right-0 w-3.5 h-3.5 xl:w-5 xl:h-5.25 rotate-0 opacity-100 gap-2.5 rounded-full p-0.5 xl:p-1 bg-[#E53935] text-white text-2 xl:text-2.75 font-bold flex items-center justify-center border border-white leading-none">
+                <span className="xl:h-5.25 text-2 xl:text-2.75 absolute -right-1 -top-1 flex h-3.5 w-3.5 rotate-0 items-center justify-center gap-2.5 rounded-full border border-white bg-[#E53935] p-0.5 font-bold leading-none text-white opacity-100 xl:right-0 xl:top-0 xl:w-5 xl:p-1">
                   {cartCount}
                 </span>
               )}
@@ -149,43 +154,45 @@ export default function Header({
         </div>
 
         {/* User Profile Container */}
-        <div className="w-auto h-auto xl:h-18 flex items-center gap-2 xl:gap-2.5 rotate-0 opacity-100 cursor-pointer group select-none box-border">
+        <div className="xl:h-18 group box-border flex h-auto w-auto rotate-0 cursor-pointer select-none items-center gap-2 opacity-100 xl:gap-2.5">
           {/* Profile Image */}
-          <div className="relative w-8 h-8 sm:w-12 sm:h-12 xl:w-18 xl:h-18 rounded-full overflow-hidden shrink-0 rotate-0 opacity-100 border border-gray-200 xl:border-none">
-            {userAvatar && <Image
-              src={userAvatar}
-              alt={userName}
-              width={72}
-              height={72}
-              className="w-full h-full object-cover"
-            />}
+          <div className="xl:w-18 xl:h-18 relative h-8 w-8 shrink-0 rotate-0 overflow-hidden rounded-full border border-gray-200 opacity-100 sm:h-12 sm:w-12 xl:border-none">
+            {userAvatar && (
+              <Image
+                src={userAvatar}
+                alt={userName}
+                width={72}
+                height={72}
+                className="h-full w-full object-cover"
+              />
+            )}
           </div>
 
           {/* Profile Text Layout (hidden on small screens) */}
-          <div className="hidden lg:flex w-30.25 h-14.25 flex-col justify-center text-left rotate-0 opacity-100">
-            <span className="w-30.25 h-6.75 font-poppins text-4.5 font-medium leading-none tracking-normal opacity-50 text-[#000000] flex items-center truncate">
+          <div className="w-30.25 h-14.25 hidden rotate-0 flex-col justify-center text-left opacity-100 lg:flex">
+            <span className="w-30.25 h-6.75 font-poppins text-4.5 flex items-center truncate font-medium leading-none tracking-normal text-[#000000] opacity-50">
               Hello, {userName}
             </span>
-            <span className="w-30.25 h-7.5 font-poppins text-5 font-semibold leading-none tracking-normal opacity-100 text-[#000000] flex items-center">
+            <span className="w-30.25 h-7.5 font-poppins text-5 flex items-center font-semibold leading-none tracking-normal text-[#000000] opacity-100">
               My Account
             </span>
           </div>
 
           {/* Profile Chevron Layout */}
-          <ChevronDown className="hidden lg:block w-6 h-6 xl:w-8 xl:h-8 rotate-0 opacity-100 text-[#000000] shrink-0 group-hover:translate-y-0.5 transition-transform" />
+          <ChevronDown className="hidden h-6 w-6 shrink-0 rotate-0 text-[#000000] opacity-100 transition-transform group-hover:translate-y-0.5 lg:block xl:h-8 xl:w-8" />
         </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-lg z-50 xl:hidden flex flex-col px-4 py-6 border-t border-gray-100">
+        <div className="absolute left-0 top-full z-50 flex w-full flex-col border-t border-gray-100 bg-white px-4 py-6 shadow-lg xl:hidden">
           <nav className="flex flex-col gap-4 font-sans">
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`font-poppins text-4.5 font-semibold leading-none tracking-normal py-2 ${
+                className={`font-poppins text-4.5 py-2 font-semibold leading-none tracking-normal ${
                   (link.active ?? pathname === link.href)
                     ? "text-[#F3380B]"
                     : "text-[#09090B] hover:text-[#F3380B]"
@@ -195,25 +202,33 @@ export default function Header({
               </Link>
             ))}
           </nav>
-          
-          <div className="mt-6 pt-6 border-t border-gray-100 flex flex-col gap-4">
+
+          <div className="mt-6 flex flex-col gap-4 border-t border-gray-100 pt-6">
             <div className="flex items-center gap-3">
-               <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-200">
-                  {userAvatar && <Image src={userAvatar} alt={userName} width={48} height={48} className="w-full h-full object-cover" />}
-               </div>
-               <span className="font-poppins text-4 font-medium text-[#000000]">
-                 Hello, {userName}
-               </span>
+              <div className="relative h-12 w-12 overflow-hidden rounded-full border border-gray-200">
+                {userAvatar && (
+                  <Image
+                    src={userAvatar}
+                    alt={userName}
+                    width={48}
+                    height={48}
+                    className="h-full w-full object-cover"
+                  />
+                )}
+              </div>
+              <span className="font-poppins text-4 font-medium text-[#000000]">
+                Hello, {userName}
+              </span>
             </div>
-            
+
             {/* Mobile Search Bar inside menu */}
-            <div className="md:hidden w-full h-12 flex items-center justify-between gap-2 rounded-2 px-3 mt-2 bg-[#F6F6F6] box-border">
+            <div className="rounded-2 mt-2 box-border flex h-12 w-full items-center justify-between gap-2 bg-[#F6F6F6] px-3 md:hidden">
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-full h-full font-poppins text-3.5 font-medium opacity-100 placeholder:opacity-50 text-[#000000] placeholder-[#000000] outline-none border-none bg-transparent"
+                className="font-poppins text-3.5 h-full w-full border-none bg-transparent font-medium text-[#000000] placeholder-[#000000] opacity-100 outline-none placeholder:opacity-50"
               />
-              <Search className="w-5 h-5 opacity-50 text-[#000000]" />
+              <Search className="h-5 w-5 text-[#000000] opacity-50" />
             </div>
           </div>
         </div>

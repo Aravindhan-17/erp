@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 
 export default function StorefrontHomePage() {
   return (
-    <div className="space-y-15 pt-0 pb-15">
+    <div className="space-y-15 pb-15 pt-0">
       <Hero />
       <FlashDeals />
-      <Category/>
+      <Category />
       <HowItWorks />
       <TopBrands />
-      <Subscribe/>
+      <Subscribe />
     </div>
   );
 }

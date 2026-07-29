@@ -3,19 +3,19 @@ import { GoogleIcon, FacebookIcon, AppleIcon } from "@/assets/images";
 
 export function SocialAuth() {
   return (
-    <div className="w-full max-w-192.5 h-auto sm:h-18 py-4 sm:p-5 gap-4 sm:gap-10 bg-gray-50 border border-black/25 rounded-lg flex flex-col sm:flex-row items-center justify-center">
-      <span className="w-auto sm:w-41 h-auto sm:h-7.5 font-['Poppins'] font-normal text-base sm:text-[20px] leading-none text-black flex items-center justify-center text-center">
+    <div className="max-w-192.5 sm:h-18 flex h-auto w-full flex-col items-center justify-center gap-4 rounded-lg border border-black/25 bg-gray-50 py-4 sm:flex-row sm:gap-10 sm:p-5">
+      <span className="sm:w-41 sm:h-7.5 flex h-auto w-auto items-center justify-center text-center font-['Poppins'] text-base font-normal leading-none text-black sm:text-[20px]">
         Or continue with
-      </span> 
-      <div className="w-auto sm:w-44 h-8 flex items-center gap-6 sm:gap-10">
+      </span>
+      <div className="flex h-8 w-auto items-center gap-6 sm:w-44 sm:gap-10">
         {/* Social Icons */}
-        <div className="relative w-8 h-8 shrink-0 hover:opacity-80 transition-opacity cursor-pointer">
+        <div className="relative h-8 w-8 shrink-0 cursor-pointer transition-opacity hover:opacity-80">
           <Image src={GoogleIcon} alt="Google" fill className="object-contain" />
         </div>
-        <div className="relative w-8 h-8 shrink-0 hover:opacity-80 transition-opacity cursor-pointer">
+        <div className="relative h-8 w-8 shrink-0 cursor-pointer transition-opacity hover:opacity-80">
           <Image src={FacebookIcon} alt="Facebook" fill className="object-contain" />
         </div>
-        <div className="relative w-8 h-8 shrink-0 hover:opacity-80 transition-opacity cursor-pointer">
+        <div className="relative h-8 w-8 shrink-0 cursor-pointer transition-opacity hover:opacity-80">
           <Image src={AppleIcon} alt="Apple" fill className="object-contain" />
         </div>
       </div>

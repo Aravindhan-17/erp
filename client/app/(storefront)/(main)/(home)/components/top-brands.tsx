@@ -25,31 +25,31 @@ const brandImages = [
 
 export function TopBrands() {
   return (
-    <section className="relative w-full max-w-[1920px] mx-auto px-4 md:px-8 xl:px-10 pt-8 pb-12 xl:pt-0 xl:pb-0">
-      <div className="w-full h-auto xl:h-37 flex flex-col gap-4 xl:gap-10 opacity-100 rotate-0 mx-auto box-border">
+    <section className="relative mx-auto w-full max-w-[1920px] px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+      <div className="xl:h-37 mx-auto box-border flex h-auto w-full rotate-0 flex-col gap-4 opacity-100 xl:gap-10">
         {/* Text Layout */}
-        <div className="w-full xl:h-12 rotate-0 opacity-100 flex items-center justify-center box-border mb-2 md:mb-0">
-          <h2 className="font-poppins font-bold text-2xl md:text-3xl xl:text-[32px] leading-none tracking-normal text-center text-[#000000] m-0">
+        <div className="mb-2 box-border flex w-full rotate-0 items-center justify-center opacity-100 md:mb-0 xl:h-12">
+          <h2 className="font-poppins m-0 text-center text-2xl font-bold leading-none tracking-normal text-[#000000] md:text-3xl xl:text-[32px]">
             Top Brands You Love
           </h2>
         </div>
 
         {/* Second Layout - Brands Container (Marquee) */}
-        <div className="w-full h-12 md:h-14 xl:h-15 flex items-center opacity-100 rotate-0 box-border overflow-hidden relative">
-          <div className="flex items-center w-max animate-marquee gap-4 md:gap-6 xl:gap-8">
+        <div className="xl:h-15 relative box-border flex h-12 w-full rotate-0 items-center overflow-hidden opacity-100 md:h-14">
+          <div className="animate-marquee flex w-max items-center gap-4 md:gap-6 xl:gap-8">
             {[...Array(2)].map((_, groupIndex) => (
               <React.Fragment key={groupIndex}>
                 {brandImages.map((src, idx) => (
-                  <div 
-                    key={`${groupIndex}-${idx}`} 
-                    className="w-40 h-8 md:w-56 md:h-10 xl:w-78 xl:h-12 opacity-100 rotate-0 flex items-center justify-center gap-2.5 shrink-0"
+                  <div
+                    key={`${groupIndex}-${idx}`}
+                    className="xl:w-78 flex h-8 w-40 shrink-0 rotate-0 items-center justify-center gap-2.5 opacity-100 md:h-10 md:w-56 xl:h-12"
                   >
-                    <Image 
-                      src={src} 
-                      alt={`Brand ${idx + 1}`} 
-                      width={312} 
-                      height={48} 
-                      className="w-full h-full object-contain"
+                    <Image
+                      src={src}
+                      alt={`Brand ${idx + 1}`}
+                      width={312}
+                      height={48}
+                      className="h-full w-full object-contain"
                       unoptimized
                     />
                   </div>

@@ -1,10 +1,10 @@
 export function AuthHeader({ title, subtitle }: { title: string; subtitle: string }) {
   return (
-    <div className="w-full max-w-192.5 mx-auto min-h-17.75 flex flex-col items-center justify-center text-center gap-2 sm:gap-0">
-      <h2 className="w-full max-w-85.5 h-auto sm:h-12 font-['Poppins'] font-bold text-2xl sm:text-[32px] leading-tight sm:leading-none text-black">
+    <div className="max-w-192.5 min-h-17.75 mx-auto flex w-full flex-col items-center justify-center gap-2 text-center sm:gap-0">
+      <h2 className="max-w-85.5 h-auto w-full font-['Poppins'] text-2xl font-bold leading-tight text-black sm:h-12 sm:text-[32px] sm:leading-none">
         {title}
       </h2>
-      <p className="w-full max-w-102.5 h-auto sm:h-6.75 font-['Poppins'] font-medium text-sm sm:text-[18px] leading-tight sm:leading-none text-black/50">
+      <p className="h-auto w-full max-w-[610px] font-['Poppins'] text-sm font-medium leading-tight text-black/50 sm:h-[27px] sm:text-[18px] sm:leading-none">
         {subtitle}
       </p>
     </div>

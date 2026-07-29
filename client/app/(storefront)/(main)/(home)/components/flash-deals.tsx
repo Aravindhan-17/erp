@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
-import { Package, IndianRupee, Bell, ChevronRight} from "lucide-react";
+import { Package, IndianRupee, Bell, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Product1, Product2, Product3, Product4 } from "@/assets/images";
 const deals = [
@@ -15,7 +15,7 @@ const deals = [
     products: 12,
     minOrder: "Min. Order ₹ 5,000",
     button: "Register for ₹1",
-     buttonStyle: "orange",
+    buttonStyle: "orange",
     type: "live",
   },
   {
@@ -43,7 +43,7 @@ const deals = [
     products: 18,
     minOrder: "Min. Order ₹ 5,000",
     button: "Notify Me",
-   buttonStyle: "primary",
+    buttonStyle: "primary",
     type: "upcoming",
   },
   {
@@ -57,12 +57,10 @@ const deals = [
     products: 15,
     minOrder: "Min. Order ₹ 5,000",
     button: "Closed",
-     buttonStyle: "white",
+    buttonStyle: "white",
     type: "ended",
   },
 ];
-
-
 
 function Countdown() {
   const [time, setTime] = useState({
@@ -94,178 +92,153 @@ function Countdown() {
   }, []);
 
   return (
-<div>
-  {/* Timer */}
-  <div className="flex items-center gap-2 text-2xl font-semibold leading-none text-slate-900">
-    <span>{String(time.h).padStart(2, "0")}</span>
-    <span>:</span>
-    <span>{String(time.m).padStart(2, "0")}</span>
-    <span>:</span>
-    <span>{String(time.s).padStart(2, "0")}</span>
-  </div>
+    <div>
+      {/* Timer */}
+      <div className="flex items-center gap-2 text-2xl font-semibold leading-none text-slate-900">
+        <span>{String(time.h).padStart(2, "0")}</span>
+        <span>:</span>
+        <span>{String(time.m).padStart(2, "0")}</span>
+        <span>:</span>
+        <span>{String(time.s).padStart(2, "0")}</span>
+      </div>
 
-  {/* Labels */}
-  <div className="flex items-center gap-[33px] mt-2 text-[11px] uppercase text-gray-500 font-medium">
-    <span>HRS</span>
-    <span>MIN</span>
-    <span>SEC</span>
-  </div>
-</div>
+      {/* Labels */}
+      <div className="mt-2 flex items-center gap-[33px] text-[11px] font-medium uppercase text-gray-500">
+        <span>HRS</span>
+        <span>MIN</span>
+        <span>SEC</span>
+      </div>
+    </div>
   );
 }
 
-function FlashCard({ deal }: { deal: { id: number; status: string; badge: string; badgeText: string; image: string; title: string; description: string; products: number; minOrder: string; button: string; buttonStyle: string; type: string } }) {
+function FlashCard({
+  deal,
+}: {
+  deal: {
+    id: number;
+    status: string;
+    badge: string;
+    badgeText: string;
+    image: string;
+    title: string;
+    description: string;
+    products: number;
+    minOrder: string;
+    button: string;
+    buttonStyle: string;
+    type: string;
+  };
+}) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg duration-300 p-3 h-full flex flex-col">
-
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-3 duration-300 hover:shadow-lg">
       <div className="relative">
-
         <Image
-  src={deal.image}
-  alt={deal.title}
-  width={500}
-  height={300}
-  className="w-full h-52 object-cover rounded-[10px]"
-/>
+          src={deal.image}
+          alt={deal.title}
+          width={500}
+          height={300}
+          className="h-52 w-full rounded-[10px] object-cover"
+        />
 
         <span
-  style={{ backgroundColor: deal.badge }}
-  className={`${deal.badgeText} absolute top-4 left-4 px-4 py-2 rounded-lg text-xs font-semibold uppercase`}
->
-  {deal.status}
-</span>
+          style={{ backgroundColor: deal.badge }}
+          className={`${deal.badgeText} absolute left-4 top-4 rounded-lg px-4 py-2 text-xs font-semibold uppercase`}
+        >
+          {deal.status}
+        </span>
       </div>
 
-      <div className="pt-3 flex flex-col flex-1">
+      <div className="flex flex-1 flex-col pt-3">
+        <div className="h-[95px]">
+          <h2 className="line-clamp-2 text-[20px] font-semibold leading-7">{deal.title}</h2>
 
-      <div className="h-[95px]">
-        <h2 className="font-semibold text-[20px] leading-7 line-clamp-2">
-          {deal.title}
-        </h2>
-
-        <p className="mt-2 text-black/50 font-medium line-clamp-2">
-          {deal.description}
-        </p>
+          <p className="mt-2 line-clamp-2 font-medium text-black/50">{deal.description}</p>
         </div>
 
         <div className="mt-5">
-
-          <p className="text-gray-500 text-sm mb-2">
-            Ends In
-          </p>
+          <p className="mb-2 text-sm text-gray-500">Ends In</p>
 
           <Countdown />
-
         </div>
-<div className="flex justify-between items-center mt-6 text-sm text-gray-600">
+        <div className="mt-6 flex items-center justify-between text-sm text-gray-600">
+          <div className="flex items-center gap-2">
+            <Package size={20} strokeWidth={1.8} className="text-gray-500" />
+            <span className="font-medium">{deal.products} Products</span>
+          </div>
 
-  <div className="flex items-center gap-2">
-    <Package size={20} strokeWidth={1.8} className="text-gray-500" />
-    <span className="font-medium">{deal.products} Products</span>
-  </div>
+          <div className="flex items-center gap-1">
+            <div className="flex h-4 w-4 items-center justify-center rounded-full border border-gray-500">
+              <IndianRupee size={10} strokeWidth={2} className="font-medium text-gray-500" />
+            </div>
+            <span className="font-medium">{deal.minOrder}</span>
+          </div>
+        </div>
+        <div className="mt-auto grid grid-cols-2 gap-3 pt-6">
+          <button
+            className={`flex items-center justify-center gap-4 rounded-xl py-3 font-semibold ${
+              deal.buttonStyle === "orange"
+                ? "bg-secondary text-white hover:bg-orange-600"
+                : deal.buttonStyle === "yellow"
+                  ? "bg-yellow-400 text-black hover:bg-yellow-500"
+                  : deal.buttonStyle === "primary"
+                    ? "bg-primary text-white hover:opacity-90"
+                    : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            {(deal.buttonStyle === "yellow" || deal.buttonStyle === "primary") && (
+              <Bell size={25} />
+            )}
 
-  <div className="flex items-center gap-1">
-    <div className="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center">
-      <IndianRupee size={10} strokeWidth={2} className="text-gray-500 font-medium"/>
-    </div>
-    <span className="font-medium">{deal.minOrder}</span>
-  </div>
+            {deal.button}
+          </button>
 
-</div>
-<div className="grid grid-cols-2 gap-3 mt-auto pt-6">
-
-  <button
-    className={`rounded-xl py-3 font-semibold flex items-center justify-center gap-4 ${
-      deal.buttonStyle === "orange"
-        ? "bg-secondary hover:bg-orange-600 text-white"
-        : deal.buttonStyle === "yellow"
-        ? "bg-yellow-400 hover:bg-yellow-500 text-black"
-        : deal.buttonStyle === "primary"
-        ? "bg-primary hover:opacity-90 text-white"
-        : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
-    }`}
-  >
-    {(deal.buttonStyle === "yellow" || deal.buttonStyle === "primary") && (
-      <Bell size={25} />
-    )}
-
-    {deal.button}
-  </button>
-
-
-  <button className="border border-gray-200 rounded-xl py-3 hover:bg-gray-100 font-semibold">
-    View Products
-  </button>
-
-</div>
-
+          <button className="rounded-xl border border-gray-200 py-3 font-semibold hover:bg-gray-100">
+            View Products
+          </button>
+        </div>
       </div>
-
     </div>
   );
 }
 
 export function FlashDeals() {
-
   return (
-       <section className="relative w-full max-w-[1920px] mx-auto xl:h-200 px-4 md:px-8 xl:px-10 flex items-center justify-center pt-8 pb-12 xl:pt-0 xl:pb-0">
-
-   <div className="w-full mx-auto">
-
-        <div className="flex flex-col md:flex-row justify-between items-center">
-
+    <section className="xl:h-200 relative mx-auto flex w-full max-w-[1920px] items-center justify-center px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+      <div className="mx-auto w-full">
+        <div className="flex flex-col items-center justify-between md:flex-row">
           <div>
-
-            <span className="text-3xl font-bold tracking-wider">
-
-              Flash Deals
-
-            </span>
+            <span className="text-3xl font-bold tracking-wider">Flash Deals</span>
           </div>
 
-          <button className="mt-5 md:mt-0 text-secondary px-6 py-3 rounded-xl font-semibold flex items-center gap-2">
-             View All Deals
-             <ChevronRight size={26} />
+          <button className="text-secondary mt-5 flex items-center gap-2 rounded-xl px-6 py-3 font-semibold md:mt-0">
+            View All Deals
+            <ChevronRight size={26} />
           </button>
-
         </div>
 
-<div className="flex flex-wrap gap-4 mt-5">
+        <div className="mt-5 flex flex-wrap gap-4">
+          <button className="text-secondary rounded-xl bg-[#F3380B1A] px-6 py-3 font-semibold hover:bg-gray-100">
+            All Deals
+          </button>
 
-  <button className="px-6 py-3 rounded-xl font-semibold bg-[#F3380B1A] text-secondary hover:bg-gray-100">
-    All Deals
-  </button>
+          <button className="rounded-xl px-6 py-3 font-semibold hover:bg-gray-100">Live Now</button>
 
-  <button className="px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">
-    Live Now
-  </button>
+          <button className="rounded-xl px-6 py-3 font-semibold hover:bg-gray-100">
+            Starting Soon
+          </button>
 
-  <button className="px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">   
-     Starting Soon
-  </button>
+          <button className="rounded-xl px-6 py-3 font-semibold hover:bg-gray-100">Upcoming</button>
 
-  <button className="px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">
-    Upcoming
-  </button>
+          <button className="rounded-xl px-6 py-3 font-semibold hover:bg-gray-100">Ended</button>
+        </div>
 
-  <button className="px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">
-    Ended
-  </button>
-
-</div>
-
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-10">
-
-  {deals.map((deal) => (
-
-    <FlashCard key={deal.id} deal={deal} />
-
-  ))}
-
-</div>
-
+        <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {deals.map((deal) => (
+            <FlashCard key={deal.id} deal={deal} />
+          ))}
+        </div>
       </div>
-
     </section>
   );
 }

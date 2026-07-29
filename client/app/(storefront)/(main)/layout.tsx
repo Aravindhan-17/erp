@@ -2,13 +2,9 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ErpLogo, UserAvatar } from "@/assets/images";
 
-export default function StorefrontLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function StorefrontLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
+    <div className="bg-background text-foreground flex min-h-screen flex-col">
       {/* Header matching user design specs */}
       <Header
         logoSrc={ErpLogo}
