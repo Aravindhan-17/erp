@@ -39,10 +39,10 @@ const features = [
 
 const Subscribe = () => {
   return (
-    <section className="w-full max-w-[1920px] mx-auto px-4 md:px-8 xl:px-10 py-10">
+    <section className="relative w-full max-w-[1920px] mx-auto px-4 md:px-8 xl:px-10 pt-8 pb-12 xl:pt-0 xl:pb-0">
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
       {/* LEFT CARD */}
-        <div className="relative rounded-2xl overflow-hidden min-h-[520px]">
+        <div className="relative rounded-2xl overflow-hidden min-h-130">
 
 
           {/* Background Image */}

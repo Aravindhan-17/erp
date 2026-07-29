@@ -83,7 +83,7 @@ const features = [
 ];
 const Category = () => {
   return (
-<section className="relative w-full max-w-480 mx-auto h-auto px-4 md:px-8 xl:px-10 pt-8 pb-12 xl:pt-0 xl:pb-0">
+<section className="relative w-full max-w-[1920px] mx-auto h-auto px-4 md:px-8 xl:px-10 pt-8 pb-12 xl:pt-0 xl:pb-0">
   <div className="w-full mx-auto">
           {/* Heading */}
       <div className="flex justify-between items-center mb-8">
