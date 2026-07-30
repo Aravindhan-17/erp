@@ -49,49 +49,35 @@ export default function Header({
   return (
     <header
       style={style}
-      className={`max-w-480 xl:h-38 relative mx-auto box-border flex min-h-20 w-full rotate-0 items-center justify-between bg-white px-4 py-4 opacity-100 transition-all duration-200 md:px-8 xl:px-10 xl:py-0 ${className}`}
+      className={`relative z-50 mx-auto flex h-20 w-full max-w-[1920px] items-center justify-between gap-4 bg-white px-4 md:px-8 xl:h-[88px] xl:px-10 ${className}`}
     >
       {/* 1. Left Section: Logo Container */}
-      <div className="flex shrink-0 items-center">
-        <Link
-          href="/"
-          className="w-35 sm:w-45 md:w-50 xl:w-62 xl:h-15 group box-border flex h-auto rotate-0 items-center opacity-100"
-        >
-          {logoSrc && (
-            <Image
-              src={logoSrc}
-              alt={logoAlt}
-              width={248}
-              height={60}
-              quality={100}
-              className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-105"
-              priority
-            />
-          )}
-        </Link>
-      </div>
+      <Link href="/" className="flex shrink-0 items-center">
+        {logoSrc && (
+          <Image
+            src={logoSrc}
+            alt={logoAlt}
+            width={248}
+            height={60}
+            quality={100}
+            className="h-10 w-auto object-contain transition-transform duration-200 hover:scale-105 sm:h-12 xl:h-14"
+            priority
+          />
+        )}
+      </Link>
 
-      {/* 2. Right Section: Navigation & Action Content Container */}
-      <div className="xl:h-18 ml-2 box-border flex min-h-12 max-w-full flex-1 rotate-0 items-center justify-end gap-3 opacity-100 sm:gap-4 md:ml-4 xl:ml-0 xl:gap-5">
-        {/* Mobile Menu Icon (shown only on small screens) */}
-        <button
-          className="p-2 text-[#000000] xl:hidden"
-          aria-label="Menu"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-
-        {/* Navigation Layout Container */}
-        <nav className="h-18 gap-3.75 2xl:gap-7.5 hidden w-auto max-w-full rotate-0 items-center font-sans opacity-100 xl:flex">
+      {/* 2. Middle & Right Section Container */}
+      <div className="flex flex-1 items-center justify-end gap-3 sm:gap-4 md:gap-6 xl:gap-8">
+        {/* Navigation Layout Container (hidden on mobile/tablet) */}
+        <nav className="hidden items-center gap-4 lg:flex xl:gap-8">
           {navLinks.map((link, index) => (
             <Link
               key={index}
               href={link.href}
-              className={`h-18 pt-5.25 pb-5.25 font-poppins text-4 2xl:text-5 box-border flex rotate-0 items-center justify-center gap-2.5 font-semibold leading-none tracking-normal transition-all duration-150 ${
+              className={`whitespace-nowrap font-poppins text-sm font-semibold transition-all duration-150 xl:text-base ${
                 (link.active ?? pathname === link.href)
-                  ? "text-[#F3380B] opacity-100"
-                  : "text-[#09090B] opacity-95 hover:text-[#F3380B]"
+                  ? "text-secondary"
+                  : "text-foreground opacity-90 hover:text-secondary"
               }`}
             >
               {link.label}
@@ -100,18 +86,18 @@ export default function Header({
         </nav>
 
         {/* Search Bar Container */}
-        <div className="max-w-120.75 xl:h-18 rounded-2 box-border hidden h-10 flex-1 rotate-0 items-center justify-between gap-2 bg-[#F6F6F6] px-3 opacity-100 md:flex xl:gap-10 xl:p-5">
+        <div className="hidden h-10 flex-1 min-w-[120px] lg:min-w-[200px] max-w-[480px] items-center justify-between gap-2 rounded-lg bg-[#F6F6F6] px-4 md:flex xl:h-12">
           <input
             type="text"
-            placeholder="Search for products, brands, categories..."
-            className="xl:h-6.75 font-poppins text-3.5 xl:text-4.5 h-full w-full border-none bg-transparent font-medium leading-none tracking-normal text-[#000000] placeholder-[#000000] opacity-50 outline-none placeholder:opacity-50"
+            placeholder="Search for products, brands..."
+            className="h-full w-full border-none bg-transparent font-poppins text-sm font-medium outline-none placeholder:opacity-50 xl:text-base"
           />
-          <Search className="pointer-events-none h-5 w-5 shrink-0 rotate-0 text-[#000000] opacity-50 xl:h-8 xl:w-8" />
+          <Search className="h-5 w-5 shrink-0 text-black/50" />
         </div>
 
-        {/* Mobile Search Icon (shown only on small screens) */}
+        {/* Mobile Search Icon */}
         <button
-          className="p-2 text-[#000000] opacity-50 md:hidden"
+          className="hidden p-2 text-black/50 md:hidden"
           aria-label="Search"
           onClick={() => setIsMobileMenuOpen(true)}
         >
@@ -119,83 +105,86 @@ export default function Header({
         </button>
 
         {/* Icons Layout Container */}
-        <div className="xl:w-38.5 xl:h-18 box-border flex min-h-12 w-auto max-w-full rotate-0 items-center gap-1 opacity-100 sm:gap-2 xl:gap-2.5">
+        <div className="flex shrink-0 items-center gap-2 xl:gap-4">
           {/* Bell Icon */}
           <button
             aria-label="Notifications"
-            className="xl:w-18 xl:h-18 relative flex h-9 w-9 rotate-0 cursor-pointer items-center justify-center text-[#000000] opacity-100 sm:h-12 sm:w-12"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-50 xl:h-12 xl:w-12"
           >
-            <div className="xl:left-4.5 xl:h-14.5 pointer-events-none relative flex h-full w-full rotate-0 items-center justify-center opacity-100 xl:absolute xl:top-1.5 xl:block xl:w-12">
-              <Bell className="xl:h-10.5 h-5 w-5 rotate-0 stroke-2 text-[#000000] opacity-100 xl:absolute xl:left-0 xl:top-4 xl:w-9" />
-
-              {notificationCount > 0 && (
-                <span className="xl:h-5.25 text-2 xl:text-2.75 absolute -right-1 -top-1 flex h-3.5 w-3.5 rotate-0 items-center justify-center gap-2.5 rounded-full border border-white bg-[#E53935] p-0.5 font-bold leading-none text-white opacity-100 xl:right-0 xl:top-0 xl:w-5 xl:p-1">
-                  {notificationCount}
-                </span>
-              )}
-            </div>
+            <Bell className="h-6 w-6 stroke-2 text-black" />
+            {notificationCount > 0 && (
+              <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full border border-white bg-red-600 text-[10px] font-bold text-white xl:right-1 xl:top-1 xl:h-5 xl:w-5 xl:text-xs">
+                {notificationCount}
+              </span>
+            )}
           </button>
 
           {/* Shopping Cart Icon */}
           <button
             aria-label="Shopping Cart"
-            className="xl:w-18 xl:h-18 relative flex h-9 w-9 rotate-0 cursor-pointer items-center justify-center text-[#000000] opacity-100 sm:h-12 sm:w-12"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-50 xl:h-12 xl:w-12"
           >
-            <div className="xl:left-4.5 xl:h-14.5 pointer-events-none relative flex h-full w-full rotate-0 items-center justify-center opacity-100 xl:absolute xl:top-1.5 xl:block xl:w-12">
-              <ShoppingCart className="xl:h-10.5 h-5 w-5 rotate-0 stroke-2 text-[#000000] opacity-100 xl:absolute xl:left-0 xl:top-4 xl:w-9" />
-
-              {cartCount > 0 && (
-                <span className="xl:h-5.25 text-2 xl:text-2.75 absolute -right-1 -top-1 flex h-3.5 w-3.5 rotate-0 items-center justify-center gap-2.5 rounded-full border border-white bg-[#E53935] p-0.5 font-bold leading-none text-white opacity-100 xl:right-0 xl:top-0 xl:w-5 xl:p-1">
-                  {cartCount}
-                </span>
-              )}
-            </div>
+            <ShoppingCart className="h-6 w-6 stroke-2 text-black" />
+            {cartCount > 0 && (
+              <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full border border-white bg-red-600 text-[10px] font-bold text-white xl:right-1 xl:top-1 xl:h-5 xl:w-5 xl:text-xs">
+                {cartCount}
+              </span>
+            )}
           </button>
         </div>
 
         {/* User Profile Container */}
-        <div className="xl:h-18 group box-border flex h-auto w-auto rotate-0 cursor-pointer select-none items-center gap-2 opacity-100 xl:gap-2.5">
+        <div className="group hidden shrink-0 cursor-pointer select-none items-center gap-2 sm:flex xl:gap-3">
           {/* Profile Image */}
-          <div className="xl:w-18 xl:h-18 relative h-8 w-8 shrink-0 rotate-0 overflow-hidden rounded-full border border-gray-200 opacity-100 sm:h-12 sm:w-12 xl:border-none">
+          <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 xl:h-12 xl:w-12">
             {userAvatar && (
               <Image
                 src={userAvatar}
                 alt={userName}
-                width={72}
-                height={72}
+                width={48}
+                height={48}
                 className="h-full w-full object-cover"
               />
             )}
           </div>
 
-          {/* Profile Text Layout (hidden on small screens) */}
-          <div className="w-30.25 h-14.25 hidden rotate-0 flex-col justify-center text-left opacity-100 lg:flex">
-            <span className="w-30.25 h-6.75 font-poppins text-4.5 flex items-center truncate font-medium leading-none tracking-normal text-[#000000] opacity-50">
+          {/* Profile Text Layout */}
+          <div className="hidden flex-col justify-center text-left xl:flex">
+            <span className="font-poppins text-xs font-medium text-black/50 xl:text-sm">
               Hello, {userName}
             </span>
-            <span className="w-30.25 h-7.5 font-poppins text-5 flex items-center font-semibold leading-none tracking-normal text-[#000000] opacity-100">
+            <span className="font-poppins text-sm font-semibold text-black xl:text-base">
               My Account
             </span>
           </div>
 
-          {/* Profile Chevron Layout */}
-          <ChevronDown className="hidden h-6 w-6 shrink-0 rotate-0 text-[#000000] opacity-100 transition-transform group-hover:translate-y-0.5 lg:block xl:h-8 xl:w-8" />
+          {/* Profile Chevron */}
+          <ChevronDown className="hidden h-5 w-5 shrink-0 text-black transition-transform group-hover:translate-y-0.5 xl:block xl:h-6 xl:w-6" />
         </div>
+
+        {/* Mobile Menu Icon */}
+        <button
+          className="p-2 text-black lg:hidden"
+          aria-label="Menu"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="absolute left-0 top-full z-50 flex w-full flex-col border-t border-gray-100 bg-white px-4 py-6 shadow-lg xl:hidden">
+        <div className="absolute left-0 top-full z-50 flex w-full flex-col border-t border-gray-100 bg-white px-4 py-6 shadow-lg lg:hidden">
           <nav className="flex flex-col gap-4 font-sans">
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`font-poppins text-4.5 py-2 font-semibold leading-none tracking-normal ${
+                className={`font-poppins py-2 text-lg font-semibold ${
                   (link.active ?? pathname === link.href)
-                    ? "text-[#F3380B]"
-                    : "text-[#09090B] hover:text-[#F3380B]"
+                    ? "text-secondary"
+                    : "text-foreground hover:text-secondary"
                 }`}
               >
                 {link.label}
@@ -205,7 +194,7 @@ export default function Header({
 
           <div className="mt-6 flex flex-col gap-4 border-t border-gray-100 pt-6">
             <div className="flex items-center gap-3">
-              <div className="relative h-12 w-12 overflow-hidden rounded-full border border-gray-200">
+              <div className="h-12 w-12 overflow-hidden rounded-full border border-gray-200">
                 {userAvatar && (
                   <Image
                     src={userAvatar}
@@ -216,19 +205,19 @@ export default function Header({
                   />
                 )}
               </div>
-              <span className="font-poppins text-4 font-medium text-[#000000]">
+              <span className="font-poppins text-base font-medium text-black">
                 Hello, {userName}
               </span>
             </div>
 
             {/* Mobile Search Bar inside menu */}
-            <div className="rounded-2 mt-2 box-border flex h-12 w-full items-center justify-between gap-2 bg-[#F6F6F6] px-3 md:hidden">
+            <div className="mt-2 flex h-12 w-full items-center justify-between gap-2 rounded-lg bg-[#F6F6F6] px-3 md:hidden">
               <input
                 type="text"
                 placeholder="Search..."
-                className="font-poppins text-3.5 h-full w-full border-none bg-transparent font-medium text-[#000000] placeholder-[#000000] opacity-100 outline-none placeholder:opacity-50"
+                className="font-poppins h-full w-full border-none bg-transparent text-sm font-medium text-black outline-none placeholder:text-black/50"
               />
-              <Search className="h-5 w-5 text-[#000000] opacity-50" />
+              <Search className="h-5 w-5 text-black/50" />
             </div>
           </div>
         </div>
