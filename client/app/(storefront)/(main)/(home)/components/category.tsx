@@ -47,7 +47,7 @@ const categories = [
 
 const Category = () => {
   return (
-    <section className="relative mx-auto h-auto w-full max-w-[1920px] px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+    <section className="relative mx-auto h-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10">
       <div className="mx-auto w-full">
         {/* Heading */}
         <div className="mb-8 flex items-center justify-between">

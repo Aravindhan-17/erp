@@ -35,7 +35,7 @@ const stepsData = [
 
 export function HowItWorks() {
   return (
-    <section className="relative mx-auto w-full max-w-[1920px] px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+    <section className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10">
       <div className="xl:gap-15 relative mx-auto box-border flex w-full flex-col gap-8 opacity-100 lg:flex-row lg:gap-10">
         {/* First Layout - Banner */}
         <div className="lg:w-85 xl:w-143 min-h-87.5 xl:h-99.75 relative box-border flex w-full shrink-0 flex-col justify-center overflow-hidden rounded-lg bg-[#240046] p-6 opacity-100 lg:h-auto lg:p-8 xl:p-10">

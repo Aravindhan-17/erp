@@ -36,7 +36,7 @@ export const features = [
 
 export function FeaturesBanner() {
   return (
-    <div className="grid grid-cols-1 rounded-2xl border border-gray-200 bg-white p-6 sm:grid-cols-2 lg:grid-cols-5">
+    <div className="grid gap-6 grid-cols-1 rounded-2xl border border-gray-200 bg-white p-6 sm:grid-cols-2 lg:grid-cols-5">
       {features.map((item, index) => {
         const Icon = item.icon;
 

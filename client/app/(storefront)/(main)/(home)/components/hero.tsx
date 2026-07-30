@@ -51,7 +51,7 @@ export function Hero() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="xl:h-200 relative mx-auto flex w-full max-w-[1920px] items-center justify-center px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+    <section className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10">
       <div
         className="relative mx-auto h-full w-full max-w-[1840px] overflow-hidden rounded-3xl"
         ref={emblaRef}

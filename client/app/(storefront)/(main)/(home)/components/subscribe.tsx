@@ -1,4 +1,3 @@
-import React from "react";
 import { BadgeCheck, ShieldCheck, Headphones, IndianRupee, Mail } from "lucide-react";
 
 import Image from "next/image";
@@ -9,7 +8,7 @@ import {
   User4 as user4,
   SubscribeImage as leftBg,
 } from "@/assets/images";
-// import shieldBg from "@/assets/shield-bg.png";
+
 const features = [
   {
     icon: IndianRupee,
@@ -35,7 +34,7 @@ const features = [
 
 const Subscribe = () => {
   return (
-    <section className="relative mx-auto w-full max-w-[1920px] px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+    <section className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         {/* LEFT CARD */}
         <div className="min-h-130 relative overflow-hidden rounded-2xl">

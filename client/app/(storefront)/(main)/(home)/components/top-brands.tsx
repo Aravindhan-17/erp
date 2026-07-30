@@ -25,7 +25,7 @@ const brandImages = [
 
 export function TopBrands() {
   return (
-    <section className="relative mx-auto w-full max-w-[1920px] px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+    <section className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10">
       <div className="xl:h-37 mx-auto box-border flex h-auto w-full rotate-0 flex-col gap-4 opacity-100 xl:gap-10">
         {/* Text Layout */}
         <div className="mb-2 box-border flex w-full rotate-0 items-center justify-center opacity-100 md:mb-0 xl:h-12">

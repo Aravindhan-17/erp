@@ -1,9 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
 import { ChevronRight } from "lucide-react";
 import { FlashCard } from "@/app/(storefront)/components/flash-card";
-import Image from "next/image";
 import { Product1, Product2, Product3, Product4 } from "@/assets/images";
+
 const deals = [
   {
     id: 1,
@@ -66,7 +65,7 @@ const deals = [
 
 export function FlashDeals() {
   return (
-    <section className="xl:h-200 relative mx-auto flex w-full max-w-[1920px] items-center justify-center px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
+    <section className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10">
       <div className="mx-auto w-full">
         <div className="flex flex-col items-center justify-between md:flex-row">
           <div>
@@ -95,7 +94,7 @@ export function FlashDeals() {
           <button className="rounded-xl px-6 py-3 font-semibold hover:bg-gray-100">Ended</button>
         </div>
 
-        <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {deals.map((deal) => (
             <FlashCard key={deal.id} deal={deal} />
           ))}
