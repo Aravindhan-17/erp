@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react";
 import { FlashCard } from "@/app/(storefront)/components/flash-card";
 import { Product1, Product2, Product3, Product4 } from "@/assets/images";
 
-const deals = [
+export const deals = [
   {
     id: 1,
     status: "Live Now",
