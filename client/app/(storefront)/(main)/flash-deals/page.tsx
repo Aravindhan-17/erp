@@ -72,11 +72,11 @@ const deals = [
 
 export default function FlashDealsPage() {
   return (
-    <div className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10 px-4 py-10">
+    <div className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10 py-10">
 
       {/* Hero */}
-      <section className="flex flex-col gap-8 rounded-2xl mb-10 lg:flex-row lg:items-center">
-        <div className="lg:w-72">
+      <section className="flex flex-col gap-8 mb-10">
+        <div>
           <h1 className="text-4xl font-black">
             Flash Deals
           </h1>
@@ -84,10 +84,6 @@ export default function FlashDealsPage() {
           <p className="mt-2 text-sm text-gray-500">
             Unbeatable deals for a limited time.
           </p>
-        </div>
-
-        <div className="flex-1">
-          <FeaturesBanner />
         </div>
       </section>
 
@@ -147,7 +143,7 @@ export default function FlashDealsPage() {
 
 
 {/* FILTER + CARDS */}
-<section className="grid gap-8 lg:grid-cols-[280px_1fr]">
+<section className="grid gap-8 lg:grid-cols-[280px_1fr] xl:grid-cols-[380px_1fr]">
 
   {/* LEFT FILTER */}
   <aside className="sticky top-24 h-fit">
@@ -172,6 +168,11 @@ export default function FlashDealsPage() {
   </div>
 
 </section>
+
+      {/* Bottom Features */}
+      <div className="mt-10">
+        <FeaturesBanner />
+      </div>
 
     </div>
   );

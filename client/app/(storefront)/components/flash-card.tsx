@@ -90,8 +90,7 @@ export function FlashCard({ deal }: { deal: FlashDealType }) {
 
       <div className="flex flex-1 flex-col pt-3">
         <div className="h-[95px]">
-          <h2 className="line-clamp-2 text-[20px] font-semibold leading-7">{deal.title}</h2>
-
+          <h2 className="line-clamp-2 text-lg sm:text-[20px] font-semibold leading-7">{deal.title}</h2>
           <p className="mt-2 line-clamp-2 font-medium text-black/50">{deal.description}</p>
         </div>
 
@@ -100,7 +99,7 @@ export function FlashCard({ deal }: { deal: FlashDealType }) {
 
           <Countdown />
         </div>
-        <div className="mt-6 flex items-center justify-between text-sm text-gray-600">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm text-gray-600">
           <div className="flex items-center gap-2">
             <Package size={20} strokeWidth={1.8} className="text-gray-500" />
             <span className="font-medium">{deal.products} Products</span>
@@ -113,9 +112,9 @@ export function FlashCard({ deal }: { deal: FlashDealType }) {
             <span className="font-medium">{deal.minOrder}</span>
           </div>
         </div>
-        <div className="mt-auto grid grid-cols-2 gap-3 pt-6">
+        <div className="mt-auto grid grid-cols-1 gap-3 pt-6 min-[400px]:grid-cols-2">
           <button
-            className={`flex items-center justify-center gap-4 rounded-xl py-3 font-semibold ${
+            className={`flex items-center justify-center gap-2 xl:gap-4 rounded-xl py-3 font-semibold ${
               deal.buttonStyle === "orange"
                 ? "bg-secondary text-white hover:bg-orange-600"
                 : deal.buttonStyle === "yellow"

@@ -41,15 +41,15 @@ export function FeaturesBanner() {
         const Icon = item.icon;
 
         return (
-          <div key={index} className="flex gap-4 ">
+          <div key={index} className="flex gap-4">
             <div className="my-auto flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-violet-100">
               <Icon size={24} strokeWidth={2} className="text-primary" />
             </div>
 
             <div>
               <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
-              <p className="leading-5.5 text-sm text-black/90 ">{item.subtitle}</p>
-              <p className="leading-5.5 text-sm text-black/90 ">{item.desc}</p>
+              <p className="leading-snug text-sm text-black/90 ">{item.subtitle}</p>
+              <p className="leading-snug text-sm text-black/90 ">{item.desc}</p>
             </div>
           </div>
         );

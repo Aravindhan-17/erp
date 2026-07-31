@@ -94,7 +94,7 @@ export function FlashDeals() {
           <button className="rounded-xl px-6 py-3 font-semibold hover:bg-gray-100">Ended</button>
         </div>
 
-        <div className="mt-10 grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
           {deals.map((deal) => (
             <FlashCard key={deal.id} deal={deal} />
           ))}
