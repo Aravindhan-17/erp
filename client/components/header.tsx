@@ -74,10 +74,10 @@ export default function Header({
             <Link
               key={index}
               href={link.href}
-              className={`whitespace-nowrap font-poppins text-sm font-semibold transition-all duration-150 xl:text-base ${
+              className={`font-poppins whitespace-nowrap text-sm font-semibold transition-all duration-150 xl:text-base ${
                 (link.active ?? pathname === link.href)
                   ? "text-secondary"
-                  : "text-foreground opacity-90 hover:text-secondary"
+                  : "text-foreground hover:text-secondary opacity-90"
               }`}
             >
               {link.label}
@@ -86,11 +86,11 @@ export default function Header({
         </nav>
 
         {/* Search Bar Container */}
-        <div className="hidden h-10 flex-1 min-w-[120px] lg:min-w-[200px] max-w-[480px] items-center justify-between gap-2 rounded-lg bg-[#F6F6F6] px-4 md:flex xl:h-12">
+        <div className="hidden h-10 min-w-[120px] max-w-[480px] flex-1 items-center justify-between gap-2 rounded-lg bg-[#F6F6F6] px-4 md:flex lg:min-w-[200px] xl:h-12">
           <input
             type="text"
             placeholder="Search for products, brands..."
-            className="h-full w-full border-none bg-transparent font-poppins text-sm font-medium outline-none placeholder:opacity-50 xl:text-base"
+            className="font-poppins h-full w-full border-none bg-transparent text-sm font-medium outline-none placeholder:opacity-50 xl:text-base"
           />
           <Search className="h-5 w-5 shrink-0 text-black/50" />
         </div>

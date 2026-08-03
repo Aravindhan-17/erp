@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Package, IndianRupee, Bell } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 
 export type FlashDealType = {
   id: number | string;
@@ -59,7 +60,7 @@ export function Countdown() {
       </div>
 
       {/* Labels */}
-      <div className="mt-2 flex items-center gap-[33px] text-[11px] font-medium uppercase text-gray-500">
+      <div className="gap-8.25 mt-2 flex items-center text-[11px] font-medium uppercase text-gray-500">
         <span>HRS</span>
         <span>MIN</span>
         <span>SEC</span>
@@ -90,7 +91,9 @@ export function FlashCard({ deal }: { deal: FlashDealType }) {
 
       <div className="flex flex-1 flex-col pt-3">
         <div className="h-[95px]">
-          <h2 className="line-clamp-2 text-lg sm:text-[20px] font-semibold leading-7">{deal.title}</h2>
+          <h2 className="line-clamp-2 text-lg font-semibold leading-7 sm:text-[20px]">
+            {deal.title}
+          </h2>
           <p className="mt-2 line-clamp-2 font-medium text-black/50">{deal.description}</p>
         </div>
 
@@ -114,7 +117,7 @@ export function FlashCard({ deal }: { deal: FlashDealType }) {
         </div>
         <div className="mt-auto grid grid-cols-1 gap-3 pt-6 min-[400px]:grid-cols-2">
           <button
-            className={`flex items-center justify-center gap-2 xl:gap-4 rounded-xl py-3 font-semibold ${
+            className={`flex items-center justify-center gap-2 rounded-xl py-3 font-semibold xl:gap-4 ${
               deal.buttonStyle === "orange"
                 ? "bg-secondary text-white hover:bg-orange-600"
                 : deal.buttonStyle === "yellow"
@@ -131,9 +134,11 @@ export function FlashCard({ deal }: { deal: FlashDealType }) {
             {deal.button}
           </button>
 
-          <button className="rounded-xl border border-gray-200 py-3 font-semibold hover:bg-gray-100">
-            View Products
-          </button>
+          <Link href={`/flash-deals/${deal.id}`} className="flex">
+            <button className="w-full rounded-xl border border-gray-200 py-3 font-semibold hover:bg-gray-100">
+              View Products
+            </button>
+          </Link>
         </div>
       </div>
     </div>

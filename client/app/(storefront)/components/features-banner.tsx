@@ -36,7 +36,7 @@ export const features = [
 
 export function FeaturesBanner() {
   return (
-    <div className="grid gap-6 grid-cols-1 rounded-2xl border border-gray-200 bg-white p-6 sm:grid-cols-2 lg:grid-cols-5">
+    <div className="grid grid-cols-1 gap-6 rounded-2xl border border-gray-200 bg-white p-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {features.map((item, index) => {
         const Icon = item.icon;
 
@@ -48,8 +48,8 @@ export function FeaturesBanner() {
 
             <div>
               <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
-              <p className="leading-snug text-sm text-black/90 ">{item.subtitle}</p>
-              <p className="leading-snug text-sm text-black/90 ">{item.desc}</p>
+              <p className="text-sm leading-snug text-black/90 ">{item.subtitle}</p>
+              <p className="text-sm leading-snug text-black/90 ">{item.desc}</p>
             </div>
           </div>
         );

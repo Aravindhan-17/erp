@@ -62,7 +62,6 @@ export const deals = [
   },
 ];
 
-
 export function FlashDeals() {
   return (
     <section className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10">

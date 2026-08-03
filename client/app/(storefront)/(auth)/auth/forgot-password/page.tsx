@@ -9,7 +9,7 @@ export default function ForgotPasswordPage() {
       <AuthBackground variant="forgot" />
 
       {/* Main Layout Card */}
-      <div className="z-10 flex w-full max-w-xl lg:max-w-3xl 2xl:max-w-212.5 flex-col gap-6 lg:gap-8 rounded-3xl bg-white p-6 shadow-xl sm:gap-10 sm:p-10">
+      <div className="2xl:max-w-212.5 z-10 flex w-full max-w-xl flex-col gap-6 rounded-3xl bg-white p-6 shadow-xl sm:gap-10 sm:p-10 lg:max-w-3xl lg:gap-8">
         <AuthHeader
           title="Forgot Password"
           subtitle="Enter your email and we will send you a link to reset your password."
@@ -22,7 +22,7 @@ export default function ForgotPasswordPage() {
           <div className="max-w-192.5 h-7.5 mx-auto mt-8 flex w-full justify-center">
             <Link
               href="/auth/login"
-              className="text-primary hover:text-primary/90 flex h-full w-full items-center justify-center text-center font-['Poppins'] text-base xl:text-lg 2xl:text-[20px] font-semibold leading-none underline transition-colors"
+              className="text-primary hover:text-primary/90 flex h-full w-full items-center justify-center text-center font-['Poppins'] text-base font-semibold leading-none underline transition-colors xl:text-lg 2xl:text-[20px]"
             >
               Back to Sign In
             </Link>

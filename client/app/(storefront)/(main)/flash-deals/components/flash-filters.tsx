@@ -20,14 +20,11 @@ const categories = [
 export function FlashFilters() {
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <h3 className="text-xl font-semibold">Filters</h3>
 
-        <button className="text-sm font-medium text-secondary hover:underline">
-          Clear All
-        </button>
+        <button className="text-secondary text-sm font-medium hover:underline">Clear All</button>
       </div>
 
       {/* Deal Status */}
@@ -36,15 +33,9 @@ export function FlashFilters() {
 
         <div className="space-y-3">
           {statuses.map((item) => (
-            <label
-              key={item.label}
-              className="flex cursor-pointer items-center justify-between"
-            >
+            <label key={item.label} className="flex cursor-pointer items-center justify-between">
               <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300"
-                />
+                <input type="checkbox" className="h-4 w-4 rounded border-gray-300" />
 
                 <span className={`h-3 w-3 rounded-full ${item.color}`} />
 
@@ -67,15 +58,9 @@ export function FlashFilters() {
 
         <div className="space-y-3">
           {categories.map((item) => (
-            <label
-              key={item.label}
-              className="flex cursor-pointer items-center justify-between"
-            >
+            <label key={item.label} className="flex cursor-pointer items-center justify-between">
               <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300"
-                />
+                <input type="checkbox" className="h-4 w-4 rounded border-gray-300" />
 
                 <span className="text-sm">{item.label}</span>
               </div>
@@ -87,7 +72,7 @@ export function FlashFilters() {
           ))}
         </div>
 
-        <button className="mt-4 text-sm font-medium text-secondary hover:underline">
+        <button className="text-secondary mt-4 text-sm font-medium hover:underline">
           + View More
         </button>
       </div>
@@ -99,7 +84,6 @@ export function FlashFilters() {
         <h4 className="mb-4 font-semibold">Deal Start & End Date</h4>
 
         <div className="flex items-center gap-2">
-
           <div className="relative flex-1">
             <input
               type="text"
@@ -127,7 +111,6 @@ export function FlashFilters() {
               className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
             />
           </div>
-
         </div>
       </div>
 
@@ -151,10 +134,9 @@ export function FlashFilters() {
       </div>
 
       {/* Button */}
-      <button className="mt-8 w-full rounded-xl bg-secondary py-3 font-semibold text-white transition hover:opacity-90">
+      <button className="bg-secondary mt-8 w-full rounded-xl py-3 font-semibold text-white transition hover:opacity-90">
         Apply Filters
       </button>
-
     </div>
   );
 }

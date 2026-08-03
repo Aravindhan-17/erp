@@ -9,7 +9,7 @@ export default function StorefrontRegisterPage() {
       <AuthBackground />
 
       {/* Main Layout Card */}
-      <div className="z-10 flex w-full max-w-xl lg:max-w-3xl 2xl:max-w-212.5 flex-col gap-6 lg:gap-8 rounded-3xl bg-white p-6 shadow-xl sm:gap-10 sm:p-10">
+      <div className="2xl:max-w-212.5 z-10 flex w-full max-w-xl flex-col gap-6 rounded-3xl bg-white p-6 shadow-xl sm:gap-10 sm:p-10 lg:max-w-3xl lg:gap-8">
         <AuthHeader
           title="Create Your Account"
           subtitle="Join ERP Flash Deal and enjoy exclusive deals"
