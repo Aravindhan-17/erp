@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { Bell, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 type ProductType = {
   id: number;
@@ -51,7 +52,12 @@ export function DealProductsCarousel({ products }: DealProductsCarouselProps) {
       <div className="overflow-hidden pb-4" ref={emblaRef}>
         <div className="flex gap-4">
           {products.map((product) => (
-            <div key={product.id} className="min-w-0 flex-[0_0_190px] xl:flex-[0_0_210px]">
+             <Link
+      key={product.id}
+      href={`/flash-deals/products/${product.id}`}
+      className="min-w-0 flex-[0_0_190px] xl:flex-[0_0_210px]"
+    >
+             {/* <div key={product.id} className="min-w-0 flex-[0_0_190px] xl:flex-[0_0_210px]"> */}
               <div className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-3 transition duration-300 hover:shadow-lg">
                 <div className="relative mb-3 flex h-32 justify-center">
                   <Image
@@ -85,7 +91,7 @@ export function DealProductsCarousel({ products }: DealProductsCarouselProps) {
                   </button>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
