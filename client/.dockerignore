@@ -5,3 +5,39 @@ node_modules
 npm-debug.log
 Dockerfile
 .dockerignore
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs & tests
+out
+build
+dist
+coverage
+
+# Editor directories and files
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Misc logs
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Documentation
+README.md
+CLAUDE.md
+AGENTS.md

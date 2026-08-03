@@ -18,69 +18,37 @@ import { products } from "../products/lib/product-data";
 
 import { ProductImageCarousel } from "../products/components/product-image-carousel";
 
-
-export default async function ProductDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
 
-  const product = products.find(
-    (item) => item.id.toString() === resolvedParams.id
-  );
-
+  const product = products.find((item) => item.id.toString() === resolvedParams.id);
 
   if (!product) {
     notFound();
   }
 
-
   return (
-
     <div className="font-poppins relative mx-auto w-full max-w-[1920px] px-4 py-6 md:px-8 xl:px-10">
-
-
       {/* Breadcrumb */}
 
       <div className="mb-8 flex items-center justify-between">
-
         <nav className="flex items-center gap-2 text-sm text-gray-500">
-
-          <Link
-            href="/"
-            className="hover:text-black"
-          >
+          <Link href="/" className="hover:text-black">
             Home
           </Link>
 
+          <ChevronRight size={14} />
 
-          <ChevronRight size={14}/>
-
-
-          <Link
-            href="/flash-deals"
-            className="hover:text-black"
-          >
+          <Link href="/flash-deals" className="hover:text-black">
             Flash Deals
           </Link>
 
+          <ChevronRight size={14} />
 
-          <ChevronRight size={14}/>
-
-
-          <span className="font-semibold text-gray-900">
-            {product.name}
-          </span>
-
+          <span className="font-semibold text-gray-900">{product.name}</span>
         </nav>
 
-
-
         <div className="flex gap-3">
-
-
           <button
             className="
             flex items-center gap-2 
@@ -89,13 +57,9 @@ export default async function ProductDetailPage({
             hover:bg-gray-50
             "
           >
-
-            <Heart size={18}/>
+            <Heart size={18} />
             Wishlist
-
           </button>
-
-
 
           <button
             className="
@@ -105,56 +69,30 @@ export default async function ProductDetailPage({
             hover:bg-gray-50
             "
           >
-
-            <Share2 size={18}/>
+            <Share2 size={18} />
             Share
-
           </button>
-
-
         </div>
-
-
       </div>
-
-
-
-
 
       {/* Main Product Section */}
 
-
       <section
         className="
-        grid 
+        mb-10 
+        grid
         grid-cols-1
         gap-8
         xl:grid-cols-12
-        mb-10
         "
       >
-
-
-
         {/* IMAGE */}
 
         <div className="xl:col-span-5">
-
-          <ProductImageCarousel
-            images={product.images}
-            title={product.name}
-          />
-
+          <ProductImageCarousel images={product.images} title={product.name} />
         </div>
 
-
-
-
-
-
-
         {/* PRODUCT DETAILS */}
-
 
         <div
           className="
@@ -162,29 +100,20 @@ export default async function ProductDetailPage({
           xl:col-span-4
           "
         >
-
-
-
           <span
             className="
+            text-primary
             mb-4
             w-fit
             rounded-md
-            bg-purple-50
-            px-3 py-1
+            bg-purple-50 px-3
+            py-1
             text-xs
             font-bold
-            text-primary
             "
           >
-
             {product.category}
-
           </span>
-
-
-
-
 
           <h1
             className="
@@ -195,14 +124,8 @@ export default async function ProductDetailPage({
             text-gray-900
             "
           >
-
             {product.name}
-
           </h1>
-
-
-
-
 
           <p
             className="
@@ -211,17 +134,10 @@ export default async function ProductDetailPage({
             text-gray-500
             "
           >
-
             {product.shortDescription}
-
           </p>
 
-
-
-
-
           {/* Rating */}
-
 
           <div
             className="
@@ -229,8 +145,6 @@ export default async function ProductDetailPage({
             flex items-center gap-3
             "
           >
-
-
             <div
               className="
               flex items-center gap-1
@@ -242,43 +156,17 @@ export default async function ProductDetailPage({
               text-green-600
               "
             >
-
-              <Star
-                size={14}
-                fill="currentColor"
-              />
+              <Star size={14} fill="currentColor" />
 
               {product.rating}
-
             </div>
 
+            <span className="text-sm text-gray-500">{product.reviews} Reviews</span>
 
-
-            <span className="text-sm text-gray-500">
-
-              {product.reviews} Reviews
-
-            </span>
-
-
-
-            <span className="text-sm text-gray-500">
-
-              {product.sold}+ sold
-
-            </span>
-
-
+            <span className="text-sm text-gray-500">{product.sold}+ sold</span>
           </div>
 
-
-
-
-
-
-
           {/* PRICE CARD */}
-
 
           <div
             className="
@@ -288,8 +176,6 @@ export default async function ProductDetailPage({
             p-5
             "
           >
-
-
             <div
               className="
               mb-2
@@ -298,19 +184,14 @@ export default async function ProductDetailPage({
               line-through
               "
             >
-
               ₹{product.originalPrice.toLocaleString()}
-
             </div>
-
-
 
             <div
               className="
               flex items-center gap-3
               "
             >
-
               <h2
                 className="
                 text-3xl
@@ -318,11 +199,8 @@ export default async function ProductDetailPage({
                 text-gray-900
                 "
               >
-
                 ₹{product.flashPrice.toLocaleString()}
-
               </h2>
-
 
               <span
                 className="
@@ -334,15 +212,9 @@ export default async function ProductDetailPage({
                 text-red-500
                 "
               >
-
                 {product.discount}% OFF
-
               </span>
-
-
             </div>
-
-
 
             <p
               className="
@@ -352,21 +224,11 @@ export default async function ProductDetailPage({
               text-green-600
               "
             >
-
               You save ₹{product.saveAmount.toLocaleString()}
-
             </p>
-
-
           </div>
 
-
-
-
-
-
           {/* STOCK */}
-
 
           <div
             className="
@@ -376,6 +238,17 @@ export default async function ProductDetailPage({
             gap-4
             "
           >
+            <div
+              className="
+              rounded-xl
+              border
+              p-4
+              "
+            >
+              <p className="text-xs text-gray-400">Available Quantity</p>
+
+              <p className="mt-1 font-bold">{product.stock}</p>
+            </div>
 
             <div
               className="
@@ -384,49 +257,15 @@ export default async function ProductDetailPage({
               p-4
               "
             >
+              <p className="text-xs text-gray-400">Max Quantity</p>
 
-              <p className="text-xs text-gray-400">
-                Available Quantity
-              </p>
-
-              <p className="mt-1 font-bold">
-                {product.stock}
-              </p>
-
+              <p className="mt-1 font-bold">{product.maxQty}</p>
             </div>
-
-
-
-            <div
-              className="
-              rounded-xl
-              border
-              p-4
-              "
-            >
-
-              <p className="text-xs text-gray-400">
-                Max Quantity
-              </p>
-
-              <p className="mt-1 font-bold">
-                {product.maxQty}
-              </p>
-
-            </div>
-
-
           </div>
-
-
-
-
 
           {/* FEATURES */}
 
-
           <div>
-
             <h3
               className="
               mb-3
@@ -434,53 +273,30 @@ export default async function ProductDetailPage({
               text-gray-900
               "
             >
-
               Key Features
-
             </h3>
 
-
-
             <ul className="space-y-3">
-
-
-              {product.features.map(
-                (feature,index)=>(
-                  
-                  <li
-                    key={index}
-                    className="
+              {product.features.map((feature, index) => (
+                <li
+                  key={index}
+                  className="
                     flex
                     items-center
                     gap-3
                     text-sm
                     text-gray-600
                     "
-                  >
+                >
+                  <CheckCircle2 size={17} className="text-green-500" />
 
-                    <CheckCircle2
-                      size={17}
-                      className="text-green-500"
-                    />
-
-                    {feature}
-
-
-                  </li>
-
-                )
-              )}
-
-
+                  {feature}
+                </li>
+              ))}
             </ul>
-
-
           </div>
-
-
-
         </div>
-                {/* RIGHT DEAL SIDEBAR */}
+        {/* RIGHT DEAL SIDEBAR */}
 
         <div
           className="
@@ -488,8 +304,6 @@ export default async function ProductDetailPage({
           xl:col-span-3
           "
         >
-
-
           {/* Register Card */}
 
           <div
@@ -501,8 +315,6 @@ export default async function ProductDetailPage({
             p-5
             "
           >
-
-
             <div
               className="
               mb-4
@@ -511,24 +323,19 @@ export default async function ProductDetailPage({
               gap-3
               "
             >
-
               <div
                 className="
+                text-primary
                 rounded-xl
                 bg-white
                 p-3
-                text-primary
                 shadow-sm
                 "
               >
-
-                <ShieldCheck size={24}/>
-
+                <ShieldCheck size={24} />
               </div>
 
-
               <div>
-
                 <h3
                   className="
                   font-bold
@@ -546,13 +353,8 @@ export default async function ProductDetailPage({
                 >
                   Register early access
                 </p>
-
               </div>
-
-
             </div>
-
-
 
             <div
               className="
@@ -562,7 +364,6 @@ export default async function ProductDetailPage({
               p-4
               "
             >
-
               <p
                 className="
                 text-xs
@@ -572,7 +373,6 @@ export default async function ProductDetailPage({
                 Registration Fee
               </p>
 
-
               <h2
                 className="
                 text-3xl
@@ -581,11 +381,7 @@ export default async function ProductDetailPage({
               >
                 ₹1
               </h2>
-
-
             </div>
-
-
 
             <button
               className="
@@ -599,23 +395,11 @@ export default async function ProductDetailPage({
               hover:opacity-90
               "
             >
-
               Register for ₹1
-
             </button>
-
-
-
           </div>
 
-
-
-
-
-
-
           {/* Deal Highlights */}
-
 
           <div
             className="
@@ -625,8 +409,6 @@ export default async function ProductDetailPage({
             p-5
             "
           >
-
-
             <h3
               className="
               mb-5
@@ -634,19 +416,11 @@ export default async function ProductDetailPage({
               text-gray-900
               "
             >
-
               Deal Highlights
-
             </h3>
 
-
-
-
             <div className="space-y-4">
-
-
               <div className="flex justify-between">
-
                 <span
                   className="
                   flex gap-2
@@ -654,25 +428,14 @@ export default async function ProductDetailPage({
                   text-gray-500
                   "
                 >
-
-                  <Package size={16}/>
+                  <Package size={16} />
                   Minimum Order
-
                 </span>
 
-
-                <b>
-                  ₹5000
-                </b>
-
+                <b>₹5000</b>
               </div>
 
-
-
-
-
               <div className="flex justify-between">
-
                 <span
                   className="
                   flex gap-2
@@ -680,25 +443,14 @@ export default async function ProductDetailPage({
                   text-gray-500
                   "
                 >
-
-                  <Clock size={16}/>
+                  <Clock size={16} />
                   Cart Hold
-
                 </span>
 
-
-                <b>
-                  10 Min
-                </b>
-
+                <b>10 Min</b>
               </div>
 
-
-
-
-
               <div className="flex justify-between">
-
                 <span
                   className="
                   flex gap-2
@@ -706,34 +458,16 @@ export default async function ProductDetailPage({
                   text-gray-500
                   "
                 >
-
-                  <Users size={16}/>
+                  <Users size={16} />
                   Registered
-
                 </span>
 
-
-                <b>
-                  1250
-                </b>
-
+                <b>1250</b>
               </div>
-
-
-
             </div>
-
-
           </div>
 
-
-
-
-
-
-
           {/* Delivery */}
-
 
           <div
             className="
@@ -743,8 +477,6 @@ export default async function ProductDetailPage({
             p-5
             "
           >
-
-
             <h3
               className="
               mb-4
@@ -754,7 +486,6 @@ export default async function ProductDetailPage({
               Delivery Details
             </h3>
 
-
             <div
               className="
               space-y-4
@@ -762,46 +493,23 @@ export default async function ProductDetailPage({
               text-gray-600
               "
             >
-
               <p className="flex gap-3">
-
-                <Truck size={18}/>
+                <Truck size={18} />
 
                 {product.delivery}
-
               </p>
-
-
 
               <p className="flex gap-3">
-
-                <ShieldCheck size={18}/>
+                <ShieldCheck size={18} />
 
                 {product.warranty}
-
               </p>
-
-
             </div>
-
-
           </div>
-
-
         </div>
-
-
       </section>
 
-
-
-
-
-
-
       {/* INFORMATION SECTION */}
-
-
 
       <section
         className="
@@ -812,9 +520,6 @@ export default async function ProductDetailPage({
         lg:grid-cols-2
         "
       >
-
-
-
         <div
           className="
           rounded-2xl
@@ -823,7 +528,6 @@ export default async function ProductDetailPage({
           p-6
           "
         >
-
           <h2
             className="
             mb-4
@@ -833,7 +537,6 @@ export default async function ProductDetailPage({
             About Product
           </h2>
 
-
           <p
             className="
             text-sm
@@ -841,18 +544,9 @@ export default async function ProductDetailPage({
             text-gray-600
             "
           >
-
             {product.description}
-
           </p>
-
-
         </div>
-
-
-
-
-
 
         <div
           className="
@@ -862,102 +556,49 @@ export default async function ProductDetailPage({
           p-6
           "
         >
-
           <h2
             className="
             mb-4
             font-bold
             "
           >
-
             Specifications
-
           </h2>
 
-
-
           <div className="space-y-3 text-sm">
-
-
             <div className="flex justify-between">
+              <span className="text-gray-500">Brand</span>
 
-              <span className="text-gray-500">
-                Brand
-              </span>
-
-              <b>
-                {product.brand}
-              </b>
-
+              <b>{product.brand}</b>
             </div>
 
-
-
             <div className="flex justify-between">
+              <span className="text-gray-500">Model</span>
 
-              <span className="text-gray-500">
-                Model
-              </span>
-
-              <b>
-                {product.model}
-              </b>
-
+              <b>{product.model}</b>
             </div>
 
-
-
-
             <div className="flex justify-between">
+              <span className="text-gray-500">Display</span>
 
-              <span className="text-gray-500">
-                Display
-              </span>
-
-              <b>
-                {product.display}
-              </b>
-
+              <b>{product.display}</b>
             </div>
 
-
-
-
             <div className="flex justify-between">
+              <span className="text-gray-500">Storage</span>
 
-              <span className="text-gray-500">
-                Storage
-              </span>
-
-              <b>
-                {product.storage}
-              </b>
-
+              <b>{product.storage}</b>
             </div>
-
-
-
           </div>
-
-
         </div>
-
-
       </section>
 
-
-
-{/* Features Banner */}
+      {/* Features Banner */}
       <div className="relative mb-10">
         <FeaturesBanner />
       </div>
 
-
-
-
       {/* STICKY BOTTOM BAR */}
-
-
 
       <div
         className="
@@ -971,8 +612,6 @@ export default async function ProductDetailPage({
         shadow-lg
         "
       >
-
-
         <div
           className="
           mx-auto
@@ -986,20 +625,14 @@ export default async function ProductDetailPage({
           md:px-10
           "
         >
-
-
           <div>
-
             <h3
               className="
               font-bold
               "
             >
-
               Register now for ₹1
-
             </h3>
-
 
             <p
               className="
@@ -1007,17 +640,9 @@ export default async function ProductDetailPage({
               text-gray-500
               "
             >
-
               Get early access to this deal
-
             </p>
-
-
           </div>
-
-
-
-
 
           <div
             className="
@@ -1025,8 +650,6 @@ export default async function ProductDetailPage({
             gap-3
             "
           >
-
-
             <button
               className="
               rounded-xl
@@ -1035,12 +658,8 @@ export default async function ProductDetailPage({
               py-3
               "
             >
-
-              <Heart size={18}/>
-
+              <Heart size={18} />
             </button>
-
-
 
             <button
               className="
@@ -1052,24 +671,11 @@ export default async function ProductDetailPage({
               text-white
               "
             >
-
               Register ₹1
-
             </button>
-
-
           </div>
-
-
-
         </div>
-
-
       </div>
-
-
-
     </div>
-
   );
 }
