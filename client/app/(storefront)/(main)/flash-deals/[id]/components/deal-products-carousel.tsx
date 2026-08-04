@@ -99,7 +99,7 @@ export function DealProductsCarousel({ products }: DealProductsCarouselProps) {
       <button
         onClick={scrollPrev}
         disabled={prevBtnDisabled}
-        className={`absolute -left-5 top-[80px] z-10 hidden h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white opacity-0 shadow-md transition hover:scale-105 hover:bg-gray-50 disabled:cursor-auto disabled:opacity-0 group-hover:opacity-100 xl:flex`}
+        className={`absolute -left-5 top-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white opacity-0 shadow-md transition hover:scale-105 hover:bg-gray-50 disabled:cursor-auto disabled:opacity-0 group-hover:opacity-100 xl:flex`}
       >
         <ChevronLeft size={20} className="text-gray-600" />
       </button>
@@ -107,7 +107,7 @@ export function DealProductsCarousel({ products }: DealProductsCarouselProps) {
       <button
         onClick={scrollNext}
         disabled={nextBtnDisabled}
-        className={`absolute -right-5 top-[80px] z-10 hidden h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white opacity-0 shadow-md transition hover:scale-105 hover:bg-gray-50 disabled:cursor-auto disabled:opacity-0 group-hover:opacity-100 xl:flex`}
+        className={`absolute -right-5 top-20 z-10 hidden h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white opacity-0 shadow-md transition hover:scale-105 hover:bg-gray-50 disabled:cursor-auto disabled:opacity-0 group-hover:opacity-100 xl:flex`}
       >
         <ChevronRight size={20} className="text-gray-600" />
       </button>

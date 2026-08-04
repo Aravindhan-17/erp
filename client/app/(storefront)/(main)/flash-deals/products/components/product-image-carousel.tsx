@@ -63,7 +63,7 @@ export function ProductImageCarousel({ images, title }: Props) {
       </div>
 
       {/* main image */}
-      <div className="group relative flex h-[350px] items-center justify-center overflow-hidden rounded-3xl border border-gray-200 bg-white md:h-[520px]">
+      <div className="group relative flex h-87.5 items-center justify-center overflow-hidden rounded-3xl border border-gray-200 bg-white md:h-130">
         {/* Embla Viewport */}
         <div className="h-full w-full overflow-hidden" ref={emblaRef}>
           <div className="flex h-full touch-pan-y">

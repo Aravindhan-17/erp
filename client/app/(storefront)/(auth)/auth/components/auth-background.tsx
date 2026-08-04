@@ -30,7 +30,7 @@ export function AuthBackground({
       {variant === "register" && (
         <>
           {/* Decorative Box 1 (Gift Box) - Register */}
-          <div className="2xl:w-62.5 absolute left-10 top-16 z-0 hidden h-44 w-40 rotate-[-15deg] drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-52 lg:w-48 2xl:left-52 2xl:top-14 2xl:h-[275px]">
+          <div className="2xl:w-62.5 absolute left-10 top-16 z-0 hidden h-44 w-40 rotate-[-15deg] drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-52 lg:w-48 2xl:left-52 2xl:top-14 2xl:h-68.75">
             <Image
               src={GiftBox}
               alt="Gift Box"
@@ -42,7 +42,7 @@ export function AuthBackground({
           </div>
 
           {/* Decorative Bag 1 (Deals Bag) - Register */}
-          <div className="2xl:w-62.5 absolute bottom-10 right-10 z-0 hidden h-44 w-40 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-52 lg:w-48 2xl:bottom-32 2xl:right-32 2xl:h-[261px]">
+          <div className="2xl:w-62.5 absolute bottom-10 right-10 z-0 hidden h-44 w-40 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-52 lg:w-48 2xl:bottom-32 2xl:right-32 2xl:h-65.25">
             <Image
               src={DealBag}
               alt="Deals Bag"
@@ -70,7 +70,7 @@ export function AuthBackground({
           </div>
 
           {/* Decorative Cart (Cart) - Login */}
-          <div className="absolute bottom-20 left-10 z-0 hidden h-56 w-48 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-72 lg:w-64 2xl:bottom-[15%] 2xl:left-36 2xl:h-[404px] 2xl:w-[350px]">
+          <div className="absolute bottom-20 left-10 z-0 hidden h-56 w-48 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-72 lg:w-64 2xl:bottom-[15%] 2xl:left-36 2xl:h-101 2xl:w-87.5">
             <Image
               src={Cart}
               alt="Cart"
@@ -98,7 +98,7 @@ export function AuthBackground({
           </div>
 
           {/* Decorative Lock (LockLayout) - Forgot Password */}
-          <div className="2xl:w-62.5 2xl:h-62.5 absolute bottom-32 right-10 z-0 hidden h-40 w-40 rotate-[15deg] drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-48 lg:w-48 2xl:bottom-[20%] 2xl:right-32">
+          <div className="2xl:w-62.5 2xl:h-62.5 absolute bottom-32 right-10 z-0 hidden h-40 w-40 rotate-15 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-48 lg:w-48 2xl:bottom-[20%] 2xl:right-32">
             <Image
               src={LockLayout}
               alt="Lock Layout"

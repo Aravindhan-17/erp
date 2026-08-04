@@ -49,7 +49,7 @@ export default function Header({
   return (
     <header
       style={style}
-      className={`relative z-50 mx-auto flex h-20 w-full max-w-[1920px] items-center justify-between gap-4 bg-white px-4 md:px-8 xl:h-[88px] xl:px-10 ${className}`}
+      className={`relative z-50 mx-auto flex h-20 w-full max-w-[1920px] items-center justify-between gap-4 bg-white px-4 md:px-8 xl:h-22 xl:px-10 ${className}`}
     >
       {/* 1. Left Section: Logo Container */}
       <Link href="/" className="flex shrink-0 items-center">
@@ -86,7 +86,7 @@ export default function Header({
         </nav>
 
         {/* Search Bar Container */}
-        <div className="hidden h-10 min-w-[120px] max-w-[480px] flex-1 items-center justify-between gap-2 rounded-lg bg-[#F6F6F6] px-4 md:flex lg:min-w-[200px] xl:h-12">
+        <div className="hidden h-10 min-w-30 max-w-120 flex-1 items-center justify-between gap-2 rounded-lg bg-[#F6F6F6] px-4 md:flex lg:min-w-50 xl:h-12">
           <input
             type="text"
             placeholder="Search for products, brands..."

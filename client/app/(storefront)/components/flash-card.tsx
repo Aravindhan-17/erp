@@ -90,7 +90,7 @@ export function FlashCard({ deal }: { deal: FlashDealType }) {
       </div>
 
       <div className="flex flex-1 flex-col pt-3">
-        <div className="h-[95px]">
+        <div className="h-23.75">
           <h2 className="line-clamp-2 text-lg font-semibold leading-7 sm:text-[20px]">
             {deal.title}
           </h2>
