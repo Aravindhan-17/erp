@@ -1,4 +1,7 @@
-import { Product1, Product2, Product3, Product4 } from "@/assets/images";
+import { 
+  Product1, Product2, Product3, Product4,
+  CategoryElectronics, CategoryHomeAppliances, CategoryFashion, CategoryAccessories, CategoryBeauty, CategorySports
+} from "@/assets/images";
 
 export const deals = [
   {
@@ -56,5 +59,72 @@ export const deals = [
     button: "Closed",
     buttonStyle: "white",
     type: "ended",
+  },
+];
+
+export const categories = [
+  {
+    id: 1,
+    title: "Electronics",
+    products: 121,
+    image: CategoryElectronics,
+    industry: "Retail",
+    status: "Active",
+  },
+  {
+    id: 2,
+    title: "Home Appliances",
+    products: 88,
+    image: CategoryHomeAppliances,
+    industry: "Wholesale",
+    status: "Active",
+  },
+  {
+    id: 3,
+    title: "Fashion",
+    products: 156,
+    image: CategoryFashion,
+    industry: "Retail",
+    status: "Active",
+  },
+  {
+    id: 4,
+    title: "Accessories",
+    products: 95,
+    image: CategoryAccessories,
+    industry: "B2B",
+    status: "Active",
+  },
+  {
+    id: 5,
+    title: "Beauty",
+    products: 79,
+    image: CategoryBeauty,
+    industry: "Retail",
+    status: "Active",
+  },
+  {
+    id: 6,
+    title: "Sports",
+    products: 32,
+    image: CategorySports,
+    industry: "Retail",
+    status: "Active",
+  },
+  {
+    id: 7,
+    title: "Furniture",
+    products: 45,
+    image: CategoryHomeAppliances, // Fallback image for now
+    industry: "Wholesale",
+    status: "Upcoming",
+  },
+  {
+    id: 8,
+    title: "Automotive",
+    products: 12,
+    image: CategoryAccessories, // Fallback image for now
+    industry: "B2B",
+    status: "Upcoming",
   },
 ];

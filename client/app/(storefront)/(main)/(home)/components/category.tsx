@@ -1,49 +1,9 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
 import { FeaturesBanner } from "@/app/(storefront)/components/features-banner";
-import Image from "next/image";
-
-import {
-  CategoryElectronics as electronics,
-  CategoryHomeAppliances as homeAppliances,
-  CategoryFashion as fashion,
-  CategoryAccessories as accessories,
-  CategoryBeauty as beauty,
-  CategorySports as sports,
-} from "@/assets/images";
-
-const categories = [
-  {
-    title: "Electronics",
-    products: 121,
-    image: electronics,
-  },
-  {
-    title: "Home Appliances",
-    products: 88,
-    image: homeAppliances,
-  },
-  {
-    title: "Fashion",
-    products: 156,
-    image: fashion,
-  },
-  {
-    title: "Accessories",
-    products: 95,
-    image: accessories,
-  },
-  {
-    title: "Beauty",
-    products: 79,
-    image: beauty,
-  },
-  {
-    title: "Sports",
-    products: 32,
-    image: sports,
-  },
-];
+import { CategoryCard } from "@/app/(storefront)/components/category-card";
+import { categories } from "@/lib/dummy-data";
+import Link from "next/link";
 
 const Category = () => {
   return (
@@ -53,27 +13,18 @@ const Category = () => {
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-3xl font-bold">Shop by Category</h2>
 
-          <button className="text-secondary mt-5 flex items-center gap-2 rounded-xl px-6 py-3 font-semibold md:mt-0">
-            View All Deals
-            <ChevronRight size={26} />
-          </button>
+          <Link href="/categories">
+            <button className="text-secondary mt-5 flex items-center gap-2 rounded-xl px-6 py-3 font-semibold md:mt-0 hover:underline">
+              View All Categories
+              <ChevronRight size={26} />
+            </button>
+          </Link>
         </div>
 
         {/* Categories */}
         <div className="mb-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
-          {categories.map((item, index) => (
-            <div
-              key={index}
-              className="rounded-2xl border border-gray-200 bg-white p-6 text-center transition duration-300 hover:shadow-lg"
-            >
-              <div className="mb-5 flex justify-center">
-                <Image src={item.image} alt={item.title} className="w-50 h-30 object-contain" />
-              </div>
-
-              <h3 className="text-lg font-semibold">{item.title}</h3>
-
-              <p className="mt-1 text-sm font-medium text-black/50">{item.products} Products</p>
-            </div>
+          {categories.slice(0, 6).map((item) => (
+            <CategoryCard key={item.id} category={item} />
           ))}
         </div>
 
