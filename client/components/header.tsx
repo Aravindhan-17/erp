@@ -75,7 +75,7 @@ export default function Header({
               key={index}
               href={link.href}
               className={`font-poppins whitespace-nowrap text-sm font-semibold transition-all duration-150 xl:text-base ${
-                (link.active ?? pathname === link.href)
+                (link.active ?? (link.href === "/" ? pathname === "/" : (pathname === link.href || pathname.startsWith(link.href + "/"))))
                   ? "text-secondary"
                   : "text-foreground hover:text-secondary opacity-90"
               }`}
@@ -182,7 +182,7 @@ export default function Header({
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`font-poppins py-2 text-lg font-semibold ${
-                  (link.active ?? pathname === link.href)
+                  (link.active ?? (link.href === "/" ? pathname === "/" : (pathname === link.href || pathname.startsWith(link.href + "/"))))
                     ? "text-secondary"
                     : "text-foreground hover:text-secondary"
                 }`}

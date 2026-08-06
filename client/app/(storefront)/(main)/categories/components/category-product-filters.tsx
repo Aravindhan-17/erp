@@ -1,18 +1,26 @@
 "use client";
 
-const industries = [
-  { label: "Retail", count: 42 },
-  { label: "Wholesale", count: 28 },
-  { label: "B2B", count: 15 },
+const brands = [
+  { label: "Apple", count: 120 },
+  { label: "Samsung", count: 85 },
+  { label: "Sony", count: 42 },
+  { label: "Dell", count: 28 },
 ];
 
-const statuses = [
-  { label: "Active", color: "bg-[#017B24]", count: 85 },
-  { label: "Upcoming", color: "bg-[#F3380B]", count: 12 },
-  { label: "Archived", color: "bg-[#555555]", count: 5 },
+const categories = [
+  { label: "Smartphones", count: 320 },
+  { label: "Laptops", count: 150 },
+  { label: "Headphones", count: 95 },
+  { label: "Accessories", count: 210 },
 ];
 
-export function CategoryFilters() {
+const ratings = [
+  { label: "4 Stars & Up", value: 4 },
+  { label: "3 Stars & Up", value: 3 },
+  { label: "2 Stars & Up", value: 2 },
+];
+
+export function CategoryProductFilters() {
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
       {/* Header */}
@@ -21,11 +29,11 @@ export function CategoryFilters() {
         <button className="text-secondary text-sm font-medium hover:underline">Clear All</button>
       </div>
 
-      {/* Industry Type */}
+      {/* Sub-Categories */}
       <div>
-        <h4 className="mb-4 font-semibold">Industry Type</h4>
+        <h4 className="mb-4 font-semibold">Category</h4>
         <div className="space-y-3">
-          {industries.map((item) => (
+          {categories.map((item) => (
             <label key={item.label} className="flex cursor-pointer items-center justify-between">
               <div className="flex items-center gap-3">
                 <input type="checkbox" className="h-4 w-4 rounded border-gray-300" />
@@ -41,15 +49,14 @@ export function CategoryFilters() {
 
       <hr className="my-6" />
 
-      {/* Category Status */}
+      {/* Brand */}
       <div>
-        <h4 className="mb-4 font-semibold">Category Status</h4>
+        <h4 className="mb-4 font-semibold">Brand</h4>
         <div className="space-y-3">
-          {statuses.map((item) => (
+          {brands.map((item) => (
             <label key={item.label} className="flex cursor-pointer items-center justify-between">
               <div className="flex items-center gap-3">
                 <input type="checkbox" className="h-4 w-4 rounded border-gray-300" />
-                <span className={`h-3 w-3 rounded-full ${item.color}`} />
                 <span className="text-sm">{item.label}</span>
               </div>
               <span className="rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
@@ -62,18 +69,33 @@ export function CategoryFilters() {
 
       <hr className="my-6" />
 
-      {/* Product Count Slider */}
+      {/* Price Range Slider */}
       <div>
-        <h4 className="mb-5 font-semibold">Product Count</h4>
+        <h4 className="mb-5 font-semibold">Price Range (₹)</h4>
         <input
           type="range"
           min={0}
-          max={1000}
+          max={100000}
           className="w-full cursor-pointer accent-[#F3380B]"
         />
         <div className="mt-2 flex justify-between text-sm">
           <span>0</span>
-          <span>1000+</span>
+          <span>1,00,000+</span>
+        </div>
+      </div>
+      
+      <hr className="my-6" />
+      
+      {/* Rating */}
+      <div>
+        <h4 className="mb-4 font-semibold">Rating</h4>
+        <div className="space-y-3">
+          {ratings.map((item) => (
+            <label key={item.value} className="flex cursor-pointer items-center gap-3">
+              <input type="radio" name="rating" className="h-4 w-4 border-gray-300 text-secondary focus:ring-secondary" />
+              <span className="text-sm">{item.label}</span>
+            </label>
+          ))}
         </div>
       </div>
 
