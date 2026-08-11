@@ -83,16 +83,20 @@ export function CategoryProductFilters() {
           <span>1,00,000+</span>
         </div>
       </div>
-      
+
       <hr className="my-6" />
-      
+
       {/* Rating */}
       <div>
         <h4 className="mb-4 font-semibold">Rating</h4>
         <div className="space-y-3">
           {ratings.map((item) => (
             <label key={item.value} className="flex cursor-pointer items-center gap-3">
-              <input type="radio" name="rating" className="h-4 w-4 border-gray-300 text-secondary focus:ring-secondary" />
+              <input
+                type="radio"
+                name="rating"
+                className="text-secondary focus:ring-secondary h-4 w-4 border-gray-300"
+              />
               <span className="text-sm">{item.label}</span>
             </label>
           ))}

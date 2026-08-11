@@ -65,12 +65,7 @@ export function CategoryFilters() {
       {/* Product Count Slider */}
       <div>
         <h4 className="mb-5 font-semibold">Product Count</h4>
-        <input
-          type="range"
-          min={0}
-          max={1000}
-          className="w-full cursor-pointer accent-[#F3380B]"
-        />
+        <input type="range" min={0} max={1000} className="w-full cursor-pointer accent-[#F3380B]" />
         <div className="mt-2 flex justify-between text-sm">
           <span>0</span>
           <span>1000+</span>

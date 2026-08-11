@@ -14,7 +14,7 @@ const Category = () => {
           <h2 className="text-3xl font-bold">Shop by Category</h2>
 
           <Link href="/categories">
-            <button className="text-secondary mt-5 flex items-center gap-2 rounded-xl px-6 py-3 font-semibold md:mt-0 hover:underline">
+            <button className="text-secondary mt-5 flex items-center gap-2 rounded-xl px-6 py-3 font-semibold hover:underline md:mt-0">
               View All Categories
               <ChevronRight size={26} />
             </button>

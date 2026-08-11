@@ -6,7 +6,9 @@ import { PaginationClient } from "../../../components/pagination-client";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
   const decodedId = decodeURIComponent(params.id);
   return {
@@ -35,7 +37,7 @@ export default async function CategoryPage(props: { params: Promise<{ id: string
             Categories
           </Link>
           <ChevronRight size={14} />
-          <span className="font-medium text-black capitalize">{decodedId}</span>
+          <span className="font-medium capitalize text-black">{decodedId}</span>
         </nav>
       </div>
 
@@ -90,22 +92,21 @@ export default async function CategoryPage(props: { params: Promise<{ id: string
       {/* FILTER + CARDS */}
       <section className="grid gap-8 lg:grid-cols-[280px_1fr] xl:grid-cols-[380px_1fr]">
         {/* LEFT FILTER */}
-        <aside className="sticky top-24 h-fit hidden lg:block">
+        <aside className="sticky top-24 hidden h-fit lg:block">
           <CategoryProductFilters />
         </aside>
 
         {/* RIGHT CARDS */}
         <div>
-          <div className="grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             {displayProducts.map((product, idx) => (
               <ProductCard key={`${product.id}-${idx}`} product={product} />
             ))}
           </div>
-          
+
           <PaginationClient pageCount={10} />
         </div>
       </section>
-
     </div>
   );
 }
