@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { FeaturesBanner } from "../../components/features-banner";
 import { FlashFilters } from "./components/flash-filters";
 import { FlashCard } from "../../components/flash-card";
@@ -12,6 +14,14 @@ export const metadata: Metadata = {
 export default function FlashDealsPage() {
   return (
     <div className="font-poppins relative mx-auto w-full max-w-[1920px] px-4 py-10 md:px-8 xl:px-10">
+      <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <nav className="flex items-center gap-2 text-sm text-gray-500">
+          <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+          <ChevronRight size={14} />
+          <span className="font-medium text-black">Flash Deals</span>
+        </nav>
+      </div>
+
       {/* Hero */}
       <section className="mb-10 flex flex-col gap-8">
         <div>

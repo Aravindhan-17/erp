@@ -31,7 +31,7 @@ export function DealImageCarousel({ images, title }: DealImageCarouselProps) {
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="bg-primary group relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-4xl lg:col-span-1 xl:col-span-5">
+    <div className="bg-primary aspect-4/3 rounded-4xl group relative flex items-center justify-center overflow-hidden lg:col-span-1 xl:col-span-5">
       <div className="h-full w-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
           {images.map((img, index) => (

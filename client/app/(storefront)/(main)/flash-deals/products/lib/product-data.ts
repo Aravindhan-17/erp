@@ -262,3 +262,5 @@ export const products = [
     delivery: "Delivery by Tomorrow",
   },
 ];
+
+export type Product = typeof products[0];

@@ -210,9 +210,9 @@ export default async function FlashDealDetailPage({ params }: { params: Promise<
                 </p>
               </div>
             </div>
-            <button className="bg-primary shadow-primary/20 w-full whitespace-nowrap rounded-xl px-6 py-3 text-sm font-bold text-white shadow-md transition hover:opacity-90 sm:w-auto">
+            <Link href={`/flash-deals/register/${deal.id}`} className="bg-primary shadow-primary/20 w-full whitespace-nowrap rounded-xl px-6 py-3 text-sm font-bold text-white shadow-md transition hover:opacity-90 sm:w-auto flex items-center justify-center">
               Register for ₹1
-            </button>
+            </Link>
           </div>
 
           <div className="flex items-center gap-6 text-[13px] font-medium text-gray-600">
@@ -408,9 +408,9 @@ export default async function FlashDealDetailPage({ params }: { params: Promise<
               </div>
             </div>
             <div className="mt-4 flex w-full items-center gap-2 sm:gap-3 md:mt-0 md:w-auto">
-              <button className="bg-primary shadow-primary/20 flex flex-1 items-center justify-center whitespace-nowrap rounded-xl px-2 py-3.5 text-[13px] font-bold text-white shadow-md transition hover:opacity-90 sm:px-8 sm:text-sm md:flex-none">
+              <Link href={`/flash-deals/register/${deal.id}`} className="bg-primary shadow-primary/20 flex flex-1 items-center justify-center whitespace-nowrap rounded-xl px-2 py-3.5 text-[13px] font-bold text-white shadow-md transition hover:opacity-90 sm:px-8 sm:text-sm md:flex-none">
                 Register <span className="hidden sm:inline">&nbsp;for ₹1</span>
-              </button>
+              </Link>
               <button
                 className="flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-2 py-3.5 text-[13px] font-semibold text-gray-700 transition hover:bg-gray-50 sm:px-5 sm:text-sm md:flex-none"
                 aria-label="Add to Wishlist"

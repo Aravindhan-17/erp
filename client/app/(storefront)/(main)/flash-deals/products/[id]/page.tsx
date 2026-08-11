@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { FeaturesBanner } from "@/app/(storefront)/components/features-banner";
 import Link from "next/link";
+import { FlashDealRegisterButton } from "@/app/(storefront)/components/flash-deal-register-button";
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -161,9 +162,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               </h2>
             </div>
 
-            <button className="bg-primary w-full rounded-xl py-3 text-sm font-bold text-white transition-opacity hover:opacity-90">
-              Register for ₹{product.registrationFee ?? 1}
-            </button>
+            <FlashDealRegisterButton product={product} />
           </div>
 
           <div className="rounded-[1.25rem] border border-gray-200 bg-white p-5">
@@ -226,10 +225,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                       label: "SECS",
                     },
                   ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="bg-purple-50 py-4 text-center"
-                    >
+                    <div key={item.label} className="bg-purple-50 py-4 text-center">
                       <h3 className="text-primary text-3xl font-bold">{item.value}</h3>
 
                       <p className="text-primary mt-1 text-xs font-semibold">{item.label}</p>
