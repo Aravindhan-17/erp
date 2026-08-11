@@ -12,16 +12,13 @@ export default function Footer({ className = "", style }: FooterProps) {
   return (
     <footer
       style={style}
-      className={`mx-auto box-border flex h-auto w-full max-w-[1920px] flex-col gap-8 overflow-hidden bg-[#0A172C] pb-10 pl-6 pr-6 pt-10 text-white transition-all duration-200 md:pl-12 md:pr-12 xl:h-140.75 xl:gap-10 xl:pb-10 xl:pl-20 xl:pr-20 xl:pt-20 ${className}`}
+      className={`xl:h-140.75 mx-auto box-border flex h-auto w-full max-w-[1920px] flex-col gap-8 overflow-hidden bg-[#0A172C] pb-10 pl-6 pr-6 pt-10 text-white transition-all duration-200 md:pl-12 md:pr-12 xl:gap-10 xl:pb-10 xl:pl-20 xl:pr-20 xl:pt-20 ${className}`}
     >
       {/* 1. Main Frame Layout (w: 1760px, h: 333px, responsive grid/flex) */}
-      <div className="box-border grid h-auto w-full max-w-[1760px] grid-cols-1 items-start justify-between gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:flex xl:h-83.25 xl:flex-row xl:gap-0">
+      <div className="xl:h-83.25 box-border grid h-auto w-full max-w-[1760px] grid-cols-1 items-start justify-between gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:flex xl:flex-row xl:gap-0">
         {/* Column 1: Brand / Logo & About */}
-        <div className="flex w-full flex-col gap-5 sm:col-span-2 lg:col-span-1 xl:w-95.25">
-          <Link
-            href="/"
-            className="group flex h-12.5 w-50 items-center sm:h-15 sm:w-62"
-          >
+        <div className="xl:w-95.25 flex w-full flex-col gap-5 sm:col-span-2 lg:col-span-1">
+          <Link href="/" className="h-12.5 w-50 sm:h-15 sm:w-62 group flex items-center">
             <Image
               src={ErpLogoWhite}
               alt="ERP Flash Deal"
@@ -31,17 +28,17 @@ export default function Footer({ className = "", style }: FooterProps) {
               priority
             />
           </Link>
-          <p className="mb-2.5 h-auto w-full max-w-95.25 font-['Poppins',sans-serif] text-[16px] font-normal leading-relaxed tracking-normal text-[#FFFFFF] opacity-75 sm:text-[18px] xl:mb-5 xl:h-22.5 xl:text-[20px] xl:leading-7.5">
+          <p className="max-w-95.25 xl:h-22.5 xl:leading-7.5 mb-2.5 h-auto w-full font-['Poppins',sans-serif] text-[16px] font-normal leading-relaxed tracking-normal text-[#FFFFFF] opacity-75 sm:text-[18px] xl:mb-5 xl:text-[20px]">
             Your one-stop destination for the best
             <br className="hidden sm:block" />
             flash deals on top brands. Register,
             <br className="hidden sm:block" />
             shop and save big!
           </p>
-          <div className="mb-10 flex h-12.5 w-full max-w-65 items-center gap-5">
+          <div className="h-12.5 max-w-65 mb-10 flex w-full items-center gap-5">
             <a
               href="#"
-              className="flex h-11 w-11 cursor-pointer items-center justify-center text-[#A1A1AA] transition-colors hover:text-white sm:h-12.5 sm:w-12.5"
+              className="sm:h-12.5 sm:w-12.5 flex h-11 w-11 cursor-pointer items-center justify-center text-[#A1A1AA] transition-colors hover:text-white"
               aria-label="Facebook"
             >
               <svg
@@ -56,7 +53,7 @@ export default function Footer({ className = "", style }: FooterProps) {
             </a>
             <a
               href="#"
-              className="flex h-11 w-11 cursor-pointer items-center justify-center text-[#A1A1AA] transition-colors hover:text-white sm:h-12.5 sm:w-12.5"
+              className="sm:h-12.5 sm:w-12.5 flex h-11 w-11 cursor-pointer items-center justify-center text-[#A1A1AA] transition-colors hover:text-white"
               aria-label="Instagram"
             >
               <svg
@@ -71,7 +68,7 @@ export default function Footer({ className = "", style }: FooterProps) {
             </a>
             <a
               href="#"
-              className="flex h-11 w-11 cursor-pointer items-center justify-center text-[#A1A1AA] transition-colors hover:text-white sm:h-12.5 sm:w-12.5"
+              className="sm:h-12.5 sm:w-12.5 flex h-11 w-11 cursor-pointer items-center justify-center text-[#A1A1AA] transition-colors hover:text-white"
               aria-label="Twitter"
             >
               <svg
@@ -86,7 +83,7 @@ export default function Footer({ className = "", style }: FooterProps) {
             </a>
             <a
               href="#"
-              className="flex h-11 w-11 cursor-pointer items-center justify-center text-[#A1A1AA] transition-colors hover:text-white sm:h-12.5 sm:w-12.5"
+              className="sm:h-12.5 sm:w-12.5 flex h-11 w-11 cursor-pointer items-center justify-center text-[#A1A1AA] transition-colors hover:text-white"
               aria-label="YouTube"
             >
               <svg
@@ -103,37 +100,37 @@ export default function Footer({ className = "", style }: FooterProps) {
         </div>
 
         {/* Column 2: Customer Service */}
-        <div className="flex h-auto w-full flex-col gap-4 sm:gap-5 xl:h-83.25 xl:w-49.75">
-          <h3 className="h-auto w-full font-['Poppins',sans-serif] text-[18px] font-semibold leading-snug tracking-normal text-[#FFFFFF] sm:text-[20px] xl:h-8.25 xl:w-49.75 xl:text-[22px] xl:leading-8.25">
+        <div className="xl:h-83.25 xl:w-49.75 flex h-auto w-full flex-col gap-4 sm:gap-5">
+          <h3 className="xl:h-8.25 xl:w-49.75 xl:leading-8.25 h-auto w-full font-['Poppins',sans-serif] text-[18px] font-semibold leading-snug tracking-normal text-[#FFFFFF] sm:text-[20px] xl:text-[22px]">
             Customer Service
           </h3>
           <ul className="flex flex-col gap-3 font-['Poppins',sans-serif] text-[16px] text-[#FFFFFF] sm:gap-4 sm:text-[18px] xl:gap-5 xl:text-[20px]">
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Help Center
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 How It Works
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Shipping & Delivery
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Returns & Refunds
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Terms & Conditions
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Privacy & Policy
               </Link>
@@ -142,32 +139,32 @@ export default function Footer({ className = "", style }: FooterProps) {
         </div>
 
         {/* Column 3: My Account */}
-        <div className="flex h-auto w-full flex-col gap-4 sm:gap-5 xl:h-83.25 xl:w-49.75">
-          <h3 className="h-auto w-full font-['Poppins',sans-serif] text-[18px] font-semibold leading-snug tracking-normal text-[#FFFFFF] sm:text-[20px] xl:h-8.25 xl:w-49.75 xl:text-[22px] xl:leading-8.25">
+        <div className="xl:h-83.25 xl:w-49.75 flex h-auto w-full flex-col gap-4 sm:gap-5">
+          <h3 className="xl:h-8.25 xl:w-49.75 xl:leading-8.25 h-auto w-full font-['Poppins',sans-serif] text-[18px] font-semibold leading-snug tracking-normal text-[#FFFFFF] sm:text-[20px] xl:text-[22px]">
             My Account
           </h3>
           <ul className="flex flex-col gap-3 font-['Poppins',sans-serif] text-[16px] text-[#FFFFFF] sm:gap-4 sm:text-[18px] xl:gap-5 xl:text-[20px]">
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 My Profile
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 My Orders
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 My Registrations
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Wishlist
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Notifications
               </Link>
@@ -176,32 +173,32 @@ export default function Footer({ className = "", style }: FooterProps) {
         </div>
 
         {/* Column 4: Useful Links */}
-        <div className="flex h-auto w-full flex-col gap-4 sm:gap-5 xl:h-83.25 xl:w-49.75">
-          <h3 className="h-auto w-full font-['Poppins',sans-serif] text-[18px] font-semibold leading-snug tracking-normal text-[#FFFFFF] sm:text-[20px] xl:h-8.25 xl:w-49.75 xl:text-[22px] xl:leading-8.25">
+        <div className="xl:h-83.25 xl:w-49.75 flex h-auto w-full flex-col gap-4 sm:gap-5">
+          <h3 className="xl:h-8.25 xl:w-49.75 xl:leading-8.25 h-auto w-full font-['Poppins',sans-serif] text-[18px] font-semibold leading-snug tracking-normal text-[#FFFFFF] sm:text-[20px] xl:text-[22px]">
             Useful Links
           </h3>
           <ul className="flex flex-col gap-3 font-['Poppins',sans-serif] text-[16px] text-[#FFFFFF] sm:gap-4 sm:text-[18px] xl:gap-5 xl:text-[20px]">
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 About Us
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Contact Us
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 FAQs
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Blog
               </Link>
             </li>
-            <li className="h-auto leading-snug xl:h-7.5 xl:leading-7.5">
+            <li className="xl:h-7.5 xl:leading-7.5 h-auto leading-snug">
               <Link href="#" className="block transition-colors hover:text-white">
                 Sitemap
               </Link>
@@ -210,17 +207,17 @@ export default function Footer({ className = "", style }: FooterProps) {
         </div>
 
         {/* Column 5: Download Our App */}
-        <div className="flex h-auto w-full flex-col gap-4 sm:col-span-2 sm:gap-5 lg:col-span-1 xl:h-73.25 xl:w-72.75">
-          <h3 className="h-auto w-full font-['Poppins',sans-serif] text-[18px] font-semibold leading-snug tracking-normal text-[#FFFFFF] sm:text-[20px] xl:h-8.25 xl:w-72.75 xl:text-[22px] xl:leading-8.25">
+        <div className="xl:h-73.25 xl:w-72.75 flex h-auto w-full flex-col gap-4 sm:col-span-2 sm:gap-5 lg:col-span-1">
+          <h3 className="xl:h-8.25 xl:w-72.75 xl:leading-8.25 h-auto w-full font-['Poppins',sans-serif] text-[18px] font-semibold leading-snug tracking-normal text-[#FFFFFF] sm:text-[20px] xl:text-[22px]">
             Download Our App
           </h3>
-          <p className="h-auto w-full max-w-72.75 font-['Poppins',sans-serif] text-[16px] font-normal leading-relaxed text-white opacity-75 sm:text-[18px] xl:h-15 xl:text-[20px] xl:leading-7.5">
+          <p className="max-w-72.75 xl:h-15 xl:leading-7.5 h-auto w-full font-['Poppins',sans-serif] text-[16px] font-normal leading-relaxed text-white opacity-75 sm:text-[18px] xl:text-[20px]">
             Get exclusive app-only deals and faster access.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row xl:flex-col">
             <a
               href="#"
-              className="block h-15 w-50 transition-opacity hover:opacity-90 sm:h-17.5 sm:w-[236.25px]"
+              className="h-15 w-50 sm:h-17.5 block transition-opacity hover:opacity-90 sm:w-[236.25px]"
             >
               <Image
                 src={PlayStoreBadge}
@@ -232,7 +229,7 @@ export default function Footer({ className = "", style }: FooterProps) {
             </a>
             <a
               href="#"
-              className="block h-15 w-50 transition-opacity hover:opacity-90 sm:h-17.5 sm:w-[236.25px]"
+              className="h-15 w-50 sm:h-17.5 block transition-opacity hover:opacity-90 sm:w-[236.25px]"
             >
               <Image
                 src={AppStoreBadge}
@@ -250,11 +247,11 @@ export default function Footer({ className = "", style }: FooterProps) {
       <div className="my-6 h-0 w-full max-w-[1760px] border-t border-solid border-[#FFFFFF] opacity-25 xl:my-0" />
 
       {/* 3. Third Layout */}
-      <div className="flex h-auto w-full max-w-[1760px] flex-col items-center justify-between gap-4 text-center font-['Poppins',sans-serif] text-[14px] text-[#A1A1AA] opacity-100 sm:text-[16px] md:flex-row md:gap-0 md:text-left xl:h-7.5">
-        <p className="h-auto w-full font-['Poppins',sans-serif] text-[16px] font-normal leading-snug tracking-normal text-[#FFFFFF] opacity-50 sm:text-[18px] xl:h-7.5 xl:w-104.5 xl:text-[20px] xl:leading-7.5">
+      <div className="xl:h-7.5 flex h-auto w-full max-w-[1760px] flex-col items-center justify-between gap-4 text-center font-['Poppins',sans-serif] text-[14px] text-[#A1A1AA] opacity-100 sm:text-[16px] md:flex-row md:gap-0 md:text-left">
+        <p className="xl:h-7.5 xl:w-104.5 xl:leading-7.5 h-auto w-full font-['Poppins',sans-serif] text-[16px] font-normal leading-snug tracking-normal text-[#FFFFFF] opacity-50 sm:text-[18px] xl:text-[20px]">
           © 2026 ERP Flash Deal. All Rights Reserved.
         </p>
-        <div className="flex h-auto flex-wrap items-center justify-center gap-3 font-['Poppins',sans-serif] text-[16px] font-normal leading-snug tracking-normal text-[#FFFFFF] opacity-50 sm:gap-4 sm:text-[18px] md:gap-6 xl:h-7.5 xl:text-[20px] xl:leading-7.5">
+        <div className="xl:h-7.5 xl:leading-7.5 flex h-auto flex-wrap items-center justify-center gap-3 font-['Poppins',sans-serif] text-[16px] font-normal leading-snug tracking-normal text-[#FFFFFF] opacity-50 sm:gap-4 sm:text-[18px] md:gap-6 xl:text-[20px]">
           <Link href="#" className="transition-colors hover:text-white">
             Terms & Conditions
           </Link>

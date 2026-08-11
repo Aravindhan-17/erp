@@ -1,6 +1,14 @@
-import { 
-  Product1, Product2, Product3, Product4,
-  CategoryElectronics, CategoryHomeAppliances, CategoryFashion, CategoryAccessories, CategoryBeauty, CategorySports
+import {
+  Product1,
+  Product2,
+  Product3,
+  Product4,
+  CategoryElectronics,
+  CategoryHomeAppliances,
+  CategoryFashion,
+  CategoryAccessories,
+  CategoryBeauty,
+  CategorySports,
 } from "@/assets/images";
 
 export const deals = [
