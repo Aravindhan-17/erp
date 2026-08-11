@@ -7,7 +7,7 @@ export default function AdminLoginPage() {
     <div className="bg-muted/30 flex flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="text-center sm:mx-auto sm:w-full sm:max-w-md">
         <Link href="/" className="mb-4 inline-flex items-center gap-2">
-          <div className="from-primary flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-tr to-purple-600 text-2xl font-bold text-white shadow-lg">
+          <div className="from-primary bg-linear-to-tr flex h-12 w-12 items-center justify-center rounded-xl to-purple-600 text-2xl font-bold text-white shadow-lg">
             ⚡
           </div>
           <span className="text-primary text-3xl font-extrabold tracking-tight">

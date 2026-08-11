@@ -4,7 +4,7 @@ export function AuthHeader({ title, subtitle }: { title: string; subtitle: strin
       <h2 className="max-w-85.5 h-auto w-full font-['Poppins'] text-2xl font-bold leading-tight text-black sm:h-12 sm:text-[32px] sm:leading-none">
         {title}
       </h2>
-      <p className="h-auto w-full max-w-152.5 font-['Poppins'] text-sm font-medium leading-tight text-black/50 sm:h-6.75 sm:text-[18px] sm:leading-none">
+      <p className="max-w-152.5 sm:h-6.75 h-auto w-full font-['Poppins'] text-sm font-medium leading-tight text-black/50 sm:text-[18px] sm:leading-none">
         {subtitle}
       </p>
     </div>
