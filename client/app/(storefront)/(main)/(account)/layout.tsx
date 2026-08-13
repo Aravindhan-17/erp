@@ -3,12 +3,20 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { User, Package, Settings, LogOut } from "lucide-react";
+import { User, Package, LogOut, LayoutDashboard, Undo2, MapPin, Wallet, Heart, Bell, LifeBuoy } from "lucide-react";
+import Image from "next/image";
+import { UserAvatar } from "@/assets/images";
 
 const navigation = [
-  { name: "My Profile", href: "/profile", icon: User },
-  { name: "My Orders", href: "/orders", icon: Package },
-  { name: "Settings", href: "/settings", icon: Settings },
+  { name: "Overview", href: "/overview", icon: LayoutDashboard },
+  { name: "Your Orders", href: "/orders", icon: Package },
+  { name: "Returns & Cancellations", href: "/returns", icon: Undo2 },
+  { name: "Wishlist", href: "/wishlist", icon: Heart },
+  { name: "Profile & Security", href: "/profile", icon: User },
+  { name: "Address Book", href: "/addresses", icon: MapPin },
+  { name: "Payment & Wallet", href: "/wallet", icon: Wallet },
+  { name: "Notification Preferences", href: "/notifications", icon: Bell },
+  { name: "Support Tickets", href: "/support", icon: LifeBuoy },
 ];
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
@@ -20,7 +28,15 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
         {/* Sidebar Navigation */}
         <aside className="w-full lg:w-64 shrink-0">
           <nav className="flex flex-col gap-2 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
-            <h2 className="mb-4 px-2 text-lg font-bold text-gray-900">My Account</h2>
+            <div className="mb-6 flex items-center gap-3 px-2">
+              <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-100">
+                <Image src={UserAvatar} alt="User" width={48} height={48} className="h-full w-full object-cover" />
+              </div>
+              <div>
+                <h2 className="text-sm font-bold text-gray-900">John Doe</h2>
+                <p className="text-xs text-gray-500">john.doe@example.com</p>
+              </div>
+            </div>
             
             {navigation.map((item) => {
               const isActive = pathname === item.href;
@@ -30,11 +46,11 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
                   href={item.href}
                   className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
                     isActive
-                      ? "bg-[#F3380B1A] text-secondary"
+                      ? "bg-primary/10 text-primary"
                       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                   }`}
                 >
-                  <item.icon size={20} className={isActive ? "text-secondary" : "text-gray-400"} />
+                  <item.icon size={20} className={isActive ? "text-primary" : "text-gray-400"} />
                   {item.name}
                 </Link>
               );
