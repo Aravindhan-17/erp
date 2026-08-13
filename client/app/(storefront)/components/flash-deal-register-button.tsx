@@ -9,11 +9,18 @@ interface FlashDealRegisterButtonProps {
   children?: React.ReactNode;
 }
 
-export function FlashDealRegisterButton({ product, className, children }: FlashDealRegisterButtonProps) {
+export function FlashDealRegisterButton({
+  product,
+  className,
+  children,
+}: FlashDealRegisterButtonProps) {
   return (
-    <Link 
+    <Link
       href={`/flash-deals/register/${product.id}`}
-      className={className || "bg-primary w-full rounded-xl py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 flex items-center justify-center"}
+      className={
+        className ||
+        "bg-primary flex w-full items-center justify-center rounded-xl py-3 text-sm font-bold text-white transition-opacity hover:opacity-90"
+      }
     >
       {children || `Register for ₹${product.registrationFee ?? 1}`}
     </Link>

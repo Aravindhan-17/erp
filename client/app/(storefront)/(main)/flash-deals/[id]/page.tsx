@@ -210,7 +210,10 @@ export default async function FlashDealDetailPage({ params }: { params: Promise<
                 </p>
               </div>
             </div>
-            <Link href={`/flash-deals/register/${deal.id}`} className="bg-primary shadow-primary/20 w-full whitespace-nowrap rounded-xl px-6 py-3 text-sm font-bold text-white shadow-md transition hover:opacity-90 sm:w-auto flex items-center justify-center">
+            <Link
+              href={`/flash-deals/register/${deal.id}`}
+              className="bg-primary shadow-primary/20 flex w-full items-center justify-center whitespace-nowrap rounded-xl px-6 py-3 text-sm font-bold text-white shadow-md transition hover:opacity-90 sm:w-auto"
+            >
               Register for ₹1
             </Link>
           </div>
@@ -408,7 +411,10 @@ export default async function FlashDealDetailPage({ params }: { params: Promise<
               </div>
             </div>
             <div className="mt-4 flex w-full items-center gap-2 sm:gap-3 md:mt-0 md:w-auto">
-              <Link href={`/flash-deals/register/${deal.id}`} className="bg-primary shadow-primary/20 flex flex-1 items-center justify-center whitespace-nowrap rounded-xl px-2 py-3.5 text-[13px] font-bold text-white shadow-md transition hover:opacity-90 sm:px-8 sm:text-sm md:flex-none">
+              <Link
+                href={`/flash-deals/register/${deal.id}`}
+                className="bg-primary shadow-primary/20 flex flex-1 items-center justify-center whitespace-nowrap rounded-xl px-2 py-3.5 text-[13px] font-bold text-white shadow-md transition hover:opacity-90 sm:px-8 sm:text-sm md:flex-none"
+              >
                 Register <span className="hidden sm:inline">&nbsp;for ₹1</span>
               </Link>
               <button

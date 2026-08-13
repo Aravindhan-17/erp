@@ -48,16 +48,11 @@ export function PaymentForm({ product, onPay }: PaymentFormProps) {
           <h2 className="mb-6 text-xl font-bold text-gray-900">Deal Summary</h2>
 
           <div className="mb-6 flex items-center gap-4">
-            <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm p-1">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-contain"
-              />
+            <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white p-1 shadow-sm">
+              <Image src={product.image} alt={product.name} fill className="object-contain" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 line-clamp-2">{product.name}</h3>
+              <h3 className="line-clamp-2 font-bold text-gray-900">{product.name}</h3>
               <p className="text-sm font-medium text-gray-500">{product.category}</p>
             </div>
           </div>
@@ -77,7 +72,9 @@ export function PaymentForm({ product, onPay }: PaymentFormProps) {
 
             <div>
               <p className="text-sm text-gray-500">Min. Order Value</p>
-              <p className="mt-1 font-bold text-gray-900">₹{product.minimumOrderValue.toLocaleString()}</p>
+              <p className="mt-1 font-bold text-gray-900">
+                ₹{product.minimumOrderValue.toLocaleString()}
+              </p>
             </div>
 
             <div>
@@ -95,19 +92,23 @@ export function PaymentForm({ product, onPay }: PaymentFormProps) {
         {/* Right Column: Payment */}
         <div className="lg:col-span-7">
           <h2 className="text-xl font-bold text-gray-900">Complete Your Registration</h2>
-          <p className="mt-1 text-sm text-gray-500">Pay just ₹{product.registrationFee ?? 1} to confirm your spot</p>
+          <p className="mt-1 text-sm text-gray-500">
+            Pay just ₹{product.registrationFee ?? 1} to confirm your spot
+          </p>
 
-          <div className="mt-8 rounded-xl bg-purple-50 p-6 flex items-center justify-between">
+          <div className="mt-8 flex items-center justify-between rounded-xl bg-purple-50 p-6">
             <div>
               <p className="text-sm font-semibold text-gray-900">Amount to Pay</p>
-              <p className="mt-1 text-4xl font-extrabold text-gray-900">₹{product.registrationFee ?? 1}</p>
+              <p className="mt-1 text-4xl font-extrabold text-gray-900">
+                ₹{product.registrationFee ?? 1}
+              </p>
             </div>
-            <button className="text-sm font-bold text-primary hover:underline">View Details</button>
+            <button className="text-primary text-sm font-bold hover:underline">View Details</button>
           </div>
 
           <div className="mt-8">
             <h3 className="mb-4 font-bold text-gray-900">Select Payment Method</h3>
-            
+
             <div className="space-y-3">
               {paymentMethods.map((method) => (
                 <div
@@ -126,15 +127,17 @@ export function PaymentForm({ product, onPay }: PaymentFormProps) {
                       <Circle size={24} className="text-gray-300" />
                     )}
                     <div>
-                      <p className={`font-bold ${selectedMethod === method.id ? "text-primary" : "text-gray-900"}`}>
+                      <p
+                        className={`font-bold ${selectedMethod === method.id ? "text-primary" : "text-gray-900"}`}
+                      >
                         {method.title}
                       </p>
                       <p className="text-xs text-gray-500">{method.subtitle}</p>
                     </div>
                   </div>
-                  
+
                   {/* Mock Icons - In a real app these would be images */}
-                  <div className="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">
+                  <div className="rounded bg-gray-100 px-2 py-1 text-xs font-bold text-gray-400">
                     {method.icon}
                   </div>
                 </div>
@@ -152,13 +155,20 @@ export function PaymentForm({ product, onPay }: PaymentFormProps) {
 
           <button
             onClick={onPay}
-            className="mt-6 w-full rounded-xl bg-primary py-4 text-lg font-bold text-white transition-opacity hover:opacity-90"
+            className="bg-primary mt-6 w-full rounded-xl py-4 text-lg font-bold text-white transition-opacity hover:opacity-90"
           >
             Pay ₹{product.registrationFee ?? 1} Now
           </button>
 
           <p className="mt-4 text-center text-xs text-gray-500">
-            By proceeding, you agree to our <span className="font-bold text-primary hover:underline cursor-pointer">Terms & Conditions</span> and <span className="font-bold text-primary hover:underline cursor-pointer">Privacy Policy</span>
+            By proceeding, you agree to our{" "}
+            <span className="text-primary cursor-pointer font-bold hover:underline">
+              Terms & Conditions
+            </span>{" "}
+            and{" "}
+            <span className="text-primary cursor-pointer font-bold hover:underline">
+              Privacy Policy
+            </span>
           </p>
         </div>
       </div>

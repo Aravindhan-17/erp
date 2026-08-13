@@ -53,7 +53,11 @@ const mockNotifications: Notification[] = [
   },
 ];
 
-export function NotificationDropdown({ isOpen, onClose, onCountChange }: NotificationDropdownProps) {
+export function NotificationDropdown({
+  isOpen,
+  onClose,
+  onCountChange,
+}: NotificationDropdownProps) {
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +76,7 @@ export function NotificationDropdown({ isOpen, onClose, onCountChange }: Notific
       if (dropdownRef.current && dropdownRef.current.contains(event.target as Node)) {
         return;
       }
-      
+
       onClose();
     };
 
@@ -87,37 +91,39 @@ export function NotificationDropdown({ isOpen, onClose, onCountChange }: Notific
   };
 
   const markAsRead = (id: string) => {
-    setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, isRead: true } : n))
-    );
+    setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, isRead: true } : n)));
   };
 
   if (!isOpen) return null;
 
   const getIcon = (type: string) => {
     switch (type) {
-      case "order": return <Package size={16} className="text-blue-500" />;
-      case "promo": return <Tag size={16} className="text-green-500" />;
-      case "alert": return <AlertCircle size={16} className="text-red-500" />;
-      default: return <Info size={16} className="text-gray-500" />;
+      case "order":
+        return <Package size={16} className="text-blue-500" />;
+      case "promo":
+        return <Tag size={16} className="text-green-500" />;
+      case "alert":
+        return <AlertCircle size={16} className="text-red-500" />;
+      default:
+        return <Info size={16} className="text-gray-500" />;
     }
   };
 
   return (
-    <div 
+    <div
       ref={dropdownRef}
-      className="fixed left-4 right-4 top-20 sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-3 w-auto sm:w-96 rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 z-50 flex flex-col max-h-[85vh] overflow-hidden font-poppins"
+      className="font-poppins fixed left-4 right-4 top-20 z-50 flex max-h-[85vh] w-auto flex-col overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-3 sm:w-96"
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4 bg-gray-50/50">
-        <h3 className="text-base font-bold text-gray-900 flex items-center gap-2">
+      <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50/50 px-4 py-4">
+        <h3 className="flex items-center gap-2 text-base font-bold text-gray-900">
           <Bell size={18} />
           Notifications
         </h3>
-        {notifications.some(n => !n.isRead) && (
-          <button 
+        {notifications.some((n) => !n.isRead) && (
+          <button
             onClick={markAllAsRead}
-            className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1"
+            className="text-primary hover:text-primary/80 flex items-center gap-1 text-xs font-semibold transition-colors"
           >
             <Check size={14} />
             Mark all as read
@@ -126,47 +132,49 @@ export function NotificationDropdown({ isOpen, onClose, onCountChange }: Notific
       </div>
 
       {/* List */}
-      <div className="overflow-y-auto flex-1 p-2 space-y-1">
+      <div className="flex-1 space-y-1 overflow-y-auto p-2">
         {notifications.length === 0 ? (
-          <div className="py-8 text-center text-gray-500 text-sm">
-            No new notifications
-          </div>
+          <div className="py-8 text-center text-sm text-gray-500">No new notifications</div>
         ) : (
           notifications.map((notification) => (
-            <div 
+            <div
               key={notification.id}
               onClick={() => markAsRead(notification.id)}
-              className={`relative flex items-start gap-4 p-3 rounded-xl transition-colors cursor-pointer ${
+              className={`relative flex cursor-pointer items-start gap-4 rounded-xl p-3 transition-colors ${
                 notification.isRead ? "hover:bg-gray-50" : "bg-purple-50/40 hover:bg-purple-50/70"
               }`}
             >
-              <div className="mt-1 shrink-0 bg-white p-2 rounded-full shadow-sm border border-gray-100">
+              <div className="mt-1 shrink-0 rounded-full border border-gray-100 bg-white p-2 shadow-sm">
                 {getIcon(notification.type)}
               </div>
-              <div className="flex-1 min-w-0 pr-6">
-                <div className="flex justify-between items-start gap-2 mb-1">
-                  <p className={`text-sm font-semibold truncate ${notification.isRead ? "text-gray-700" : "text-gray-900"}`}>
+              <div className="min-w-0 flex-1 pr-6">
+                <div className="mb-1 flex items-start justify-between gap-2">
+                  <p
+                    className={`truncate text-sm font-semibold ${notification.isRead ? "text-gray-700" : "text-gray-900"}`}
+                  >
                     {notification.title}
                   </p>
-                  <span className="text-[10px] font-medium text-gray-400 whitespace-nowrap">
+                  <span className="whitespace-nowrap text-[10px] font-medium text-gray-400">
                     {notification.time}
                   </span>
                 </div>
-                <p className={`text-xs line-clamp-2 ${notification.isRead ? "text-gray-500" : "text-gray-700 font-medium"}`}>
+                <p
+                  className={`line-clamp-2 text-xs ${notification.isRead ? "text-gray-500" : "font-medium text-gray-700"}`}
+                >
                   {notification.message}
                 </p>
               </div>
               {!notification.isRead && (
-                <div className="absolute top-1/2 -translate-y-1/2 right-3 w-2 h-2 rounded-full bg-primary" />
+                <div className="bg-primary absolute right-3 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full" />
               )}
             </div>
           ))
         )}
       </div>
-      
+
       {/* Footer */}
       <div className="border-t border-gray-100 p-3 text-center">
-        <button className="text-sm font-semibold text-gray-500 hover:text-gray-900 transition-colors">
+        <button className="text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900">
           View all notifications
         </button>
       </div>

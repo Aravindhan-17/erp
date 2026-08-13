@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import { X, Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 interface CartDrawerProps {
@@ -28,7 +27,7 @@ const mockCartItems: CartItem[] = [
   {
     id: "2",
     name: "Ergonomic Office Chair with Lumbar Support",
-    price: 199.50,
+    price: 199.5,
     quantity: 2,
   },
 ];
@@ -39,126 +38,128 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   // Handle escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
     if (isOpen) {
-      document.addEventListener('keydown', handleEsc);
+      document.addEventListener("keydown", handleEsc);
       // Prevent scrolling on the body when drawer is open
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
     return () => {
-      document.removeEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
   const updateQuantity = (id: string, delta: number) => {
-    setItems(items.map(item => {
-      if (item.id === id) {
-        const newQuantity = Math.max(1, item.quantity + delta);
-        return { ...item, quantity: newQuantity };
-      }
-      return item;
-    }));
+    setItems(
+      items.map((item) => {
+        if (item.id === id) {
+          const newQuantity = Math.max(1, item.quantity + delta);
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      })
+    );
   };
 
   const removeItem = (id: string) => {
-    setItems(items.filter(item => item.id !== id));
+    setItems(items.filter((item) => item.id !== id));
   };
 
-  const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   if (!isOpen) return null;
 
   return (
     <>
       {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/40 z-60 backdrop-blur-sm transition-opacity"
+      <div
+        className="z-60 fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
-      
+
       {/* Drawer */}
-      <div className="fixed top-0 right-0 h-full w-full sm:w-100 bg-white z-70 shadow-2xl flex flex-col transform transition-transform duration-300 font-poppins">
+      <div className="sm:w-100 z-70 font-poppins fixed right-0 top-0 flex h-full w-full transform flex-col bg-white shadow-2xl transition-transform duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100">
+        <div className="flex items-center justify-between border-b border-gray-100 p-4 sm:p-6">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5 text-gray-900" />
+            <ShoppingBag className="h-5 w-5 text-gray-900" />
             <h2 className="text-lg font-bold text-gray-900">Shopping Cart</h2>
-            <span className="ml-2 bg-gray-100 text-gray-600 text-xs font-semibold px-2 py-0.5 rounded-full">
+            <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-600">
               {items.length}
             </span>
           </div>
-          <button 
+          <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="rounded-full p-2 transition-colors hover:bg-gray-100"
           >
-            <X className="w-5 h-5 text-gray-500" />
+            <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
         {/* Cart Items */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+        <div className="flex-1 space-y-6 overflow-y-auto p-4 sm:p-6">
           {items.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
-              <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center">
-                <ShoppingBag className="w-10 h-10 text-gray-300" />
+            <div className="flex h-full flex-col items-center justify-center space-y-4 text-center">
+              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gray-50">
+                <ShoppingBag className="h-10 w-10 text-gray-300" />
               </div>
               <div>
                 <h3 className="text-lg font-medium text-gray-900">Your cart is empty</h3>
-                <p className="text-sm text-gray-500 mt-1">Looks like you haven't added anything yet.</p>
+                <p className="mt-1 text-sm text-gray-500">
+                  Looks like you haven&apos;t added anything yet.
+                </p>
               </div>
-              <button 
+              <button
                 onClick={onClose}
-                className="mt-4 px-6 py-2 bg-primary text-white rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors"
+                className="bg-primary hover:bg-primary/90 mt-4 rounded-full px-6 py-2 text-sm font-semibold text-white transition-colors"
               >
                 Start Shopping
               </button>
             </div>
           ) : (
             items.map((item) => (
-              <div key={item.id} className="flex gap-4 group">
+              <div key={item.id} className="group flex gap-4">
                 {/* Image Placeholder */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-xl shrink-0 flex items-center justify-center border border-gray-100 transition-colors group-hover:border-gray-200">
-                  <ShoppingBag className="w-8 h-8 text-gray-200" />
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 transition-colors group-hover:border-gray-200 sm:h-24 sm:w-24">
+                  <ShoppingBag className="h-8 w-8 text-gray-200" />
                 </div>
-                
+
                 {/* Item Details */}
-                <div className="flex-1 flex flex-col justify-between py-1">
+                <div className="flex flex-1 flex-col justify-between py-1">
                   <div className="flex justify-between gap-2">
-                    <h3 className="text-sm font-medium text-gray-900 line-clamp-2 leading-tight">
+                    <h3 className="line-clamp-2 text-sm font-medium leading-tight text-gray-900">
                       {item.name}
                     </h3>
-                    <button 
+                    <button
                       onClick={() => removeItem(item.id)}
-                      className="text-gray-400 hover:text-red-500 transition-colors shrink-0 mt-0.5"
+                      className="mt-0.5 shrink-0 text-gray-400 transition-colors hover:text-red-500"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="h-4 w-4" />
                     </button>
                   </div>
-                  
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="font-bold text-gray-900">
-                      ${item.price.toFixed(2)}
-                    </span>
-                    
+
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="font-bold text-gray-900">${item.price.toFixed(2)}</span>
+
                     {/* Quantity Selector */}
-                    <div className="flex items-center gap-3 bg-gray-50 rounded-lg px-2 py-1 border border-gray-100">
-                      <button 
+                    <div className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 px-2 py-1">
+                      <button
                         onClick={() => updateQuantity(item.id, -1)}
-                        className="text-gray-500 hover:text-gray-900 disabled:opacity-50 disabled:hover:text-gray-500 transition-colors"
+                        className="text-gray-500 transition-colors hover:text-gray-900 disabled:opacity-50 disabled:hover:text-gray-500"
                         disabled={item.quantity <= 1}
                       >
-                        <Minus className="w-3.5 h-3.5" />
+                        <Minus className="h-3.5 w-3.5" />
                       </button>
-                      <span className="text-sm font-medium w-4 text-center text-gray-900">
+                      <span className="w-4 text-center text-sm font-medium text-gray-900">
                         {item.quantity}
                       </span>
-                      <button 
+                      <button
                         onClick={() => updateQuantity(item.id, 1)}
-                        className="text-gray-500 hover:text-gray-900 transition-colors"
+                        className="text-gray-500 transition-colors hover:text-gray-900"
                       >
-                        <Plus className="w-3.5 h-3.5" />
+                        <Plus className="h-3.5 w-3.5" />
                       </button>
                     </div>
                   </div>
@@ -170,24 +171,22 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="border-t border-gray-100 p-4 sm:p-6 bg-gray-50/50">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-gray-600 font-medium">Subtotal</span>
-              <span className="text-xl font-bold text-gray-900">
-                ${total.toFixed(2)}
-              </span>
+          <div className="border-t border-gray-100 bg-gray-50/50 p-4 sm:p-6">
+            <div className="mb-4 flex items-center justify-between">
+              <span className="font-medium text-gray-600">Subtotal</span>
+              <span className="text-xl font-bold text-gray-900">${total.toFixed(2)}</span>
             </div>
-            <p className="text-xs text-gray-500 mb-5 text-center">
+            <p className="mb-5 text-center text-xs text-gray-500">
               Shipping and taxes calculated at checkout.
             </p>
             <div className="flex flex-col gap-3">
-              <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 px-4 rounded-xl transition-colors shadow-lg shadow-primary/25">
+              <button className="bg-primary hover:bg-primary/90 shadow-primary/25 w-full rounded-xl px-4 py-3.5 font-bold text-white shadow-lg transition-colors">
                 Go to Checkout
               </button>
-              <Link 
+              <Link
                 href="/cart"
                 onClick={onClose}
-                className="w-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 font-bold py-3 px-4 rounded-xl transition-colors text-center"
+                className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-center font-bold text-gray-900 transition-colors hover:bg-gray-50"
               >
                 View Full Cart
               </Link>

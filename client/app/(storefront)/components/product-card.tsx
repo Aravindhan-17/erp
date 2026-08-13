@@ -11,7 +11,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 transition duration-300 hover:shadow-lg">
-      <Link href={`/flash-deals/products/${product.id}`} className="flex flex-col flex-1">
+      <Link href={`/flash-deals/products/${product.id}`} className="flex flex-1 flex-col">
         <div className="relative mb-4 flex h-40 items-center justify-center overflow-hidden">
           <Image
             src={product.image}
@@ -41,7 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
       </Link>
-      
+
       {/* Registration Button Modal Trigger */}
       <FlashDealRegisterButton product={product} />
     </div>

@@ -130,9 +130,9 @@ export default function Header({
                 </span>
               )}
             </button>
-            <NotificationDropdown 
-              isOpen={isNotificationsOpen} 
-              onClose={() => setIsNotificationsOpen(false)} 
+            <NotificationDropdown
+              isOpen={isNotificationsOpen}
+              onClose={() => setIsNotificationsOpen(false)}
               onCountChange={setUnreadCount}
             />
           </div>
@@ -150,17 +150,14 @@ export default function Header({
               </span>
             )}
           </button>
-          
-          <CartDrawer 
-            isOpen={isCartOpen}
-            onClose={() => setIsCartOpen(false)}
-          />
+
+          <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
         </div>
 
         {/* User Profile Container */}
-        <div className="relative group hidden shrink-0 sm:flex">
-          <div 
-            className="cursor-pointer select-none flex items-center gap-2 xl:gap-3"
+        <div className="group relative hidden shrink-0 sm:flex">
+          <div
+            className="flex cursor-pointer select-none items-center gap-2 xl:gap-3"
             onClick={() => setIsProfileOpen(!isProfileOpen)}
           >
             {/* Profile Image */}
@@ -187,12 +184,14 @@ export default function Header({
             </div>
 
             {/* Profile Chevron */}
-            <ChevronDown className={`hidden h-5 w-5 shrink-0 text-black transition-transform xl:block xl:h-6 xl:w-6 ${isProfileOpen ? 'rotate-180' : 'group-hover:translate-y-0.5'}`} />
+            <ChevronDown
+              className={`hidden h-5 w-5 shrink-0 text-black transition-transform xl:block xl:h-6 xl:w-6 ${isProfileOpen ? "rotate-180" : "group-hover:translate-y-0.5"}`}
+            />
           </div>
 
-          <ProfileDropdown 
-            isOpen={isProfileOpen} 
-            onClose={() => setIsProfileOpen(false)} 
+          <ProfileDropdown
+            isOpen={isProfileOpen}
+            onClose={() => setIsProfileOpen(false)}
             userName={userName}
             userAvatar={userAvatar}
           />
@@ -250,11 +249,34 @@ export default function Header({
             </div>
 
             {/* Mobile Profile Links */}
-            <div className="mt-2 flex flex-col gap-3 font-poppins">
-              <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)} className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">My Profile</Link>
-              <Link href="/orders" onClick={() => setIsMobileMenuOpen(false)} className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">My Orders</Link>
-              <Link href="/settings" onClick={() => setIsMobileMenuOpen(false)} className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">Settings</Link>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-sm font-medium text-red-600 hover:text-red-700 text-left transition-colors">Sign Out</button>
+            <div className="font-poppins mt-2 flex flex-col gap-3">
+              <Link
+                href="/profile"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="hover:text-primary text-sm font-medium text-gray-700 transition-colors"
+              >
+                My Profile
+              </Link>
+              <Link
+                href="/orders"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="hover:text-primary text-sm font-medium text-gray-700 transition-colors"
+              >
+                My Orders
+              </Link>
+              <Link
+                href="/settings"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="hover:text-primary text-sm font-medium text-gray-700 transition-colors"
+              >
+                Settings
+              </Link>
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-left text-sm font-medium text-red-600 transition-colors hover:text-red-700"
+              >
+                Sign Out
+              </button>
             </div>
 
             {/* Mobile Search Bar inside menu */}

@@ -20,7 +20,7 @@ export default function CartPage() {
     (acc, item) => acc + (item.flashPrice || item.originalPrice) * item.quantity,
     0
   );
-  
+
   const shipping = 50; // Flat dummy shipping fee
   const total = subtotal + shipping;
 
@@ -45,26 +45,31 @@ export default function CartPage() {
           <div className="rounded-2xl border border-gray-200 bg-white">
             <div className="hidden border-b border-gray-100 p-6 md:grid md:grid-cols-12 md:gap-4">
               <div className="col-span-6 text-sm font-semibold text-gray-500">Product</div>
-              <div className="col-span-2 text-center text-sm font-semibold text-gray-500">Price</div>
-              <div className="col-span-2 text-center text-sm font-semibold text-gray-500">Quantity</div>
+              <div className="col-span-2 text-center text-sm font-semibold text-gray-500">
+                Price
+              </div>
+              <div className="col-span-2 text-center text-sm font-semibold text-gray-500">
+                Quantity
+              </div>
               <div className="col-span-2 text-right text-sm font-semibold text-gray-500">Total</div>
             </div>
 
             <div className="divide-y divide-gray-100">
               {cartItems.map((item) => (
-                <div key={item.id} className="grid grid-cols-1 items-center gap-4 p-6 md:grid-cols-12">
+                <div
+                  key={item.id}
+                  className="grid grid-cols-1 items-center gap-4 p-6 md:grid-cols-12"
+                >
                   {/* Product Info */}
                   <div className="col-span-6 flex gap-4">
                     <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-50 md:h-24 md:w-24">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        className="object-contain p-2"
-                      />
+                      <Image src={item.image} alt={item.name} fill className="object-contain p-2" />
                     </div>
                     <div className="flex flex-col justify-center">
-                      <Link href={`/flash-deals/products/${item.id}`} className="font-semibold text-gray-900 hover:text-primary line-clamp-2">
+                      <Link
+                        href={`/flash-deals/products/${item.id}`}
+                        className="hover:text-primary line-clamp-2 font-semibold text-gray-900"
+                      >
                         {item.name}
                       </Link>
                       <p className="mt-1 text-xs text-gray-500">{item.category}</p>
@@ -130,7 +135,9 @@ export default function CartPage() {
 
             <div className="flex justify-between py-6">
               <span className="text-lg font-bold text-gray-900">Total</span>
-              <span className="text-2xl font-extrabold text-gray-900">₹{total.toLocaleString()}</span>
+              <span className="text-2xl font-extrabold text-gray-900">
+                ₹{total.toLocaleString()}
+              </span>
             </div>
 
             <Link
@@ -142,7 +149,10 @@ export default function CartPage() {
             </Link>
 
             <div className="mt-4 text-center">
-              <Link href="/" className="text-sm font-semibold text-gray-500 hover:text-gray-900 hover:underline">
+              <Link
+                href="/"
+                className="text-sm font-semibold text-gray-500 hover:text-gray-900 hover:underline"
+              >
                 Continue Shopping
               </Link>
             </div>

@@ -49,3 +49,13 @@ export { default as LockLayout } from "./illustrations/lock-1.png";
 export { default as GoogleIcon } from "./illustrations/google.png";
 export { default as FacebookIcon } from "./illustrations/facebook.png";
 export { default as AppleIcon } from "./illustrations/apple.png";
+
+export { default as Electronics } from "./categories/electronic.jpg";
+export { default as Gadgets } from "./categories/gadgets.jpg";
+export { default as NewArivals } from "./categories/new-arivals.jpg";
+
+export { default as Electronics1 } from "./Electronics/Electronics-1.webp";
+export { default as Electronics2 } from "./Electronics/Electronics-2.avif";
+export { default as Electronics3 } from "./Electronics/Electronics-3.avif";
+export { default as Electronics4 } from "./Electronics/Electronics-4.webp";
+

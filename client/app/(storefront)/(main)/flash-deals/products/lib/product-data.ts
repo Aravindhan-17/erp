@@ -263,4 +263,4 @@ export const products = [
   },
 ];
 
-export type Product = typeof products[0];
+export type Product = (typeof products)[0];

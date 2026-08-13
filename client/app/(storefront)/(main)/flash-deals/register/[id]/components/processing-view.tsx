@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Shield, Lock, ShieldCheck, Banknote } from "lucide-react";
+import { Check, Lock, ShieldCheck, Banknote } from "lucide-react";
 import Link from "next/link";
 
 interface ProcessingViewProps {
@@ -12,12 +12,7 @@ interface ProcessingViewProps {
 export function ProcessingView({ onSuccess, onFail }: ProcessingViewProps) {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const steps = [
-    "Verifying Payment",
-    "Processing",
-    "Confirming",
-    "Finalizing",
-  ];
+  const steps = ["Verifying Payment", "Processing", "Confirming", "Finalizing"];
 
   useEffect(() => {
     // Simulate the payment process steps
@@ -42,32 +37,38 @@ export function ProcessingView({ onSuccess, onFail }: ProcessingViewProps) {
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#2d2a4a] p-4 sm:p-8">
       {/* Breadcrumbs - Abs pos at top left */}
       <div className="absolute left-8 top-8 hidden items-center gap-2 text-sm text-gray-300 sm:flex">
-        <Link href="/" className="hover:text-white">Home</Link>
+        <Link href="/" className="hover:text-white">
+          Home
+        </Link>
         <span>&gt;</span>
-        <Link href="/flash-deals" className="hover:text-white">Flash Deals</Link>
+        <Link href="/flash-deals" className="hover:text-white">
+          Flash Deals
+        </Link>
         <span>&gt;</span>
         <span className="text-white">Registration</span>
       </div>
 
-      <div className="relative w-full max-w-2xl rounded-4xl bg-white p-8 pt-16 text-center shadow-2xl sm:p-12 sm:pt-20">
+      <div className="rounded-4xl relative w-full max-w-2xl bg-white p-8 pt-16 text-center shadow-2xl sm:p-12 sm:pt-20">
         {/* Shield Icon at top center */}
-        <div className="absolute -top-12 left-1/2 flex h-24 w-24 -translate-x-1/2 items-center justify-center rounded-3xl bg-purple-100 shadow-xl border-4 border-[#2d2a4a]">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white">
+        <div className="absolute -top-12 left-1/2 flex h-24 w-24 -translate-x-1/2 items-center justify-center rounded-3xl border-4 border-[#2d2a4a] bg-purple-100 shadow-xl">
+          <div className="bg-primary flex h-16 w-16 items-center justify-center rounded-2xl text-white">
             <span className="text-3xl font-bold">₹</span>
           </div>
         </div>
 
-        <h1 className="mb-2 text-2xl font-extrabold text-gray-900 sm:text-3xl">Processing Your Payment</h1>
+        <h1 className="mb-2 text-2xl font-extrabold text-gray-900 sm:text-3xl">
+          Processing Your Payment
+        </h1>
         <p className="mb-12 text-gray-500">Please do not close or refresh this page.</p>
 
         {/* Stepper */}
         <div className="relative mb-16 flex justify-between">
           {/* Connecting line */}
           <div className="absolute left-0 top-6 h-0.5 w-full bg-gray-200" />
-          
+
           {/* Active connecting line */}
-          <div 
-            className="absolute left-0 top-6 h-0.5 bg-primary transition-all duration-500"
+          <div
+            className="bg-primary absolute left-0 top-6 h-0.5 transition-all duration-500"
             style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
           />
 
@@ -77,16 +78,26 @@ export function ProcessingView({ onSuccess, onFail }: ProcessingViewProps) {
 
             return (
               <div key={step} className="relative z-10 flex flex-col items-center">
-                <div 
+                <div
                   className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full border-2 bg-white transition-colors ${
-                    isCompleted ? "border-primary bg-primary text-white" :
-                    isCurrent ? "border-primary text-primary" :
-                    "border-gray-200 text-gray-300"
+                    isCompleted
+                      ? "border-primary bg-primary text-white"
+                      : isCurrent
+                        ? "border-primary text-primary"
+                        : "border-gray-200 text-gray-300"
                   }`}
                 >
-                  {isCompleted ? <Check size={20} strokeWidth={3} /> : <div className={`h-3 w-3 rounded-full ${isCurrent ? 'bg-primary' : 'bg-gray-200'}`} />}
+                  {isCompleted ? (
+                    <Check size={20} strokeWidth={3} />
+                  ) : (
+                    <div
+                      className={`h-3 w-3 rounded-full ${isCurrent ? "bg-primary" : "bg-gray-200"}`}
+                    />
+                  )}
                 </div>
-                <p className={`text-sm font-semibold sm:text-base ${isCurrent || isCompleted ? "text-primary" : "text-gray-400"}`}>
+                <p
+                  className={`text-sm font-semibold sm:text-base ${isCurrent || isCompleted ? "text-primary" : "text-gray-400"}`}
+                >
                   {step}
                 </p>
               </div>
@@ -96,7 +107,7 @@ export function ProcessingView({ onSuccess, onFail }: ProcessingViewProps) {
 
         {/* Spinner */}
         <div className="mb-6 flex justify-center">
-          <div className="h-16 w-16 animate-spin rounded-full border-4 border-gray-100 border-t-primary" />
+          <div className="border-t-primary h-16 w-16 animate-spin rounded-full border-4 border-gray-100" />
         </div>
 
         <p className="text-lg font-medium text-gray-600">This will only take a few seconds...</p>
@@ -112,9 +123,9 @@ export function ProcessingView({ onSuccess, onFail }: ProcessingViewProps) {
             <p className="text-xs text-gray-300">100% Protected</p>
           </div>
         </div>
-        
+
         <div className="hidden h-10 w-px bg-white/10 sm:block" />
-        
+
         <div className="flex items-center gap-3 text-white">
           <ShieldCheck size={32} className="opacity-80" />
           <div>
@@ -124,7 +135,7 @@ export function ProcessingView({ onSuccess, onFail }: ProcessingViewProps) {
         </div>
 
         <div className="hidden h-10 w-px bg-white/10 sm:block" />
-        
+
         <div className="flex items-center gap-3 text-white">
           <Banknote size={32} className="opacity-80" />
           <div>

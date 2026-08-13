@@ -46,28 +46,28 @@ export function Modal({ isOpen, onClose, title, children, footer, maxWidth = "md
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div 
+      <div
         className="absolute inset-0 bg-gray-900/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
-      
+
       {/* Modal Container */}
-      <div className={`relative flex max-h-[90vh] w-full ${maxWidthClass} flex-col scale-100 overflow-hidden rounded-2xl bg-white shadow-2xl transition-transform`}>
+      <div
+        className={`relative flex max-h-[90vh] w-full ${maxWidthClass} scale-100 flex-col overflow-hidden rounded-2xl bg-white shadow-2xl transition-transform`}
+      >
         {/* Header */}
         <div className="flex shrink-0 items-center justify-between border-b border-gray-100 p-6">
           <h2 className="text-lg font-bold text-gray-900">{title}</h2>
           <button
             onClick={onClose}
-            className="rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            className="rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-900"
           >
             <X size={20} />
           </button>
         </div>
-        
+
         {/* Content Body */}
-        <div className="overflow-y-auto p-6">
-          {children}
-        </div>
+        <div className="overflow-y-auto p-6">{children}</div>
 
         {/* Optional Footer */}
         {footer && (

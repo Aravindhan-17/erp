@@ -7,7 +7,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { BannerImg1, BannerImg2, BannerImg3 } from "@/assets/images";
-import { products, Product } from "@/app/(storefront)/(main)/flash-deals/products/lib/product-data";
+import { products } from "@/app/(storefront)/(main)/flash-deals/products/lib/product-data";
 
 const SLIDES = [
   {
@@ -39,7 +39,7 @@ const SLIDES = [
 export function Hero() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 5000 })]);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  
+
   const router = useRouter();
 
   const scrollTo = useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
@@ -226,7 +226,7 @@ export function Hero() {
                 </div>
 
                 <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row md:gap-4 xl:mt-4">
-                  <button 
+                  <button
                     onClick={() => handleRegisterClick(slide.productId)}
                     className="bg-secondary font-poppins flex h-12 w-full items-center justify-center rounded-lg text-base font-bold text-white transition-opacity hover:opacity-90 sm:w-64 md:text-lg xl:h-16 xl:w-72 xl:text-xl"
                   >
