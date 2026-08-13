@@ -12,7 +12,7 @@ export default function RegisterPage() {
   return (
     <div className="font-poppins relative mx-auto flex w-full max-w-[1920px] flex-col items-center justify-center px-4 py-16 md:px-8 md:py-24 xl:px-10">
       
-      <div className="w-full max-w-[500px]">
+      <div className="w-full max-w-125">
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="mb-3 text-3xl font-extrabold text-gray-900 md:text-4xl">

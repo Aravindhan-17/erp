@@ -49,7 +49,7 @@ export function ProcessingView({ onSuccess, onFail }: ProcessingViewProps) {
         <span className="text-white">Registration</span>
       </div>
 
-      <div className="relative w-full max-w-2xl rounded-[2rem] bg-white p-8 pt-16 text-center shadow-2xl sm:p-12 sm:pt-20">
+      <div className="relative w-full max-w-2xl rounded-4xl bg-white p-8 pt-16 text-center shadow-2xl sm:p-12 sm:pt-20">
         {/* Shield Icon at top center */}
         <div className="absolute -top-12 left-1/2 flex h-24 w-24 -translate-x-1/2 items-center justify-center rounded-3xl bg-purple-100 shadow-xl border-4 border-[#2d2a4a]">
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white">

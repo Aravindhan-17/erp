@@ -106,7 +106,7 @@ export function NotificationDropdown({ isOpen, onClose, onCountChange }: Notific
   return (
     <div 
       ref={dropdownRef}
-      className="fixed left-4 right-4 top-[80px] sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-3 w-auto sm:w-96 rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 z-50 flex flex-col max-h-[85vh] overflow-hidden font-poppins"
+      className="fixed left-4 right-4 top-20 sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-3 w-auto sm:w-96 rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 z-50 flex flex-col max-h-[85vh] overflow-hidden font-poppins"
     >
       {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4 bg-gray-50/50">
@@ -140,7 +140,7 @@ export function NotificationDropdown({ isOpen, onClose, onCountChange }: Notific
                 notification.isRead ? "hover:bg-gray-50" : "bg-purple-50/40 hover:bg-purple-50/70"
               }`}
             >
-              <div className="mt-1 flex-shrink-0 bg-white p-2 rounded-full shadow-sm border border-gray-100">
+              <div className="mt-1 shrink-0 bg-white p-2 rounded-full shadow-sm border border-gray-100">
                 {getIcon(notification.type)}
               </div>
               <div className="flex-1 min-w-0 pr-6">

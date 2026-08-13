@@ -74,12 +74,12 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/40 z-[60] backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/40 z-60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
       
       {/* Drawer */}
-      <div className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white z-[70] shadow-2xl flex flex-col transform transition-transform duration-300 font-poppins">
+      <div className="fixed top-0 right-0 h-full w-full sm:w-100 bg-white z-70 shadow-2xl flex flex-col transform transition-transform duration-300 font-poppins">
         {/* Header */}
         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100">
           <div className="flex items-center gap-2">
@@ -119,7 +119,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             items.map((item) => (
               <div key={item.id} className="flex gap-4 group">
                 {/* Image Placeholder */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-xl flex-shrink-0 flex items-center justify-center border border-gray-100 transition-colors group-hover:border-gray-200">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-xl shrink-0 flex items-center justify-center border border-gray-100 transition-colors group-hover:border-gray-200">
                   <ShoppingBag className="w-8 h-8 text-gray-200" />
                 </div>
                 
@@ -131,7 +131,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     </h3>
                     <button 
                       onClick={() => removeItem(item.id)}
-                      className="text-gray-400 hover:text-red-500 transition-colors flex-shrink-0 mt-0.5"
+                      className="text-gray-400 hover:text-red-500 transition-colors shrink-0 mt-0.5"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

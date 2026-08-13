@@ -115,7 +115,7 @@ const successAnimationStyles = `
       <div className="flex w-full flex-col items-center justify-between overflow-hidden rounded-2xl bg-purple-50 p-8 sm:flex-row sm:text-left relative">
         <div className="z-10 relative">
           <h3 className="mb-2 text-xl font-bold text-gray-900">Get Ready for the Deal!</h3>
-          <p className="mb-6 max-w-[280px] text-sm text-gray-600">
+          <p className="mb-6 max-w-70 text-sm text-gray-600">
             Add products to wishlist and be ready to shop when it goes live.
           </p>
           <Link 
