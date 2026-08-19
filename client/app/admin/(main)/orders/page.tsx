@@ -1,4 +1,4 @@
-import { Eye, Pencil } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,24 +6,24 @@ export const metadata: Metadata = {
 };
 const tabs = ["All", "Pending", "Confirmed", "Shipped", "Delivered", "Cancelled"];
 
-const statusClass = (status: string) => {
-  switch (status) {
-    case "LIVE NOW":
-      return "bg-emerald-50 text-emerald-600";
+// const statusClass = (status: string) => {
+//   switch (status) {
+//     case "LIVE NOW":
+//       return "bg-emerald-50 text-emerald-600";
 
-    case "UPCOMING":
-      return "bg-violet-50 text-violet-600";
+//     case "UPCOMING":
+//       return "bg-violet-50 text-violet-600";
 
-    case "ENDED":
-      return "bg-gray-100 text-gray-500";
+//     case "ENDED":
+//       return "bg-gray-100 text-gray-500";
 
-    case "DRAFT":
-      return "bg-gray-100 text-gray-500";
+//     case "DRAFT":
+//       return "bg-gray-100 text-gray-500";
 
-    default:
-      return "bg-gray-100 text-gray-500";
-  }
-};
+//     default:
+//       return "bg-gray-100 text-gray-500";
+//   }
+// };
 
 const orders = [
   {
