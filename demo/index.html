@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP Flash Deal — Storefront &amp; Admin</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- =========================================================
+     CUSTOMER STOREFRONT
+========================================================= -->
+<div id="app-customer">
+
+  <header class="store-header">
+    <div class="container store-header-inner">
+      <a href="#" class="logo" data-nav="home"><span class="bolt">⚡</span> ERP Flash Deal</a>
+      <nav class="store-nav">
+        <a href="#" class="active" data-nav="home">Home</a>
+        <a href="#deals" data-nav="home-deals">Flash Deals</a>
+        <a href="#categories" data-nav="home-cats">Categories</a>
+        <a href="#how" data-nav="home-how">How It Works</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="btn-search-icon" title="Search">🔍</button>
+        <button class="icon-btn" id="btn-notif-icon" title="Notifications">🔔<span class="badge" id="header-notif-badge">2</span></button>
+        <button class="icon-btn" id="cart-icon-btn" title="Cart">🛒<span class="badge" id="cart-count">0</span></button>
+        <div class="header-auth">
+          <button class="avatar-chip avatar-button" id="btn-account-menu" aria-label="Open account menu"><span class="dot">AR</span> Aarav R. <span class="chev">⌄</span></button>
+        </div>
+        <div class="app-switch" id="customer-app-switch">
+          <button class="app-switch-btn active" data-app="customer">Customer site</button>
+          <button class="app-switch-btn" data-app="admin">Admin ERP</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="customer-main">
+
+    <!-- ============ PAGE: HOME ============ -->
+    <section class="page" data-page="home">
+
+      <div class="hero">
+        <div class="hero-track" id="hero-track"></div>
+        <div class="hero-dots" id="hero-dots"></div>
+      </div>
+
+      <section class="section" id="categories">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">Shop by category</h2>
+              <p class="section-desc">Browse flash inventory across every department.</p>
+            </div>
+          </div>
+          <div class="cat-grid" id="cat-grid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="deals" style="background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Live &amp; upcoming</span>
+              <h2 class="section-title">Flash deals</h2>
+            </div>
+            <div class="tabs" id="deal-filter-tabs">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="live">Live now</button>
+              <button data-filter="soon">Starting soon</button>
+              <button data-filter="upcoming">Upcoming</button>
+              <button data-filter="ended">Ended</button>
+            </div>
+          </div>
+          <div class="deal-grid" id="deal-grid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">The process</span>
+              <h2 class="section-title">How the flash deal works</h2>
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step-card"><div class="step-num">1</div><h4>Discover a deal</h4><p>Browse live and upcoming flash deals across every category.</p></div>
+            <div class="step-card"><div class="step-num">2</div><h4>Register for ₹1</h4><p>Pay a small registration fee to unlock access to that deal.</p></div>
+            <div class="step-card"><div class="step-num">3</div><h4>Wait for it to go live</h4><p>We'll notify you the moment the countdown hits zero.</p></div>
+            <div class="step-card"><div class="step-num">4</div><h4>Shop the flash deal</h4><p>Add products to your cart before inventory runs out.</p></div>
+            <div class="step-card"><div class="step-num">5</div><h4>Checkout in 10 minutes</h4><p>Complete payment before your reservation timer expires.</p></div>
+          </div>
+          <div class="how-cta"><button class="btn btn-primary" data-nav="home-deals">Start with registration</button></div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ============ PAGE: DEAL DETAIL ============ -->
+    <section class="page" data-page="deal" style="display:none;">
+      <div class="container">
+        <div class="breadcrumb"><a data-nav="home">Home</a> <span>/</span> <a data-nav="home-deals">Flash Deals</a> <span>/</span> <span id="crumb-deal-title">Deal</span></div>
+        <div class="deal-hero" id="deal-hero">
+          <img id="deal-hero-img" src="" alt="">
+          <div class="deal-hero-overlay">
+            <span class="deal-status-badge" id="deal-hero-badge" style="position:static;display:inline-flex;margin-bottom:10px;width:fit-content;"></span>
+            <h1 id="deal-hero-title" style="font-size:32px;">Deal title</h1>
+            <p id="deal-hero-sub" style="color:#C9CAE0;font-size:14px;margin-top:4px;">Subtitle</p>
+          </div>
+        </div>
+
+        <div class="deal-detail-grid">
+          <div>
+            <div class="info-card">
+              <h4>Deal details</h4>
+              <div class="info-list" id="deal-info-list"></div>
+            </div>
+            <div class="info-card">
+              <h4>Terms &amp; conditions</h4>
+              <div class="terms-box" id="deal-terms">
+                <ul>
+                  <li>Minimum order value of ₹5,000, or at least 2 products totalling ₹5,000, is required to checkout.</li>
+                  <li>Products added to cart are reserved for 10 minutes only.</li>
+                  <li>Unpaid reservations are automatically released back to deal inventory.</li>
+                  <li>Registration fee of ₹1 is non-refundable and grants access to this deal only.</li>
+                  <li>Maximum quantity per customer applies per product, as shown on each listing.</li>
+                </ul>
+              </div>
+            </div>
+            <h3 style="font-size:18px;margin:26px 0 4px;">Products in this deal</h3>
+            <p style="font-size:13px;color:var(--ink-soft);margin-bottom:6px;">Register to unlock add-to-cart on every listing below.</p>
+            <div class="product-grid" id="deal-product-grid"></div>
+          </div>
+
+          <div>
+            <div class="reg-panel" id="reg-panel">
+              <div class="eyebrow" style="color:rgba(255,255,255,.8);">Registration</div>
+              <div class="amt">₹1</div>
+              <p>Register once to unlock this flash deal. You'll be notified the instant it goes live.</p>
+              <button class="btn btn-amber btn-block" id="btn-register">Register for ₹1</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: CHECKOUT ============ -->
+    <section class="page" data-page="checkout" style="display:none;">
+      <div class="container" style="max-width:920px;padding-top:28px;padding-bottom:100px;">
+        <h2 style="font-size:24px;margin-bottom:22px;">Checkout</h2>
+        <div class="checkout-steps">
+          <div class="cs" data-step="1">1 · Cart review</div>
+          <div class="cs" data-step="2">2 · Address</div>
+          <div class="cs" data-step="3">3 · Payment</div>
+          <div class="cs" data-step="4">4 · Confirmation</div>
+        </div>
+
+        <!-- Step 1: Cart review -->
+        <div class="checkout-panel" data-cstep="1">
+          <div class="panel">
+            <div class="panel-head"><h4>Your reserved items</h4></div>
+            <div id="checkout-cart-lines"></div>
+            <div class="min-progress" id="min-progress-box">
+              <div class="msg" id="min-progress-msg">Add more items to meet the minimum order value.</div>
+              <div class="bar"><div class="fill" id="min-progress-fill" style="width:0%"></div></div>
+              <div style="font-size:12px;color:var(--primary-text);" id="min-progress-sub"></div>
+            </div>
+            <div class="summary-row"><span>Subtotal</span><span id="sum-subtotal">₹0</span></div>
+            <div class="summary-row total"><span>Total</span><span id="sum-total">₹0</span></div>
+            <button class="btn btn-primary btn-block" id="btn-go-step2" style="margin-top:16px;">Continue to address</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Address -->
+        <div class="checkout-panel" data-cstep="2" style="display:none;">
+          <div class="panel">
+            <div class="panel-head"><h4>Delivery address</h4></div>
+            <div class="form-grid">
+              <div class="form-field"><label>Full name</label><input type="text" value="Aarav Ramesh"></div>
+              <div class="form-field"><label>Phone number</label><input type="text" value="+91 98765 43210"></div>
+            </div>
+            <div class="form-field"><label>Address line</label><input type="text" value="12, Lake View Apartments, 4th Cross Street"></div>
+            <div class="form-grid">
+              <div class="form-field"><label>City</label><input type="text" value="Chennai"></div>
+              <div class="form-field"><label>Pincode</label><input type="text" value="600028"></div>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button class="btn btn-ghost" data-cstep-back="1">Back to cart</button>
+              <button class="btn btn-primary" id="btn-go-step3">Continue to payment</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Payment -->
+        <div class="checkout-panel" data-cstep="3" style="display:none;">
+          <div class="panel">
+            <div class="panel-head"><h4>Order summary</h4></div>
+            <div id="pay-cart-lines" style="margin-bottom:10px;"></div>
+            <div class="summary-row"><span>Subtotal</span><span id="pay-subtotal">₹0</span></div>
+            <div class="summary-row"><span>Delivery</span><span>₹0</span></div>
+            <div class="summary-row total"><span>Total payable</span><span id="pay-total">₹0</span></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h4>Payment method</h4></div>
+            <div class="pay-methods">
+              <div class="pay-method selected" data-pay="upi">UPI</div>
+              <div class="pay-method" data-pay="card">Credit / Debit card</div>
+              <div class="pay-method" data-pay="netbanking">Net banking</div>
+              <div class="pay-method" data-pay="wallet">Wallet</div>
+            </div>
+            <div class="payment-detail" id="checkout-payment-detail">
+              <div class="form-field"><label>UPI ID</label><div class="input-action"><input id="checkout-upi" value="aarav@okaxis"><button class="btn btn-ghost btn-sm" type="button">Verify</button></div></div>
+              <p class="secure-note">🔒 Payment is simulated for this interactive demo. No real charge is made.</p>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:18px;">
+              <button class="btn btn-ghost" data-cstep-back="2">Back</button>
+              <button class="btn btn-primary btn-block" id="btn-place-order">Pay &amp; place order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div class="checkout-panel" data-cstep="4" style="display:none;">
+          <div class="panel" style="text-align:center;padding:44px 24px;">
+            <div class="order-success-icon">✓</div>
+            <h3 style="font-size:22px;margin-bottom:8px;">Flash deal order confirmed!</h3>
+            <p style="max-width:380px;margin:0 auto 22px;">Your order has been placed successfully. A confirmation has been sent to your registered email.</p>
+            <div class="info-list" style="max-width:420px;margin:0 auto 26px;text-align:left;">
+              <div class="item"><div class="k">Order ID</div><div class="v" id="success-order-id">—</div></div>
+              <div class="item"><div class="k">Amount paid</div><div class="v" id="success-amount">—</div></div>
+              <div class="item"><div class="k">Delivery address</div><div class="v">Chennai, 600028</div></div>
+              <div class="item"><div class="k">Estimated delivery</div><div class="v" id="success-eta">—</div></div>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:center;">
+              <button class="btn btn-ghost" id="btn-view-order">View order</button>
+              <button class="btn btn-primary" data-nav="home-deals">Explore more deals</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: ACCOUNT OVERVIEW ============ -->
+    <section class="page" data-page="account" style="display:none;">
+      <div class="container account-page-wrap">
+        <div class="breadcrumb"><a data-nav="home">Home</a> <span>/</span> <span>My account</span></div>
+        <div class="account-shell">
+          <aside class="account-sidebar">
+            <div class="account-person"><span class="account-avatar">AR</span><div><strong>Aarav Ramesh</strong><small>aarav@example.com</small></div></div>
+            <nav class="account-nav">
+              <a class="active" data-nav="account">Overview</a>
+              <a data-nav="registrations">My registrations <span id="account-reg-count">0</span></a>
+              <a data-nav="my-orders">My orders <span id="account-order-count">0</span></a>
+              <a data-nav="addresses">Saved addresses</a>
+              <a data-account-action="logout">Sign out</a>
+            </nav>
+          </aside>
+          <div class="account-content">
+            <div class="account-head"><div><span class="eyebrow">Customer account</span><h2>Good afternoon, Aarav</h2><p>Track deal access, reservations, orders and delivery details.</p></div><button class="btn btn-ghost btn-sm" id="btn-edit-profile">Edit profile</button></div>
+            <div class="account-kpis" id="account-kpis"></div>
+            <div class="account-grid">
+              <div class="panel"><div class="panel-head"><h4>Upcoming registered deals</h4><a class="link-more" data-nav="registrations">View all →</a></div><div id="account-reg-preview"></div></div>
+              <div class="panel"><div class="panel-head"><h4>Recent orders</h4><a class="link-more" data-nav="my-orders">View all →</a></div><div id="account-order-preview"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: MY REGISTRATIONS ============ -->
+    <section class="page" data-page="registrations" style="display:none;">
+      <div class="container account-page-wrap">
+        <div class="breadcrumb"><a data-nav="home">Home</a> <span>/</span> <a data-nav="account">My account</a> <span>/</span> <span>Registrations</span></div>
+        <div class="account-shell">
+          <aside class="account-sidebar">
+            <div class="account-person"><span class="account-avatar">AR</span><div><strong>Aarav Ramesh</strong><small>aarav@example.com</small></div></div>
+            <nav class="account-nav"><a data-nav="account">Overview</a><a class="active" data-nav="registrations">My registrations</a><a data-nav="my-orders">My orders</a><a data-nav="addresses">Saved addresses</a></nav>
+          </aside>
+          <div class="account-content">
+            <div class="account-head"><div><span class="eyebrow">Deal access</span><h2>My registrations</h2><p>Every ₹1 registration, eligibility status and deal start time.</p></div><button class="btn btn-primary btn-sm" data-nav="home-deals">Explore deals</button></div>
+            <div class="filter-row"><button class="chip-filter active" data-reg-filter="all">All</button><button class="chip-filter" data-reg-filter="live">Live now</button><button class="chip-filter" data-reg-filter="upcoming">Upcoming</button><button class="chip-filter" data-reg-filter="ended">Past</button></div>
+            <div class="registration-list" id="customer-registration-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: MY ORDERS ============ -->
+    <section class="page" data-page="my-orders" style="display:none;">
+      <div class="container account-page-wrap">
+        <div class="breadcrumb"><a data-nav="home">Home</a> <span>/</span> <a data-nav="account">My account</a> <span>/</span> <span>Orders</span></div>
+        <div class="account-shell">
+          <aside class="account-sidebar">
+            <div class="account-person"><span class="account-avatar">AR</span><div><strong>Aarav Ramesh</strong><small>aarav@example.com</small></div></div>
+            <nav class="account-nav"><a data-nav="account">Overview</a><a data-nav="registrations">My registrations</a><a class="active" data-nav="my-orders">My orders</a><a data-nav="addresses">Saved addresses</a></nav>
+          </aside>
+          <div class="account-content">
+            <div class="account-head"><div><span class="eyebrow">Purchases</span><h2>My orders</h2><p>Track fulfillment, payment and invoice details.</p></div></div>
+            <div class="filter-row"><button class="chip-filter active" data-myorder-filter="all">All</button><button class="chip-filter" data-myorder-filter="active">Active</button><button class="chip-filter" data-myorder-filter="delivered">Delivered</button><button class="chip-filter" data-myorder-filter="cancelled">Cancelled</button></div>
+            <div class="customer-orders" id="customer-orders-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: SAVED ADDRESSES ============ -->
+    <section class="page" data-page="addresses" style="display:none;">
+      <div class="container account-page-wrap">
+        <div class="breadcrumb"><a data-nav="home">Home</a> <span>/</span> <a data-nav="account">My account</a> <span>/</span> <span>Saved addresses</span></div>
+        <div class="account-shell">
+          <aside class="account-sidebar">
+            <div class="account-person"><span class="account-avatar">AR</span><div><strong>Aarav Ramesh</strong><small>aarav@example.com</small></div></div>
+            <nav class="account-nav"><a data-nav="account">Overview</a><a data-nav="registrations">My registrations</a><a data-nav="my-orders">My orders</a><a class="active" data-nav="addresses">Saved addresses</a></nav>
+          </aside>
+          <div class="account-content">
+            <div class="account-head"><div><span class="eyebrow">Delivery</span><h2>Saved addresses</h2><p>Choose or manage delivery locations used at checkout.</p></div><button class="btn btn-primary btn-sm" id="btn-add-address">+ Add address</button></div>
+            <div class="address-grid" id="address-grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Customer account popover -->
+  <div class="account-popover hidden" id="customer-account-popover">
+    <div class="popover-user"><span class="account-avatar sm">AR</span><div><strong>Aarav Ramesh</strong><small>aarav@example.com</small></div></div>
+    <a data-nav="account">Account overview</a><a data-nav="registrations">My registrations</a><a data-nav="my-orders">My orders</a><a data-nav="addresses">Saved addresses</a>
+    <div class="popover-divider"></div><a data-account-action="logout">Sign out</a>
+  </div>
+
+  <!-- Cart drawer -->
+  <div class="drawer-backdrop hidden" id="cart-drawer-backdrop"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="drawer-head"><div><span class="eyebrow">Reserved cart</span><h3>Your flash items</h3></div><button class="icon-btn" id="btn-close-cart">✕</button></div>
+    <div class="drawer-timer"><span>Reservation time left</span><strong id="drawer-cart-time">10:00</strong></div>
+    <div class="drawer-lines" id="drawer-cart-lines"></div>
+    <div class="drawer-summary"><div><span>Subtotal</span><strong id="drawer-cart-total">₹0</strong></div><p id="drawer-minimum-copy">Add items to meet the deal minimum.</p><button class="btn btn-primary btn-block" id="drawer-checkout">Continue to checkout</button><button class="btn btn-ghost btn-block" id="drawer-continue">Continue shopping</button></div>
+  </aside>
+
+  <!-- Cart reservation bar -->
+  <div class="cart-reserve-bar hidden" id="cart-reserve-bar">
+    <div class="container crb-inner">
+      <div class="crb-timer">
+        <div class="t" id="crb-time">10:00</div>
+        <div class="lbl">Reserved<br>time left</div>
+      </div>
+      <div class="crb-progress">
+        <div class="bar"><div class="fill" id="crb-fill" style="width:0%"></div></div>
+        <div class="txt" id="crb-txt">Cart value ₹0 / ₹5,000 minimum</div>
+      </div>
+      <div class="crb-actions">
+        <span class="val" id="crb-cart-total">₹0</span>
+        <button class="btn btn-amber btn-sm" id="btn-goto-checkout">Checkout now</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="store-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="color:#fff;"><span class="bolt">⚡</span> ERP Flash Deal</div>
+          <p>India's flash-registration marketplace — register for ₹1, unlock the drop, checkout before the clock runs out.</p>
+        </div>
+        <div><h5>Company</h5><ul><li><a href="#">About us</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li></ul></div>
+        <div><h5>Flash deals</h5><ul><li><a href="#" data-nav="home-deals">Live deals</a></li><li><a href="#" data-nav="home-deals">Upcoming deals</a></li><li><a href="#" data-nav="home-how">How it works</a></li></ul></div>
+        <div><h5>Support</h5><ul><li><a href="#">Help centre</a></li><li><a href="#">Order tracking</a></li><li><a href="#">Returns &amp; refunds</a></li></ul></div>
+        <div><h5>Legal</h5><ul><li><a href="#">Terms &amp; conditions</a></li><li><a href="#">Privacy policy</a></li><li><a href="#">Flash deal terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ERP Flash Deal Pvt. Ltd. All rights reserved. Payments secured &amp; PCI-DSS compliant.</span>
+        <div class="footer-social">
+          <a href="#">✕</a><a href="#">in</a><a href="#">f</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =========================================================
+     ADMIN ERP DASHBOARD
+========================================================= -->
+<div id="app-admin" class="hidden">
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-logo"><span class="bolt">⚡</span> Flash ERP</div>
+      <nav class="admin-nav" id="admin-nav">
+        <a href="#" class="active" data-apage="dashboard"><span class="ic">▦</span> Dashboard</a>
+        <a href="#" data-apage="deals"><span class="ic">⚡</span> Flash Deals</a>
+        <a href="#" data-apage="monitor"><span class="ic">◉</span> Live Deal Monitor</a>
+        <a href="#" data-apage="products"><span class="ic">▤</span> Products</a>
+        <a href="#" data-apage="inventory"><span class="ic">▥</span> Inventory Management</a>
+        <a href="#" data-apage="orders"><span class="ic">▧</span> Orders</a>
+        <a href="#" data-apage="registrations-admin"><span class="ic">◎</span> Registrations</a>
+        <a href="#" data-apage="customers"><span class="ic">◌</span> Customers</a>
+        <a href="#" data-apage="reports"><span class="ic">▨</span> Reports</a>
+        <div class="navlabel">System</div>
+        <a href="#" data-apage="settings"><span class="ic">⚙</span> Settings</a>
+        <a href="#" class="danger" id="nav-reset"><span class="ic">⚠</span> Reset Platform Data</a>
+        <a href="#" id="nav-logout"><span class="ic">⏻</span> Logout</a>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <button class="icon-btn" id="sidebar-toggle">☰</button>
+        <div class="admin-crumb">Admin ERP / <b id="admin-crumb-current">Dashboard</b></div>
+        <div class="admin-search">🔍 Search deals, orders, products…</div>
+        <div class="admin-topbar-actions">
+          <button class="icon-btn">🔔<span class="badge">5</span></button>
+          <div class="avatar-chip"><span class="dot">SK</span> Sanya K.</div>
+          <div class="app-switch" id="admin-app-switch">
+            <button class="app-switch-btn" data-app="customer">Customer site</button>
+            <button class="app-switch-btn active" data-app="admin">Admin ERP</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-content" id="admin-content">
+
+        <!-- ===== DASHBOARD ===== -->
+        <section class="apage" data-apage="dashboard">
+          <div class="page-head">
+            <div><h2>Dashboard</h2><p class="desc">Real-time overview of platform performance.</p></div>
+            <button class="btn btn-primary btn-sm" data-apage-go="deals">+ Create new deal</button>
+          </div>
+          <div class="kpi-grid" id="kpi-grid"></div>
+          <div class="grid-2">
+            <div>
+              <div class="panel">
+                <div class="panel-head"><h4>Revenue — last 7 days</h4><span class="link-more">Export ↓</span></div>
+                <div class="chart-bars" id="revenue-chart"></div>
+                <div class="chart-x" id="revenue-chart-x"></div>
+              </div>
+              <div class="panel">
+                <div class="panel-head"><h4>Recent orders</h4><a class="link-more" data-apage-go="orders">View all →</a></div>
+                <table class="data-table" id="recent-orders-table"><thead><tr><th>Order</th><th>Customer</th><th>Deal</th><th>Value</th><th>Status</th></tr></thead><tbody></tbody></table>
+              </div>
+            </div>
+            <div>
+              <div class="panel">
+                <div class="panel-head"><h4>Active flash deals</h4><a class="link-more" data-apage-go="deals">Manage →</a></div>
+                <div id="dash-active-deals"></div>
+              </div>
+              <div class="panel">
+                <div class="panel-head"><h4>Low stock alerts</h4><a class="link-more" data-apage-go="inventory">View all →</a></div>
+                <div id="dash-low-stock"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== FLASH DEALS LIST ===== -->
+        <section class="apage" data-apage="deals" style="display:none;">
+          <div class="page-head">
+            <div><h2>Flash deals</h2><p class="desc">Manage live, upcoming, past and draft deals.</p></div>
+            <button class="btn btn-primary btn-sm" data-apage-go="deal-create">+ Create new deal</button>
+          </div>
+          <div class="toolbar">
+            <div class="tabs" id="admin-deal-tabs">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="live">Live</button>
+              <button data-filter="upcoming">Upcoming</button>
+              <button data-filter="ended">Past</button>
+              <button data-filter="draft">Draft</button>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Deal</th><th>Status</th><th>Window</th><th>Reg. fee</th><th>Products</th><th>Registered</th><th>Orders</th><th>Revenue</th><th>Actions</th></tr></thead>
+            <tbody id="admin-deals-table"></tbody>
+          </table>
+        </section>
+
+        <!-- ===== CREATE DEAL ===== -->
+        <section class="apage" data-apage="deal-create" style="display:none;">
+          <div class="page-head">
+            <div><h2 id="deal-builder-title">Create new flash deal</h2><p class="desc">The right panel updates instantly to match the customer experience.</p></div>
+            <div style="display:flex;gap:10px;">
+              <button class="btn btn-ghost btn-sm" data-apage-go="deals">Cancel</button>
+              <button class="btn btn-primary btn-sm" id="btn-save-deal">Save deal</button>
+            </div>
+          </div>
+          <div class="builder-grid">
+            <div class="builder-form">
+              <div class="panel">
+                <h4>Deal information</h4><p class="hint">Basic details shown across the storefront.</p>
+                <div class="form-field"><label>Deal title</label><input id="f-title" type="text" value="Monsoon Home Appliances Blitz"></div>
+                <div class="form-field"><label>Deal subtitle</label><input id="f-subtitle" type="text" value="Up to 60% off kitchen &amp; home essentials"></div>
+                <div class="form-field"><label>Deal banner image URL</label><input id="f-banner" type="text" value="assets/deal_home.jpg"></div>
+                <div class="form-grid">
+                  <div class="form-field"><label>Start date &amp; time</label><input id="f-start" type="datetime-local" value="2026-07-21T10:00"></div>
+                  <div class="form-field"><label>End date &amp; time</label><input id="f-end" type="datetime-local" value="2026-07-21T22:00"></div>
+                </div>
+                <div class="form-grid">
+                  <div class="form-field"><label>Registration fee (₹)</label><input id="f-fee" type="number" value="1"></div>
+                  <div class="form-field"><label>Cart reservation (minutes)</label><input id="f-reserve" type="number" value="10"></div>
+                </div>
+                <div class="form-grid">
+                  <div class="form-field"><label>Minimum order value (₹)</label><input id="f-minvalue" type="number" value="5000"></div>
+                  <div class="form-field"><label>Minimum number of products</label><input id="f-minqty" type="number" value="2"></div>
+                </div>
+                <p class="hint" style="margin-top:-8px;margin-bottom:14px;">A customer can check out once <b>either</b> threshold is met — cart value reaches the minimum order value, <b>or</b> item count reaches the minimum number of products. They don't need to satisfy both.</p>
+                <div class="form-field"><label>Maximum quantity per customer (per product)</label><input id="f-maxqty" type="number" value="3"></div>
+              </div>
+
+              <div class="panel">
+                <h4>Terms shown to shoppers</h4><p class="hint">Eligibility, purchase requirements, reservation &amp; cancellation policy.</p>
+                <div class="form-field"><textarea id="f-terms" rows="5">Minimum order value of ₹5,000, or 2 products totalling ₹5,000, is required. Cart items are reserved for 10 minutes. Unpaid reservations return to deal stock automatically. Registration fee is non-refundable.</textarea></div>
+              </div>
+
+              <div class="panel">
+                <h4>Product selection</h4><p class="hint">Pick products from the catalog to include in this deal.</p>
+                <div class="selected-products" id="selected-products"></div>
+                <p style="font-size:12px;font-weight:600;color:var(--ink-soft);margin:14px 0 6px;">Add from catalog</p>
+                <div class="catalog-picker" id="catalog-picker"></div>
+              </div>
+            </div>
+
+            <div class="preview-shell">
+              <div class="preview-toggle">
+                <button class="active" data-preview="desktop">Desktop preview</button>
+                <button data-preview="mobile">Mobile preview</button>
+              </div>
+              <div class="preview-frame" id="preview-frame">
+                <div class="pv-hero">
+                  <span class="deal-status-badge soon" style="position:static;display:inline-flex;width:fit-content;margin-bottom:10px;"><span class="pulse"></span>STARTING SOON</span>
+                  <img id="pv-banner" src="" alt="">
+                  <h5 id="pv-title">Deal title</h5>
+                  <div class="sub" id="pv-subtitle">Subtitle</div>
+                  <div class="board">
+                    <div class="flip"><div class="n">01</div><div class="u">Day</div></div>
+                    <div class="flip"><div class="n">14</div><div class="u">Hr</div></div>
+                    <div class="flip"><div class="n">32</div><div class="u">Min</div></div>
+                  </div>
+                </div>
+                <div class="pv-body">
+                  <div class="pv-facts">
+                    <div><div class="k">Reg. fee</div><div class="v" id="pv-fee">₹1</div></div>
+                    <div><div class="k">Min order</div><div class="v" id="pv-minvalue">₹5,000</div></div>
+                    <div><div class="k">Reservation</div><div class="v" id="pv-reserve">10 min</div></div>
+                    <div><div class="k">Max / item</div><div class="v" id="pv-maxqty">3</div></div>
+                  </div>
+                  <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);margin-bottom:8px;">Products (<span id="pv-count">0</span>)</p>
+                  <div class="pv-products" id="pv-products"></div>
+                  <button class="btn btn-amber btn-block btn-sm" style="margin-top:14px;">Register for ₹1</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== LIVE MONITOR ===== -->
+        <section class="apage" data-apage="monitor" style="display:none;">
+          <div class="page-head">
+            <div><h2>Live deal monitor</h2><p class="desc">Real-time performance of the currently live flash deal.</p></div>
+            <span class="status-pill live"><span class="pulse" style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span> LIVE — Monsoon Electronics Sale</span>
+          </div>
+          <div class="monitor-strip" id="monitor-strip"></div>
+          <div class="grid-2">
+            <div class="panel">
+              <div class="panel-head"><h4>Product-level inventory</h4></div>
+              <table class="data-table">
+                <thead><tr><th>Product</th><th>Opening</th><th>Sold</th><th>Reserved</th><th>Available</th><th>Status</th><th>Orders</th><th>Revenue</th></tr></thead>
+                <tbody id="monitor-product-table"></tbody>
+              </table>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h4>Live activity feed</h4></div>
+              <div class="activity-feed" id="activity-feed"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== PRODUCTS ===== -->
+        <section class="apage" data-apage="products" style="display:none;">
+          <div class="page-head">
+            <div><h2>Products</h2><p class="desc">Master catalog available for flash deal selection.</p></div>
+            <button class="btn btn-primary btn-sm" id="btn-add-product">+ Add new product</button>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Product</th><th>SKU</th><th>Category</th><th>MRP</th><th>Flash price</th><th>Opening stock</th><th>Available</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="admin-products-table"></tbody>
+          </table>
+        </section>
+
+        <!-- ===== INVENTORY ===== -->
+        <section class="apage" data-apage="inventory" style="display:none;">
+          <div class="page-head">
+            <div><h2>Inventory management</h2><p class="desc">On-hand, reserved and available stock across all products.</p></div>
+            <select class="filter-select"><option>All categories</option><option>Electronics</option><option>Home Appliances</option><option>Fashion</option></select>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Product</th><th>SKU</th><th>On hand</th><th>Reserved</th><th>Available</th><th>Alert at</th><th>Status</th><th>Last updated</th><th>Actions</th></tr></thead>
+            <tbody id="admin-inventory-table"></tbody>
+          </table>
+        </section>
+
+        <!-- ===== ORDERS ===== -->
+        <section class="apage" data-apage="orders" style="display:none;">
+          <div class="page-head">
+            <div><h2>Orders</h2><p class="desc">All flash deal orders across the platform.</p></div>
+          </div>
+          <div class="toolbar">
+            <div class="tabs" id="admin-order-tabs">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="Payment Pending">Pending</button>
+              <button data-filter="Confirmed">Confirmed</button>
+              <button data-filter="Shipped">Shipped</button>
+              <button data-filter="Delivered">Delivered</button>
+              <button data-filter="Cancelled">Cancelled</button>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Deal</th><th>Products</th><th>Value</th><th>Payment</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody id="admin-orders-table"></tbody>
+          </table>
+        </section>
+
+        <!-- ===== REGISTRATIONS ===== -->
+        <section class="apage" data-apage="registrations-admin" style="display:none;">
+          <div class="page-head"><div><h2>Registrations</h2><p class="desc">Customer access passes and ₹1 registration payment records.</p></div><button class="btn btn-ghost btn-sm" id="btn-export-registrations">Export CSV ↓</button></div>
+          <div class="kpi-grid" id="registration-kpis"></div>
+          <div class="toolbar"><div class="tabs" id="admin-registration-tabs"><button class="active" data-filter="all">All</button><button data-filter="Paid">Paid</button><button data-filter="Refunded">Refunded</button><button data-filter="Access used">Access used</button></div><input class="table-search" id="registration-search" placeholder="Search customer or deal…"></div>
+          <div class="table-scroll"><table class="data-table"><thead><tr><th>Registration</th><th>Customer</th><th>Deal</th><th>Fee</th><th>Payment</th><th>Access</th><th>Registered at</th><th>Actions</th></tr></thead><tbody id="admin-registrations-table"></tbody></table></div>
+        </section>
+
+        <!-- ===== CUSTOMERS ===== -->
+        <section class="apage" data-apage="customers" style="display:none;">
+          <div class="page-head"><div><h2>Customers</h2><p class="desc">Customer profiles, participation, spend and risk signals.</p></div><button class="btn btn-ghost btn-sm" id="btn-export-customers">Export CSV ↓</button></div>
+          <div class="toolbar"><input class="table-search" id="customer-search-admin" placeholder="Search name, email or phone…"><select class="filter-select" id="customer-segment-filter"><option value="all">All segments</option><option value="VIP">VIP</option><option value="Active">Active</option><option value="New">New</option></select></div>
+          <div class="table-scroll"><table class="data-table"><thead><tr><th>Customer</th><th>Segment</th><th>Registrations</th><th>Orders</th><th>Total spend</th><th>Last activity</th><th>Status</th><th>Actions</th></tr></thead><tbody id="admin-customers-table"></tbody></table></div>
+        </section>
+
+        <!-- ===== REPORTS ===== -->
+        <section class="apage" data-apage="reports" style="display:none;">
+          <div class="page-head">
+            <div><h2>Reports</h2><p class="desc">Flash deal performance across revenue, conversion and inventory.</p></div>
+            <div style="display:flex;gap:8px;">
+              <select class="filter-select"><option>Last 7 days</option><option>Last 30 days</option><option>This quarter</option></select>
+              <button class="btn btn-ghost btn-sm" id="btn-export-report">Export report ↓</button>
+            </div>
+          </div>
+          <div class="kpi-grid" id="report-kpis"></div>
+          <div class="report-grid">
+            <div class="panel"><div class="panel-head"><h4>Revenue by deal</h4></div><div id="report-revenue-by-deal"></div></div>
+            <div class="panel"><div class="panel-head"><h4>Top-selling products</h4></div><div id="report-top-products"></div></div>
+            <div class="panel"><div class="panel-head"><h4>Cart expiry rate</h4></div><div id="report-cart-expiry"></div></div>
+          </div>
+        </section>
+
+        <!-- ===== SETTINGS ===== -->
+        <section class="apage" data-apage="settings" style="display:none;">
+          <div class="page-head"><div><h2>Settings</h2><p class="desc">Platform configuration.</p></div></div>
+          <div class="panel" style="max-width:520px;">
+            <h4 style="margin-bottom:14px;">General</h4>
+            <div class="form-field"><label>Platform name</label><input type="text" id="f-settings-name" value="ERP Flash Deal"></div>
+            <div class="form-field"><label>Support email</label><input type="text" id="f-settings-email" value="support@erpflashdeal.com"></div>
+            <div class="form-field"><label>Default currency</label><input type="text" id="f-settings-currency" value="INR (₹)"></div>
+            <div class="form-grid"><div class="form-field"><label>Default registration fee (₹)</label><input type="number" id="f-settings-fee" value="1"></div><div class="form-field"><label>Default reservation (minutes)</label><input type="number" id="f-settings-reserve" value="10"></div></div>
+            <div class="setting-toggle"><div><strong>Deal start notifications</strong><small>Notify registered customers at launch.</small></div><label class="switch"><input type="checkbox" checked><span></span></label></div>
+            <div class="setting-toggle"><div><strong>Automatic stock release</strong><small>Return expired reservations to available stock.</small></div><label class="switch"><input type="checkbox" checked><span></span></label></div>
+            <button class="btn btn-primary btn-sm" id="btn-save-settings">Save changes</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     MODALS
+========================================================= -->
+<div class="modal-overlay hidden" id="modal-register">
+  <div class="modal">
+    <div class="modal-icon success">🔓</div>
+    <h3 id="reg-modal-title">Registration successful</h3>
+    <p id="reg-modal-text">You're successfully registered for this deal. We'll notify you the moment it goes live.</p>
+    <div class="modal-actions"><button class="btn btn-primary btn-block" id="btn-close-register">Continue</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-cart-expired">
+  <div class="modal">
+    <div class="modal-icon warn">⏱</div>
+    <h3>Your cart reservation has expired</h3>
+    <p>Some or all of your items have been released back to the flash deal inventory. Please add them again to continue.</p>
+    <div class="modal-actions"><button class="btn btn-primary btn-block" id="btn-return-to-deal">Return to deal</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-reset">
+  <div class="modal">
+    <div class="modal-icon danger">⚠</div>
+    <h3>Reset platform data?</h3>
+    <p>This action will permanently delete platform data such as deals, orders, registrations, inventory activity and customer participation records. This cannot be undone.</p>
+    <p style="margin-top:14px;font-weight:600;color:var(--ink);">Type <span class="mono">RESET</span> to confirm.</p>
+    <input class="confirm-input" id="reset-confirm-input" placeholder="Type RESET">
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-block" id="btn-cancel-reset">Cancel</button>
+      <button class="btn btn-danger btn-block" id="btn-confirm-reset" disabled>Reset data</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-logout">
+  <div class="modal">
+    <div class="modal-icon warn">⏻</div>
+    <h3>Log out of Flash ERP?</h3>
+    <p>You'll need to sign in again to access the admin dashboard.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-block" id="btn-cancel-logout">Cancel</button>
+      <button class="btn btn-danger btn-block" id="btn-confirm-logout">Logout</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-product">
+  <div class="modal wide">
+    <h3 id="product-modal-title">Add new product</h3>
+    <div class="form-grid">
+      <div class="form-field"><label>Product name</label><input type="text" id="f-p-name" placeholder="e.g. UltraSound 65&quot; 4K Smart TV"></div>
+      <div class="form-field"><label>SKU</label><input type="text" id="f-p-sku" placeholder="e.g. ELEC-TV-065"></div>
+    </div>
+    <div class="form-grid">
+      <div class="form-field"><label>Category</label>
+        <select id="f-p-category">
+          <option>Electronics</option>
+          <option>Home Appliances</option>
+          <option>Fashion</option>
+          <option>Furniture</option>
+          <option>Beauty</option>
+          <option>Sports</option>
+          <option>Office Equipment</option>
+          <option>Accessories</option>
+        </select>
+      </div>
+      <div class="form-field"><label>Image URL</label><input type="text" id="f-p-img" placeholder="https://…"></div>
+    </div>
+    <div class="form-grid">
+      <div class="form-field"><label>MRP (₹)</label><input type="number" id="f-p-mrp" min="0"></div>
+      <div class="form-field"><label>Flash price (₹)</label><input type="number" id="f-p-price" min="0"></div>
+    </div>
+    <div class="form-grid">
+      <div class="form-field"><label>Opening stock</label><input type="number" id="f-p-opening" min="0"></div>
+      <div class="form-field"><label>Low-stock alert at</label><input type="number" id="f-p-alert" min="0"></div>
+    </div>
+    <div class="form-field"><label>Max quantity per customer</label><input type="number" id="f-p-maxqty" min="1" value="1"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-block" id="btn-p-cancel">Cancel</button>
+      <button class="btn btn-primary btn-block" id="btn-p-save">Save product</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-delete-product">
+  <div class="modal">
+    <div class="modal-icon danger">⚠</div>
+    <h3>Delete product?</h3>
+    <p>This will permanently remove <b id="delete-product-name">this product</b> from the catalog and from any flash deals it's part of. This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-block" id="btn-cancel-delete-product">Cancel</button>
+      <button class="btn btn-danger btn-block" id="btn-confirm-delete-product">Delete product</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-inventory-adjust">
+  <div class="modal">
+    <h3>Adjust stock — <span id="inv-modal-product-name">Product</span></h3>
+    <div class="form-field" style="margin-top:16px;"><label>On-hand stock</label><input type="number" id="f-inv-onhand" min="0"></div>
+    <div class="form-field"><label>Low-stock alert at</label><input type="number" id="f-inv-alert" min="0"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-block" id="btn-cancel-inventory">Cancel</button>
+      <button class="btn btn-primary btn-block" id="btn-save-inventory">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-deal-view">
+  <div class="modal wide">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+      <h3 id="dv-title" style="margin-bottom:0;">Deal</h3>
+      <span class="status-pill" id="dv-badge">Status</span>
+    </div>
+    <div id="dv-body" style="margin-top:14px;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary btn-block" id="btn-close-deal-view">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-order-view">
+  <div class="modal wide">
+    <h3>Order details</h3>
+    <div id="ov-body" style="margin-top:14px;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary btn-block" id="btn-close-order-view">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-search">
+  <div class="modal wide">
+    <h3>Search deals &amp; products</h3>
+    <input class="confirm-input" id="search-input" placeholder="Search for a deal or product…" style="font-family:inherit;margin-top:14px;">
+    <div id="search-results" style="max-height:360px;overflow-y:auto;margin-top:6px;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-block" id="btn-close-search">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-notifications">
+  <div class="modal">
+    <h3>Notifications</h3>
+    <div id="notif-list" style="margin-top:10px;max-height:320px;overflow-y:auto;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-block" id="btn-close-notif">Close</button>
+      <button class="btn btn-primary btn-block" id="btn-mark-read">Mark all read</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-registration-flow">
+  <div class="modal wide registration-modal">
+    <div class="modal-head-row"><div><span class="eyebrow">Deal access</span><h3>Register for flash deal</h3></div><button class="icon-btn" id="btn-close-registration-flow">✕</button></div>
+    <div class="mini-steps"><span class="active" data-regstep-indicator="1">1 Review</span><span data-regstep-indicator="2">2 Pay ₹1</span><span data-regstep-indicator="3">3 Access granted</span></div>
+    <div class="registration-step" data-regstep="1">
+      <div class="registration-summary" id="registration-summary"></div>
+      <div class="terms-check"><label><input type="checkbox" id="reg-terms-check"> I agree to the deal terms and understand the registration fee is non-refundable.</label></div>
+      <div class="modal-actions"><button class="btn btn-ghost btn-block" id="btn-reg-cancel">Cancel</button><button class="btn btn-primary btn-block" id="btn-reg-next" disabled>Continue to payment</button></div>
+    </div>
+    <div class="registration-step" data-regstep="2" style="display:none;">
+      <div class="pay-methods reg-pay-methods"><div class="pay-method selected" data-regpay="upi">UPI</div><div class="pay-method" data-regpay="card">Card</div><div class="pay-method" data-regpay="wallet">Wallet</div></div>
+      <div id="registration-payment-detail" class="payment-detail"><div class="form-field"><label>UPI ID</label><input id="registration-upi" value="aarav@okaxis"></div><p class="secure-note">🔒 Demo payment only. Your account will not be charged.</p></div>
+      <div class="fee-breakdown"><span>Registration fee</span><strong id="registration-fee-payable">₹1</strong></div>
+      <div class="modal-actions"><button class="btn btn-ghost btn-block" id="btn-reg-back">Back</button><button class="btn btn-primary btn-block" id="btn-reg-pay">Pay ₹1 &amp; register</button></div>
+    </div>
+    <div class="registration-step" data-regstep="3" style="display:none;text-align:center;">
+      <div class="order-success-icon">✓</div><h3>Access granted</h3><p id="registration-success-copy">Your registration is confirmed.</p>
+      <div class="registration-ticket" id="registration-ticket"></div>
+      <div class="modal-actions"><button class="btn btn-primary btn-block" id="btn-reg-done">Continue</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-profile-edit">
+  <div class="modal wide"><h3>Edit profile</h3><div class="form-grid"><div class="form-field"><label>Full name</label><input id="profile-name" value="Aarav Ramesh"></div><div class="form-field"><label>Phone</label><input id="profile-phone" value="+91 98765 43210"></div></div><div class="form-field"><label>Email</label><input id="profile-email" value="aarav@example.com"></div><div class="modal-actions"><button class="btn btn-ghost btn-block" id="btn-profile-cancel">Cancel</button><button class="btn btn-primary btn-block" id="btn-profile-save">Save profile</button></div></div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-address-edit">
+  <div class="modal wide"><h3 id="address-modal-title">Add delivery address</h3><div class="form-grid"><div class="form-field"><label>Label</label><input id="address-label" placeholder="Home, Work…"></div><div class="form-field"><label>Phone</label><input id="address-phone" value="+91 98765 43210"></div></div><div class="form-field"><label>Address line</label><input id="address-line" placeholder="House, street, locality"></div><div class="form-grid"><div class="form-field"><label>City</label><input id="address-city" value="Chennai"></div><div class="form-field"><label>Pincode</label><input id="address-pin" value="600028"></div></div><div class="modal-actions"><button class="btn btn-ghost btn-block" id="btn-address-cancel">Cancel</button><button class="btn btn-primary btn-block" id="btn-address-save">Save address</button></div></div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-customer-view">
+  <div class="modal wide"><div class="modal-head-row"><h3>Customer details</h3><button class="icon-btn" id="btn-close-customer-view">✕</button></div><div id="customer-view-body"></div></div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-demo-guide">
+  <div class="modal extra-wide demo-guide-modal"><div class="modal-head-row"><div><span class="eyebrow">Interactive prototype</span><h3>Full demo guide</h3></div><button class="icon-btn" id="btn-close-demo-guide">✕</button></div><div class="demo-guide-grid" id="demo-guide-grid"></div></div>
+</div>
+
+<button class="demo-guide-fab" id="btn-demo-guide">Demo guide</button>
+
+<div class="modal-overlay hidden" id="modal-toast-anchor"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

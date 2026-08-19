@@ -52,3 +52,11 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

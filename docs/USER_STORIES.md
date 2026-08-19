@@ -276,7 +276,26 @@ This document contains detailed User Stories with Acceptance Criteria for FlashE
 
 ---
 
-## 3. Comprehensive User Story Mapping Matrix
+## 3. Module Implementation Timeline
+
+The project features have been grouped into distinct modules, focusing purely on a single backend management system and a direct-to-consumer storefront.
+
+| Module | Scope / Epics | Estimated Timeline |
+|---|---|---|
+| **Phase 0: UI/UX Design** | Design System, Wireframes & High-Fidelity Mockups for all Epics | Weeks 1 - 3 |
+| **Module 1: Foundation & Backend Setup** | Store Profile (EP01) | Weeks 4 - 5 |
+| **Module 2: Catalog & Inventory** | Catalog (EP02) | Weeks 6 - 8 |
+| **Module 3: Supplier Management** | Inventory Inwarding (EP01) | Weeks 9 - 10 |
+| **Module 4: Storefront & CRM (B2C)** | Customer Registration (EP04) | Weeks 11 - 12 |
+| **Module 5: Flash Deal Engine (Core)** | Deal Engine (EP02), Cart Reservation (EP05), Anti-Abuse (EP07) | Weeks 13 - 16 |
+| **Module 6: Checkout & Payments** | Checkout (EP06), Wallet (EP11) | Weeks 17 - 18 |
+| **Module 7: Order Management & Invoicing** | Order Fulfillment (EP03), Returns/Support (EP09) | Weeks 19 - 20 |
+| **Module 8: Finance & Notifications** | Finance/Ledgers (EP08), Notifications (EP10) | Weeks 21 - 22 |
+| **Module 9: Analytics & Final Polish** | Live Analytics (EP03) | Weeks 23 - 25 |
+
+---
+
+## 4. Comprehensive User Story Mapping Matrix
 
 | Epic | User Story | Primary Persona | Priority (MVP) |
 |---|---|---|---|

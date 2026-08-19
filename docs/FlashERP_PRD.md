@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary
 
-FlashERP is a **B2C (Business-to-Consumer)** SaaS platform designed for a **single vendor** (single merchant/store owner) that combines a traditional single-vendor ERP (inventory, orders, purchasing, finance, CRM) with a **real-time flash-deal engine**. It lets the vendor run time-boxed, urgency-driven sales — similar to Amazon Lightning Deals or Temu flash sales — directly from a single unified system to sell products directly to individual retail end-customers (single customer model).
+FlashERP is a **B2C (Business-to-Consumer)** platform designed for a **single vendor** (single merchant/store owner) that combines a traditional single-backend management system (inventory, orders, purchasing, finance, CRM) with a **real-time storefront and flash-deal engine**. It lets the vendor run time-boxed, urgency-driven sales — similar to Amazon Lightning Deals or Temu flash sales — directly from a single unified system to sell products directly to individual retail end-customers (single customer model).
 
 The core mechanic: B2C customers pay a small refundable-in-spirit registration fee (e.g. ₹1) to become eligible for a deal, then reserve products in a time-limited cart window (e.g. 10 minutes) before checkout. This discourages bots/no-shows, prevents inventory hoarding, and creates genuine urgency, while giving the single vendor a single system of record for operations.
 
@@ -35,7 +35,7 @@ There is no affordable, self-serve platform that lets a single B2C vendor run it
 | Operational consolidation | Replace multiple disconnected tools with one ERP + deals platform |
 | Abuse prevention | Registration fee + reservation windows reduce fake sign-ups and stock hoarding |
 | Real-time experience | Live stock counts, live viewer counts, countdown timers via WebSockets |
-| Monetization paths | Registration fees, premium access tiers, sponsored deals, subscription SaaS tiers |
+| Monetization paths | Registration fees, premium access tiers, sponsored deals |
 
 ### Non-Goals (for MVP)
 - Full multi-currency / multi-country tax compliance beyond GST (India-first)
@@ -50,7 +50,6 @@ There is no affordable, self-serve platform that lets a single B2C vendor run it
 2. **Warehouse/Inventory Manager** — manages stock in/out, transfers, low-stock alerts for the single vendor.
 3. **Sales/Finance Manager** — tracks B2C orders, revenue, GST invoicing, P&L for the merchant.
 4. **B2C Customer / Shopper** — individual consumer who registers, joins deals, reserves and purchases products.
-5. **Super Admin (SaaS)** — manages platform operations and infrastructure (post-MVP).
 
 ---
 
@@ -160,9 +159,6 @@ If payment is not completed within the reservation window, the hold is released 
 - Real-time sales and live deal participation dashboards
 - Conversion rate (registered vs. purchased), average checkout time, revenue per deal
 - Top products, inventory turnover, CAC, repeat customer rate
-
-### 6.14 Super Admin (SaaS layer — post-MVP)
-- Tenant onboarding, subscription plans, trial management, billing, feature flags, custom branding, tenant isolation, usage analytics
 
 ---
 
@@ -298,39 +294,22 @@ return 1
 
 ## 12. Roadmap
 
-### 12.1 Phased Delivery Plan
+### 12.1 Module Implementation Timeline
 
-| Phase | Focus |
-|---|---|
-| 1 | Authentication & User Management (JWT, RBAC, sessions, audit logs) |
-| 2 | Company / ERP Setup (branches, warehouses, tax, currency) |
-| 3 | Product Management (categories, brands, variants, images) |
-| 4 | Inventory Management (stock in/out, transfers, alerts, reports) |
-| 5 | Supplier Management (POs, goods received, invoices, payments) |
-| 6 | Customer Management / CRM |
-| 7 | **Flash Deal Engine** (registration, reservation, anti-abuse, live dashboard) |
-| 8 | Shopping Cart (live timers, coupons, GST, wallet) |
-| 9 | Checkout & Payments (multi-gateway, invoice generation) |
-| 10 | Order Management (lifecycle, returns, refunds, tracking) |
-| 11 | Finance & Accounting (ledgers, P&L, GST reports) |
-| 12 | Notifications (email/SMS/WhatsApp/push) |
-| 13 | Analytics & BI dashboards |
-| 14 | Super Admin / SaaS layer (multi-tenancy, billing, feature flags) |
+The project will be developed in distinct modules, focusing on a single backend management system and a storefront.
 
-### 12.2 Suggested Sprint Plan (~25 weeks)
-
-| Sprint | Duration | Focus |
+| Module | Features & Focus | Estimated Timeline |
 |---|---|---|
-| 1 | 2 weeks | Authentication, RBAC, company setup |
-| 2 | 3 weeks | Product catalog, categories, inventory foundation |
-| 3 | 2 weeks | Suppliers, purchase orders, warehouse management |
-| 4 | 3 weeks | Customer portal, shopping cart, checkout |
-| 5 | 4 weeks | Flash Deal Engine: registration, reservation, timers |
-| 6 | 2 weeks | Order management, invoicing, notifications |
-| 7 | 2 weeks | Finance, reports, dashboards |
-| 8 | 3 weeks | SaaS features: subscriptions, tenant management |
-| 9 | 2 weeks | Performance tuning, security hardening, load testing |
-| 10 | 2 weeks | UAT, production deployment, documentation |
+| **Phase 0: UI/UX Design** | Wireframing, High-fidelity designs for Admin Dashboard and B2C Storefront, Design System, User Flows. | Weeks 1 - 3 |
+| **Module 1: Foundation & Backend Setup** | Authentication (JWT, RBAC, sessions), Company setup, Branch & Warehouse management, basic configurations. | Weeks 4 - 5 |
+| **Module 2: Catalog & Inventory** | Categories, Brands, Products, Variants, Stock In/Out, Inventory Tracking, Low Stock Alerts. | Weeks 6 - 8 |
+| **Module 3: Supplier Management** | Supplier profiles, Purchase Orders, Goods Received Notes, Invoice uploads, Payments. | Weeks 9 - 10 |
+| **Module 4: Storefront & CRM (B2C)** | Shopper Profiles, Address book, B2C Customer Auth/OTP, basic Storefront browsing. | Weeks 11 - 12 |
+| **Module 5: Flash Deal Engine (Core)** | Deal configuration, Registration & Fee, Live reservation engine (Redis), Cart countdowns, Anti-hoarding. | Weeks 13 - 16 |
+| **Module 6: Checkout & Payments** | Razorpay/Stripe integration, Cart finalization, GST calculation, Wallet, Coupons, Registration fee handling. | Weeks 17 - 18 |
+| **Module 7: Order Management & Invoicing** | Order lifecycle, Status updates, Automated Tax Invoices, Shipment tracking, Returns, Refunds. | Weeks 19 - 20 |
+| **Module 8: Finance & Notifications** | Ledgers, P&L, GST Reports, Multi-channel Notifications (Email, SMS, WhatsApp). | Weeks 21 - 22 |
+| **Module 9: Analytics & Final Polish** | Live WebSockets dashboards for active deals, Analytics, Performance tuning, UAT, and Deployment. | Weeks 23 - 25 |
 
 ### 12.3 Long-Term Vision (Post-MVP)
 - AI demand forecasting for upcoming flash deals
@@ -412,7 +391,6 @@ return 1
 | Overselling under high concurrency | Atomic Redis-based reservation + DB transaction guarantees |
 | Bot/fake registrations gaming ₹1 fee | Device fingerprinting, rate limiting, CAPTCHA, one-account-per-identity rules |
 | Payment gateway failure mid-checkout | Idempotent payment webhooks, reservation grace period, automatic retry/refund flow |
-| Multi-tenant data isolation (SaaS phase) | Schema-level or row-level tenant isolation, tested in Phase 14 |
 | Regulatory: registration fee treated as a transaction | Confirm compliance/tax treatment of the ₹1 fee with finance/legal before launch |
 
 **Open questions for stakeholder input:**
@@ -431,7 +409,6 @@ return 1
 | Reservation | A temporary hold on stock while a customer completes checkout |
 | TTL (Time To Live) | The expiry duration of a Redis-held reservation |
 | RBAC | Role-Based Access Control |
-| Tenant | A business account on the SaaS platform (post-MVP multi-tenant phase) |
 
 ## 20. Document Control
 
@@ -445,5 +422,5 @@ return 1
 
 ---
 
-*This PRD should be reviewed with engineering, finance, and legal before Phase 1 kickoff, particularly around payment/registration-fee compliance, PCI-DSS/DPDP data handling, and multi-tenant data isolation requirements. Detailed user stories with acceptance criteria are documented in [USER_STORIES.md](file:///home/hattussa-024/my-folder/react/erp/docs/USER_STORIES.md).*
+*This PRD should be reviewed with engineering, finance, and legal before Phase 1 kickoff, particularly around payment/registration-fee compliance, and PCI-DSS/DPDP data handling. Detailed user stories with acceptance criteria are documented in [USER_STORIES.md](file:///home/hattussa-024/my-folder/react/erp/docs/USER_STORIES.md).*
 

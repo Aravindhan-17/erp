@@ -35,10 +35,10 @@ const stepsData = [
 
 export function HowItWorks() {
   return (
-    <section className="relative mx-auto w-full max-w-[1920px] px-4 pb-12 pt-8 md:px-8 xl:px-10 xl:pb-0 xl:pt-0">
-      <div className="xl:gap-15 relative mx-auto box-border flex w-full flex-col gap-8 opacity-100 lg:flex-row lg:gap-10">
+    <section className="relative mx-auto w-full max-w-[1920px] px-4 md:px-8 xl:px-10">
+      <div className="xl:gap-15 relative mx-auto box-border flex w-full flex-col gap-8 opacity-100 xl:flex-row">
         {/* First Layout - Banner */}
-        <div className="lg:w-85 xl:w-143 min-h-87.5 xl:h-99.75 relative box-border flex w-full shrink-0 flex-col justify-center overflow-hidden rounded-lg bg-[#240046] p-6 opacity-100 lg:h-auto lg:p-8 xl:p-10">
+        <div className="xl:w-143 min-h-87.5 xl:h-99.75 relative box-border flex w-full shrink-0 flex-col justify-center overflow-hidden rounded-lg bg-[#240046] p-6 opacity-100 xl:p-10">
           {/* Mask group layout */}
           <div className="absolute inset-0 h-full w-full opacity-100">
             <Image
@@ -56,18 +56,18 @@ export function HowItWorks() {
           />
 
           {/* Content for first layout */}
-          <div className="relative z-10 flex w-full flex-col gap-4 lg:gap-3 xl:gap-5">
-            <h2 className="font-poppins xl:text-7 max-w-100 m-0 bg-white bg-clip-text text-2xl font-bold uppercase leading-tight tracking-normal text-transparent lg:text-xl">
+          <div className="relative z-10 flex w-full flex-col gap-4 xl:gap-5">
+            <h2 className="font-poppins xl:text-7 max-w-100 m-0 bg-white bg-clip-text text-2xl font-bold uppercase leading-tight tracking-normal text-transparent">
               Be Ready. Be Fast. Get the best deals!
             </h2>
 
-            <p className="font-poppins max-w-95 m-0 bg-white bg-clip-text text-lg font-medium leading-snug tracking-normal text-transparent lg:text-base xl:text-xl">
+            <p className="font-poppins max-w-95 m-0 bg-white bg-clip-text text-lg font-medium leading-snug tracking-normal text-transparent xl:text-xl">
               Register for any flash deal with just ₹ 1<br className="hidden sm:block" />
               and get early access to unbelievable prices.
             </p>
 
-            <button className="bg-secondary hover:bg-secondary/90 mt-2 flex w-full cursor-pointer items-center justify-center rounded-lg border-none px-8 py-4 transition-colors sm:w-fit lg:px-6 lg:py-3 xl:px-8 xl:py-4">
-              <span className="font-poppins m-0 bg-white bg-clip-text text-lg font-bold leading-none text-transparent lg:text-base xl:text-xl">
+            <button className="bg-secondary hover:bg-secondary/90 mt-2 flex w-full cursor-pointer items-center justify-center rounded-lg border-none px-8 py-4 transition-colors sm:w-fit xl:px-8 xl:py-4">
+              <span className="font-poppins m-0 bg-white bg-clip-text text-lg font-bold leading-none text-transparent xl:text-xl">
                 Explore Deals Now
               </span>
             </button>
@@ -75,10 +75,10 @@ export function HowItWorks() {
         </div>
 
         {/* Second Layout - Steps Section */}
-        <div className="xl:max-w-307 lg:min-h-99.75 xl:h-99.75 relative box-border flex h-auto w-full flex-1 flex-col justify-center gap-8 rounded-lg bg-[#4E148C08] p-6 opacity-100 lg:max-w-none lg:p-8 xl:gap-10 xl:p-10">
+        <div className="xl:max-w-307 xl:h-99.75 relative box-border flex h-auto w-full flex-1 flex-col justify-center gap-8 rounded-lg bg-[#4E148C08] p-6 opacity-100 xl:gap-10 xl:p-10">
           {/* Header */}
-          <div className="box-border flex w-full items-center justify-center lg:justify-start">
-            <h2 className="font-poppins m-0 bg-black bg-clip-text text-center text-2xl font-bold leading-none tracking-normal text-transparent lg:text-left lg:text-xl xl:text-3xl">
+          <div className="box-border flex w-full items-center justify-center xl:justify-start">
+            <h2 className="font-poppins m-0 bg-black bg-clip-text text-center text-2xl font-bold leading-none tracking-normal text-transparent xl:text-left xl:text-3xl">
               How Flash Deals Work?
             </h2>
           </div>
