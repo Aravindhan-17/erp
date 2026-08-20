@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
-import { Modal } from "../../../components/modal";
+import { Modal } from "@/components/modal";
 
 export default function AddressesPage() {
   const [addresses, setAddresses] = useState([

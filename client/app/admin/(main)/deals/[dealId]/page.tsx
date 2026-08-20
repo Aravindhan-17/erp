@@ -116,7 +116,7 @@ export default async function ManageDealPage({ params }: Props) {
               <h2 className="text-base font-semibold text-gray-800">Schedule Configuration</h2>
             </div>
             <div className="space-y-6 px-6 py-6">
-              
+
               {/* Registration Window */}
               <div className="rounded-xl border border-gray-100 p-4 bg-gray-50/30">
                 <div className="mb-4 flex items-center gap-2">
@@ -208,7 +208,7 @@ export default async function ManageDealPage({ params }: Props) {
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
         </div>
