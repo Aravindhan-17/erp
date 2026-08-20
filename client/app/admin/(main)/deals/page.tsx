@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import {
   BarChart3,
   Copy,
@@ -137,8 +138,8 @@ export default function DealsPage() {
           </p>
         </div>
 
-        <button
-          type="button"
+        <Link
+          href="/admin/deals/new"
           className="
             inline-flex
             w-fit
@@ -161,7 +162,7 @@ export default function DealsPage() {
         >
           <Plus size={17} strokeWidth={2.5} />
           Create new deal
-        </button>
+        </Link>
 
       </div>
 
@@ -412,8 +413,8 @@ export default function DealsPage() {
 
                   <div className="flex items-center gap-1.5">
 
-                    <button
-                      type="button"
+                    <Link
+                      href={`/admin/deals/${deal.id}`}
                       title="View"
                       className="
                         flex
@@ -434,11 +435,11 @@ export default function DealsPage() {
                       "
                     >
                       <Eye size={16} />
-                    </button>
+                    </Link>
 
 
-                    <button
-                      type="button"
+                    <Link
+                      href={`/admin/deals/${deal.id}`}
                       title="Edit"
                       className="
                         flex
@@ -459,7 +460,7 @@ export default function DealsPage() {
                       "
                     >
                       <Pencil size={16} />
-                    </button>
+                    </Link>
 
 
                     <button
