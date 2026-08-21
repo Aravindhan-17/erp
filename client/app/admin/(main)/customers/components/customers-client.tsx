@@ -341,7 +341,6 @@ export function CustomersClient() {
                 Close
               </button>
             </div>
-
           </div>
         )}
       </Modal>
