@@ -114,7 +114,7 @@ const activities = [
 
 const activityDot: Record<string, string> = {
   success: "bg-emerald-500",
-  purple: "bg-violet-600",
+  purple: "bg-primary",
   warning: "bg-amber-500",
   danger: "bg-red-500",
   gray: "bg-slate-400",
@@ -297,7 +297,7 @@ export default function MonitorPage() {
                       border-gray-100
                       last:border-b-0
                       transition
-                      hover:bg-violet-50/60
+                      hover:bg-primary/5
                     "
                   >
 

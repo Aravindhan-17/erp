@@ -113,7 +113,7 @@ export default function FinancePage() {
 >
   <CalendarDays
     size={17}
-    className="text-violet-600"
+    className="text-primary"
   />
 
   <span>Last 7 days</span>
@@ -390,11 +390,11 @@ export default function FinancePage() {
               pt-5
             "
           >
-            <span className="text-sm font-medium text-violet-600">
+            <span className="text-sm font-medium text-primary">
               Total Revenue
             </span>
 
-            <span className="text-lg font-semibold text-violet-600">
+            <span className="text-lg font-semibold text-primary">
               ₹35,30,000
             </span>
           </div>
@@ -461,7 +461,7 @@ export default function FinancePage() {
                 </p>
 
 
-                <span className="shrink-0 text-sm font-semibold text-violet-600">
+                <span className="shrink-0 text-sm font-semibold text-primary">
                   {product.sold}
                 </span>
 
@@ -490,9 +490,9 @@ export default function FinancePage() {
               bg-white
               text-sm
               font-medium
-              text-violet-600
+              text-primary
               transition
-              hover:bg-violet-50/60
+              hover:bg-primary/5
             "
           >
             <span>View all products</span>
@@ -581,9 +581,9 @@ export default function FinancePage() {
               px-4
               text-sm
               font-medium
-              text-violet-600
+              text-primary
               transition
-              hover:bg-violet-50/60
+              hover:bg-primary/5
             "
           >
             <span>View cart insights</span>

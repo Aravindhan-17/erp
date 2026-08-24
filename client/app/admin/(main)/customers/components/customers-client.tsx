@@ -183,7 +183,7 @@ export function CustomersClient() {
 
             <tbody>
               {customers.map((customer) => (
-                <tr key={customer.id} className="border-b border-gray-100 transition-colors hover:bg-violet-50/60">
+                <tr key={customer.id} className="border-b border-gray-100 transition-colors hover:bg-primary/5">
                   <td className="px-5 py-4">
                     <div className="min-w-52.5">
                       <p className="text-sm font-semibold text-gray-800">{customer.name}</p>
@@ -194,8 +194,8 @@ export function CustomersClient() {
                   <td className="px-4 py-4">
                     <span className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[12px] font-semibold ${
                       customer.segment === "VIP" ? "bg-amber-50 text-amber-600" :
-                      customer.segment === "New" ? "bg-violet-50 text-violet-600" :
-                      "bg-violet-50 text-violet-600"
+                      customer.segment === "New" ? "bg-primary/10 text-primary" :
+                      "bg-primary/10 text-primary"
                     }`}>
                       {customer.segment}
                     </span>
@@ -225,7 +225,7 @@ export function CustomersClient() {
                         type="button"
                         title="View customer"
                         onClick={() => setViewingCustomer(customer)}
-                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-violet-200 hover:bg-violet-50 hover:text-violet-600"
+                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
                       >
                         <Eye size={16} />
                       </button>
@@ -314,7 +314,7 @@ export function CustomersClient() {
                              <span className={`inline-flex rounded-full px-2 py-1 text-[10px] font-semibold whitespace-nowrap ${
                                order.status === "Delivered" ? "bg-emerald-50 text-emerald-600" :
                                order.status === "Cancelled" ? "bg-red-50 text-red-500" :
-                               "bg-violet-50 text-violet-600"
+                               "bg-primary/10 text-primary"
                              }`}>
                                 {order.status}
                              </span>

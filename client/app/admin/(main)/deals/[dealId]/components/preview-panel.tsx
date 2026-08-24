@@ -29,7 +29,7 @@ export function PreviewPanel({
           onClick={() => setPreviewMode("desktop")}
           className={`flex flex-1 items-center justify-center gap-2 text-sm font-semibold transition ${
             previewMode === "desktop"
-              ? "border-b-2 border-violet-500 text-violet-600"
+              ? "border-b-2 border-primary text-primary"
               : "text-gray-500 hover:text-gray-700"
           }`}
         >
@@ -42,7 +42,7 @@ export function PreviewPanel({
           onClick={() => setPreviewMode("mobile")}
           className={`flex flex-1 items-center justify-center gap-2 text-sm font-semibold transition ${
             previewMode === "mobile"
-              ? "border-b-2 border-violet-500 text-violet-600"
+              ? "border-b-2 border-primary text-primary"
               : "text-gray-500 hover:text-gray-700"
           }`}
         >

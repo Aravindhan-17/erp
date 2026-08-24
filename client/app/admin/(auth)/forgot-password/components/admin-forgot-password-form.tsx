@@ -16,7 +16,7 @@ export function AdminForgotPasswordForm() {
         <div className="flex w-full max-w-full flex-col gap-2 lg:gap-2.5">
           <label
             htmlFor="email"
-            className="flex w-full items-center font-['Poppins'] text-sm font-semibold text-black"
+            className="flex w-full items-center font-['Poppins'] text-sm font-semibold text-slate-800"
           >
             Admin Email Address
           </label>
@@ -27,7 +27,7 @@ export function AdminForgotPasswordForm() {
             placeholder="admin@flashstore.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="focus:ring-primary h-10 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11"
+            className="focus:ring-slate-900 h-10 w-full rounded-lg border border-slate-300 bg-white/80 px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 lg:h-11 transition-all"
           />
         </div>
       </div>
@@ -35,7 +35,7 @@ export function AdminForgotPasswordForm() {
       {/* Button layout */}
       <button
         type="submit"
-        className="bg-primary hover:bg-primary/90 mt-2 flex h-10 w-full items-center justify-center rounded-lg shadow-md transition-all lg:mt-4 lg:h-11"
+        className="bg-slate-900 hover:bg-slate-800 hover:shadow-lg mt-2 flex h-10 w-full items-center justify-center rounded-lg shadow-md transition-all lg:mt-4 lg:h-11"
       >
         <span className="font-['Poppins'] text-sm font-bold text-white sm:text-base">
           Send Secure Reset Link
@@ -46,7 +46,7 @@ export function AdminForgotPasswordForm() {
       <div className="mx-auto mt-4 flex w-full justify-center">
         <Link
           href="/admin/login"
-          className="text-primary font-['Poppins'] text-sm font-semibold transition-colors hover:underline sm:text-base"
+          className="text-slate-800 hover:text-slate-600 font-['Poppins'] text-sm font-semibold underline transition-colors sm:text-base"
         >
           Back to Secure Login
         </Link>

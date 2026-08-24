@@ -137,18 +137,16 @@ export function ProductsClient() {
             items-center
             gap-2
             rounded-xl
-            bg-linear-to-r
-            from-[#6734ed]
-            to-[#5120d3]
+            bg-primary hover:bg-primary-hover
             px-5
             py-3
             text-sm
             font-semibold
             text-white
-            shadow-[0_6px_18px_rgba(91,33,216,0.25)]
+            shadow-md shadow-primary/20
             transition
             hover:-translate-y-0.5
-            hover:shadow-[0_10px_25px_rgba(91,33,216,0.3)]
+            hover:shadow-md shadow-primary/20
           "
         >
           <Plus size={17} strokeWidth={2.5} />
@@ -175,7 +173,7 @@ export function ProductsClient() {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.id} className="group border-b border-gray-100 transition-colors last:border-b-0 hover:bg-violet-50/60">
+                <tr key={product.id} className="group border-b border-gray-100 transition-colors last:border-b-0 hover:bg-primary/5">
                   <td className="px-5 py-3 sm:px-6">
                     <div className="flex items-center gap-3">
                       <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-100 sm:h-11 sm:w-11">
@@ -211,7 +209,7 @@ export function ProductsClient() {
                   </td>
                   <td className="px-5 py-3 sm:px-6">
                     <div className="flex items-center gap-2">
-                      <button type="button" title="Edit product" className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-violet-200 hover:bg-violet-50 hover:text-violet-600">
+                      <button type="button" title="Edit product" className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary">
                         <Pencil size={15} />
                       </button>
                       <button type="button" title="Delete product" className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-red-100 hover:bg-red-50 hover:text-red-500">
@@ -243,7 +241,7 @@ export function ProductsClient() {
               <input
                 type="text"
                 id="name"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 placeholder="e.g. UltraSound 65&quot; 4K Smart TV"
               />
             </div>
@@ -254,7 +252,7 @@ export function ProductsClient() {
               <input
                 type="text"
                 id="sku"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 placeholder="e.g. ELEC-TV-065"
               />
             </div>
@@ -264,7 +262,7 @@ export function ProductsClient() {
               <label htmlFor="category" className="mb-2 block text-sm font-semibold text-gray-700">Category</label>
               <select
                 id="category"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10 appearance-none"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10 appearance-none"
               >
                 <option value="" disabled selected>Select category...</option>
                 <option value="Electronics">Electronics</option>
@@ -280,7 +278,7 @@ export function ProductsClient() {
               <input
                 type="url"
                 id="image"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 placeholder="https://..."
               />
             </div>
@@ -291,7 +289,7 @@ export function ProductsClient() {
               <input
                 type="number"
                 id="mrp"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 placeholder="0.00"
               />
             </div>
@@ -302,7 +300,7 @@ export function ProductsClient() {
               <input
                 type="number"
                 id="flashPrice"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 placeholder="0.00"
               />
             </div>
@@ -313,7 +311,7 @@ export function ProductsClient() {
               <input
                 type="number"
                 id="openingStock"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 placeholder="0"
               />
             </div>
@@ -324,7 +322,7 @@ export function ProductsClient() {
               <input
                 type="number"
                 id="lowStockAlert"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 placeholder="0"
               />
             </div>
@@ -335,7 +333,7 @@ export function ProductsClient() {
               <input
                 type="number"
                 id="maxQty"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 placeholder="Leave blank for no limit"
               />
             </div>

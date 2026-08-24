@@ -13,7 +13,7 @@ export function DealSchedule() {
         {/* Registration Window */}
         <div className="rounded-xl border border-gray-100 p-4 bg-gray-50/30">
           <div className="mb-4 flex items-center gap-2">
-            <Clock3 size={16} className="text-violet-500" />
+            <Clock3 size={16} className="text-primary" />
             <h3 className="text-sm font-semibold text-gray-800">
               Registration Window
             </h3>
@@ -25,7 +25,7 @@ export function DealSchedule() {
               </label>
               <input
                 type="datetime-local"
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-none transition focus:border-violet-500"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-none transition focus:border-primary"
               />
             </div>
             <div>
@@ -34,7 +34,7 @@ export function DealSchedule() {
               </label>
               <input
                 type="datetime-local"
-                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-none transition focus:border-violet-500"
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 outline-none transition focus:border-primary"
               />
             </div>
           </div>

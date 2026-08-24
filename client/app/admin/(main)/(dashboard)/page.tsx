@@ -204,18 +204,16 @@ export default function AdminDashboardPage() {
             items-center
             gap-2
             rounded-xl
-            bg-linear-to-r
-            from-[#6734ed]
-            to-[#5120d3]
+            bg-primary hover:bg-primary-hover
             px-4
             py-2.5
             text-sm
             font-semibold
             text-white
-            shadow-[0_6px_18px_rgba(91,33,216,0.25)]
+            shadow-md shadow-primary/20
             transition
             hover:-translate-y-0.5
-            hover:shadow-[0_10px_25px_rgba(91,33,216,0.3)]
+            hover:shadow-md shadow-primary/20
           "
         >
           <Plus size={18} />
@@ -361,9 +359,7 @@ export default function AdminDashboardPage() {
                         w-full
                         max-w-14.5
                         rounded-t-md
-                        bg-linear-to-t
-                        from-[#dcd2ff]
-                        to-[#6130e8]
+                        bg-linear-to-t from-primary/20 to-primary
                       "
                       style={{
                         height: `${(item.value / 100) * 155}px`,

@@ -42,9 +42,9 @@ export function InputField({
             outline-none
             transition
             placeholder:text-gray-400
-            focus:border-violet-400
+            focus:border-primary/50
             focus:ring-2
-            focus:ring-violet-100
+            focus:ring-primary/20
           "
         />
 

@@ -106,7 +106,7 @@ const statusClass = (status: string) => {
     case "LIVE NOW":
       return "bg-emerald-50 text-emerald-600";
     case "UPCOMING":
-      return "bg-violet-50 text-violet-600";
+      return "bg-primary/10 text-primary";
     case "ENDED":
       return "bg-gray-100 text-gray-500";
     case "DRAFT":
@@ -140,18 +140,16 @@ export function DealsClient() {
             items-center
             gap-2
             rounded-xl
-            bg-linear-to-r
-            from-[#6734ed]
-            to-[#5120d3]
+            bg-primary hover:bg-primary-hover
             px-5
             py-3
             text-sm
             font-semibold
             text-white
-            shadow-[0_6px_18px_rgba(91,33,216,0.25)]
+            shadow-md shadow-primary/20
             transition
             hover:-translate-y-0.5
-            hover:shadow-[0_10px_25px_rgba(91,33,216,0.3)]
+            hover:shadow-md shadow-primary/20
           "
         >
           <Plus size={17} strokeWidth={2.5} />
@@ -202,7 +200,7 @@ export function DealsClient() {
           </thead>
           <tbody>
             {deals.map((deal) => (
-              <tr key={deal.id} className="group border-b border-gray-100 transition last:border-b-0 hover:bg-violet-50/60">
+              <tr key={deal.id} className="group border-b border-gray-100 transition last:border-b-0 hover:bg-primary/5">
                 <td className="px-4 py-3.5">
                   <div className="flex items-center gap-3">
                     <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gray-100">
@@ -243,28 +241,28 @@ export function DealsClient() {
                       type="button"
                       title="View"
                       onClick={() => setViewingDeal(deal)}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-violet-200 hover:bg-violet-50 hover:text-violet-600"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
                     >
                       <Eye size={16} />
                     </button>
                     <Link
                       href={`/admin/deals/${deal.id}`}
                       title="Edit"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-violet-200 hover:bg-violet-50 hover:text-violet-600"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
                     >
                       <Pencil size={16} />
                     </Link>
                     <button
                       type="button"
                       title="Duplicate"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-violet-200 hover:bg-violet-50 hover:text-violet-600"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
                     >
                       <Copy size={16} />
                     </button>
                     <button
                       type="button"
                       title="Analytics"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-violet-200 hover:bg-violet-50 hover:text-violet-600"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
                     >
                       <BarChart3 size={16} />
                     </button>
@@ -347,7 +345,7 @@ export function DealsClient() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs font-semibold text-gray-900 truncate">UltraSound 65&quot; 4K Smart TV</p>
-                    <p className="mt-0.5 text-xs font-bold text-violet-600">₹52,999</p>
+                    <p className="mt-0.5 text-xs font-bold text-primary">₹52,999</p>
                   </div>
                 </div>
 
@@ -358,7 +356,7 @@ export function DealsClient() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs font-semibold text-gray-900 truncate">AirPure Noise-Cancel Headphones</p>
-                    <p className="mt-0.5 text-xs font-bold text-violet-600">₹5,499</p>
+                    <p className="mt-0.5 text-xs font-bold text-primary">₹5,499</p>
                   </div>
                 </div>
 
@@ -369,7 +367,7 @@ export function DealsClient() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs font-semibold text-gray-900 truncate">FlexBook 14&quot; Ultraslim Laptop</p>
-                    <p className="mt-0.5 text-xs font-bold text-violet-600">₹41,999</p>
+                    <p className="mt-0.5 text-xs font-bold text-primary">₹41,999</p>
                   </div>
                 </div>
 

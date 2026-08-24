@@ -224,7 +224,7 @@ export function OrdersClient() {
 
             <tbody>
               {orders.map((order) => (
-                <tr key={order.id} className="border-b border-gray-100 transition-colors hover:bg-violet-50/60">
+                <tr key={order.id} className="border-b border-gray-100 transition-colors hover:bg-primary/5">
                   <td className="px-4 py-4">
                     <span className="whitespace-nowrap text-sm font-bold text-gray-800">{order.id}</span>
                   </td>
@@ -246,7 +246,7 @@ export function OrdersClient() {
                   <td className="px-4 py-4">
                     <span className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[12px] font-semibold ${
                       order.status === "Delivered" ? "bg-emerald-50 text-emerald-600" :
-                      order.status === "Confirmed" || order.status === "Shipped" || order.status === "Processing" ? "bg-violet-50 text-violet-600" :
+                      order.status === "Confirmed" || order.status === "Shipped" || order.status === "Processing" ? "bg-primary/10 text-primary" :
                       order.status === "Payment Pending" ? "bg-amber-50 text-amber-600" :
                       "bg-red-50 text-red-500"
                     }`}>
@@ -261,7 +261,7 @@ export function OrdersClient() {
                       <button
                         type="button"
                         onClick={() => setViewingOrder(order)}
-                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-600 shadow-sm transition-all hover:border-violet-200 hover:bg-violet-50 hover:text-violet-600"
+                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-600 shadow-sm transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
                       >
                         <Eye size={15}/>
                       </button>
@@ -300,7 +300,7 @@ export function OrdersClient() {
               </div>
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Order Value</p>
-                <p className="mt-1 text-sm font-bold text-violet-600">{viewingOrder.value}</p>
+                <p className="mt-1 text-sm font-bold text-primary">{viewingOrder.value}</p>
               </div>
               
               <div>

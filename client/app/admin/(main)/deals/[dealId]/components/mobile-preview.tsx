@@ -140,7 +140,7 @@ export function MobilePreview({
                     {product.name}
                   </p>
 
-                  <p className="mt-1 text-[10px] font-extrabold text-violet-600">
+                  <p className="mt-1 text-[10px] font-extrabold text-primary">
                     {product.price}
                   </p>
                 </div>
@@ -155,8 +155,7 @@ export function MobilePreview({
               mt-4
               w-full
               rounded-full
-              bg-linear-to-r              from-[#6631e8]
-              to-[#5120d3]
+              bg-primary hover:bg-primary-hover
               py-2.5
               text-xs
               font-extrabold

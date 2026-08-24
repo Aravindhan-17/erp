@@ -176,7 +176,7 @@ export function InventoryClient() {
             {/* ================= TABLE BODY ================= */}
             <tbody>
               {inventoryItems.map((item) => (
-                <tr key={item.id} className="border-b border-gray-100 transition-colors hover:bg-violet-50/60">
+                <tr key={item.id} className="border-b border-gray-100 transition-colors hover:bg-primary/5">
                   <td className="px-4 py-3 sm:px-6">
                     <p className="text-sm font-semibold text-gray-800">{item.product}</p>
                   </td>
@@ -198,7 +198,7 @@ export function InventoryClient() {
                     <span className="text-sm font-medium text-gray-700">{item.alertAt}</span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${item.status === "Low stock" ? "bg-red-50 text-red-500" : "bg-violet-50 text-violet-600"}`}>
+                    <span className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${item.status === "Low stock" ? "bg-red-50 text-red-500" : "bg-primary/10 text-primary"}`}>
                       {item.status}
                     </span>
                   </td>
@@ -211,7 +211,7 @@ export function InventoryClient() {
                         type="button"
                         onClick={() => setAdjustingStockProduct(item)}
                         title="Edit inventory"
-                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-violet-200 hover:bg-violet-50 hover:text-violet-600"
+                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
                       >
                         <Pencil size={15} />
                       </button>
@@ -243,7 +243,7 @@ export function InventoryClient() {
                   type="number"
                   id="onHandStock"
                   defaultValue={adjustingStockProduct.onHand}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 />
               </div>
 
@@ -254,7 +254,7 @@ export function InventoryClient() {
                   type="number"
                   id="alertAt"
                   defaultValue={adjustingStockProduct.alertAt}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-violet-500 focus:bg-white focus:ring-4 focus:ring-violet-500/10"
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                 />
               </div>
             </div>

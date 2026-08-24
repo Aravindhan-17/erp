@@ -191,18 +191,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                     ${
                       active
-                        ? `
-                          bg-linear-to-r
-                          from-[#7138f5]
-                          to-[#5b20df]
-                          text-white
-                          shadow-[0_8px_25px_rgba(87,35,220,0.35)]
-                        `
-                        : `
-                          text-purple-100
-                          hover:bg-white/10
-                          hover:text-white
-                        `
+                        ? "bg-primary text-white shadow-md"
+                        : "text-purple-100 hover:bg-primary/50 hover:text-white"
                     }
                   `}
                 >
@@ -246,8 +236,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                 ${
                   isActive("/admin/settings")
-                    ? "bg-white/10 text-white"
-                    : "text-purple-100 hover:bg-white/10 hover:text-white"
+                    ? "bg-primary text-white shadow-md"
+                    : "text-purple-100 hover:bg-primary/50 hover:text-white"
                 }
               `}
             >
@@ -258,30 +248,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         </div>
         <div className="shrink-0 border-t border-white/10 p-4">
-          <button
-            type="button"
-            className="
-              mb-1
-              flex
-              w-full
-              items-center
-              gap-3
-              rounded-xl
-              px-4
-              py-3
-              text-left
-              text-[13.5px]
-              font-medium
-              text-red-300
-              transition
-              hover:bg-red-500/10
-              hover:text-red-200
-            "
-          >
-            <Zap size={19} />
-
-            <span>Reset Platform Data</span>
-          </button>
 
           <button
             type="button"
@@ -498,18 +464,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
               <div
                 className="
-                  hidden
-                  h-10
+                  flex
+                  h-9
                   items-center
-                  rounded-xl
-                  bg-linear-to-r
-                  from-[#6631e8]
-                  to-[#5120d3]
+                  justify-center
+                  rounded-full
+                  bg-primary
+                  hover:bg-primary-hover
                   px-4
                   text-xs
                   font-semibold
                   text-white
-                  shadow-[0_5px_15px_rgba(91,33,216,0.25)]
+                  shadow-md
                   sm:flex
                   xl:px-5
                   xl:text-sm

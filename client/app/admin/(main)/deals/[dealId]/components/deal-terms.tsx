@@ -15,7 +15,7 @@ export function DealTerms() {
       <textarea
         defaultValue="Minimum order value of ₹5,000, or 2 products totalling ₹5,000, is required. Cart items are reserved for 10 minutes. Unpaid reservations return to stock automatically. Registration fee is non-refundable."
         rows={3}
-        className="w-full resize-none rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-xs font-semibold text-gray-700 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
+        className="w-full resize-none rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-xs font-semibold text-gray-700 outline-none transition focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
       />
     </section>
   );

@@ -124,7 +124,7 @@ export function DesktopPreview({
                   {product.name}
                 </p>
 
-                <p className="mt-1 text-sm font-extrabold text-violet-600">
+                <p className="mt-1 text-sm font-extrabold text-primary">
                   {product.price}
                 </p>
               </div>
@@ -138,7 +138,7 @@ export function DesktopPreview({
             mt-5
             w-full
             rounded-xl
-            bg-linear-to-r   from-[#6631e8] to-[#5120d3]
+            bg-primary hover:bg-primary-hover
             py-3
             text-sm
             font-bold

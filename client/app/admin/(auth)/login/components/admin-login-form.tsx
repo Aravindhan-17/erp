@@ -21,7 +21,7 @@ export function AdminLoginForm() {
           <div className="flex w-full max-w-full flex-col gap-2 lg:gap-2.5">
             <label
               htmlFor="email"
-              className="flex w-full items-center font-['Poppins'] text-sm font-semibold text-black"
+              className="flex w-full items-center font-['Poppins'] text-sm font-semibold text-slate-800"
             >
               Admin Email
             </label>
@@ -32,14 +32,14 @@ export function AdminLoginForm() {
               placeholder="admin@flashstore.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="focus:ring-primary h-10 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11"
+              className="focus:ring-slate-900 h-10 w-full rounded-lg border border-slate-300 bg-white/80 px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 lg:h-11 transition-all"
             />
           </div>
 
           <div className="flex w-full max-w-full flex-col gap-2 lg:gap-2.5">
             <label
               htmlFor="password"
-              className="flex w-full items-center font-['Poppins'] text-sm font-semibold text-black"
+              className="flex w-full items-center font-['Poppins'] text-sm font-semibold text-slate-800"
             >
               Password
             </label>
@@ -51,7 +51,7 @@ export function AdminLoginForm() {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="focus:ring-primary h-full w-full rounded-lg border border-black/25 bg-white pl-4 pr-12 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2"
+                className="focus:ring-slate-900 h-full w-full rounded-lg border border-slate-300 bg-white/80 pl-4 pr-12 font-['Poppins'] text-sm text-gray-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 transition-all"
               />
               <button
                 type="button"
@@ -74,16 +74,16 @@ export function AdminLoginForm() {
               type="checkbox"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="text-primary focus:ring-primary h-4 w-4 cursor-pointer rounded border border-black/25 bg-white"
+              className="text-slate-900 focus:ring-slate-900 h-4 w-4 cursor-pointer rounded border border-slate-300 bg-white"
             />
-            <span className="group-hover:text-primary font-['Poppins'] text-xs font-semibold text-black transition-colors sm:text-sm">
+            <span className="group-hover:text-slate-700 font-['Poppins'] text-xs font-semibold text-slate-800 transition-colors sm:text-sm">
               Remember Me
             </span>
           </label>
 
           <Link
             href="/admin/forgot-password"
-            className="text-primary font-['Poppins'] text-xs font-semibold transition-colors hover:underline sm:text-sm"
+            className="text-slate-800 font-['Poppins'] text-xs font-semibold transition-colors hover:text-slate-600 hover:underline sm:text-sm"
           >
             Forgot Password?
           </Link>
@@ -93,7 +93,7 @@ export function AdminLoginForm() {
       {/* Button layout */}
       <button
         type="submit"
-        className="bg-primary hover:bg-primary/90 mt-2 flex h-10 w-full items-center justify-center rounded-lg shadow-md transition-all lg:mt-4 lg:h-11"
+        className="bg-slate-900 hover:bg-slate-800 hover:shadow-lg mt-2 flex h-10 w-full items-center justify-center rounded-lg shadow-md transition-all lg:mt-4 lg:h-11"
       >
         <span className="font-['Poppins'] text-sm font-bold text-white sm:text-base">
           Sign In to Portal

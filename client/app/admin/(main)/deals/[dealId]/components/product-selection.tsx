@@ -101,7 +101,7 @@ export function ProductSelection({ products, selectedProducts, toggleProduct }: 
                   className={`flex h-8 min-w-12 items-center justify-center gap-1 rounded-full border px-3 text-[10px] font-bold transition ${
                     selected
                       ? "border-gray-100 bg-gray-50 text-gray-300"
-                      : "border-violet-100 bg-violet-50 text-violet-600 hover:bg-violet-100"
+                      : "border-primary/20 bg-primary/10 text-primary hover:bg-violet-100"
                   }`}
                 >
                   {selected ? (

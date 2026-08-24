@@ -190,7 +190,7 @@ export default function RegistrationsPage() {
             </p>
           </div>
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
             <Users className="bg-[#f0ebff] text-[#6030e8]" size={22} />
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function RegistrationsPage() {
             </p>
           </div>
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
             <CreditCard className="bg-[#f0ebff] text-[#6030e8]" size={22} />
           </div>
         </div>
@@ -252,7 +252,7 @@ export default function RegistrationsPage() {
             </p>
           </div>
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
             <Eye className="bg-[#f0ebff] text-[#6030e8]" size={22} />
           </div>
         </div>
@@ -283,7 +283,7 @@ export default function RegistrationsPage() {
             </p>
           </div>
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
             <TrendingUp className="bg-[#f0ebff] text-[#6030e8]" size={22} />
           </div>
         </div>
@@ -417,7 +417,7 @@ export default function RegistrationsPage() {
                       border-b
                       border-gray-100
                       transition-colors
-                      hover:bg-violet-50/60
+                      hover:bg-primary/5
                     "
                   >
                     {/* Registration */}
@@ -490,7 +490,7 @@ export default function RegistrationsPage() {
                           ${
                             item.access === "Revoked"
                               ? "bg-red-50 text-red-500"
-                              : "bg-violet-50 text-violet-600"
+                              : "bg-primary/10 text-primary"
                           }
                         `}
                       >
@@ -524,9 +524,9 @@ export default function RegistrationsPage() {
                             text-gray-700
                             shadow-sm
                             transition-all
-                            hover:border-violet-200
-                            hover:bg-violet-50
-                            hover:text-violet-600
+                            hover:border-primary/30
+                            hover:bg-primary/10
+                            hover:text-primary
                           "
                         >
                           <Eye size={16} />
@@ -627,7 +627,7 @@ export default function RegistrationsPage() {
                   transition-all
                   ${
                     currentPage === pageNumber
-                      ? "bg-linear-to-r from-[#6631e8] to-[#5120d3] text-xs font-semibold text-white shadow-[0_5px_15px_rgba(91,33,216,0.25)]"
+                      ? "bg-primary hover:bg-primary-hover text-xs font-semibold text-white shadow-md shadow-primary/20"
                       : "border border-gray-200 bg-white text-gray-600 hover:border-primary/30 hover:text-primary"
                   }
                 `}
