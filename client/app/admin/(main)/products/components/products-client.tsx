@@ -155,7 +155,7 @@ export function ProductsClient() {
       </div>
 
       {/* PRODUCT TABLE CARD */}
-      <div className="mt-6 w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
+      <div className="mt-6 w-full  overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
         <div className="w-full overflow-x-auto hide-scrollbar">
           <table className="w-full min-w-300 border-collapse">
             <thead>
@@ -231,7 +231,7 @@ export function ProductsClient() {
         title="Add new product"
         maxWidth="3xl"
       >
-        <form className="mt-2 space-y-6" onSubmit={(e) => { e.preventDefault(); setIsAddProductModalOpen(false); }}>
+        <form className="mt-2 space-y-6 " onSubmit={(e) => { e.preventDefault(); setIsAddProductModalOpen(false); }}>
           
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             
@@ -350,7 +350,7 @@ export function ProductsClient() {
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-[#6734ed] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-[#5120d3]"
+              className="rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md transition"
             >
               Save product
             </button>

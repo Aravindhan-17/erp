@@ -278,7 +278,7 @@ export function DealsClient() {
       <Modal
         isOpen={!!viewingDeal}
         onClose={() => setViewingDeal(null)}
-        title=""
+        title="Create New Deal"
         maxWidth="2xl"
       >
         {viewingDeal && (
@@ -339,7 +339,7 @@ export function DealsClient() {
               <div className="grid grid-cols-2 gap-4">
                 
                 {/* Dummy Product 1 */}
-                <div className="flex items-center gap-3 rounded-xl border border-gray-100 p-3">
+                <div className="flex items-center gap-3 rounded-xl border border-gray-200 p-3">
                   <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-blue-600 flex items-center justify-center">
                     <span className="text-white text-[10px] font-bold text-center leading-tight">SMART<br/>TV</span>
                   </div>
@@ -350,7 +350,7 @@ export function DealsClient() {
                 </div>
 
                 {/* Dummy Product 2 */}
-                <div className="flex items-center gap-3 rounded-xl border border-gray-100 p-3">
+                <div className="flex items-center gap-3 rounded-xl border border-gray-200 p-3">
                   <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-blue-800 flex items-center justify-center">
                     <span className="text-white text-[8px] font-bold text-center leading-tight">HEAD-<br/>PHONES</span>
                   </div>
@@ -361,7 +361,7 @@ export function DealsClient() {
                 </div>
 
                 {/* Dummy Product 3 */}
-                <div className="flex items-center gap-3 rounded-xl border border-gray-100 p-3">
+                <div className="flex items-center gap-3 rounded-xl border border-gray-200 p-3">
                   <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-teal-600 flex items-center justify-center">
                     <span className="text-white text-[10px] font-bold">LAPTOP</span>
                   </div>
@@ -379,7 +379,7 @@ export function DealsClient() {
               <button
                 type="button"
                 onClick={() => setViewingDeal(null)}
-                className="w-full rounded-xl bg-[#6734ed] py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#5120d3]"
+                className="w-full rounded-xl bg-primary py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#5120d3]"
               >
                 Close
               </button>

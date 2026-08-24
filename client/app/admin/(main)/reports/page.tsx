@@ -204,7 +204,7 @@ export default function FinancePage() {
                     items-center
                     justify-center
                     rounded-2xl
-                    bg-[#f0ebff] text-[#6030e8]
+                    bg-primary/10 text-primary
                   "
                 >
                   <Icon size={23} />
@@ -268,7 +268,7 @@ export default function FinancePage() {
                 items-center
                 justify-center
                 rounded-xl
-                bg-[#f0ebff] text-[#6030e8]
+                bg-primary/10 text-primary
               "
             >
               <BarChart3 size={21} />
@@ -430,7 +430,7 @@ export default function FinancePage() {
                 items-center
                 justify-center
                 rounded-xl
-                bg-[#f0ebff] text-[#6030e8]
+                bg-primary/10 text-primary
               "
             >
               <ShoppingBag size={21} />
@@ -532,7 +532,7 @@ export default function FinancePage() {
                 items-center
                 justify-center
                 rounded-xl
-                bg-[#f0ebff] text-[#6030e8]
+                bg-primary/10 text-primary
               "
             >
               <Timer size={21} />

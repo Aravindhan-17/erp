@@ -191,7 +191,7 @@ export default function RegistrationsPage() {
           </div>
 
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-            <Users className="bg-[#f0ebff] text-[#6030e8]" size={22} />
+            <Users className="bg-[#f0ebff] text-primary" size={22} />
           </div>
         </div>
 
@@ -222,7 +222,7 @@ export default function RegistrationsPage() {
           </div>
 
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-            <CreditCard className="bg-[#f0ebff] text-[#6030e8]" size={22} />
+            <CreditCard className="bg-[#f0ebff] text-primary" size={22} />
           </div>
         </div>
 
@@ -253,7 +253,7 @@ export default function RegistrationsPage() {
           </div>
 
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-            <Eye className="bg-[#f0ebff] text-[#6030e8]" size={22} />
+            <Eye className="bg-[#f0ebff] text-primary" size={22} />
           </div>
         </div>
 
@@ -284,7 +284,7 @@ export default function RegistrationsPage() {
           </div>
 
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-            <TrendingUp className="bg-[#f0ebff] text-[#6030e8]" size={22} />
+            <TrendingUp className="bg-[#f0ebff] text-primary" size={22} />
           </div>
         </div>
       </div>

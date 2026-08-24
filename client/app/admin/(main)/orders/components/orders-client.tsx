@@ -278,7 +278,7 @@ export function OrdersClient() {
       <Modal
         isOpen={!!viewingOrder}
         onClose={() => setViewingOrder(null)}
-        title=""
+        title="Order Details"
         maxWidth="2xl"
       >
         {viewingOrder && (
@@ -383,7 +383,7 @@ export function OrdersClient() {
               <button
                 type="button"
                 onClick={() => setViewingOrder(null)}
-                className="w-full rounded-xl border border-gray-200 bg-white py-3 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 hover:text-gray-900"
+                className="w-full rounded-xl border border-gray-200 bg-primary py-3 text-sm font-semibold text-white shadow-sm transition "
               >
                 Close
               </button>

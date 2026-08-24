@@ -261,7 +261,7 @@ export default function AdminDashboardPage() {
                     ${
                       stat.type === "danger"
                         ? "bg-red-50 text-red-500"
-                        : "bg-[#f0ebff] text-[#6030e8]"
+                        : "bg-primary/10 text-primary"
                     }
                   `}
                 >
@@ -318,7 +318,7 @@ export default function AdminDashboardPage() {
 
             <button
               type="button"
-              className="flex items-center gap-1 text-xs font-semibold text-[#5b21df]"
+              className="flex items-center gap-1 text-xs font-semibold text-primary"
             >
               Export
               <ArrowDown size={14} />
@@ -393,7 +393,7 @@ export default function AdminDashboardPage() {
 
             <button
               type="button"
-              className="flex items-center gap-1 text-xs font-semibold text-[#5b21df]"
+              className="flex items-center gap-1 text-xs font-semibold text-primary"
             >
               Manage
               <ArrowRight size={14} />
@@ -471,7 +471,7 @@ export default function AdminDashboardPage() {
 
             <button
               type="button"
-              className="flex items-center gap-1 text-xs font-semibold text-[#5b21df]"
+              className="flex items-center gap-1 text-xs font-semibold text-primary"
             >
               View all
               <ArrowRight size={14} />
@@ -589,7 +589,7 @@ export default function AdminDashboardPage() {
 
               <button
                 type="button"
-                className="flex items-center gap-1 text-xs font-semibold text-[#5b21df]"
+                className="flex items-center gap-1 text-xs font-semibold text-primary"
               >
                 View all
                 <ArrowRight size={14} />
@@ -641,7 +641,7 @@ export default function AdminDashboardPage() {
 
               <button
                 type="button"
-                className="flex items-center gap-1 text-xs font-semibold text-[#5b21df]"
+                className="flex items-center gap-1 text-xs font-semibold text-primary"
               >
                 View all
                 <ArrowRight size={14} />
