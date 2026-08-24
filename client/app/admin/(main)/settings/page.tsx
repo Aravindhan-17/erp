@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { ChevronDown } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Settings — FlashERP Admin",
@@ -6,19 +7,304 @@ export const metadata: Metadata = {
 
 export default function SettingsPage() {
   return (
-    <div className="font-poppins space-y-8">
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-gray-900">Settings</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Configure platform defaults and system toggles.
-          </p>
-        </div>
+    <div className="min-w-0 font-poppins">
+
+      {/* HEADER */}
+      <div className="mb-7">
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
+          Settings
+        </h1>
+
+        <p className="mt-1 text-sm text-gray-500">
+          Platform configuration.
+        </p>
       </div>
 
-      <div className="flex h-64 items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-white">
-        <p className="text-sm font-medium text-gray-500">System Settings Content</p>
+
+      {/* GENERAL SETTINGS CARD */}
+      <div
+        className="
+          w-full
+          max-w-[590px]
+          rounded-2xl
+          border
+          border-gray-200
+          bg-white
+          p-5
+          shadow-[0_4px_20px_rgba(30,20,80,0.04)]
+          sm:p-6
+        "
+      >
+
+        {/* Card Title */}
+        <h2 className="mb-5 text-lg font-bold text-gray-900">
+          General
+        </h2>
+
+
+        {/* PLATFORM NAME */}
+        <div className="mb-5">
+          <label
+            htmlFor="platform-name"
+            className="mb-2 block text-xs font-semibold text-gray-600"
+          >
+            Platform name
+          </label>
+
+          <input
+            id="platform-name"
+            type="text"
+            defaultValue="ERP Flash Deal"
+            className="
+              h-12
+              w-full
+              rounded-xl
+              border
+              border-gray-200
+              bg-white
+              px-3.5
+              text-sm
+              text-gray-800
+              outline-none
+              transition
+              focus:border-primary
+              focus:ring-2
+              focus:ring-primary/10
+            "
+          />
+        </div>
+
+
+        {/* SUPPORT EMAIL */}
+        <div className="mb-5">
+          <label
+            htmlFor="support-email"
+            className="mb-2 block text-xs font-semibold text-gray-600"
+          >
+            Support email
+          </label>
+
+          <input
+            id="support-email"
+            type="email"
+            defaultValue="support@erpflashdeal.com"
+            className="
+              h-12
+              w-full
+              rounded-xl
+              border
+              border-gray-200
+              bg-white
+              px-3.5
+              text-sm
+              text-gray-800
+              outline-none
+              transition
+              focus:border-primary
+              focus:ring-2
+              focus:ring-primary/10
+            "
+          />
+        </div>
+
+
+        {/* REGISTRATION FEE + RESERVATION */}
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+          {/* Registration Fee */}
+          <div>
+            <label
+              htmlFor="registration-fee"
+              className="mb-2 block text-xs font-semibold text-gray-600"
+            >
+              Default registration fee (₹)
+            </label>
+
+            <input
+              id="registration-fee"
+              type="number"
+              defaultValue="1"
+              className="
+                h-12
+                w-full
+                rounded-xl
+                border
+                border-gray-200
+                bg-white
+                px-3.5
+                text-sm
+                text-gray-800
+                outline-none
+                transition
+                focus:border-primary
+                focus:ring-2
+                focus:ring-primary/10
+              "
+            />
+          </div>
+
+
+          {/* Reservation */}
+          <div>
+            <label
+              htmlFor="reservation"
+              className="mb-2 block text-xs font-semibold text-gray-600"
+            >
+              Default reservation (minutes)
+            </label>
+
+            <input
+              id="reservation"
+              type="number"
+              defaultValue="10"
+              className="
+                h-12
+                w-full
+                rounded-xl
+                border
+                border-gray-200
+                bg-white
+                px-3.5
+                text-sm
+                text-gray-800
+                outline-none
+                transition
+                focus:border-primary
+                focus:ring-2
+                focus:ring-primary/10
+              "
+            />
+          </div>
+
+        </div>
+
+
+        {/* DIVIDER */}
+        <div className="my-5 border-t border-gray-100" />
+
+
+        {/* DEAL START NOTIFICATIONS */}
+        <div
+          className="
+            flex
+            items-center
+            justify-between
+            gap-4
+            border-b
+            border-gray-100
+            pb-5
+          "
+        >
+          <div>
+            <h3 className="text-sm font-bold text-gray-800">
+              Deal start notifications
+            </h3>
+
+            <p className="mt-1 text-xs text-gray-500">
+              Notify registered customers at launch.
+            </p>
+          </div>
+
+          {/* Toggle */}
+          <div
+            className="
+              relative
+              h-7
+              w-12
+              shrink-0
+              rounded-full
+              bg-primary
+              shadow-sm
+            "
+          >
+            <div
+              className="
+                absolute
+                right-1
+                top-1/2
+                h-5
+                w-5
+                -translate-y-1/2
+                rounded-full
+                bg-white
+                shadow
+              "
+            />
+          </div>
+        </div>
+
+
+        {/* AUTOMATIC STOCK RELEASE */}
+        <div
+          className="
+            flex
+            items-center
+            justify-between
+            gap-4
+            py-5
+          "
+        >
+          <div>
+            <h3 className="text-sm font-bold text-gray-800">
+              Automatic stock release
+            </h3>
+
+            <p className="mt-1 text-xs text-gray-500">
+              Return expired reservations to available stock.
+            </p>
+          </div>
+
+          {/* Toggle */}
+          <div
+            className="
+              relative
+              h-7
+              w-12
+              shrink-0
+              rounded-full
+              bg-primary
+              shadow-sm
+            "
+          >
+            <div
+              className="
+                absolute
+                right-1
+                top-1/2
+                h-5
+                w-5
+                -translate-y-1/2
+                rounded-full
+                bg-white
+                shadow
+              "
+            />
+          </div>
+        </div>
+
+
+        {/* SAVE BUTTON */}
+        <button
+          type="button"
+          className="
+            rounded-xl
+            bg-primary
+            px-6
+            py-3
+            text-sm
+            font-bold
+            text-white
+            shadow-[0_6px_16px_rgba(91,45,220,0.25)]
+            transition
+            hover:opacity-90
+            active:scale-[0.98]
+          "
+        >
+          Save changes
+        </button>
+
       </div>
+
     </div>
   );
 }
