@@ -70,7 +70,7 @@ export function ProductSelection({ products, selectedProducts, toggleProduct }: 
           Add from catalog
         </p>
 
-        <div className="max-h-[220px] overflow-y-auto rounded-lg border border-gray-100">
+        <div className="max-h-55 overflow-y-auto rounded-lg border border-gray-100">
           {products.map((product) => {
             const selected = selectedProducts.some((item) => item.id === product.id);
 
@@ -98,7 +98,7 @@ export function ProductSelection({ products, selectedProducts, toggleProduct }: 
                   type="button"
                   disabled={selected}
                   onClick={() => toggleProduct(product)}
-                  className={`flex h-8 min-w-[48px] items-center justify-center gap-1 rounded-full border px-3 text-[10px] font-bold transition ${
+                  className={`flex h-8 min-w-12 items-center justify-center gap-1 rounded-full border px-3 text-[10px] font-bold transition ${
                     selected
                       ? "border-gray-100 bg-gray-50 text-gray-300"
                       : "border-violet-100 bg-violet-50 text-violet-600 hover:bg-violet-100"

@@ -37,8 +37,8 @@ export default function NotificationsPage() {
       [category]: {
         ...prev[category],
         [item]: {
-          ...(prev[category] as any)[item],
-          [channel]: !(prev[category] as any)[item][channel],
+          ...(prev[category] as Record<string, Record<string, boolean>>)[item],
+          [channel]: !(prev[category] as Record<string, Record<string, boolean>>)[item][channel],
         },
       },
     }));

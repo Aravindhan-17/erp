@@ -30,7 +30,7 @@ export function AuthBackground({
       {variant === "register" && (
         <>
           {/* Decorative Box 1 (Gift Box) - Register */}
-          <div className="2xl:w-62.5 2xl:h-68.75 absolute left-10 top-16 z-0 hidden h-44 w-40 rotate-[-15deg] drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-52 lg:w-48 2xl:left-52 2xl:top-14">
+          <div className="absolute left-10 top-16 z-0 hidden h-44 w-40 rotate-[-15deg] drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-52 lg:w-48 xl:left-24 xl:top-20">
             <Image
               src={GiftBox}
               alt="Gift Box"
@@ -42,7 +42,7 @@ export function AuthBackground({
           </div>
 
           {/* Decorative Bag 1 (Deals Bag) - Register */}
-          <div className="2xl:w-62.5 2xl:h-65.25 absolute bottom-10 right-10 z-0 hidden h-44 w-40 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-52 lg:w-48 2xl:bottom-32 2xl:right-32">
+          <div className="absolute bottom-10 right-10 z-0 hidden h-44 w-40 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-52 lg:w-48 xl:bottom-20 xl:right-24">
             <Image
               src={DealBag}
               alt="Deals Bag"
@@ -58,7 +58,7 @@ export function AuthBackground({
       {variant === "login" && (
         <>
           {/* Decorative Box 2 (Gift Box 2) - Login */}
-          <div className="2xl:w-50 2xl:h-49.25 absolute right-10 top-20 z-0 hidden h-32 w-32 rotate-[-15deg] drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-40 lg:w-40 2xl:right-32 2xl:top-32">
+          <div className="absolute right-10 top-20 z-0 hidden h-32 w-32 rotate-[-15deg] drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-40 lg:w-40 xl:right-24 xl:top-24">
             <Image
               src={GiftBox2}
               alt="Gift Box 2"
@@ -70,7 +70,7 @@ export function AuthBackground({
           </div>
 
           {/* Decorative Cart (Cart) - Login */}
-          <div className="2xl:h-101 2xl:w-87.5 absolute bottom-20 left-10 z-0 hidden h-56 w-48 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-72 lg:w-64 2xl:bottom-[15%] 2xl:left-36">
+          <div className="absolute bottom-20 left-10 z-0 hidden h-56 w-48 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-72 lg:w-64 xl:bottom-[10%] xl:left-20">
             <Image
               src={Cart}
               alt="Cart"
@@ -86,7 +86,7 @@ export function AuthBackground({
       {variant === "forgot" && (
         <>
           {/* Decorative File (FileLayout) - Forgot Password */}
-          <div className="2xl:w-62.5 2xl:h-62.5 absolute left-10 top-32 z-0 hidden h-40 w-40 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-48 lg:w-48 2xl:left-72 2xl:top-72">
+          <div className="absolute left-10 top-32 z-0 hidden h-40 w-40 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-48 lg:w-48 xl:left-32 xl:top-40">
             <Image
               src={FileLayout}
               alt="File Layout"
@@ -98,7 +98,7 @@ export function AuthBackground({
           </div>
 
           {/* Decorative Lock (LockLayout) - Forgot Password */}
-          <div className="2xl:w-62.5 2xl:h-62.5 rotate-15 absolute bottom-32 right-10 z-0 hidden h-40 w-40 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-48 lg:w-48 2xl:bottom-[20%] 2xl:right-32">
+          <div className="rotate-15 absolute bottom-32 right-10 z-0 hidden h-40 w-40 drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)] lg:block lg:h-48 lg:w-48 xl:bottom-[15%] xl:right-24">
             <Image
               src={LockLayout}
               alt="Lock Layout"

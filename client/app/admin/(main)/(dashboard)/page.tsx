@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import {
   ArrowDown,
   ArrowRight,
@@ -203,7 +204,7 @@ export default function AdminDashboardPage() {
             items-center
             gap-2
             rounded-xl
-            bg-gradient-to-r
+            bg-linear-to-r
             from-[#6734ed]
             to-[#5120d3]
             px-4
@@ -330,7 +331,7 @@ export default function AdminDashboardPage() {
 
           <div className="mt-7">
 
-            <div className="flex h-[220px] items-end gap-2 sm:gap-5">
+            <div className="flex h-55 items-end gap-2 sm:gap-5">
 
               {/* Y axis */}
               <div className="flex h-full w-8 shrink-0 flex-col justify-between pb-7 text-[10px] text-gray-400">
@@ -358,9 +359,9 @@ export default function AdminDashboardPage() {
                     <div
                       className="
                         w-full
-                        max-w-[58px]
+                        max-w-14.5
                         rounded-t-md
-                        bg-gradient-to-t
+                        bg-linear-to-t
                         from-[#dcd2ff]
                         to-[#6130e8]
                       "
@@ -413,11 +414,15 @@ export default function AdminDashboardPage() {
                 className="flex items-center gap-3 py-3 first:pt-0 last:pb-0"
               >
 
-                <img
-                  src={deal.image}
-                  alt={deal.title}
-                  className="h-14 w-14 shrink-0 rounded-xl object-cover"
-                />
+                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl">
+                  <Image
+                    src={deal.image}
+                    alt={deal.title}
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </div>
 
                 <div className="min-w-0 flex-1">
 
@@ -482,8 +487,7 @@ export default function AdminDashboardPage() {
           {/* Responsive table wrapper */}
           <div className="overflow-x-auto hide-scrollbar">
 
-            <table className="w-full min-w-[700px] text-left">
-
+            <table className="w-full min-w-175 text-left">
               <thead>
                 <tr className="border-y border-gray-100 bg-gray-50/70">
 
@@ -599,11 +603,13 @@ export default function AdminDashboardPage() {
 
             <div className="mt-5 flex items-center gap-3">
 
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gray-50">
-                <img
+              <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gray-50">
+                <Image
                   src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=120&q=80"
                   alt="FlexBook 14"
-                  className="h-full w-full object-cover"
+                  fill
+                  sizes="56px"
+                  className="object-cover"
                 />
               </div>
 
@@ -655,11 +661,15 @@ export default function AdminDashboardPage() {
                   className="flex items-center gap-3 py-3 first:pt-0 last:pb-0"
                 >
 
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="h-11 w-11 shrink-0 rounded-xl object-cover"
-                  />
+                  <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      sizes="44px"
+                      className="object-cover"
+                    />
+                  </div>
 
                   <div className="min-w-0 flex-1">
 

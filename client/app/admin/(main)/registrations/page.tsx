@@ -168,7 +168,7 @@ export default function RegistrationsPage() {
         <div
           className="
             flex
-            min-h-[110px]
+            min-h-27.5
             items-center
             justify-between
             rounded-2xl
@@ -199,7 +199,7 @@ export default function RegistrationsPage() {
         <div
           className="
             flex
-            min-h-[110px]
+            min-h-27.5
             items-center
             justify-between
             rounded-2xl
@@ -230,7 +230,7 @@ export default function RegistrationsPage() {
         <div
           className="
             flex
-            min-h-[110px]
+            min-h-27.5
             items-center
             justify-between
             rounded-2xl
@@ -261,7 +261,7 @@ export default function RegistrationsPage() {
         <div
           className="
             flex
-            min-h-[110px]
+            min-h-27.5
             items-center
             justify-between
             rounded-2xl
@@ -332,7 +332,7 @@ export default function RegistrationsPage() {
             px-4
             py-2.5
             shadow-sm
-            lg:w-[340px]
+            lg:w-85
           "
         >
           <Search size={17} className="shrink-0 text-gray-400" />
@@ -369,7 +369,7 @@ export default function RegistrationsPage() {
       >
         {/* Horizontal scroll */}
         <div className="w-full overflow-x-auto hide-scrollbar">
-          <table className="w-full min-w-[1050px] border-collapse">
+          <table className="w-full min-w-262.5 border-collapse">
             {/* TABLE HEADER */}
             <thead>
               <tr className="border-b border-gray-100">
@@ -627,7 +627,7 @@ export default function RegistrationsPage() {
                   transition-all
                   ${
                     currentPage === pageNumber
-                      ? "bg-gradient-to-r from-[#6631e8] to-[#5120d3] text-xs font-semibold text-white shadow-[0_5px_15px_rgba(91,33,216,0.25)]"
+                      ? "bg-linear-to-r from-[#6631e8] to-[#5120d3] text-xs font-semibold text-white shadow-[0_5px_15px_rgba(91,33,216,0.25)]"
                       : "border border-gray-200 bg-white text-gray-600 hover:border-primary/30 hover:text-primary"
                   }
                 `}

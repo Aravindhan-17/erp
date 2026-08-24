@@ -100,7 +100,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           className="
             fixed
             inset-0
-            z-[55]
+            z-55
             bg-black/50
             backdrop-blur-[2px]
             lg:hidden
@@ -113,12 +113,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           fixed
           left-0
           top-0
-          z-[60]
+          z-60
           flex
           h-screen
-          w-[270px]
+          w-67.5
           flex-col
-          bg-gradient-to-b
+          bg-linear-to-b
           from-[#24005f]
           via-[#27006d]
           to-[#16003e]
@@ -133,7 +133,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        <div className="flex h-[72px] shrink-0 items-center justify-between border-b border-white/10 px-6">
+        <div className="flex h-18 shrink-0 items-center justify-between border-b border-white/10 px-6">
           <Link href="/admin" onClick={closeSidebar} className="flex items-center gap-3">
             <Image
               src={ErpLogoWhite}
@@ -178,7 +178,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   className={`
                     group
                     flex
-                    min-h-[46px]
+                    min-h-11.5
                     items-center
                     gap-3
                     rounded-xl
@@ -192,7 +192,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     ${
                       active
                         ? `
-                          bg-gradient-to-r
+                          bg-linear-to-r
                           from-[#7138f5]
                           to-[#5b20df]
                           text-white
@@ -234,7 +234,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               className={`
                 group
                 flex
-                min-h-[46px]
+                min-h-11.5
                 items-center
                 gap-3
                 rounded-xl
@@ -309,14 +309,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </aside>
 
-      <div className="min-h-screen lg:ml-[270px]">
+      <div className="min-h-screen lg:ml-67.5">
 
         <header
           className="
             sticky
             top-0
             z-40
-            h-[72px]
+            h-18
             border-b
             border-gray-200
             bg-white/95
@@ -361,7 +361,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 className="
                   hidden
                   h-10
-                  w-[300px]
+                  w-75
                   items-center
                   gap-3
                   rounded-xl
@@ -370,8 +370,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   bg-white
                   px-3.5
                   md:flex
-                  lg:w-[380px]
-                  xl:w-[420px]
+                  lg:w-95
+                  xl:w-105
                 "
               >
                 <Search size={18} className="shrink-0 text-gray-400" />
@@ -415,11 +415,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <span
                   className="
                     absolute
-                    right-[-3px]
-                    top-[-4px]
+                    -right-0.75
+                    -top-1
                     flex
-                    h-[18px]
-                    min-w-[18px]
+                    h-4.5
+                    min-w-4.5
                     items-center
                     justify-center
                     rounded-full
@@ -502,7 +502,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   h-10
                   items-center
                   rounded-xl
-                  bg-gradient-to-r
+                  bg-linear-to-r
                   from-[#6631e8]
                   to-[#5120d3]
                   px-4

@@ -122,7 +122,7 @@ const customers = [
 ];
 
 export function CustomersClient() {
-  const [viewingCustomer, setViewingCustomer] = useState<any>(null);
+  const [viewingCustomer, setViewingCustomer] = useState<typeof customers[0] | null>(null);
 
   // Helper to get initials
   const getInitials = (name: string) => {
@@ -147,13 +147,13 @@ export function CustomersClient() {
       {/* ================= FILTERS ================= */}
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         {/* Search */}
-        <div className="flex h-12 w-full items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 shadow-sm sm:max-w-[330px]">
+        <div className="flex h-12 w-full items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 shadow-sm sm:max-w-82.5">
           <Search size={18} className="shrink-0 text-gray-400" />
           <input type="text" placeholder="Search name, email or phone..." className="w-full bg-transparent text-sm text-gray-700 outline-none placeholder:text-gray-400" />
         </div>
 
         {/* Segment */}
-        <div className="relative w-full sm:w-[165px]">
+        <div className="relative w-full sm:w-41.25">
           <select defaultValue="all" className="h-12 w-full appearance-none rounded-xl border border-gray-200 bg-white px-4 pr-10 text-sm font-medium text-gray-700 shadow-sm outline-none transition hover:border-gray-300 focus:border-[#6734ed] focus:ring-2 focus:ring-[#6734ed]/10">
             <option value="all">All segments</option>
             <option value="active">Active</option>
@@ -167,10 +167,10 @@ export function CustomersClient() {
       {/* ================= TABLE ================= */}
       <div className="mt-5 w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
         <div className="w-full overflow-x-auto hide-scrollbar">
-          <table className="w-full min-w-[1100px] border-collapse">
+          <table className="w-full min-w-275 border-collapse">
             <thead>
               <tr className="border-b border-gray-100">
-                <th className="w-[240px] px-5 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Customer</th>
+                <th className="w-60 px-5 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Customer</th>
                 <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Segment</th>
                 <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-gray-400">Registrations</th>
                 <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-gray-400">Orders</th>
@@ -185,7 +185,7 @@ export function CustomersClient() {
               {customers.map((customer) => (
                 <tr key={customer.id} className="border-b border-gray-100 transition-colors hover:bg-violet-50/60">
                   <td className="px-5 py-4">
-                    <div className="min-w-[210px]">
+                    <div className="min-w-52.5">
                       <p className="text-sm font-semibold text-gray-800">{customer.name}</p>
                       <p className="mt-0.5 text-xs text-gray-400">{customer.email}</p>
                       <p className="mt-0.5 text-xs text-gray-400">{customer.phone}</p>
@@ -250,7 +250,7 @@ export function CustomersClient() {
             
             {/* Header info */}
             <div className="flex items-start gap-5">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-xl font-bold text-white shadow-md">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-violet-500 to-fuchsia-500 text-xl font-bold text-white shadow-md">
                 {getInitials(viewingCustomer.name)}
               </div>
               <div className="min-w-0 flex-1">
@@ -304,7 +304,7 @@ export function CustomersClient() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
-                      {viewingCustomer.recentOrders?.map((order: any, idx: number) => (
+                      {(viewingCustomer.recentOrders as { deal: string; id: string; date: string; amount: string; status: string }[])?.map((order, idx: number) => (
                         <tr key={idx}>
                           <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">{order.deal}</td>
                           <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{order.id}</td>

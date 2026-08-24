@@ -20,7 +20,7 @@ export function DealHeader() {
         </button>
         <button
           type="button"
-          className="rounded-xl bg-gradient-to-r from-[#6631e8] to-[#5120d3] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(102,49,232,0.25)] transition hover:opacity-90"
+          className="rounded-xl bg-linear-to-r from-[#6631e8] to-[#5120d3] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(102,49,232,0.25)] transition hover:opacity-90"
         >
           Save deal
         </button>

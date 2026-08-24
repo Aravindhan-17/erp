@@ -18,7 +18,7 @@ export function MobilePreview({
   return (
     <div
       className="
-        w-[290px]
+        w-72.5
         overflow-hidden
         rounded-[30px]
         border-[7px]
@@ -40,7 +40,7 @@ export function MobilePreview({
             ● STARTING SOON
           </div>
 
-          <div className="flex h-[105px] items-center justify-between overflow-hidden rounded-xl bg-gradient-to-br from-[#1596af] via-[#20688c] to-[#283b73] px-4 text-white">
+          <div className="flex h-26.25 items-center justify-between overflow-hidden rounded-xl bg-linear-to-br from-[#1596af] via-[#20688c] to-[#283b73] px-4 text-white">
             <div>
               <p className="text-[9px] font-extrabold uppercase leading-tight">
                 HOME
@@ -155,8 +155,7 @@ export function MobilePreview({
               mt-4
               w-full
               rounded-full
-              bg-gradient-to-r
-              from-[#6631e8]
+              bg-linear-to-r              from-[#6631e8]
               to-[#5120d3]
               py-2.5
               text-xs

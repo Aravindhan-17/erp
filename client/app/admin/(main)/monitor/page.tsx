@@ -244,13 +244,13 @@ export default function MonitorPage() {
           {/* Table */}
           <div className="w-full overflow-x-auto hide-scrollbar">
 
-            <table className="w-full min-w-[720px] border-collapse">
+            <table className="w-full min-w-180 border-collapse">
 
               <thead>
 
                 <tr className="border-b border-gray-100">
 
-                  <th className="w-[210px] px-5 py-3 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-7">
+                  <th className="w-52.5 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-7">
                     Product
                   </th>
 
@@ -304,7 +304,7 @@ export default function MonitorPage() {
                     {/* Product */}
                     <td className="px-5 py-3 sm:px-5">
 
-                      <p className="max-w-[200px] text-xs font-bold leading-5 text-gray-800">
+                      <p className="max-w-50 text-xs font-bold leading-5 text-gray-800">
                         {product.name}
                       </p>
 
@@ -414,7 +414,7 @@ export default function MonitorPage() {
           {/* Activity List */}
           <div
             className="
-              max-h-[300px]
+              max-h-75
               hide-scrollbar
               overflow-y-auto
               px-5

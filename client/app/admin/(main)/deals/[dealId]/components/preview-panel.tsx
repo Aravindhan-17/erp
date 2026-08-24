@@ -52,7 +52,7 @@ export function PreviewPanel({
       </div>
 
       {/* Preview area */}
-      <div className="flex min-h-[650px] items-start justify-center overflow-hidden rounded-2xl border border-gray-200 bg-[#f4f4f9] p-6 transition-all duration-300">
+      <div className="flex min-h-162.5 items-start justify-center overflow-hidden rounded-2xl border border-gray-200 bg-[#f4f4f9] p-6 transition-all duration-300">
         {previewMode === "desktop" ? (
           <DesktopPreview
             title={dealTitle}

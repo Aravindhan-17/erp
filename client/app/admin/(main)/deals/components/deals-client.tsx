@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import {
   BarChart3,
@@ -116,7 +117,7 @@ const statusClass = (status: string) => {
 };
 
 export function DealsClient() {
-  const [viewingDeal, setViewingDeal] = useState<any>(null);
+  const [viewingDeal, setViewingDeal] = useState<typeof deals[number] | null>(null);
 
   return (
     <div className="min-w-0 overflow-x-hidden font-poppins">
@@ -139,7 +140,7 @@ export function DealsClient() {
             items-center
             gap-2
             rounded-xl
-            bg-gradient-to-r
+            bg-linear-to-r
             from-[#6734ed]
             to-[#5120d3]
             px-5
@@ -185,18 +186,18 @@ export function DealsClient() {
 
       {/* TABLE */}
       <div className="mt-5 w-full overflow-x-auto hide-scrollbar rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
-        <table className="w-full min-w-[1250px] border-collapse">
+        <table className="w-full min-w-312.5 border-collapse">
           <thead>
             <tr className="border-b border-gray-100 bg-gray-50/40">
-              <th className="w-[310px] px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Deal</th>
-              <th className="w-[110px] px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Status</th>
-              <th className="w-[140px] px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Window</th>
-              <th className="w-[80px] px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Reg. Fee</th>
-              <th className="w-[80px] px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Products</th>
-              <th className="w-[110px] px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Registered</th>
-              <th className="w-[80px] px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Orders</th>
-              <th className="w-[120px] px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Revenue</th>
-              <th className="w-[180px] px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Actions</th>
+              <th className="w-77.5 px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Deal</th>
+              <th className="w-27.5 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Status</th>
+              <th className="w-35 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Window</th>
+              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Reg. Fee</th>
+              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Products</th>
+              <th className="w-27.5 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Registered</th>
+              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Orders</th>
+              <th className="w-30 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Revenue</th>
+              <th className="w-45 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -204,8 +205,8 @@ export function DealsClient() {
               <tr key={deal.id} className="group border-b border-gray-100 transition last:border-b-0 hover:bg-violet-50/60">
                 <td className="px-4 py-3.5">
                   <div className="flex items-center gap-3">
-                    <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gray-100">
-                      <img src={deal.image} alt={deal.title} className="h-full w-full object-cover" />
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gray-100">
+                      <Image src={deal.image} alt={deal.title} fill sizes="56px" className="object-cover" />
                     </div>
                     <div className="min-w-0">
                       <p className="truncate text-sm font-bold text-gray-900">{deal.title}</p>
@@ -345,7 +346,7 @@ export function DealsClient() {
                     <span className="text-white text-[10px] font-bold text-center leading-tight">SMART<br/>TV</span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-gray-900 truncate">UltraSound 65" 4K Smart TV</p>
+                    <p className="text-xs font-semibold text-gray-900 truncate">UltraSound 65&quot; 4K Smart TV</p>
                     <p className="mt-0.5 text-xs font-bold text-violet-600">₹52,999</p>
                   </div>
                 </div>
@@ -367,7 +368,7 @@ export function DealsClient() {
                     <span className="text-white text-[10px] font-bold">LAPTOP</span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-gray-900 truncate">FlexBook 14" Ultraslim Laptop</p>
+                    <p className="text-xs font-semibold text-gray-900 truncate">FlexBook 14&quot; Ultraslim Laptop</p>
                     <p className="mt-0.5 text-xs font-bold text-violet-600">₹41,999</p>
                   </div>
                 </div>

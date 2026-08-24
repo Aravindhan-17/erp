@@ -9,20 +9,20 @@ export default function StorefrontLoginPage() {
       <AuthBackground variant="login" />
 
       {/* Main Layout Card */}
-      <div className="2xl:max-w-212.5 z-10 flex w-full max-w-xl flex-col gap-6 rounded-3xl bg-white p-6 shadow-xl sm:gap-10 sm:p-10 lg:max-w-3xl lg:gap-8">
+      <div className="z-10 flex w-full max-w-md flex-col gap-6 rounded-3xl bg-white p-6 shadow-xl sm:max-w-lg sm:p-10 lg:max-w-xl lg:gap-8">
         <AuthHeader title="Welcome Back!" subtitle="Sign in to your account" />
 
         <LoginForm />
 
         {/* Signup layout */}
-        <div className="max-w-192.5 min-h-7.5 mx-auto flex w-full flex-wrap items-center justify-center gap-2 text-center sm:gap-2.5">
-          <span className="min-h-7.5 flex w-auto items-center justify-center font-['Poppins'] text-[16px] font-semibold leading-tight text-black sm:w-auto sm:text-[20px] sm:leading-none">
+        <div className="mx-auto flex w-full flex-wrap items-center justify-center gap-2 text-center">
+          <span className="font-['Poppins'] text-sm font-semibold text-black sm:text-base">
             Don&apos;t have an account?
           </span>
           <Link
-            href="/auth/register"
+            href="/register"
             id="link-to-register"
-            className="min-h-7.5 text-primary flex w-auto items-center justify-center font-['Poppins'] text-[16px] font-semibold leading-tight underline sm:w-auto sm:text-[20px] sm:leading-none"
+            className="text-primary hover:text-primary/90 font-['Poppins'] text-sm font-semibold underline transition-colors sm:text-base"
           >
             Sign Up
           </Link>

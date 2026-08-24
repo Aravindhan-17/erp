@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Eye, ChevronDown, CheckCircle2 } from "lucide-react";
 import { Modal } from "@/components/modal";
 
@@ -153,7 +154,7 @@ const orders = [
 ];
 
 export function OrdersClient() {
-  const [viewingOrder, setViewingOrder] = useState<any>(null);
+  const [viewingOrder, setViewingOrder] = useState<typeof orders[0] | null>(null);
 
   return (
     <div className="min-w-0 overflow-x-hidden font-poppins">
@@ -193,18 +194,18 @@ export function OrdersClient() {
       </div>
 
       <div className="mt-6 w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
-        <div className="max-h-[600px] w-full overflow-x-auto overflow-y-auto hide-scrollbar">
-          <table className="w-full min-w-[1200px] border-collapse">
+        <div className="max-h-150 w-full overflow-x-auto overflow-y-auto hide-scrollbar">
+          <table className="w-full min-w-300 border-collapse">
             <colgroup>
-              <col className="w-[305px]" />
-              <col className="w-[135px]" />
-              <col className="w-[105px]" />
-              <col className="w-[110px]" />
-              <col className="w-[110px]" />
-              <col className="w-[110px]" />
-              <col className="w-[190px]" />
-              <col className="w-[135px]" />
-              <col className="w-[100px]" />
+              <col className="w-76.25" />
+              <col className="w-33.75" />
+              <col className="w-26.25" />
+              <col className="w-27.5" />
+              <col className="w-27.5" />
+              <col className="w-27.5" />
+              <col className="w-47.5" />
+              <col className="w-33.75" />
+              <col className="w-25" />
             </colgroup>
 
             <thead className="sticky top-0 z-10 bg-white">
@@ -322,8 +323,8 @@ export function OrdersClient() {
               <div>
                 <p className="mb-4 text-[11px] font-bold uppercase tracking-wider text-gray-500">Items (1)</p>
                 <div className="flex items-center gap-3 rounded-xl border border-gray-100 p-3 shadow-sm">
-                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-gray-100">
-                    <img src={viewingOrder.productImage} alt={viewingOrder.products} className="h-full w-full object-cover" />
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-gray-100">
+                    <Image src={viewingOrder.productImage as string} alt={viewingOrder.products as string} fill sizes="64px" className="object-cover" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-gray-900 leading-tight">{viewingOrder.products}</p>
@@ -337,15 +338,15 @@ export function OrdersClient() {
               <div>
                 <p className="mb-4 text-[11px] font-bold uppercase tracking-wider text-gray-500">Fulfillment Status</p>
                 <div className="relative pl-4 space-y-5">
-                  <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-gray-100" />
+                  <div className="absolute left-1.75 top-2 bottom-2 w-0.5 bg-gray-100" />
                   
-                  {viewingOrder.timeline?.map((step: any, idx: number) => (
+                  {(viewingOrder.timeline as { step: string; date: string; completed: boolean }[])?.map((step, idx: number) => (
                     <div key={idx} className="relative flex items-start gap-3">
                       <div className={`relative z-10 flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${step.completed ? 'bg-emerald-500' : 'bg-gray-200 border-2 border-white'}`}>
                         {step.completed && <CheckCircle2 size={12} className="text-white" />}
                       </div>
                       <div className="min-w-0 flex-1 -mt-1">
-                        <p className={`text-sm font-medium ${step.completed ? 'text-gray-900' : 'text-gray-400'}`}>{step.step}</p>
+                        <p className="text-sm font-medium text-gray-900">{step.step}</p>
                         {step.date && <p className="text-xs text-gray-500 mt-0.5">{step.date}</p>}
                       </div>
                     </div>

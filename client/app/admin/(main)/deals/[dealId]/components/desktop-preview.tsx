@@ -19,7 +19,7 @@ export function DesktopPreview({
     <div
       className="
         w-full
-        max-w-[620px]
+        max-w-155
         overflow-hidden
         rounded-2xl
         bg-white
@@ -51,7 +51,7 @@ export function DesktopPreview({
       </div>
 
       {/* Banner */}
-      <div className="m-5 flex h-[190px] items-center justify-center rounded-xl bg-gradient-to-br from-[#1794ad] via-[#1d668c] to-[#2d386f]">
+      <div className="m-5 flex h-47.5 items-center justify-center rounded-xl bg-linear-to-br from-[#1794ad] via-[#1d668c] to-[#2d386f]">
         <div className="text-center text-white">
           <p className="text-xs font-bold uppercase tracking-widest opacity-80">
             Home appliances
@@ -138,9 +138,7 @@ export function DesktopPreview({
             mt-5
             w-full
             rounded-xl
-            bg-gradient-to-r
-            from-[#6631e8]
-            to-[#5120d3]
+            bg-linear-to-r   from-[#6631e8] to-[#5120d3]
             py-3
             text-sm
             font-bold

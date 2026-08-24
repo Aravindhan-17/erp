@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { Modal } from "@/components/modal";
 
@@ -136,7 +137,7 @@ export function ProductsClient() {
             items-center
             gap-2
             rounded-xl
-            bg-gradient-to-r
+            bg-linear-to-r
             from-[#6734ed]
             to-[#5120d3]
             px-5
@@ -158,10 +159,10 @@ export function ProductsClient() {
       {/* PRODUCT TABLE CARD */}
       <div className="mt-6 w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
         <div className="w-full overflow-x-auto hide-scrollbar">
-          <table className="w-full min-w-[1200px] border-collapse">
+          <table className="w-full min-w-300 border-collapse">
             <thead>
               <tr className="border-b border-gray-100 bg-gray-50/40">
-                <th className="w-[310px] px-5 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-6">Product</th>
+                <th className="w-77.5 px-5 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-6">Product</th>
                 <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">SKU</th>
                 <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Category</th>
                 <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">MRP</th>
@@ -177,10 +178,10 @@ export function ProductsClient() {
                 <tr key={product.id} className="group border-b border-gray-100 transition-colors last:border-b-0 hover:bg-violet-50/60">
                   <td className="px-5 py-3 sm:px-6">
                     <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-100 sm:h-11 sm:w-11">
-                        <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
+                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-100 sm:h-11 sm:w-11">
+                        <Image src={product.image} alt={product.name} fill sizes="44px" className="object-cover" />
                       </div>
-                      <p className="max-w-[220px] text-xs font-semibold leading-5 text-gray-800 sm:text-sm">{product.name}</p>
+                      <p className="max-w-55 text-xs font-semibold leading-5 text-gray-800 sm:text-sm">{product.name}</p>
                     </div>
                   </td>
                   <td className="px-3 py-3">

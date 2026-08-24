@@ -22,7 +22,7 @@ export function LoginForm() {
           <div className="flex w-full max-w-full flex-col gap-2 lg:gap-2.5">
             <label
               htmlFor="email"
-              className="flex w-full items-center font-['Poppins'] text-base font-semibold leading-none text-black xl:text-lg 2xl:text-[20px]"
+              className="flex w-full items-center font-['Poppins'] text-sm font-semibold text-black"
             >
               Email Address
             </label>
@@ -33,18 +33,18 @@ export function LoginForm() {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="2xl:h-17.5 focus:ring-primary h-12 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-base leading-none text-gray-900 placeholder:font-['Poppins'] placeholder:text-base placeholder:font-normal placeholder:leading-none placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-14 xl:text-lg xl:placeholder:text-lg 2xl:p-5 2xl:text-[20px] 2xl:placeholder:text-[20px]"
+              className="focus:ring-primary h-10 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11"
             />
           </div>
 
           <div className="flex w-full max-w-full flex-col gap-2 lg:gap-2.5">
             <label
               htmlFor="password"
-              className="flex w-full items-center font-['Poppins'] text-base font-semibold leading-none text-black xl:text-lg 2xl:text-[20px]"
+              className="flex w-full items-center font-['Poppins'] text-sm font-semibold text-black"
             >
               Password
             </label>
-            <div className="2xl:h-17.5 relative h-12 w-full lg:h-14">
+            <div className="relative h-10 w-full lg:h-11">
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -52,7 +52,7 @@ export function LoginForm() {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="focus:ring-primary h-full w-full rounded-lg border border-black/25 bg-white pl-4 pr-12 font-['Poppins'] text-base leading-none text-gray-900 placeholder:font-['Poppins'] placeholder:text-base placeholder:font-normal placeholder:leading-none placeholder:text-black/50 focus:outline-none focus:ring-2 xl:text-lg xl:placeholder:text-lg 2xl:pl-5 2xl:text-[20px] 2xl:placeholder:text-[20px]"
+                className="focus:ring-primary h-full w-full rounded-lg border border-black/25 bg-white pl-4 pr-12 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2"
               />
               <button
                 type="button"
@@ -60,9 +60,9 @@ export function LoginForm() {
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-black/25 transition-colors hover:text-black/50"
               >
                 {showPassword ? (
-                  <EyeOff className="h-5 w-5 lg:h-6 lg:w-6 2xl:h-8 2xl:w-8" />
+                  <EyeOff className="h-5 w-5" />
                 ) : (
-                  <Eye className="h-5 w-5 lg:h-6 lg:w-6 2xl:h-8 2xl:w-8" />
+                  <Eye className="h-5 w-5" />
                 )}
               </button>
             </div>
@@ -75,16 +75,16 @@ export function LoginForm() {
               type="checkbox"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="text-primary focus:ring-primary h-5 w-5 cursor-pointer rounded border border-black/25 bg-white 2xl:h-6 2xl:w-6"
+              className="text-primary focus:ring-primary h-4 w-4 cursor-pointer rounded border border-black/25 bg-white"
             />
-            <span className="group-hover:text-primary font-['Poppins'] text-sm font-semibold leading-tight text-black transition-colors sm:text-base 2xl:text-[20px]">
+            <span className="group-hover:text-primary font-['Poppins'] text-xs font-semibold text-black transition-colors sm:text-sm">
               Remember Me
             </span>
           </label>
 
           <Link
-            href="/auth/forgot-password"
-            className="text-primary font-['Poppins'] text-sm font-semibold leading-tight transition-colors hover:underline sm:text-base 2xl:text-[20px]"
+            href="/forgot-password"
+            className="text-primary font-['Poppins'] text-xs font-semibold transition-colors hover:underline sm:text-sm"
           >
             Forgot Password?
           </Link>
@@ -95,13 +95,11 @@ export function LoginForm() {
       <button
         type="submit"
         id="login-submit-btn"
-        className="max-w-192.5 2xl:h-17.5 bg-primary hover:bg-primary/90 mt-2 flex h-12 w-full items-center justify-between rounded-lg px-4 shadow-md transition-all lg:mt-4 lg:h-14 2xl:p-5"
+        className="bg-primary hover:bg-primary/90 mt-2 flex h-10 w-full items-center justify-center rounded-lg shadow-md transition-all lg:mt-4 lg:h-11"
       >
-        <span></span>
-        <span className="flex w-auto items-center justify-center font-['Poppins'] text-base font-bold leading-none text-white xl:text-lg 2xl:text-[20px]">
+        <span className="font-['Poppins'] text-sm font-bold text-white sm:text-base">
           Sign In
         </span>
-        <span></span>
       </button>
 
       <SocialAuth />

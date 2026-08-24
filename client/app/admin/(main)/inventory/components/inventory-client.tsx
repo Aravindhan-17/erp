@@ -108,7 +108,7 @@ const inventoryItems = [
 ];
 
 export function InventoryClient() {
-  const [adjustingStockProduct, setAdjustingStockProduct] = useState<any>(null);
+  const [adjustingStockProduct, setAdjustingStockProduct] = useState<typeof inventoryItems[0] | null>(null);
 
   return (
     <div className="min-w-0 overflow-x-hidden font-poppins">
@@ -126,7 +126,7 @@ export function InventoryClient() {
         </div>
 
         {/* Category Dropdown */}
-        <div className="relative w-full sm:w-[180px]">
+        <div className="relative w-full sm:w-45">
           <select
             defaultValue="Electronics"
             className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-4 py-3 pr-10 text-sm font-medium text-gray-600 shadow-sm outline-none transition-all hover:border-gray-300 focus:border-[#6734ed] focus:ring-2 focus:ring-[#6734ed]/10"
@@ -142,20 +142,20 @@ export function InventoryClient() {
       </div>
 
       <div className="mt-6 w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
-        <div className="max-h-[600px] w-full overflow-x-auto overflow-y-auto hide-scrollbar">
-          <table className="w-full min-w-[1200px] border-collapse">
+        <div className="max-h-150 w-full overflow-x-auto overflow-y-auto hide-scrollbar">
+          <table className="w-full min-w-300 border-collapse">
 
             {/* Column widths */}
             <colgroup>
-              <col className="w-[305px]" />
-              <col className="w-[135px]" />
-              <col className="w-[105px]" />
-              <col className="w-[110px]" />
-              <col className="w-[110px]" />
-              <col className="w-[110px]" />
-              <col className="w-[190px]" />
-              <col className="w-[135px]" />
-              <col className="w-[100px]" />
+              <col className="w-76.25" />
+              <col className="w-33.75" />
+              <col className="w-26.25" />
+              <col className="w-27.5" />
+              <col className="w-27.5" />
+              <col className="w-27.5" />
+              <col className="w-47.5" />
+              <col className="w-33.75" />
+              <col className="w-25" />
             </colgroup>
 
             {/* ================= TABLE HEADER ================= */}
