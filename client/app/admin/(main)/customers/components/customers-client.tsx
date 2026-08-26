@@ -461,7 +461,7 @@ export function CustomersClient() {
               <button
                 type="button"
                 onClick={() => setViewingCustomer(null)}
-                className="w-full rounded-xl border border-gray-200 bg-primary py-3 text-sm font-semibold text-white shadow-sm transition"
+                className="bg-primary w-full rounded-xl border border-gray-200 py-3 text-sm font-semibold text-white shadow-sm transition"
               >
                 Close
               </button>

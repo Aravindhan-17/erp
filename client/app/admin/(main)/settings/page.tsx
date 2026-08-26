@@ -7,19 +7,15 @@ export const metadata: Metadata = {
 
 export default function SettingsPage() {
   return (
-    <div className="min-w-0 font-poppins">
-
+    <div className="font-poppins min-w-0">
       {/* HEADER */}
       <div className="mb-7">
         <h1 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
           Settings
         </h1>
 
-        <p className="mt-1 text-sm text-gray-500">
-          Platform configuration.
-        </p>
+        <p className="mt-1 text-sm text-gray-500">Platform configuration.</p>
       </div>
-
 
       {/* GENERAL SETTINGS CARD */}
       <div
@@ -35,19 +31,12 @@ export default function SettingsPage() {
           sm:p-6
         "
       >
-
         {/* Card Title */}
-        <h2 className="mb-5 text-lg font-bold text-gray-900">
-          General
-        </h2>
-
+        <h2 className="mb-5 text-lg font-bold text-gray-900">General</h2>
 
         {/* PLATFORM NAME */}
         <div className="mb-5">
-          <label
-            htmlFor="platform-name"
-            className="mb-2 block text-xs font-semibold text-gray-600"
-          >
+          <label htmlFor="platform-name" className="mb-2 block text-xs font-semibold text-gray-600">
             Platform name
           </label>
 
@@ -56,6 +45,8 @@ export default function SettingsPage() {
             type="text"
             defaultValue="ERP Flash Deal"
             className="
+              focus:border-primary
+              focus:ring-primary/10
               h-12
               w-full
               rounded-xl
@@ -67,20 +58,14 @@ export default function SettingsPage() {
               text-gray-800
               outline-none
               transition
-              focus:border-primary
               focus:ring-2
-              focus:ring-primary/10
             "
           />
         </div>
 
-
         {/* SUPPORT EMAIL */}
         <div className="mb-5">
-          <label
-            htmlFor="support-email"
-            className="mb-2 block text-xs font-semibold text-gray-600"
-          >
+          <label htmlFor="support-email" className="mb-2 block text-xs font-semibold text-gray-600">
             Support email
           </label>
 
@@ -89,6 +74,8 @@ export default function SettingsPage() {
             type="email"
             defaultValue="support@erpflashdeal.com"
             className="
+              focus:border-primary
+              focus:ring-primary/10
               h-12
               w-full
               rounded-xl
@@ -100,17 +87,13 @@ export default function SettingsPage() {
               text-gray-800
               outline-none
               transition
-              focus:border-primary
               focus:ring-2
-              focus:ring-primary/10
             "
           />
         </div>
 
-
         {/* REGISTRATION FEE + RESERVATION */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-
           {/* Registration Fee */}
           <div>
             <label
@@ -125,6 +108,8 @@ export default function SettingsPage() {
               type="number"
               defaultValue="1"
               className="
+                focus:border-primary
+                focus:ring-primary/10
                 h-12
                 w-full
                 rounded-xl
@@ -136,20 +121,14 @@ export default function SettingsPage() {
                 text-gray-800
                 outline-none
                 transition
-                focus:border-primary
                 focus:ring-2
-                focus:ring-primary/10
               "
             />
           </div>
 
-
           {/* Reservation */}
           <div>
-            <label
-              htmlFor="reservation"
-              className="mb-2 block text-xs font-semibold text-gray-600"
-            >
+            <label htmlFor="reservation" className="mb-2 block text-xs font-semibold text-gray-600">
               Default reservation (minutes)
             </label>
 
@@ -158,6 +137,8 @@ export default function SettingsPage() {
               type="number"
               defaultValue="10"
               className="
+                focus:border-primary
+                focus:ring-primary/10
                 h-12
                 w-full
                 rounded-xl
@@ -169,19 +150,14 @@ export default function SettingsPage() {
                 text-gray-800
                 outline-none
                 transition
-                focus:border-primary
                 focus:ring-2
-                focus:ring-primary/10
               "
             />
           </div>
-
         </div>
-
 
         {/* DIVIDER */}
         <div className="my-5 border-t border-gray-100" />
-
 
         {/* DEAL START NOTIFICATIONS */}
         <div
@@ -196,24 +172,20 @@ export default function SettingsPage() {
           "
         >
           <div>
-            <h3 className="text-sm font-bold text-gray-800">
-              Deal start notifications
-            </h3>
+            <h3 className="text-sm font-bold text-gray-800">Deal start notifications</h3>
 
-            <p className="mt-1 text-xs text-gray-500">
-              Notify registered customers at launch.
-            </p>
+            <p className="mt-1 text-xs text-gray-500">Notify registered customers at launch.</p>
           </div>
 
           {/* Toggle */}
           <div
             className="
+              bg-primary
               relative
               h-7
               w-12
               shrink-0
               rounded-full
-              bg-primary
               shadow-sm
             "
           >
@@ -232,7 +204,6 @@ export default function SettingsPage() {
             />
           </div>
         </div>
-
 
         {/* AUTOMATIC STOCK RELEASE */}
         <div
@@ -245,9 +216,7 @@ export default function SettingsPage() {
           "
         >
           <div>
-            <h3 className="text-sm font-bold text-gray-800">
-              Automatic stock release
-            </h3>
+            <h3 className="text-sm font-bold text-gray-800">Automatic stock release</h3>
 
             <p className="mt-1 text-xs text-gray-500">
               Return expired reservations to available stock.
@@ -257,12 +226,12 @@ export default function SettingsPage() {
           {/* Toggle */}
           <div
             className="
+              bg-primary
               relative
               h-7
               w-12
               shrink-0
               rounded-full
-              bg-primary
               shadow-sm
             "
           >
@@ -282,13 +251,12 @@ export default function SettingsPage() {
           </div>
         </div>
 
-
         {/* SAVE BUTTON */}
         <button
           type="button"
           className="
-            rounded-xl
             bg-primary
+            rounded-xl
             px-6
             py-3
             text-sm
@@ -302,9 +270,7 @@ export default function SettingsPage() {
         >
           Save changes
         </button>
-
       </div>
-
     </div>
   );
 }

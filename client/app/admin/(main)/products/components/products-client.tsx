@@ -116,7 +116,7 @@ export function ProductsClient() {
   const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
 
   return (
-    <div className="min-w-0 overflow-x-hidden font-poppins">
+    <div className="font-poppins min-w-0 overflow-x-hidden">
       {/* PAGE HEADER */}
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -132,21 +132,21 @@ export function ProductsClient() {
           type="button"
           onClick={() => setIsAddProductModalOpen(true)}
           className="
+            bg-primary
+            hover:bg-primary-hover
+            shadow-primary/20
+            shadow-primary/20
             inline-flex
-            w-fit
-            items-center
+            w-fit items-center
             gap-2
             rounded-xl
-            bg-primary hover:bg-primary-hover
             px-5
             py-3
             text-sm
-            font-semibold
-            text-white
-            shadow-md shadow-primary/20
-            transition
-            hover:-translate-y-0.5
-            hover:shadow-md shadow-primary/20
+            font-semibold text-white
+            shadow-md
+            
+            transition hover:shadow-md
           "
         >
           <Plus size={17} strokeWidth={2.5} />
@@ -156,63 +156,114 @@ export function ProductsClient() {
 
       {/* PRODUCT TABLE CARD */}
       <div className="mt-6 w-full  overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
-        <div className="w-full overflow-x-auto hide-scrollbar">
-          <table className="w-full min-w-300 border-collapse">
+        <div className="hide-scrollbar w-full overflow-x-auto">
+          <table className="min-w-300 w-full border-collapse">
             <thead>
               <tr className="border-b border-gray-100 bg-gray-50/40">
-                <th className="w-77.5 px-5 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-6">Product</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">SKU</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Category</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">MRP</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Flash Price</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Opening Stock</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Available</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Status</th>
-                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-6">Actions</th>
+                <th className="w-77.5 px-5 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-6">
+                  Product
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  SKU
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Category
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  MRP
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Flash Price
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Opening Stock
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Available
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Status
+                </th>
+                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-6">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.id} className="group border-b border-gray-100 transition-colors last:border-b-0 hover:bg-primary/5">
+                <tr
+                  key={product.id}
+                  className="hover:bg-primary/5 group border-b border-gray-100 transition-colors last:border-b-0"
+                >
                   <td className="px-5 py-3 sm:px-6">
                     <div className="flex items-center gap-3">
                       <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-100 sm:h-11 sm:w-11">
-                        <Image src={product.image} alt={product.name} fill sizes="44px" className="object-cover" />
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          sizes="44px"
+                          className="object-cover"
+                        />
                       </div>
-                      <p className="max-w-55 text-xs font-semibold leading-5 text-gray-800 sm:text-sm">{product.name}</p>
+                      <p className="max-w-55 text-xs font-semibold leading-5 text-gray-800 sm:text-sm">
+                        {product.name}
+                      </p>
                     </div>
                   </td>
                   <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-medium text-gray-600">{product.sku}</span>
+                    <span className="whitespace-nowrap text-xs font-medium text-gray-600">
+                      {product.sku}
+                    </span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-medium text-gray-600">{product.category}</span>
+                    <span className="whitespace-nowrap text-xs font-medium text-gray-600">
+                      {product.category}
+                    </span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-semibold text-gray-700">{product.mrp}</span>
+                    <span className="whitespace-nowrap text-xs font-semibold text-gray-700">
+                      {product.mrp}
+                    </span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-semibold text-gray-800">{product.flashPrice}</span>
+                    <span className="whitespace-nowrap text-xs font-semibold text-gray-800">
+                      {product.flashPrice}
+                    </span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className="text-xs font-medium text-gray-700">{product.openingStock}</span>
+                    <span className="text-xs font-medium text-gray-700">
+                      {product.openingStock}
+                    </span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className={`text-xs font-semibold ${product.available <= 1 ? "text-red-500" : "text-gray-700"}`}>
+                    <span
+                      className={`text-xs font-semibold ${product.available <= 1 ? "text-red-500" : "text-gray-700"}`}
+                    >
                       {product.available}
                     </span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${product.status === "Active" ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"}`}>
+                    <span
+                      className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${product.status === "Active" ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"}`}
+                    >
                       {product.status}
                     </span>
                   </td>
                   <td className="px-5 py-3 sm:px-6">
                     <div className="flex items-center gap-2">
-                      <button type="button" title="Edit product" className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary">
+                      <button
+                        type="button"
+                        title="Edit product"
+                        className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all"
+                      >
                         <Pencil size={15} />
                       </button>
-                      <button type="button" title="Delete product" className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-red-100 hover:bg-red-50 hover:text-red-500">
+                      <button
+                        type="button"
+                        title="Delete product"
+                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-red-100 hover:bg-red-50 hover:text-red-500"
+                      >
                         <Trash2 size={15} />
                       </button>
                     </div>
@@ -231,40 +282,52 @@ export function ProductsClient() {
         title="Add new product"
         maxWidth="3xl"
       >
-        <form className="mt-2 space-y-6 " onSubmit={(e) => { e.preventDefault(); setIsAddProductModalOpen(false); }}>
-          
+        <form
+          className="mt-2 space-y-6 "
+          onSubmit={(e) => {
+            e.preventDefault();
+            setIsAddProductModalOpen(false);
+          }}
+        >
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            
             {/* Product Name */}
             <div className="sm:col-span-2">
-              <label htmlFor="name" className="mb-2 block text-sm font-semibold text-gray-700">Product Name</label>
+              <label htmlFor="name" className="mb-2 block text-sm font-semibold text-gray-700">
+                Product Name
+              </label>
               <input
                 type="text"
                 id="name"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
-                placeholder="e.g. UltraSound 65&quot; 4K Smart TV"
+                className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
+                placeholder='e.g. UltraSound 65" 4K Smart TV'
               />
             </div>
 
             {/* SKU */}
             <div>
-              <label htmlFor="sku" className="mb-2 block text-sm font-semibold text-gray-700">SKU</label>
+              <label htmlFor="sku" className="mb-2 block text-sm font-semibold text-gray-700">
+                SKU
+              </label>
               <input
                 type="text"
                 id="sku"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 placeholder="e.g. ELEC-TV-065"
               />
             </div>
 
             {/* Category */}
             <div>
-              <label htmlFor="category" className="mb-2 block text-sm font-semibold text-gray-700">Category</label>
+              <label htmlFor="category" className="mb-2 block text-sm font-semibold text-gray-700">
+                Category
+              </label>
               <select
                 id="category"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10 appearance-none"
+                className="focus:border-primary focus:ring-primary/10 w-full appearance-none rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
               >
-                <option value="" disabled selected>Select category...</option>
+                <option value="" disabled selected>
+                  Select category...
+                </option>
                 <option value="Electronics">Electronics</option>
                 <option value="Fashion">Fashion</option>
                 <option value="Furniture">Furniture</option>
@@ -274,70 +337,90 @@ export function ProductsClient() {
 
             {/* Image URL */}
             <div className="sm:col-span-2">
-              <label htmlFor="image" className="mb-2 block text-sm font-semibold text-gray-700">Image URL</label>
+              <label htmlFor="image" className="mb-2 block text-sm font-semibold text-gray-700">
+                Image URL
+              </label>
               <input
                 type="url"
                 id="image"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 placeholder="https://..."
               />
             </div>
 
             {/* MRP */}
             <div>
-              <label htmlFor="mrp" className="mb-2 block text-sm font-semibold text-gray-700">MRP (₹)</label>
+              <label htmlFor="mrp" className="mb-2 block text-sm font-semibold text-gray-700">
+                MRP (₹)
+              </label>
               <input
                 type="number"
                 id="mrp"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 placeholder="0.00"
               />
             </div>
 
             {/* Flash Price */}
             <div>
-              <label htmlFor="flashPrice" className="mb-2 block text-sm font-semibold text-gray-700">Flash Price (₹)</label>
+              <label
+                htmlFor="flashPrice"
+                className="mb-2 block text-sm font-semibold text-gray-700"
+              >
+                Flash Price (₹)
+              </label>
               <input
                 type="number"
                 id="flashPrice"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 placeholder="0.00"
               />
             </div>
 
             {/* Opening Stock */}
             <div>
-              <label htmlFor="openingStock" className="mb-2 block text-sm font-semibold text-gray-700">Opening Stock</label>
+              <label
+                htmlFor="openingStock"
+                className="mb-2 block text-sm font-semibold text-gray-700"
+              >
+                Opening Stock
+              </label>
               <input
                 type="number"
                 id="openingStock"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 placeholder="0"
               />
             </div>
 
             {/* Low-stock alert at */}
             <div>
-              <label htmlFor="lowStockAlert" className="mb-2 block text-sm font-semibold text-gray-700">Low-stock alert at</label>
+              <label
+                htmlFor="lowStockAlert"
+                className="mb-2 block text-sm font-semibold text-gray-700"
+              >
+                Low-stock alert at
+              </label>
               <input
                 type="number"
                 id="lowStockAlert"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 placeholder="0"
               />
             </div>
 
             {/* Max quantity per customer */}
             <div className="sm:col-span-2">
-              <label htmlFor="maxQty" className="mb-2 block text-sm font-semibold text-gray-700">Max quantity per customer</label>
+              <label htmlFor="maxQty" className="mb-2 block text-sm font-semibold text-gray-700">
+                Max quantity per customer
+              </label>
               <input
                 type="number"
                 id="maxQty"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 placeholder="Leave blank for no limit"
               />
             </div>
-
           </div>
 
           <div className="mt-8 flex items-center justify-end gap-3 pt-4">
@@ -350,7 +433,7 @@ export function ProductsClient() {
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md transition"
+              className="bg-primary rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-md transition"
             >
               Save product
             </button>

@@ -3,13 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import {
-  BarChart3,
-  Copy,
-  Eye,
-  Pencil,
-  Plus,
-} from "lucide-react";
+import { BarChart3, Copy, Eye, Pencil, Plus } from "lucide-react";
 import { Modal } from "@/components/modal";
 
 const deals = [
@@ -117,39 +111,37 @@ const statusClass = (status: string) => {
 };
 
 export function DealsClient() {
-  const [viewingDeal, setViewingDeal] = useState<typeof deals[number] | null>(null);
+  const [viewingDeal, setViewingDeal] = useState<(typeof deals)[number] | null>(null);
 
   return (
-    <div className="min-w-0 overflow-x-hidden font-poppins">
+    <div className="font-poppins min-w-0 overflow-x-hidden">
       {/* PAGE HEADER */}
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
             Flash deals
           </h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Manage live, upcoming, past and draft deals.
-          </p>
+          <p className="mt-1 text-sm text-gray-500">Manage live, upcoming, past and draft deals.</p>
         </div>
 
         <Link
           href="/admin/deals/new"
           className="
+            bg-primary
+            hover:bg-primary-hover
+            shadow-primary/20
+            shadow-primary/20
             inline-flex
-            w-fit
-            items-center
+            w-fit items-center
             gap-2
             rounded-xl
-            bg-primary hover:bg-primary-hover
             px-5
             py-3
             text-sm
-            font-semibold
-            text-white
-            shadow-md shadow-primary/20
-            transition
-            hover:-translate-y-0.5
-            hover:shadow-md shadow-primary/20
+            font-semibold text-white
+            shadow-md
+            
+            transition hover:shadow-md
           "
         >
           <Plus size={17} strokeWidth={2.5} />
@@ -158,7 +150,7 @@ export function DealsClient() {
       </div>
 
       {/* TABS */}
-      <div className="mt-7 flex items-center gap-1 overflow-x-auto pb-1 scrollbar-hide">
+      <div className="scrollbar-hide mt-7 flex items-center gap-1 overflow-x-auto pb-1">
         {tabs.map((tab, index) => (
           <button
             key={tab}
@@ -171,9 +163,10 @@ export function DealsClient() {
               text-sm
               font-semibold
               transition
-              ${index === 0
-                ? "bg-white text-gray-900 shadow-sm ring-1 ring-gray-100"
-                : "text-gray-500 hover:bg-white hover:text-gray-900"
+              ${
+                index === 0
+                  ? "bg-white text-gray-900 shadow-sm ring-1 ring-gray-100"
+                  : "text-gray-500 hover:bg-white hover:text-gray-900"
               }
             `}
           >
@@ -183,28 +176,55 @@ export function DealsClient() {
       </div>
 
       {/* TABLE */}
-      <div className="mt-5 w-full overflow-x-auto hide-scrollbar rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
-        <table className="w-full min-w-312.5 border-collapse">
+      <div className="hide-scrollbar mt-5 w-full overflow-x-auto rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
+        <table className="min-w-312.5 w-full border-collapse">
           <thead>
             <tr className="border-b border-gray-100 bg-gray-50/40">
-              <th className="w-77.5 px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Deal</th>
-              <th className="w-27.5 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Status</th>
-              <th className="w-35 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Window</th>
-              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Reg. Fee</th>
-              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Products</th>
-              <th className="w-27.5 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Registered</th>
-              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Orders</th>
-              <th className="w-30 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Revenue</th>
-              <th className="w-45 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">Actions</th>
+              <th className="w-77.5 px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Deal
+              </th>
+              <th className="w-27.5 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Status
+              </th>
+              <th className="w-35 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Window
+              </th>
+              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Reg. Fee
+              </th>
+              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Products
+              </th>
+              <th className="w-27.5 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Registered
+              </th>
+              <th className="w-20 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Orders
+              </th>
+              <th className="w-30 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Revenue
+              </th>
+              <th className="w-45 px-3 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
             {deals.map((deal) => (
-              <tr key={deal.id} className="group border-b border-gray-100 transition last:border-b-0 hover:bg-primary/5">
+              <tr
+                key={deal.id}
+                className="hover:bg-primary/5 group border-b border-gray-100 transition last:border-b-0"
+              >
                 <td className="px-4 py-3.5">
                   <div className="flex items-center gap-3">
                     <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gray-100">
-                      <Image src={deal.image} alt={deal.title} fill sizes="56px" className="object-cover" />
+                      <Image
+                        src={deal.image}
+                        alt={deal.title}
+                        fill
+                        sizes="56px"
+                        className="object-cover"
+                      />
                     </div>
                     <div className="min-w-0">
                       <p className="truncate text-sm font-bold text-gray-900">{deal.title}</p>
@@ -213,12 +233,16 @@ export function DealsClient() {
                   </div>
                 </td>
                 <td className="px-3 py-3.5">
-                  <span className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] font-bold ${statusClass(deal.status)}`}>
+                  <span
+                    className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] font-bold ${statusClass(deal.status)}`}
+                  >
                     {deal.status}
                   </span>
                 </td>
                 <td className="px-3 py-3.5">
-                  <span className="whitespace-nowrap text-xs font-medium text-gray-600">{deal.window}</span>
+                  <span className="whitespace-nowrap text-xs font-medium text-gray-600">
+                    {deal.window}
+                  </span>
                 </td>
                 <td className="px-3 py-3.5">
                   <span className="text-xs font-semibold text-gray-700">{deal.fee}</span>
@@ -233,7 +257,9 @@ export function DealsClient() {
                   <span className="text-xs font-medium text-gray-700">{deal.orders}</span>
                 </td>
                 <td className="px-3 py-3.5">
-                  <span className="whitespace-nowrap text-xs font-semibold text-gray-800">{deal.revenue}</span>
+                  <span className="whitespace-nowrap text-xs font-semibold text-gray-800">
+                    {deal.revenue}
+                  </span>
                 </td>
                 <td className="px-3 py-3.5">
                   <div className="flex items-center gap-1.5">
@@ -241,28 +267,28 @@ export function DealsClient() {
                       type="button"
                       title="View"
                       onClick={() => setViewingDeal(deal)}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+                      className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition"
                     >
                       <Eye size={16} />
                     </button>
                     <Link
                       href={`/admin/deals/${deal.id}`}
                       title="Edit"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+                      className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition"
                     >
                       <Pencil size={16} />
                     </Link>
                     <button
                       type="button"
                       title="Duplicate"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+                      className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition"
                     >
                       <Copy size={16} />
                     </button>
                     <button
                       type="button"
                       title="Analytics"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+                      className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition"
                     >
                       <BarChart3 size={16} />
                     </button>
@@ -283,94 +309,125 @@ export function DealsClient() {
       >
         {viewingDeal && (
           <div className="space-y-6">
-            
             {/* Header info */}
             <div>
               <div className="flex items-center gap-3">
                 <h2 className="text-xl font-bold text-gray-900">{viewingDeal.title}</h2>
-                <span className={`inline-flex whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-bold ${statusClass(viewingDeal.status)}`}>
+                <span
+                  className={`inline-flex whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-bold ${statusClass(viewingDeal.status)}`}
+                >
                   {viewingDeal.status}
                 </span>
               </div>
             </div>
 
             {/* Metrics grid */}
-            <div className="grid grid-cols-2 gap-y-6 gap-x-8">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-6">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Subtitle</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                  Subtitle
+                </p>
                 <p className="mt-1 text-sm font-medium text-gray-900">{viewingDeal.description}</p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Window</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                  Window
+                </p>
                 <p className="mt-1 text-sm font-medium text-gray-900">{viewingDeal.window}</p>
               </div>
-              
+
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Registration Fee</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                  Registration Fee
+                </p>
                 <p className="mt-1 text-sm font-medium text-gray-900">{viewingDeal.fee}</p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Min. Order</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                  Min. Order
+                </p>
                 <p className="mt-1 text-sm font-medium text-gray-900">₹5,000 / 2 items</p>
               </div>
-              
+
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Max Qty / Customer</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                  Max Qty / Customer
+                </p>
                 <p className="mt-1 text-sm font-medium text-gray-900">2 per product</p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Registered</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                  Registered
+                </p>
                 <p className="mt-1 text-sm font-medium text-gray-900">{viewingDeal.registered}</p>
               </div>
 
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Orders</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                  Orders
+                </p>
                 <p className="mt-1 text-sm font-medium text-gray-900">{viewingDeal.orders}</p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Revenue</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                  Revenue
+                </p>
                 <p className="mt-1 text-sm font-medium text-gray-900">{viewingDeal.revenue}</p>
               </div>
             </div>
 
             {/* Products */}
             <div>
-              <p className="mb-4 text-[11px] font-bold uppercase tracking-wider text-gray-500">Products (3)</p>
+              <p className="mb-4 text-[11px] font-bold uppercase tracking-wider text-gray-500">
+                Products (3)
+              </p>
               <div className="grid grid-cols-2 gap-4">
-                
                 {/* Dummy Product 1 */}
                 <div className="flex items-center gap-3 rounded-xl border border-gray-200 p-3">
-                  <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-blue-600 flex items-center justify-center">
-                    <span className="text-white text-[10px] font-bold text-center leading-tight">SMART<br/>TV</span>
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-blue-600">
+                    <span className="text-center text-[10px] font-bold leading-tight text-white">
+                      SMART
+                      <br />
+                      TV
+                    </span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-gray-900 truncate">UltraSound 65&quot; 4K Smart TV</p>
-                    <p className="mt-0.5 text-xs font-bold text-primary">₹52,999</p>
+                    <p className="truncate text-xs font-semibold text-gray-900">
+                      UltraSound 65&quot; 4K Smart TV
+                    </p>
+                    <p className="text-primary mt-0.5 text-xs font-bold">₹52,999</p>
                   </div>
                 </div>
 
                 {/* Dummy Product 2 */}
                 <div className="flex items-center gap-3 rounded-xl border border-gray-200 p-3">
-                  <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-blue-800 flex items-center justify-center">
-                    <span className="text-white text-[8px] font-bold text-center leading-tight">HEAD-<br/>PHONES</span>
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-blue-800">
+                    <span className="text-center text-[8px] font-bold leading-tight text-white">
+                      HEAD-
+                      <br />
+                      PHONES
+                    </span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-gray-900 truncate">AirPure Noise-Cancel Headphones</p>
-                    <p className="mt-0.5 text-xs font-bold text-primary">₹5,499</p>
+                    <p className="truncate text-xs font-semibold text-gray-900">
+                      AirPure Noise-Cancel Headphones
+                    </p>
+                    <p className="text-primary mt-0.5 text-xs font-bold">₹5,499</p>
                   </div>
                 </div>
 
                 {/* Dummy Product 3 */}
                 <div className="flex items-center gap-3 rounded-xl border border-gray-200 p-3">
-                  <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-teal-600 flex items-center justify-center">
-                    <span className="text-white text-[10px] font-bold">LAPTOP</span>
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-teal-600">
+                    <span className="text-[10px] font-bold text-white">LAPTOP</span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-gray-900 truncate">FlexBook 14&quot; Ultraslim Laptop</p>
-                    <p className="mt-0.5 text-xs font-bold text-primary">₹41,999</p>
+                    <p className="truncate text-xs font-semibold text-gray-900">
+                      FlexBook 14&quot; Ultraslim Laptop
+                    </p>
+                    <p className="text-primary mt-0.5 text-xs font-bold">₹41,999</p>
                   </div>
                 </div>
-
               </div>
             </div>
 
@@ -379,12 +436,11 @@ export function DealsClient() {
               <button
                 type="button"
                 onClick={() => setViewingDeal(null)}
-                className="w-full rounded-xl bg-primary py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#5120d3]"
+                className="bg-primary w-full rounded-xl py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#5120d3]"
               >
                 Close
               </button>
             </div>
-
           </div>
         )}
       </Modal>

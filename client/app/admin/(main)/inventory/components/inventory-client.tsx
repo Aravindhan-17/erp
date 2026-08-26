@@ -312,7 +312,7 @@ export function InventoryClient() {
               </button>
               <button
                 type="submit"
-                className="rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md transition "
+                className="bg-primary rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-md transition "
               >
                 Save changes
               </button>

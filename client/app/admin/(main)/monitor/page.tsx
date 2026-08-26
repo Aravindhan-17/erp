@@ -185,7 +185,7 @@ export default function MonitorPage() {
               text-center
               shadow-[0_3px_15px_rgba(30,20,80,0.035)]
               transition
-              hover:-translate-y-0.5
+              
               hover:shadow-[0_7px_20px_rgba(30,20,80,0.06)]
             "
           >
