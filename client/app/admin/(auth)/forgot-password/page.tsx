@@ -8,7 +8,7 @@ export default function AdminForgotPasswordPage() {
       <AdminAuthBackground />
 
       {/* Main Layout Card with Glassmorphism for premium look */}
-      <div className="z-10 flex w-full max-w-md flex-col gap-6 rounded-3xl bg-white/95 backdrop-blur-md p-6 shadow-2xl border border-white/20 sm:max-w-lg sm:p-10 lg:max-w-xl lg:gap-8">
+      <div className="z-10 flex w-full max-w-md flex-col gap-6 rounded-3xl border border-white/20 bg-white/95 p-6 shadow-2xl backdrop-blur-md sm:max-w-lg sm:p-10 lg:max-w-xl lg:gap-8">
         <AuthHeader
           title="Admin Recovery"
           subtitle="Enter your verified admin email to reset your credentials."

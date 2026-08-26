@@ -101,7 +101,8 @@ export function FailedView({ onRetry }: FailedViewProps) {
       <div className="mb-10 w-full rounded-2xl border border-gray-200 bg-white p-6 text-left shadow-sm sm:p-8">
         <h2 className="mb-2 text-xl font-bold text-red-500">Payment Failed</h2>
         <p className="mb-1 text-gray-700">
-          We couldn&apos;t process your payment of <span className="font-bold text-red-500">₹1</span>.
+          We couldn&apos;t process your payment of{" "}
+          <span className="font-bold text-red-500">₹1</span>.
         </p>
         <p className="mb-8 text-gray-700">Please try again or use a different payment method.</p>
 

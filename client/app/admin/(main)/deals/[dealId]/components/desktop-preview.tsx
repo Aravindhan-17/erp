@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Clock3, Image as ImageIcon } from "lucide-react";
 import { PreviewInfo } from "./preview-info";
 
@@ -18,8 +18,8 @@ export function DesktopPreview({
   return (
     <div
       className="
-        w-full
         max-w-155
+        w-full
         overflow-hidden
         rounded-2xl
         bg-white
@@ -30,17 +30,13 @@ export function DesktopPreview({
       <div className="border-b border-gray-100 px-6 py-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs font-bold text-gray-400">
-              FLASH DEAL
-            </p>
+            <p className="text-xs font-bold text-gray-400">FLASH DEAL</p>
 
             <h2 className="mt-1 text-lg font-extrabold text-gray-900">
               {title || "Untitled deal"}
             </h2>
 
-            <p className="mt-1 text-xs text-gray-500">
-              {subtitle || "Limited time offer"}
-            </p>
+            <p className="mt-1 text-xs text-gray-500">{subtitle || "Limited time offer"}</p>
           </div>
 
           <div className="flex items-center gap-1 rounded-full bg-yellow-100 px-3 py-1 text-[10px] font-bold text-yellow-700">
@@ -51,15 +47,11 @@ export function DesktopPreview({
       </div>
 
       {/* Banner */}
-      <div className="m-5 flex h-47.5 items-center justify-center rounded-xl bg-linear-to-br from-[#1794ad] via-[#1d668c] to-[#2d386f]">
+      <div className="h-47.5 bg-linear-to-br m-5 flex items-center justify-center rounded-xl from-[#1794ad] via-[#1d668c] to-[#2d386f]">
         <div className="text-center text-white">
-          <p className="text-xs font-bold uppercase tracking-widest opacity-80">
-            Home appliances
-          </p>
+          <p className="text-xs font-bold uppercase tracking-widest opacity-80">Home appliances</p>
 
-          <p className="mt-2 text-5xl font-extrabold">
-            H
-          </p>
+          <p className="mt-2 text-5xl font-extrabold">H</p>
         </div>
       </div>
 
@@ -81,13 +73,9 @@ export function DesktopPreview({
               text-white
             "
           >
-            <p className="text-xl font-extrabold text-yellow-400">
-              {number}
-            </p>
+            <p className="text-xl font-extrabold text-yellow-400">{number}</p>
 
-            <p className="text-[9px] text-gray-400">
-              {label}
-            </p>
+            <p className="text-[9px] text-gray-400">{label}</p>
           </div>
         ))}
       </div>
@@ -103,30 +91,18 @@ export function DesktopPreview({
 
         {/* Products */}
         <div className="mt-5">
-          <p className="mb-3 text-xs font-bold text-gray-800">
-            PRODUCTS ({products.length})
-          </p>
+          <p className="mb-3 text-xs font-bold text-gray-800">PRODUCTS ({products.length})</p>
 
           <div className="grid grid-cols-2 gap-3">
             {products.slice(0, 4).map((product) => (
-              <div
-                key={product.id}
-                className="rounded-xl border border-gray-200 p-3"
-              >
+              <div key={product.id} className="rounded-xl border border-gray-200 p-3">
                 <div className="flex h-24 items-center justify-center rounded-lg bg-gray-100">
-                  <ImageIcon
-                    size={28}
-                    className="text-gray-400"
-                  />
+                  <ImageIcon size={28} className="text-gray-400" />
                 </div>
 
-                <p className="mt-2 line-clamp-2 text-xs font-bold text-gray-700">
-                  {product.name}
-                </p>
+                <p className="mt-2 line-clamp-2 text-xs font-bold text-gray-700">{product.name}</p>
 
-                <p className="mt-1 text-sm font-extrabold text-primary">
-                  {product.price}
-                </p>
+                <p className="text-primary mt-1 text-sm font-extrabold">{product.price}</p>
               </div>
             ))}
           </div>
@@ -135,10 +111,10 @@ export function DesktopPreview({
         <button
           type="button"
           className="
+            bg-primary
+            hover:bg-primary-hover
             mt-5
-            w-full
-            rounded-xl
-            bg-primary hover:bg-primary-hover
+            w-full rounded-xl
             py-3
             text-sm
             font-bold

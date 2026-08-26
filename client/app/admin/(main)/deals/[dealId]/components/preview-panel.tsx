@@ -29,7 +29,7 @@ export function PreviewPanel({
           onClick={() => setPreviewMode("desktop")}
           className={`flex flex-1 items-center justify-center gap-2 text-sm font-semibold transition ${
             previewMode === "desktop"
-              ? "border-b-2 border-primary text-primary"
+              ? "border-primary text-primary border-b-2"
               : "text-gray-500 hover:text-gray-700"
           }`}
         >
@@ -42,7 +42,7 @@ export function PreviewPanel({
           onClick={() => setPreviewMode("mobile")}
           className={`flex flex-1 items-center justify-center gap-2 text-sm font-semibold transition ${
             previewMode === "mobile"
-              ? "border-b-2 border-primary text-primary"
+              ? "border-primary text-primary border-b-2"
               : "text-gray-500 hover:text-gray-700"
           }`}
         >
@@ -52,19 +52,11 @@ export function PreviewPanel({
       </div>
 
       {/* Preview area */}
-      <div className="flex min-h-162.5 items-start justify-center overflow-hidden rounded-2xl border border-gray-200 bg-[#f4f4f9] p-6 transition-all duration-300">
+      <div className="min-h-162.5 flex items-start justify-center overflow-hidden rounded-2xl border border-gray-200 bg-[#f4f4f9] p-6 transition-all duration-300">
         {previewMode === "desktop" ? (
-          <DesktopPreview
-            title={dealTitle}
-            subtitle={dealSubtitle}
-            products={selectedProducts}
-          />
+          <DesktopPreview title={dealTitle} subtitle={dealSubtitle} products={selectedProducts} />
         ) : (
-          <MobilePreview
-            title={dealTitle}
-            subtitle={dealSubtitle}
-            products={selectedProducts}
-          />
+          <MobilePreview title={dealTitle} subtitle={dealSubtitle} products={selectedProducts} />
         )}
       </div>
     </div>

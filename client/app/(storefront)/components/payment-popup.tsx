@@ -24,7 +24,7 @@ interface PaymentPopupProps {
 }
 
 export default function PaymentPopup({ open, onClose }: PaymentPopupProps) {
-   const router = useRouter();
+  const router = useRouter();
   const [paymentStatus, setPaymentStatus] = useState<
     "payment" | "processing" | "success" | "failed"
   >("payment");
@@ -61,12 +61,12 @@ p-5
       <div
         className="
 scrollbar-hide
+z-9999
+max-w-175
 relative
 inset-0
-z-9999
 max-h-[92vh]
 w-full
-max-w-175
 overflow-y-auto
 rounded-[28px]
 bg-white
@@ -128,7 +128,7 @@ PAYMENT FORM
                 </h2>
 
                 <div className="flex gap-3">
-                  <div className="relative h-13.75 w-17.5 shrink-0 overflow-hidden rounded-lg">
+                  <div className="h-13.75 w-17.5 relative shrink-0 overflow-hidden rounded-lg">
                     <Image
                       src="/images/deals/electronics.jpg"
                       alt="deal"
@@ -428,9 +428,9 @@ hover:opacity-90
 =========================== */}
 
         {paymentStatus === "processing" && (
-          <div className="flex min-h-162.5 flex-col items-center justify-center bg-linear-to-br from-[#241b4b] via-[#2f255d] to-[#1f1b3d] p-10">
+          <div className="min-h-162.5 bg-linear-to-br flex flex-col items-center justify-center from-[#241b4b] via-[#2f255d] to-[#1f1b3d] p-10">
             {/* Card */}
-            <div className="relative mt-10 w-full max-w-155 rounded-[28px] bg-white px-8 pb-10 pt-16 text-center shadow-2xl">
+            <div className="max-w-155 relative mt-10 w-full rounded-[28px] bg-white px-8 pb-10 pt-16 text-center shadow-2xl">
               {/* Floating Icon */}
               <div className="absolute -top-14 left-1/2 -translate-x-1/2">
                 <div className="flex h-28 w-28 items-center justify-center rounded-full bg-purple-100 shadow-lg">
@@ -449,7 +449,7 @@ hover:opacity-90
                 {/* Step 1: Completed */}
                 <div className="relative flex flex-1 flex-col items-center">
                   {/* Line extending from center of Step 1 to Step 2 */}
-                  <div className="bg-primary absolute left-1/2 top-5.5 h-0.5 w-full" />
+                  <div className="bg-primary top-5.5 absolute left-1/2 h-0.5 w-full" />
 
                   <div className="bg-primary relative z-10 flex h-11 w-11 items-center justify-center rounded-full text-white">
                     <CheckCircle size={20} strokeWidth={2.5} />
@@ -465,7 +465,7 @@ hover:opacity-90
                 {/* Step 2: Active */}
                 <div className="relative flex flex-1 flex-col items-center">
                   {/* Line extending from center of Step 2 to Step 3 */}
-                  <div className="absolute left-1/2 top-5.5 h-0.5 w-full bg-gray-200" />
+                  <div className="top-5.5 absolute left-1/2 h-0.5 w-full bg-gray-200" />
 
                   <div className="border-primary relative z-10 flex h-11 w-11 items-center justify-center rounded-full border-2 bg-white shadow-[0_0_0_4px_rgba(91,33,246,0.15)]">
                     <ShieldCheck size={20} strokeWidth={2.5} className="text-primary" />
@@ -478,7 +478,7 @@ hover:opacity-90
                 {/* Step 3: Inactive */}
                 <div className="relative flex flex-1 flex-col items-center">
                   {/* Line extending from center of Step 3 to Step 4 */}
-                  <div className="absolute left-1/2 top-5.5 h-0.5 w-full bg-gray-200" />
+                  <div className="top-5.5 absolute left-1/2 h-0.5 w-full bg-gray-200" />
 
                   <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gray-300 bg-white" />
                   <div className="mt-3 text-center">
@@ -522,7 +522,7 @@ hover:opacity-90
 
             {/* Bottom Security */}
 
-            <div className="mt-12 w-full max-w-155 rounded-2xl border border-white/20 bg-white/10 px-5 py-6 backdrop-blur-lg">
+            <div className="max-w-155 mt-12 w-full rounded-2xl border border-white/20 bg-white/10 px-5 py-6 backdrop-blur-lg">
               <div className="grid grid-cols-3 divide-x divide-white/20">
                 <div className="flex items-center justify-center gap-3">
                   <ShieldKeyholeIcon className="text-white" size={30} />
@@ -658,13 +658,8 @@ hover:opacity-90
                 </div>
 
                 <div className="relative h-44 w-full">
-            <Image
-              src="/shopping-bags.png"
-              alt="Shopping"
-              fill
-              className="object-contain"
-            />
-          </div>
+                  <Image src="/shopping-bags.png" alt="Shopping" fill className="object-contain" />
+                </div>
               </div>
             </div>
           </div>
@@ -675,7 +670,7 @@ hover:opacity-90
 =========================== */}
 
         {paymentStatus === "failed" && (
-          <div className="flex min-h-150 flex-col items-center justify-center bg-white px-6 py-10">
+          <div className="min-h-150 flex flex-col items-center justify-center bg-white px-6 py-10">
             <div className="relative flex items-center justify-center">
               <div className="absolute h-28 w-28 rounded-full bg-red-100" />
 
@@ -690,7 +685,7 @@ hover:opacity-90
               Payment could not be completed
             </p>
 
-            <div className="mt-6 w-full max-w-137.5 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+            <div className="max-w-137.5 mt-6 w-full rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
               <h3 className="text-secondary text-lg font-semibold">Payment Failed</h3>
 
               <p className="mt-2 text-[15px] font-semibold leading-5 text-black/50">
@@ -735,7 +730,7 @@ hover:opacity-90
               </div>
             </div>
 
-            <div className="mt-4 grid w-full max-w-137.5 grid-cols-2 gap-4">
+            <div className="max-w-137.5 mt-4 grid w-full grid-cols-2 gap-4">
               <button
                 onClick={() => setPaymentStatus("payment")}
                 className="
@@ -774,7 +769,7 @@ hover:opacity-90
             </div>
 
             {/* Support */}
-            <div className="mt-6 w-full max-w-120 border-t border-gray-100 pt-6 text-center">
+            <div className="max-w-120 mt-6 w-full border-t border-gray-100 pt-6 text-center">
               <p className="flex items-center justify-center gap-2 text-sm text-gray-700">
                 <Headphones size={20} strokeWidth={2} className="text-primary" />
 

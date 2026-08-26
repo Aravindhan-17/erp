@@ -108,11 +108,12 @@ const inventoryItems = [
 ];
 
 export function InventoryClient() {
-  const [adjustingStockProduct, setAdjustingStockProduct] = useState<typeof inventoryItems[0] | null>(null);
+  const [adjustingStockProduct, setAdjustingStockProduct] = useState<
+    (typeof inventoryItems)[0] | null
+  >(null);
 
   return (
-    <div className="min-w-0 overflow-x-hidden font-poppins">
-
+    <div className="font-poppins min-w-0 overflow-x-hidden">
       {/* ================= HEADER ================= */}
       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
         <div>
@@ -126,7 +127,7 @@ export function InventoryClient() {
         </div>
 
         {/* Category Dropdown */}
-        <div className="relative w-full sm:w-45">
+        <div className="sm:w-45 relative w-full">
           <select
             defaultValue="Electronics"
             className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-4 py-3 pr-10 text-sm font-medium text-gray-600 shadow-sm outline-none transition-all hover:border-gray-300 focus:border-[#6734ed] focus:ring-2 focus:ring-[#6734ed]/10"
@@ -137,14 +138,16 @@ export function InventoryClient() {
             <option value="Furniture">Furniture</option>
             <option value="Beauty">Beauty</option>
           </select>
-          <ChevronDown size={17} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-500" />
+          <ChevronDown
+            size={17}
+            className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+          />
         </div>
       </div>
 
       <div className="mt-6 w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
-        <div className="max-h-150 w-full overflow-x-auto overflow-y-auto hide-scrollbar">
-          <table className="w-full min-w-300 border-collapse">
-
+        <div className="max-h-150 hide-scrollbar w-full overflow-x-auto overflow-y-auto">
+          <table className="min-w-300 w-full border-collapse">
             {/* Column widths */}
             <colgroup>
               <col className="w-76.25" />
@@ -161,27 +164,50 @@ export function InventoryClient() {
             {/* ================= TABLE HEADER ================= */}
             <thead className="sticky top-0 z-10 bg-white">
               <tr className="border-b border-gray-200">
-                <th className="px-4 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Product</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">SKU</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">On Hand</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Reserved</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Available</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Alert At</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Status</th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">Last Updated</th>
-                <th className="px-3 py-4 text-center text-[12px] font-bold uppercase tracking-wide text-gray-400">Actions</th>
+                <th className="px-4 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Product
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  SKU
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  On Hand
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Reserved
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Available
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Alert At
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Status
+                </th>
+                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Last Updated
+                </th>
+                <th className="px-3 py-4 text-center text-[12px] font-bold uppercase tracking-wide text-gray-400">
+                  Actions
+                </th>
               </tr>
             </thead>
 
             {/* ================= TABLE BODY ================= */}
             <tbody>
               {inventoryItems.map((item) => (
-                <tr key={item.id} className="border-b border-gray-100 transition-colors hover:bg-primary/5">
+                <tr
+                  key={item.id}
+                  className="hover:bg-primary/5 border-b border-gray-100 transition-colors"
+                >
                   <td className="px-4 py-3 sm:px-6">
                     <p className="text-sm font-semibold text-gray-800">{item.product}</p>
                   </td>
                   <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-medium text-gray-600">{item.sku}</span>
+                    <span className="whitespace-nowrap text-xs font-medium text-gray-600">
+                      {item.sku}
+                    </span>
                   </td>
                   <td className="px-3 py-3">
                     <span className="text-sm font-medium text-gray-700">{item.onHand}</span>
@@ -190,7 +216,9 @@ export function InventoryClient() {
                     <span className="text-sm font-medium text-gray-700">{item.reserved}</span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className={`text-sm font-medium ${item.available <= item.alertAt ? "text-red-500" : "text-gray-700"}`}>
+                    <span
+                      className={`text-sm font-medium ${item.available <= item.alertAt ? "text-red-500" : "text-gray-700"}`}
+                    >
                       {item.available}
                     </span>
                   </td>
@@ -198,12 +226,16 @@ export function InventoryClient() {
                     <span className="text-sm font-medium text-gray-700">{item.alertAt}</span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${item.status === "Low stock" ? "bg-red-50 text-red-500" : "bg-primary/10 text-primary"}`}>
+                    <span
+                      className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${item.status === "Low stock" ? "bg-red-50 text-red-500" : "bg-primary/10 text-primary"}`}
+                    >
                       {item.status}
                     </span>
                   </td>
                   <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-medium text-gray-400">Just now</span>
+                    <span className="whitespace-nowrap text-xs font-medium text-gray-400">
+                      Just now
+                    </span>
                   </td>
                   <td className="px-3 py-3">
                     <div className="flex justify-center">
@@ -211,7 +243,7 @@ export function InventoryClient() {
                         type="button"
                         onClick={() => setAdjustingStockProduct(item)}
                         title="Edit inventory"
-                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+                        className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all"
                       >
                         <Pencil size={15} />
                       </button>
@@ -220,7 +252,6 @@ export function InventoryClient() {
                 </tr>
               ))}
             </tbody>
-
           </table>
         </div>
       </div>
@@ -233,28 +264,40 @@ export function InventoryClient() {
         maxWidth="xl"
       >
         {adjustingStockProduct && (
-          <form className="mt-2 space-y-6" onSubmit={(e) => { e.preventDefault(); setAdjustingStockProduct(null); }}>
-            
+          <form
+            className="mt-2 space-y-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setAdjustingStockProduct(null);
+            }}
+          >
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {/* On-hand stock */}
               <div>
-                <label htmlFor="onHandStock" className="mb-2 block text-sm font-semibold text-gray-700">On-hand stock</label>
+                <label
+                  htmlFor="onHandStock"
+                  className="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  On-hand stock
+                </label>
                 <input
                   type="number"
                   id="onHandStock"
                   defaultValue={adjustingStockProduct.onHand}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                  className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 />
               </div>
 
               {/* Low-stock alert at */}
               <div>
-                <label htmlFor="alertAt" className="mb-2 block text-sm font-semibold text-gray-700">Low-stock alert at</label>
+                <label htmlFor="alertAt" className="mb-2 block text-sm font-semibold text-gray-700">
+                  Low-stock alert at
+                </label>
                 <input
                   type="number"
                   id="alertAt"
                   defaultValue={adjustingStockProduct.alertAt}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+                  className="focus:border-primary focus:ring-primary/10 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-sm text-gray-900 outline-none transition focus:bg-white focus:ring-4"
                 />
               </div>
             </div>
@@ -277,7 +320,6 @@ export function InventoryClient() {
           </form>
         )}
       </Modal>
-
     </div>
   );
 }

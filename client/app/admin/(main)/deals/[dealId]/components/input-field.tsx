@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { CalendarDays } from "lucide-react";
 
 export function InputField({
@@ -18,9 +18,7 @@ export function InputField({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-[11px] font-bold text-gray-700">
-        {label}
-      </label>
+      <label className="mb-1 block text-[11px] font-bold text-gray-700">{label}</label>
 
       <div className="relative">
         <input
@@ -30,6 +28,8 @@ export function InputField({
           defaultValue={defaultValue}
           onChange={(e) => onChange?.(e.target.value)}
           className="
+            focus:border-primary/50
+            focus:ring-primary/20
             h-9
             w-full
             rounded-lg
@@ -42,9 +42,7 @@ export function InputField({
             outline-none
             transition
             placeholder:text-gray-400
-            focus:border-primary/50
             focus:ring-2
-            focus:ring-primary/20
           "
         />
 

@@ -1,4 +1,3 @@
-
 export function DealHeader() {
   return (
     <div className="mb-5 flex flex-col justify-between gap-4 lg:flex-row lg:items-start">
@@ -20,7 +19,7 @@ export function DealHeader() {
         </button>
         <button
           type="button"
-          className="rounded-xl bg-primary hover:bg-primary-hover px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-primary/20 transition hover:opacity-90"
+          className="bg-primary hover:bg-primary-hover shadow-primary/20 rounded-xl px-5 py-2.5 text-sm font-bold text-white shadow-md transition hover:opacity-90"
         >
           Save deal
         </button>

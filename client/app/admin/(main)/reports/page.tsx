@@ -70,11 +70,9 @@ const stats = [
 
 export default function FinancePage() {
   return (
-    <div className="min-w-0 overflow-x-hidden font-poppins">
-
+    <div className="font-poppins min-w-0 overflow-x-hidden">
       {/* HEADER */}
       <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
             Reports
@@ -87,11 +85,10 @@ export default function FinancePage() {
 
         {/* Header Actions */}
         <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-
-         {/* Date Dropdown */}
-<button
-  type="button"
-  className="
+          {/* Date Dropdown */}
+          <button
+            type="button"
+            className="
     flex
     h-11
     w-full
@@ -110,19 +107,13 @@ export default function FinancePage() {
     hover:border-gray-300
     sm:w-[170px]
   "
->
-  <CalendarDays
-    size={17}
-    className="text-primary"
-  />
+          >
+            <CalendarDays size={17} className="text-primary" />
 
-  <span>Last 7 days</span>
+            <span>Last 7 days</span>
 
-  <ChevronDown
-    size={16}
-    className="ml-auto text-gray-400"
-  />
-</button>
+            <ChevronDown size={16} className="ml-auto text-gray-400" />
+          </button>
 
           {/* Export */}
           <button
@@ -153,15 +144,11 @@ export default function FinancePage() {
 
             <Download size={16} />
           </button>
-
         </div>
-
       </div>
-
 
       {/* STAT CARDS */}
       <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-
         {stats.map((stat) => {
           const Icon = stat.icon;
 
@@ -175,16 +162,14 @@ export default function FinancePage() {
                 bg-white
                 p-5
                 shadow-[0_4px_20px_rgba(30,20,80,0.04)]
-                sm:p-6
-                transition 
-                duration-200   
+                transition
+                duration-200 
                 hover:-translate-y-0.5   
-                hover:shadow-[0_8px_25px_rgba(30,20,80,0.07)] 
+                hover:shadow-[0_8px_25px_rgba(30,20,80,0.07)]   
+                sm:p-6 
               "
             >
-
               <div className="flex items-start justify-between gap-4">
-
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
                     {stat.title}
@@ -209,37 +194,22 @@ export default function FinancePage() {
                 >
                   <Icon size={23} />
                 </div>
-
               </div>
 
               <div className="mt-5 flex items-center gap-1.5 text-sm">
+                <ArrowUpRight size={17} className="text-emerald-500" />
 
-                <ArrowUpRight
-                  size={17}
-                  className="text-emerald-500"
-                />
+                <span className="font-semibold text-emerald-500">{stat.growth}</span>
 
-                <span className="font-semibold text-emerald-500">
-                  {stat.growth}
-                </span>
-
-                <span className="text-gray-500">
-                  vs previous 7 days
-                </span>
-
+                <span className="text-gray-500">vs previous 7 days</span>
               </div>
-
             </div>
           );
         })}
-
       </div>
-
 
       {/* MAIN REPORT CARDS */}
       <div className="mt-7 grid grid-cols-1 gap-5 xl:grid-cols-3">
-
-
         {/* REVENUE BY DEAL */}
         <div
           className="
@@ -252,13 +222,9 @@ export default function FinancePage() {
             sm:p-6
           "
         >
-
           {/* Card Header */}
           <div className="flex  items-center justify-between">
-
-            <h2 className="text-base font-bold text-gray-900">
-              Revenue by deal
-            </h2>
+            <h2 className="text-base font-bold text-gray-900">Revenue by deal</h2>
 
             <div
               className="
@@ -273,31 +239,26 @@ export default function FinancePage() {
             >
               <BarChart3 size={21} />
             </div>
-
           </div>
 
-
           {/* Donut + Details */}
-          <div className="min-h-[200px] mt-8 flex flex-col items-center gap-6 sm:flex-row">
-
+          <div className="mt-8 flex min-h-[200px] flex-col items-center gap-6 sm:flex-row">
             {/* Donut */}
             <div
               className="
-                relative
-                flex
                 h-34
                 w-34
+                relative
+                flex
                 shrink-0
                 items-center
                 justify-center
                 rounded-full
               "
               style={{
-                background:
-                  "conic-gradient(#5b2be0 0deg 218deg, #e65aad 218deg 360deg)",
+                background: "conic-gradient(#5b2be0 0deg 218deg, #e65aad 218deg 360deg)",
               }}
             >
-
               <div
                 className="
                   flex
@@ -309,74 +270,41 @@ export default function FinancePage() {
                   bg-white
                 "
               >
-                <span className="text-xs font-medium text-gray-400">
-                  Revenue
-                </span>
+                <span className="text-xs font-medium text-gray-400">Revenue</span>
               </div>
-
             </div>
-
 
             {/* Revenue Details */}
             <div className="w-full space-y-6">
-
               <div className="flex items-start gap-3">
-
                 <span className="mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full bg-[#5b2be0]" />
 
                 <div className="min-w-0">
-
-                  <p className="text-sm font-medium text-gray-800">
-                    Monsoon Electronics Sale
-                  </p>
+                  <p className="text-sm font-medium text-gray-800">Monsoon Electronics Sale</p>
 
                   <div className="mt-1 flex items-center justify-between gap-4">
+                    <span className="text-sm font-semibold text-gray-900">₹21,48,000</span>
 
-                    <span className="text-sm font-semibold text-gray-900">
-                      ₹21,48,000
-                    </span>
-
-                    <span className="text-xs text-gray-400">
-                      60.6%
-                    </span>
-
+                    <span className="text-xs text-gray-400">60.6%</span>
                   </div>
-
                 </div>
-
               </div>
 
-
               <div className="flex items-start gap-3">
-
                 <span className="mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full bg-pink-400" />
 
                 <div className="min-w-0">
-
-                  <p className="text-sm font-medium text-gray-800">
-                    Office Essentials Clearance
-                  </p>
+                  <p className="text-sm font-medium text-gray-800">Office Essentials Clearance</p>
 
                   <div className="mt-1 flex items-center justify-between gap-4">
+                    <span className="text-sm font-semibold text-gray-900">₹13,82,000</span>
 
-                    <span className="text-sm font-semibold text-gray-900">
-                      ₹13,82,000
-                    </span>
-
-                    <span className="text-xs text-gray-400">
-                      39.4%
-                    </span>
-
+                    <span className="text-xs text-gray-400">39.4%</span>
                   </div>
-
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
 
           {/* Total Revenue */}
           <div
@@ -390,17 +318,11 @@ export default function FinancePage() {
               pt-5
             "
           >
-            <span className="text-sm font-medium text-primary">
-              Total Revenue
-            </span>
+            <span className="text-primary text-sm font-medium">Total Revenue</span>
 
-            <span className="text-lg font-semibold text-primary">
-              ₹35,30,000
-            </span>
+            <span className="text-primary text-lg font-semibold">₹35,30,000</span>
           </div>
-
         </div>
-
 
         {/* TOP SELLING PRODUCTS */}
         <div
@@ -414,13 +336,9 @@ export default function FinancePage() {
             sm:p-6
           "
         >
-
           {/* Header */}
           <div className="flex items-center justify-between">
-
-            <h2 className="text-base font-bold text-gray-900">
-              Top-selling products
-            </h2>
+            <h2 className="text-base font-bold text-gray-900">Top-selling products</h2>
 
             <div
               className="
@@ -435,15 +353,11 @@ export default function FinancePage() {
             >
               <ShoppingBag size={21} />
             </div>
-
           </div>
-
 
           {/* Products */}
           <div className="mt-4">
-
             {topProducts.map((product) => (
-
               <div
                 key={product.name}
                 className="
@@ -456,26 +370,19 @@ export default function FinancePage() {
                   last:border-b-0
                 "
               >
-                <p className="min-w-0 flex-1 truncate text-sm text-gray-700">
-                  {product.name}
-                </p>
+                <p className="min-w-0 flex-1 truncate text-sm text-gray-700">{product.name}</p>
 
-
-                <span className="shrink-0 text-sm font-semibold text-primary">
-                  {product.sold}
-                </span>
-
+                <span className="text-primary shrink-0 text-sm font-semibold">{product.sold}</span>
               </div>
-
             ))}
-
           </div>
-
 
           {/* View Products */}
           <button
             type="button"
             className="
+              text-primary
+              hover:bg-primary/5
               mt-4
               flex
               h-11
@@ -483,26 +390,21 @@ export default function FinancePage() {
               items-center
               justify-between
               gap-2
-              px-5
               rounded-xl
               border
               border-gray-200
               bg-white
+              px-5
               text-sm
               font-medium
-              text-primary
               transition
-              hover:bg-primary/5
             "
           >
             <span>View all products</span>
 
             <ChevronRight size={17} />
-
           </button>
-
         </div>
-
 
         {/* CART EXPIRY RATE */}
         <div
@@ -516,13 +418,9 @@ export default function FinancePage() {
             sm:p-6
           "
         >
-
           {/* Header */}
           <div className="flex items-center justify-between">
-
-            <h2 className="text-base font-bold text-gray-900">
-              Cart expiry rate
-            </h2>
+            <h2 className="text-base font-bold text-gray-900">Cart expiry rate</h2>
 
             <div
               className="
@@ -537,9 +435,7 @@ export default function FinancePage() {
             >
               <Timer size={21} />
             </div>
-
           </div>
-
 
           {/* Percentage */}
           <div
@@ -552,23 +448,20 @@ export default function FinancePage() {
               text-center
             "
           >
-
-            <p className="text-4xl font-semibold text-red-500 sm:text-5xl">
-              14.2%
-            </p>
+            <p className="text-4xl font-semibold text-red-500 sm:text-5xl">14.2%</p>
 
             <p className="mt-5 max-w-[330px] text-[13px] leading-6 text-gray-500">
-              of reserved carts expired unpaid in the last 7 days,
-              releasing stock back to deal inventory.
+              of reserved carts expired unpaid in the last 7 days, releasing stock back to deal
+              inventory.
             </p>
-
           </div>
-
 
           {/* Insights */}
           <button
             type="button"
             className="
+              text-primary
+              hover:bg-primary/5
               flex
               h-11
               w-full
@@ -581,21 +474,15 @@ export default function FinancePage() {
               px-4
               text-sm
               font-medium
-              text-primary
               transition
-              hover:bg-primary/5
             "
           >
             <span>View cart insights</span>
 
             <ChevronRight size={17} />
-
           </button>
-
         </div>
-
       </div>
-
     </div>
   );
 }

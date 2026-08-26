@@ -49,10 +49,7 @@ const products: Product[] = [
 
 export default function CreateDealPage() {
   const [previewMode, setPreviewMode] = useState<"desktop" | "mobile">("mobile");
-  const [selectedProducts, setSelectedProducts] = useState<Product[]>([
-    products[0],
-    products[1],
-  ]);
+  const [selectedProducts, setSelectedProducts] = useState<Product[]>([products[0], products[1]]);
   const [dealTitle, setDealTitle] = useState("");
   const [dealSubtitle, setDealSubtitle] = useState("");
 
@@ -60,16 +57,14 @@ export default function CreateDealPage() {
     const exists = selectedProducts.some((item) => item.id === product.id);
 
     if (exists) {
-      setSelectedProducts((current) =>
-        current.filter((item) => item.id !== product.id)
-      );
+      setSelectedProducts((current) => current.filter((item) => item.id !== product.id));
     } else {
       setSelectedProducts((current) => [...current, product]);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f8fc] font-poppins text-gray-900">
+    <div className="font-poppins min-h-screen bg-[#f8f8fc] text-gray-900">
       <DealHeader />
 
       {/* MAIN GRID */}

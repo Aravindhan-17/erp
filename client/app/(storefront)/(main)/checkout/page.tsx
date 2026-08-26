@@ -126,7 +126,14 @@ interface CheckoutFormViewProps {
   onPlaceOrder: () => void;
 }
 
-function CheckoutFormView({ cartItems, subtotal, shipping, tax, total, onPlaceOrder }: CheckoutFormViewProps) {
+function CheckoutFormView({
+  cartItems,
+  subtotal,
+  shipping,
+  tax,
+  total,
+  onPlaceOrder,
+}: CheckoutFormViewProps) {
   const {
     register,
     handleSubmit,
@@ -637,7 +644,16 @@ function SuccessView({ cartItems, subtotal, shipping, tax, total, orderNumber }:
               Order Items
             </h2>
             <div className="space-y-6">
-              {(cartItems as { id: string; image: string; name: string; quantity: number; flashPrice?: number; originalPrice: number }[]).map((item) => (
+              {(
+                cartItems as {
+                  id: string;
+                  image: string;
+                  name: string;
+                  quantity: number;
+                  flashPrice?: number;
+                  originalPrice: number;
+                }[]
+              ).map((item) => (
                 <div key={item.id} className="flex items-center gap-4">
                   <div className="relative h-16 w-16 shrink-0 rounded-xl border border-gray-100 bg-white p-2">
                     <Image

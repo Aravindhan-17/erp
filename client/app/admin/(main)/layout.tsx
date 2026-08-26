@@ -98,9 +98,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           aria-label="Close sidebar"
           onClick={closeSidebar}
           className="
+            z-55
             fixed
             inset-0
-            z-55
             bg-black/50
             backdrop-blur-[2px]
             lg:hidden
@@ -110,15 +110,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       <aside
         className={`
+          z-60
+          w-67.5
+          bg-linear-to-b
           fixed
           left-0
           top-0
-          z-60
           flex
           h-screen
-          w-67.5
           flex-col
-          bg-linear-to-b
           from-[#24005f]
           via-[#27006d]
           to-[#16003e]
@@ -133,7 +133,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        <div className="flex h-18 shrink-0 items-center justify-between border-b border-white/10 px-6">
+        <div className="h-18 flex shrink-0 items-center justify-between border-b border-white/10 px-6">
           <Link href="/admin" onClick={closeSidebar} className="flex items-center gap-3">
             <Image
               src={ErpLogoWhite}
@@ -176,9 +176,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   href={item.href}
                   onClick={closeSidebar}
                   className={`
+                    min-h-11.5
                     group
                     flex
-                    min-h-11.5
                     items-center
                     gap-3
                     rounded-xl
@@ -192,7 +192,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     ${
                       active
                         ? "bg-primary text-white shadow-md"
-                        : "text-purple-100 hover:bg-primary/50 hover:text-white"
+                        : "hover:bg-primary/50 text-purple-100 hover:text-white"
                     }
                   `}
                 >
@@ -222,9 +222,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               href="/admin/settings"
               onClick={closeSidebar}
               className={`
+                min-h-11.5
                 group
                 flex
-                min-h-11.5
                 items-center
                 gap-3
                 rounded-xl
@@ -237,7 +237,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 ${
                   isActive("/admin/settings")
                     ? "bg-primary text-white shadow-md"
-                    : "text-purple-100 hover:bg-primary/50 hover:text-white"
+                    : "hover:bg-primary/50 text-purple-100 hover:text-white"
                 }
               `}
             >
@@ -248,7 +248,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         </div>
         <div className="shrink-0 border-t border-white/10 p-4">
-
           <button
             type="button"
             className="
@@ -275,14 +274,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </aside>
 
-      <div className="min-h-screen lg:ml-67.5">
-
+      <div className="lg:ml-67.5 min-h-screen">
         <header
           className="
+            h-18
             sticky
             top-0
             z-40
-            h-18
             border-b
             border-gray-200
             bg-white/95
@@ -290,7 +288,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           "
         >
           <div className="flex h-full items-center justify-between gap-3 px-4 sm:px-5 md:px-7">
-
             <div className="flex min-w-0 items-center gap-3 md:gap-6">
               <button
                 type="button"
@@ -325,9 +322,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
               <div
                 className="
+                  w-75
+                  lg:w-95
+                  xl:w-105
                   hidden
                   h-10
-                  w-75
                   items-center
                   gap-3
                   rounded-xl
@@ -336,8 +335,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   bg-white
                   px-3.5
                   md:flex
-                  lg:w-95
-                  xl:w-105
                 "
               >
                 <Search size={18} className="shrink-0 text-gray-400" />
@@ -380,12 +377,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                 <span
                   className="
-                    absolute
                     -right-0.75
-                    -top-1
-                    flex
                     h-4.5
                     min-w-4.5
+                    absolute
+                    -top-1
+                    flex
                     items-center
                     justify-center
                     rounded-full
@@ -464,13 +461,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
               <div
                 className="
+                  bg-primary
+                  hover:bg-primary-hover
                   flex
                   h-9
                   items-center
                   justify-center
                   rounded-full
-                  bg-primary
-                  hover:bg-primary-hover
                   px-4
                   text-xs
                   font-semibold

@@ -185,8 +185,8 @@ export default function ProfilePage() {
               <div className="flex flex-1 flex-col justify-between p-6">
                 <div>
                   <p className="mb-4 text-sm text-gray-500">
-                    Add an extra layer of security to your account. We&apos;ll ask for a code in addition
-                    to your password.
+                    Add an extra layer of security to your account. We&apos;ll ask for a code in
+                    addition to your password.
                   </p>
                   <div className="mb-4 flex items-center justify-between rounded-xl border border-gray-200 p-4">
                     <div className="flex items-center gap-3">

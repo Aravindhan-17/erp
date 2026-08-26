@@ -122,11 +122,9 @@ const activityDot: Record<string, string> = {
 
 export default function MonitorPage() {
   return (
-    <div className="min-w-0 overflow-x-hidden font-poppins">
-
+    <div className="font-poppins min-w-0 overflow-x-hidden">
       {/* HEADER */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
             Live deal monitor
@@ -159,12 +157,9 @@ export default function MonitorPage() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
           </span>
-
           LIVE — Monsoon Electronics Sale
         </div>
-
       </div>
-
 
       {/* STAT CARDS */}
       <div
@@ -177,7 +172,6 @@ export default function MonitorPage() {
           lg:grid-cols-6
         "
       >
-
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -204,9 +198,7 @@ export default function MonitorPage() {
             </p>
           </div>
         ))}
-
       </div>
-
 
       {/* MAIN CONTENT */}
       <div
@@ -218,7 +210,6 @@ export default function MonitorPage() {
           xl:grid-cols-[1.45fr_1fr]
         "
       >
-
         {/* PRODUCT INVENTORY */}
         <section
           className="
@@ -231,25 +222,17 @@ export default function MonitorPage() {
             shadow-[0_3px_15px_rgba(30,20,80,0.035)]
           "
         >
-
           <div className="px-5 pb-3 pt-5 sm:px-7">
-
             <h2 className="text-base font-bold text-gray-900 sm:text-lg">
               Product-level inventory
             </h2>
-
           </div>
 
-
           {/* Table */}
-          <div className="w-full overflow-x-auto hide-scrollbar">
-
-            <table className="w-full min-w-180 border-collapse">
-
+          <div className="hide-scrollbar w-full overflow-x-auto">
+            <table className="min-w-180 w-full border-collapse">
               <thead>
-
                 <tr className="border-b border-gray-100">
-
                   <th className="w-52.5 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-7">
                     Product
                   </th>
@@ -281,63 +264,50 @@ export default function MonitorPage() {
                   <th className="px-5 py-3 text-right text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-7">
                     Revenue
                   </th>
-
                 </tr>
-
               </thead>
 
-
               <tbody>
-
                 {products.map((product) => (
                   <tr
                     key={product.name}
                     className="
+                      hover:bg-primary/5
                       border-b
                       border-gray-100
-                      last:border-b-0
                       transition
-                      hover:bg-primary/5
+                      last:border-b-0
                     "
                   >
-
                     {/* Product */}
                     <td className="px-5 py-3 sm:px-5">
-
                       <p className="max-w-50 text-xs font-bold leading-5 text-gray-800">
                         {product.name}
                       </p>
-
                     </td>
-
 
                     {/* Opening */}
                     <td className="px-3 py-5 text-center text-xs font-medium text-gray-700">
                       {product.opening}
                     </td>
 
-
                     {/* Sold */}
                     <td className="px-3 py-5 text-center text-xs font-medium text-gray-700">
                       {product.sold}
                     </td>
-
 
                     {/* Reserved */}
                     <td className="px-3 py-5 text-center text-xs font-medium text-gray-700">
                       {product.reserved}
                     </td>
 
-
                     {/* Available */}
                     <td className="px-3 py-5 text-center text-xs font-medium text-gray-700">
                       {product.available}
                     </td>
 
-
                     {/* Status */}
                     <td className="px-3 py-5 text-center">
-
                       <span
                         className={`
                           inline-flex
@@ -349,39 +319,30 @@ export default function MonitorPage() {
                           font-semibold
                           ${
                             product.status === "In stock"
-                              ? "bg-emerald-50 text-emerald-600 font-semibold"
-                              : "bg-red-50 text-red-500 font-semibold"
+                              ? "bg-emerald-50 font-semibold text-emerald-600"
+                              : "bg-red-50 font-semibold text-red-500"
                           }
                         `}
                       >
                         {product.status}
                       </span>
-
                     </td>
-
 
                     {/* Orders */}
                     <td className="px-3 py-5 text-center text-xs font-medium text-gray-700">
                       {product.orders}
                     </td>
 
-
                     {/* Revenue */}
                     <td className="px-5 py-5 text-right text-xs font-semibold text-gray-800 sm:px-7">
                       {product.revenue}
                     </td>
-
                   </tr>
                 ))}
-
               </tbody>
-
             </table>
-
           </div>
-
         </section>
-
 
         {/* LIVE ACTIVITY FEED */}
         <section
@@ -395,21 +356,15 @@ export default function MonitorPage() {
             shadow-[0_3px_15px_rgba(30,20,80,0.035)]
           "
         >
-
           {/* Header */}
           <div className="flex items-center justify-between px-5 pb-3 pt-5 sm:px-6">
-
-            <h2 className="text-base font-bold text-gray-900 sm:text-lg">
-              Live activity feed
-            </h2>
+            <h2 className="text-base font-bold text-gray-900 sm:text-lg">Live activity feed</h2>
 
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
             </span>
-
           </div>
-
 
           {/* Activity List */}
           <div
@@ -422,7 +377,6 @@ export default function MonitorPage() {
               sm:px-6
             "
           >
-
             {activities.map((activity, index) => (
               <div
                 key={`${activity.text}-${index}`}
@@ -435,10 +389,8 @@ export default function MonitorPage() {
                   last:border-b-0
                 "
               >
-
                 {/* Dot */}
                 <div className="pt-1.5">
-
                   <span
                     className={`
                       block
@@ -448,32 +400,19 @@ export default function MonitorPage() {
                       ${activityDot[activity.type]}
                     `}
                   />
-
                 </div>
-
 
                 {/* Content */}
                 <div className="min-w-0">
+                  <p className="text-xs font-medium leading-5 text-gray-800">{activity.text}</p>
 
-                  <p className="text-xs font-medium leading-5 text-gray-800">
-                    {activity.text}
-                  </p>
-
-                  <p className="mt-0.5 text-[11px] text-gray-400">
-                    {activity.time}
-                  </p>
-
+                  <p className="mt-0.5 text-[11px] text-gray-400">{activity.time}</p>
                 </div>
-
               </div>
             ))}
-
           </div>
-
         </section>
-
       </div>
-
     </div>
   );
 }

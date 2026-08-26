@@ -1,14 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { forgotPasswordSchema, type ForgotPasswordFormData } from "@/lib/validations/auth";
 
 export function ForgotPasswordForm() {
-  const [email, setEmail] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ForgotPasswordFormData>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  const onSubmit = (data: ForgotPasswordFormData) => {
+    console.log("Forgot password data:", data);
+  };
 
   return (
     <form
       className="flex w-full flex-col items-center gap-4 lg:gap-6"
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit(onSubmit)}
     >
       {/* Field layout */}
       <div className="flex w-full flex-col gap-4 lg:gap-5">
@@ -22,12 +37,17 @@ export function ForgotPasswordForm() {
           <input
             id="email"
             type="email"
-            required
             placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="focus:ring-primary h-10 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11"
+            {...register("email")}
+            className={` h-10 w-full rounded-lg border bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11 ${
+              errors.email
+                ? "border-red-500 focus:ring-red-500"
+                : "focus:ring-primary border-black/25"
+            }`}
           />
+          {errors.email && (
+            <span className="font-['Poppins'] text-xs text-red-500">{errors.email.message}</span>
+          )}
         </div>
       </div>
 

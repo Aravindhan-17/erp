@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Image as ImageIcon, X, Plus } from "lucide-react";
 
 export interface Product {
@@ -14,13 +14,15 @@ interface ProductSelectionProps {
   toggleProduct: (product: Product) => void;
 }
 
-export function ProductSelection({ products, selectedProducts, toggleProduct }: ProductSelectionProps) {
+export function ProductSelection({
+  products,
+  selectedProducts,
+  toggleProduct,
+}: ProductSelectionProps) {
   return (
     <section className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
       <div className="mb-3">
-        <h2 className="text-lg font-bold text-gray-800">
-          Product selection
-        </h2>
+        <h2 className="text-lg font-bold text-gray-800">Product selection</h2>
         <p className="text-sm text-gray-500">
           Pick products from the catalog to include in this deal.
         </p>
@@ -42,15 +44,11 @@ export function ProductSelection({ products, selectedProducts, toggleProduct }: 
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-gray-100">
                   <ImageIcon size={14} className="text-gray-400" />
                 </div>
-                <span className="truncate text-xs font-semibold text-gray-700">
-                  {product.name}
-                </span>
+                <span className="truncate text-xs font-semibold text-gray-700">{product.name}</span>
               </div>
 
               <div className="ml-3 flex shrink-0 items-center gap-3">
-                <span className="text-xs font-bold text-gray-700">
-                  {product.price}
-                </span>
+                <span className="text-xs font-bold text-gray-700">{product.price}</span>
                 <button
                   type="button"
                   onClick={() => toggleProduct(product)}
@@ -66,9 +64,7 @@ export function ProductSelection({ products, selectedProducts, toggleProduct }: 
 
       {/* Catalog */}
       <div className="mt-4">
-        <p className="mb-1.5 text-[14px] font-bold text-gray-700">
-          Add from catalog
-        </p>
+        <p className="mb-1.5 text-[14px] font-bold text-gray-700">Add from catalog</p>
 
         <div className="max-h-55 overflow-y-auto rounded-lg border border-gray-100">
           {products.map((product) => {
@@ -85,12 +81,8 @@ export function ProductSelection({ products, selectedProducts, toggleProduct }: 
                   </div>
 
                   <div className="min-w-0">
-                    <p className="truncate text-xs font-semibold text-gray-700">
-                      {product.name}
-                    </p>
-                    <p className="text-[10px] text-gray-400">
-                      {product.price} • Electronics
-                    </p>
+                    <p className="truncate text-xs font-semibold text-gray-700">{product.name}</p>
+                    <p className="text-[10px] text-gray-400">{product.price} • Electronics</p>
                   </div>
                 </div>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { PreviewInfo } from "./preview-info";
 
@@ -40,7 +40,7 @@ export function MobilePreview({
             ● STARTING SOON
           </div>
 
-          <div className="flex h-26.25 items-center justify-between overflow-hidden rounded-xl bg-linear-to-br from-[#1596af] via-[#20688c] to-[#283b73] px-4 text-white">
+          <div className="h-26.25 bg-linear-to-br flex items-center justify-between overflow-hidden rounded-xl from-[#1596af] via-[#20688c] to-[#283b73] px-4 text-white">
             <div>
               <p className="text-[9px] font-extrabold uppercase leading-tight">
                 HOME
@@ -57,13 +57,9 @@ export function MobilePreview({
 
         {/* Title */}
         <div className="px-4">
-          <h2 className="text-lg font-extrabold text-gray-900">
-            {title || "Untitled deal"}
-          </h2>
+          <h2 className="text-lg font-extrabold text-gray-900">{title || "Untitled deal"}</h2>
 
-          <p className="mt-1 text-[10px] text-gray-500">
-            {subtitle || "Limited time offer"}
-          </p>
+          <p className="mt-1 text-[10px] text-gray-500">{subtitle || "Limited time offer"}</p>
         </div>
 
         {/* Countdown */}
@@ -73,17 +69,10 @@ export function MobilePreview({
             ["14", "HR"],
             ["32", "MIN"],
           ].map(([number, label]) => (
-            <div
-              key={label}
-              className="text-center"
-            >
-              <p className="text-lg font-extrabold text-yellow-400">
-                {number}
-              </p>
+            <div key={label} className="text-center">
+              <p className="text-lg font-extrabold text-yellow-400">{number}</p>
 
-              <p className="text-[7px] text-gray-400">
-                {label}
-              </p>
+              <p className="text-[7px] text-gray-400">{label}</p>
             </div>
           ))}
         </div>
@@ -91,32 +80,18 @@ export function MobilePreview({
         {/* Deal details */}
         <div className="px-4 py-4">
           <div className="grid grid-cols-2 gap-x-5 gap-y-4">
-            <PreviewInfo
-              label="REG. FEE"
-              value="₹1"
-            />
+            <PreviewInfo label="REG. FEE" value="₹1" />
 
-            <PreviewInfo
-              label="MIN. ORDER"
-              value="₹5,000"
-            />
+            <PreviewInfo label="MIN. ORDER" value="₹5,000" />
 
-            <PreviewInfo
-              label="RESERVATION"
-              value="10 min"
-            />
+            <PreviewInfo label="RESERVATION" value="10 min" />
 
-            <PreviewInfo
-              label="MAX / ITEM"
-              value="3"
-            />
+            <PreviewInfo label="MAX / ITEM" value="3" />
           </div>
 
           {/* Products */}
           <div className="mt-5">
-            <p className="mb-3 text-xs font-bold text-gray-700">
-              PRODUCTS ({products.length})
-            </p>
+            <p className="mb-3 text-xs font-bold text-gray-700">PRODUCTS ({products.length})</p>
 
             <div className="grid grid-cols-2 gap-2">
               {products.slice(0, 2).map((product) => (
@@ -130,19 +105,14 @@ export function MobilePreview({
                   "
                 >
                   <div className="flex h-20 items-center justify-center rounded-md bg-gray-100">
-                    <ImageIcon
-                      size={23}
-                      className="text-gray-400"
-                    />
+                    <ImageIcon size={23} className="text-gray-400" />
                   </div>
 
                   <p className="mt-2 line-clamp-2 text-[9px] font-bold leading-tight text-gray-700">
                     {product.name}
                   </p>
 
-                  <p className="mt-1 text-[10px] font-extrabold text-primary">
-                    {product.price}
-                  </p>
+                  <p className="text-primary mt-1 text-[10px] font-extrabold">{product.price}</p>
                 </div>
               ))}
             </div>
@@ -152,10 +122,10 @@ export function MobilePreview({
           <button
             type="button"
             className="
+              bg-primary
+              hover:bg-primary-hover
               mt-4
-              w-full
-              rounded-full
-              bg-primary hover:bg-primary-hover
+              w-full rounded-full
               py-2.5
               text-xs
               font-extrabold

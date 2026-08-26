@@ -2,22 +2,40 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Eye } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { SocialAuth } from "../../components/social-auth";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerSchema, type RegisterFormData } from "@/lib/validations/auth";
 
 export function RegisterForm() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+
+  const onSubmit = (data: RegisterFormData) => {
+    console.log("Register data:", data);
+  };
 
   return (
     <form
       className="flex w-full flex-col items-center gap-4 lg:gap-6"
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit(onSubmit)}
     >
       {/* Field layout */}
       <div className="flex w-full flex-col gap-4 lg:gap-5">
@@ -32,12 +50,19 @@ export function RegisterForm() {
             <input
               id="firstName"
               type="text"
-              required
               placeholder="Enter your first name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              className="focus:ring-primary h-10 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11"
+              {...register("firstName")}
+              className={` h-10 w-full rounded-lg border bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11 ${
+                errors.firstName
+                  ? "border-red-500 focus:ring-red-500"
+                  : "focus:ring-primary border-black/25"
+              }`}
             />
+            {errors.firstName && (
+              <span className="font-['Poppins'] text-xs text-red-500">
+                {errors.firstName.message}
+              </span>
+            )}
           </div>
 
           <div className="flex w-full flex-col gap-2 lg:gap-2.5">
@@ -50,12 +75,19 @@ export function RegisterForm() {
             <input
               id="lastName"
               type="text"
-              required
               placeholder="Enter your last name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              className="focus:ring-primary h-10 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11"
+              {...register("lastName")}
+              className={` h-10 w-full rounded-lg border bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11 ${
+                errors.lastName
+                  ? "border-red-500 focus:ring-red-500"
+                  : "focus:ring-primary border-black/25"
+              }`}
             />
+            {errors.lastName && (
+              <span className="font-['Poppins'] text-xs text-red-500">
+                {errors.lastName.message}
+              </span>
+            )}
           </div>
 
           <div className="flex w-full flex-col gap-2 lg:gap-2.5">
@@ -68,12 +100,17 @@ export function RegisterForm() {
             <input
               id="email"
               type="email"
-              required
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="focus:ring-primary h-10 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11"
+              {...register("email")}
+              className={` h-10 w-full rounded-lg border bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11 ${
+                errors.email
+                  ? "border-red-500 focus:ring-red-500"
+                  : "focus:ring-primary border-black/25"
+              }`}
             />
+            {errors.email && (
+              <span className="font-['Poppins'] text-xs text-red-500">{errors.email.message}</span>
+            )}
           </div>
 
           <div className="flex w-full flex-col gap-2 lg:gap-2.5">
@@ -86,12 +123,17 @@ export function RegisterForm() {
             <input
               id="phone"
               type="tel"
-              required
               placeholder="Enter your mobile number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="focus:ring-primary h-10 w-full rounded-lg border border-black/25 bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11"
+              {...register("phone")}
+              className={` h-10 w-full rounded-lg border bg-white px-4 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 lg:h-11 ${
+                errors.phone
+                  ? "border-red-500 focus:ring-red-500"
+                  : "focus:ring-primary border-black/25"
+              }`}
             />
+            {errors.phone && (
+              <span className="font-['Poppins'] text-xs text-red-500">{errors.phone.message}</span>
+            )}
           </div>
 
           <div className="flex w-full flex-col gap-2 lg:gap-2.5">
@@ -104,15 +146,28 @@ export function RegisterForm() {
             <div className="relative h-10 w-full lg:h-11">
               <input
                 id="password"
-                type="password"
-                required
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="focus:ring-primary h-full w-full rounded-lg border border-black/25 bg-white pl-4 pr-12 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2"
+                {...register("password")}
+                className={` h-full w-full rounded-lg border bg-white pl-4 pr-12 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 ${
+                  errors.password
+                    ? "border-red-500 focus:ring-red-500"
+                    : "focus:ring-primary border-black/25"
+                }`}
               />
-              <Eye className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black/25" />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-black/25 transition-colors hover:text-black/50"
+              >
+                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              </button>
             </div>
+            {errors.password && (
+              <span className="font-['Poppins'] text-xs text-red-500">
+                {errors.password.message}
+              </span>
+            )}
           </div>
 
           <div className="flex w-full flex-col gap-2 lg:gap-2.5">
@@ -125,51 +180,71 @@ export function RegisterForm() {
             <div className="relative h-10 w-full lg:h-11">
               <input
                 id="confirmPassword"
-                type="password"
-                required
+                type={showConfirmPassword ? "text" : "password"}
                 placeholder="Re-enter your password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="focus:ring-primary h-full w-full rounded-lg border border-black/25 bg-white pl-4 pr-12 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2"
+                {...register("confirmPassword")}
+                className={` h-full w-full rounded-lg border bg-white pl-4 pr-12 font-['Poppins'] text-sm text-gray-900 placeholder:text-black/50 focus:outline-none focus:ring-2 ${
+                  errors.confirmPassword
+                    ? "border-red-500 focus:ring-red-500"
+                    : "focus:ring-primary border-black/25"
+                }`}
               />
-              <Eye className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black/25" />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-black/25 transition-colors hover:text-black/50"
+              >
+                {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              </button>
             </div>
+            {errors.confirmPassword && (
+              <span className="font-['Poppins'] text-xs text-red-500">
+                {errors.confirmPassword.message}
+              </span>
+            )}
           </div>
         </div>
 
-        <div className="mt-auto flex w-full items-start gap-2 pt-2 sm:items-center">
-          <div className="flex shrink-0 items-center justify-center">
-            <input
-              type="checkbox"
-              id="agree"
-              checked={agreeTerms}
-              onChange={(e) => setAgreeTerms(e.target.checked)}
-              className="text-primary focus:ring-primary h-4 w-4 cursor-pointer rounded border border-black/25 bg-white lg:h-5 lg:w-5"
-            />
+        <div className="mt-auto flex w-full flex-col items-start pt-2 sm:items-center">
+          <div className="flex w-full items-start gap-2">
+            <div className="flex shrink-0 items-center justify-center">
+              <input
+                type="checkbox"
+                id="agree"
+                {...register("agreeTerms")}
+                className={`text-primary h-4 w-4 cursor-pointer rounded border bg-white lg:h-5 lg:w-5 ${
+                  errors.agreeTerms
+                    ? "border-red-500 focus:ring-red-500"
+                    : "focus:ring-primary border-black/25"
+                }`}
+              />
+            </div>
+            <label htmlFor="agree" className="flex cursor-pointer flex-wrap items-center gap-1">
+              <span className="font-['Poppins'] text-xs font-semibold text-black sm:text-sm">
+                I agree to the
+              </span>
+              <Link
+                href="#"
+                className="text-primary hover:text-primary/90 font-['Poppins'] text-xs font-semibold underline transition-colors sm:text-sm"
+              >
+                Terms & Conditions
+              </Link>
+              <span className="font-['Poppins'] text-xs font-semibold text-black sm:text-sm">
+                and
+              </span>
+              <Link
+                href="#"
+                className="text-primary hover:text-primary/90 font-['Poppins'] text-xs font-semibold underline transition-colors sm:text-sm"
+              >
+                Privacy Policy
+              </Link>
+            </label>
           </div>
-          <label
-            htmlFor="agree"
-            className="flex cursor-pointer flex-wrap items-center gap-1"
-          >
-            <span className="font-['Poppins'] text-xs font-semibold text-black sm:text-sm">
-              I agree to the
+          {errors.agreeTerms && (
+            <span className="mt-1 font-['Poppins'] text-xs text-red-500 sm:ml-6">
+              {errors.agreeTerms.message}
             </span>
-            <Link
-              href="#"
-              className="text-primary hover:text-primary/90 font-['Poppins'] text-xs font-semibold underline transition-colors sm:text-sm"
-            >
-              Terms & Conditions
-            </Link>
-            <span className="font-['Poppins'] text-xs font-semibold text-black sm:text-sm">
-              and
-            </span>
-            <Link
-              href="#"
-              className="text-primary hover:text-primary/90 font-['Poppins'] text-xs font-semibold underline transition-colors sm:text-sm"
-            >
-              Privacy Policy
-            </Link>
-          </label>
+          )}
         </div>
       </div>
 
@@ -179,9 +254,7 @@ export function RegisterForm() {
         id="register-submit-btn"
         className="bg-primary hover:bg-primary/90 mt-2 flex h-10 w-full items-center justify-center rounded-lg shadow-md transition-all lg:mt-4 lg:h-11"
       >
-        <span className="font-['Poppins'] text-sm font-bold text-white sm:text-base">
-          Sign Up
-        </span>
+        <span className="font-['Poppins'] text-sm font-bold text-white sm:text-base">Sign Up</span>
       </button>
 
       <SocialAuth />
