@@ -7,7 +7,10 @@ describe('PrismaService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PrismaService, { provide: ConfigService, useValue: { get: jest.fn() } }],
+      providers: [
+        PrismaService,
+        { provide: ConfigService, useValue: { get: jest.fn() } },
+      ],
     }).compile();
 
     service = module.get<PrismaService>(PrismaService);

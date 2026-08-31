@@ -5,38 +5,41 @@ import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 
 @Injectable()
-export class AdminJwtRefreshStrategy extends PassportStrategy(
+export class CustomerJwtRefreshStrategy extends PassportStrategy(
   Strategy,
-  'admin-jwt-refresh',
+  'customer-jwt-refresh',
 ) {
   constructor(private configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
-          return request?.cookies?.admin_refresh_token as string | null;
+          return (request?.cookies as Record<string, string>)
+            ?.client_refresh_token;
         },
       ]),
       ignoreExpiration: false,
       secretOrKey:
         configService.get<string>('JWT_REFRESH_SECRET') ||
-        'supersecretrefreshjwtsecret',
+        'super-refresh-secret',
       passReqToCallback: true,
     });
   }
 
-  validate(req: Request, payload: Record<string, any>): Record<string, any> {
-    const refreshToken = (req.cookies as Record<string, string>)
-      ?.admin_refresh_token;
-    const sessionId = payload.sessionId as string;
+  validate(
+    request: Request,
+    payload: Record<string, any>,
+  ): Record<string, any> {
+    const refreshToken = (request?.cookies as Record<string, string>)
+      ?.client_refresh_token;
 
-    if (!refreshToken || !sessionId) {
-      throw new UnauthorizedException('Refresh token or session ID missing');
+    if (!refreshToken) {
+      throw new UnauthorizedException();
     }
 
     return {
       ...payload,
       refreshToken,
-      sessionId,
+      sessionId: payload.sessionId as string,
     };
   }
 }

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/unbound-method */
+/* eslint-disable @typescript-eslint/unbound-method */
 import { Test, TestingModule } from '@nestjs/testing';
 import { AdminAuthController } from './admin-auth.controller';
 import { AdminAuthService } from './admin-auth.service';
@@ -10,8 +10,9 @@ describe('AdminAuthController', () => {
   let controller: AdminAuthController;
   let authService: {
     validateAdmin: jest.Mock;
-    login: jest.Mock;
+    signIn: jest.Mock;
     logout: jest.Mock;
+    refreshTokens: jest.Mock;
   };
   let configService: {
     get: jest.Mock;
@@ -20,8 +21,9 @@ describe('AdminAuthController', () => {
   beforeEach(async () => {
     authService = {
       validateAdmin: jest.fn(),
-      login: jest.fn(),
+      signIn: jest.fn(),
       logout: jest.fn().mockResolvedValue(undefined),
+      refreshTokens: jest.fn(),
     };
 
     configService = {
@@ -39,26 +41,25 @@ describe('AdminAuthController', () => {
     controller = module.get<AdminAuthController>(AdminAuthController);
   });
 
-  describe('login', () => {
+  describe('signIn', () => {
     it('should throw UnauthorizedException if credentials are invalid', async () => {
       authService.validateAdmin.mockResolvedValue(null);
 
       const mockRes = {} as Response;
       await expect(
-        controller.login(
+        controller.signIn(
           { email: 'test@test.com', password: 'wrong' },
           mockRes,
         ),
       ).rejects.toThrow(UnauthorizedException);
     });
 
-    it('should set cookie and return success message on valid login', async () => {
+    it('should set cookie and return success message on valid sign in', async () => {
       const mockAdmin = { id: '1', email: 'test@test.com', role: 'ADMIN' };
       authService.validateAdmin.mockResolvedValue(mockAdmin);
-      authService.login.mockResolvedValue({
+      authService.signIn.mockResolvedValue({
         access_token: 'jwt-token',
         refresh_token: 'refresh-token',
-        session_id: 'session-id',
         admin: { id: '1', email: 'test@test.com', role: 'ADMIN' },
       });
 
@@ -66,7 +67,7 @@ describe('AdminAuthController', () => {
         cookie: jest.fn(),
       } as unknown as Response;
 
-      const result = await controller.login(
+      const result = await controller.signIn(
         { email: 'test@test.com', password: 'correct' },
         mockRes,
       );
@@ -76,37 +77,19 @@ describe('AdminAuthController', () => {
         'correct',
       );
       expect(mockRes.cookie).toHaveBeenCalledWith(
-        'admin_access_token',
-        'jwt-token',
-        {
-          httpOnly: true,
-          secure: false,
-          sameSite: 'lax',
-          maxAge: 15 * 60 * 1000,
-        },
-      );
-      expect(mockRes.cookie).toHaveBeenCalledWith(
         'admin_refresh_token',
         'refresh-token',
         {
           httpOnly: true,
           secure: false,
           sameSite: 'lax',
-          maxAge: 7 * 24 * 60 * 60 * 1000,
-        },
-      );
-      expect(mockRes.cookie).toHaveBeenCalledWith(
-        'admin_session_id',
-        'session-id',
-        {
-          httpOnly: true,
-          secure: false,
-          sameSite: 'lax',
+          path: '/auth/admin',
           maxAge: 7 * 24 * 60 * 60 * 1000,
         },
       );
       expect(result).toEqual({
-        message: 'Logged in successfully',
+        message: 'Signed in successfully',
+        access_token: 'jwt-token',
         admin: mockAdmin,
       });
     });
@@ -118,13 +101,15 @@ describe('AdminAuthController', () => {
         clearCookie: jest.fn(),
       } as unknown as Response;
 
-      const mockReq = { cookies: { admin_session_id: 'session-id' } } as unknown as Request;
+      const mockReq = {
+        user: { sessionId: 'session-id' },
+      } as unknown as Request;
       const result = controller.logout(mockReq, mockRes);
 
       expect(authService.logout).toHaveBeenCalledWith('session-id');
-      expect(mockRes.clearCookie).toHaveBeenCalledWith('admin_access_token');
-      expect(mockRes.clearCookie).toHaveBeenCalledWith('admin_refresh_token');
-      expect(mockRes.clearCookie).toHaveBeenCalledWith('admin_session_id');
+      expect(mockRes.clearCookie).toHaveBeenCalledWith('admin_refresh_token', {
+        path: '/auth/admin',
+      });
       expect(result).toEqual({ message: 'Logged out successfully' });
     });
   });
@@ -136,6 +121,43 @@ describe('AdminAuthController', () => {
 
       const result = controller.getProfile(mockReq);
       expect(result).toEqual(mockUser);
+    });
+  });
+
+  describe('refresh', () => {
+    it('should throw UnauthorizedException and clear cookies if tokens are invalid', async () => {
+      authService.refreshTokens.mockResolvedValue(null);
+      const mockUser = { sessionId: 'sid', refreshToken: 'rt', sub: 'id' };
+      const mockReq = { user: mockUser } as unknown as Request;
+      const mockRes = { clearCookie: jest.fn() } as unknown as Response;
+
+      await expect(controller.refresh(mockReq, mockRes)).rejects.toThrow(
+        UnauthorizedException,
+      );
+      expect(mockRes.clearCookie).toHaveBeenCalledWith('admin_refresh_token', {
+        path: '/auth/admin',
+      });
+    });
+
+    it('should set new cookies and return success message if valid', async () => {
+      authService.refreshTokens.mockResolvedValue({
+        access_token: 'new-at',
+        refresh_token: 'new-rt',
+      });
+      const mockUser = { sessionId: 'sid', refreshToken: 'rt', sub: 'id' };
+      const mockReq = { user: mockUser } as unknown as Request;
+      const mockRes = { cookie: jest.fn() } as unknown as Response;
+
+      const result = await controller.refresh(mockReq, mockRes);
+      expect(result).toEqual({
+        message: 'Tokens refreshed successfully',
+        access_token: 'new-at',
+      });
+      expect(mockRes.cookie).toHaveBeenCalledWith(
+        'admin_refresh_token',
+        'new-rt',
+        expect.any(Object),
+      );
     });
   });
 });

@@ -4,6 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../../shared/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
+import { randomUUID } from 'crypto';
 
 export interface AdminUserPayload {
   id: string;
@@ -37,17 +38,22 @@ export class AdminAuthService {
     return null;
   }
 
-  async getTokens(adminId: string, email: string, role: string) {
+  async getTokens(
+    adminId: string,
+    email: string,
+    role: string,
+    sessionId: string,
+  ) {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
-        { sub: adminId, email, role },
+        { sub: adminId, email, role, sessionId },
         {
           secret: this.configService.get<string>('JWT_SECRET'),
           expiresIn: '15m',
         },
       ),
       this.jwtService.signAsync(
-        { sub: adminId, email, role },
+        { sub: adminId, email, role, sessionId },
         {
           secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
           expiresIn: '7d',
@@ -61,24 +67,31 @@ export class AdminAuthService {
     };
   }
 
-  async login(admin: AdminUserPayload) {
+  async signIn(admin: AdminUserPayload) {
     // Update lastLogin
     await this.prisma.adminUser.update({
       where: { id: admin.id },
       data: { lastLogin: new Date() },
     });
 
-    const tokens = await this.getTokens(admin.id, admin.email, admin.role);
-    
+    const sessionId = randomUUID();
+    const tokens = await this.getTokens(
+      admin.id,
+      admin.email,
+      admin.role,
+      sessionId,
+    );
+
     // Hash refresh token for storage
     const hashedToken = await bcrypt.hash(tokens.refreshToken, 10);
-    
+
     // Store session
     const expiresAt = new Date();
     expiresAt.setDate(expiresAt.getDate() + 7); // 7 days
 
-    const session = await this.prisma.adminSession.create({
+    await this.prisma.adminSession.create({
       data: {
+        id: sessionId,
         adminUserId: admin.id,
         hashedToken,
         expiresAt,
@@ -88,7 +101,6 @@ export class AdminAuthService {
     return {
       access_token: tokens.accessToken,
       refresh_token: tokens.refreshToken,
-      session_id: session.id,
       admin,
     };
   }
@@ -99,7 +111,11 @@ export class AdminAuthService {
     });
   }
 
-  async refreshTokens(sessionId: string, refreshToken: string, adminId: string) {
+  async refreshTokens(
+    sessionId: string,
+    refreshToken: string,
+    adminId: string,
+  ) {
     const session = await this.prisma.adminSession.findUnique({
       where: { id: sessionId },
     });
@@ -112,7 +128,12 @@ export class AdminAuthService {
     const admin = await this.adminUsersService.findById(adminId);
     if (!admin) return null;
 
-    const tokens = await this.getTokens(admin.id, admin.email, admin.role);
+    const tokens = await this.getTokens(
+      admin.id,
+      admin.email,
+      admin.role,
+      sessionId,
+    );
     const newHashedToken = await bcrypt.hash(tokens.refreshToken, 10);
 
     const expiresAt = new Date();

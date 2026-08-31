@@ -110,12 +110,12 @@ describe('AdminAuthService', () => {
     });
   });
 
-  describe('login', () => {
+  describe('signIn', () => {
     it('should return tokens and update lastLogin', async () => {
       const mockAdmin = { id: '1', email: 'test@test.com', role: 'ADMIN' };
       (bcrypt.hash as jest.Mock).mockResolvedValue('hashed-token');
 
-      const result = await service.login(mockAdmin);
+      const result = await service.signIn(mockAdmin);
 
       expect(jwtService.signAsync).toHaveBeenCalledTimes(2);
       expect(prismaService.adminUser.update).toHaveBeenCalledWith({
@@ -126,8 +126,93 @@ describe('AdminAuthService', () => {
       expect(result).toEqual({
         access_token: 'mock-jwt-token',
         refresh_token: 'mock-jwt-token',
-        session_id: 'session-id',
         admin: mockAdmin,
+      });
+    });
+  });
+
+  describe('logout', () => {
+    it('should call deleteMany on adminSession', async () => {
+      await service.logout('session-id');
+      expect(prismaService.adminSession.deleteMany).toHaveBeenCalledWith({
+        where: { id: 'session-id' },
+      });
+    });
+  });
+
+  describe('refreshTokens', () => {
+    it('should return null if session not found or without hashedToken', async () => {
+      prismaService.adminSession.findUnique.mockResolvedValue(null);
+      const result = await service.refreshTokens(
+        'session-id',
+        'refresh-token',
+        '1',
+      );
+      expect(result).toBeNull();
+    });
+
+    it('should return null if refresh token does not match', async () => {
+      prismaService.adminSession.findUnique.mockResolvedValue({
+        id: 'session-id',
+        hashedToken: 'hashed-rt',
+      });
+      (bcrypt.compare as jest.Mock).mockResolvedValue(false);
+      const result = await service.refreshTokens(
+        'session-id',
+        'refresh-token',
+        '1',
+      );
+      expect(result).toBeNull();
+    });
+
+    it('should return null if admin is not found', async () => {
+      prismaService.adminSession.findUnique.mockResolvedValue({
+        id: 'session-id',
+        hashedToken: 'hashed-rt',
+      });
+      (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+      adminUsersService.findById.mockResolvedValue(null);
+
+      const result = await service.refreshTokens(
+        'session-id',
+        'refresh-token',
+        '1',
+      );
+      expect(result).toBeNull();
+    });
+
+    it('should return new tokens and update session if successful', async () => {
+      prismaService.adminSession.findUnique.mockResolvedValue({
+        id: 'session-id',
+        hashedToken: 'hashed-rt',
+      });
+      (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+
+      const mockAdmin = { id: '1', email: 'test@test.com', role: 'ADMIN' };
+      adminUsersService.findById.mockResolvedValue(mockAdmin as any);
+
+      (bcrypt.hash as jest.Mock).mockResolvedValue('new-hashed-rt');
+      jwtService.signAsync
+        .mockResolvedValueOnce('new-access-token')
+        .mockResolvedValueOnce('new-refresh-token');
+
+      const result = await service.refreshTokens(
+        'session-id',
+        'refresh-token',
+        '1',
+      );
+
+      expect(prismaService.adminSession.update).toHaveBeenCalledWith({
+        where: { id: 'session-id' },
+        data: {
+          hashedToken: 'new-hashed-rt',
+          expiresAt: expect.any(Date),
+        },
+      });
+
+      expect(result).toEqual({
+        access_token: 'new-access-token',
+        refresh_token: 'new-refresh-token',
       });
     });
   });

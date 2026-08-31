@@ -1,11 +1,28 @@
-import { Controller, Post, Body, Res, UnauthorizedException, Get, UseGuards, Req, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Res,
+  UnauthorizedException,
+  Get,
+  UseGuards,
+  Req,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { AdminAuthService } from './admin-auth.service';
 import type { Response, Request } from 'express';
 import { AdminJwtAuthGuard } from './guards/admin-jwt-auth.guard';
 import { AdminJwtRefreshGuard } from './guards/admin-jwt-refresh.guard';
 import { ConfigService } from '@nestjs/config';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiProperty, ApiCookieAuth } from '@nestjs/swagger';
-import { AdminLoginDto } from './dto/admin-login.dto';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBody,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
+import { AdminSignInDto } from './dto/admin-sign-in.dto';
 
 @ApiTags('Admin Auth')
 @Controller('auth/admin')
@@ -15,17 +32,17 @@ export class AdminAuthController {
     private configService: ConfigService,
   ) {}
 
-  @Post('login')
+  @Post('sign-in')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Log in as an admin' })
-  @ApiBody({ type: AdminLoginDto })
+  @ApiOperation({ summary: 'Sign in as an admin' })
+  @ApiBody({ type: AdminSignInDto })
   @ApiResponse({
     status: 200,
-    description: 'Successfully logged in. Sets an HTTP-only cookie.',
+    description: 'Successfully signed in. Sets an HTTP-only cookie.',
   })
   @ApiResponse({ status: 401, description: 'Invalid email or password.' })
-  async login(
-    @Body() body: AdminLoginDto,
+  async signIn(
+    @Body() body: AdminSignInDto,
     @Res({ passthrough: true }) res: Response,
   ) {
     const admin = await this.authService.validateAdmin(
@@ -35,33 +52,27 @@ export class AdminAuthController {
     if (!admin) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    const { access_token, refresh_token, session_id, admin: adminData } =
-      await this.authService.login(admin);
+    const {
+      access_token,
+      refresh_token,
+      admin: adminData,
+    } = await this.authService.signIn(admin);
 
     const isProd = this.configService.get<string>('NODE_ENV') === 'production';
-
-    res.cookie('admin_access_token', access_token, {
-      httpOnly: true,
-      secure: isProd,
-      sameSite: 'lax',
-      maxAge: 15 * 60 * 1000, // 15 mins
-    });
 
     res.cookie('admin_refresh_token', refresh_token, {
       httpOnly: true,
       secure: isProd,
       sameSite: 'lax',
+      path: '/auth/admin',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
-    res.cookie('admin_session_id', session_id, {
-      httpOnly: true,
-      secure: isProd,
-      sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
-
-    return { message: 'Logged in successfully', admin: adminData };
+    return {
+      message: 'Signed in successfully',
+      access_token,
+      admin: adminData,
+    };
   }
 
   @Post('logout')
@@ -71,15 +82,15 @@ export class AdminAuthController {
     status: 200,
     description: 'Successfully logged out. Clears the HTTP-only cookie.',
   })
+  @ApiBearerAuth()
+  @UseGuards(AdminJwtAuthGuard)
   logout(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
-    const sessionId = req.cookies?.admin_session_id as string | undefined;
-    if (sessionId) {
-      this.authService.logout(sessionId).catch(console.error);
+    const user = req.user as { sessionId?: string };
+    if (user?.sessionId) {
+      this.authService.logout(user.sessionId).catch(console.error);
     }
 
-    res.clearCookie('admin_access_token');
-    res.clearCookie('admin_refresh_token');
-    res.clearCookie('admin_session_id');
+    res.clearCookie('admin_refresh_token', { path: '/auth/admin' });
     return { message: 'Logged out successfully' };
   }
 
@@ -91,40 +102,47 @@ export class AdminAuthController {
     status: 200,
     description: 'Successfully refreshed token. Sets new HTTP-only cookies.',
   })
-  async refresh(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+  @ApiBearerAuth()
+  async refresh(
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     // We know these exist because the guard passed
-    const user = req.user as any; 
-    const tokens = await this.authService.refreshTokens(user.sessionId, user.refreshToken, user.sub);
-    
+    const user = req.user as {
+      sessionId: string;
+      refreshToken: string;
+      sub: string;
+    };
+    const tokens = await this.authService.refreshTokens(
+      user.sessionId,
+      user.refreshToken,
+      user.sub,
+    );
+
     if (!tokens) {
-      res.clearCookie('admin_access_token');
-      res.clearCookie('admin_refresh_token');
-      res.clearCookie('admin_session_id');
+      res.clearCookie('admin_refresh_token', { path: '/auth/admin' });
       throw new UnauthorizedException('Session expired or invalid');
     }
 
     const isProd = this.configService.get<string>('NODE_ENV') === 'production';
 
-    res.cookie('admin_access_token', tokens.access_token, {
-      httpOnly: true,
-      secure: isProd,
-      sameSite: 'lax',
-      maxAge: 15 * 60 * 1000, // 15 mins
-    });
-
     res.cookie('admin_refresh_token', tokens.refresh_token, {
       httpOnly: true,
       secure: isProd,
       sameSite: 'lax',
+      path: '/auth/admin',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
-    return { message: 'Tokens refreshed successfully' };
+    return {
+      message: 'Tokens refreshed successfully',
+      access_token: tokens.access_token,
+    };
   }
 
   @UseGuards(AdminJwtAuthGuard)
   @Get('me')
-  @ApiCookieAuth()
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get current admin profile' })
   @ApiResponse({
     status: 200,
