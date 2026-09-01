@@ -25,38 +25,23 @@ Make sure you have the following installed:
 
 ### 1. Installation
 
-First, install the root dependencies which includes the Husky pre-commit hooks:
+You can install all dependencies (root, client, and server) with a single command from the root directory:
 ```bash
-npm install
+npm run install:all
 ```
 
-Next, install dependencies for both the client and server:
+### 2. Running Locally
+
+To run both the frontend client and backend server simultaneously from the root directory:
 ```bash
-# Install client dependencies
-cd client
-npm install
-
-# Install server dependencies
-cd ../server
-npm install
-```
-
-### 2. Running Locally (Manual)
-
-To run the applications manually in development mode:
-
-**Start the Frontend Client:**
-```bash
-cd client
 npm run dev
-# The client will run on http://localhost:3000
 ```
+The client will run on http://localhost:3000 and the server will start locally.
 
-**Start the Backend Server:**
+If you prefer to run them separately, you can use:
 ```bash
-cd server
-npm run start:dev
-# The server will start locally
+npm run dev:client  # Starts only the frontend
+npm run dev:server  # Starts only the backend
 ```
 
 ### 3. Running with Docker
