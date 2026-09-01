@@ -12,7 +12,6 @@ import {
   Param,
   Delete,
   Post,
-  Post,
   UseInterceptors,
   UploadedFile,
   BadRequestException,
@@ -52,8 +51,6 @@ export class CustomerProfileController {
       throw new UnauthorizedException('Customer not found');
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { passwordHash, ...result } = customer;
     const { passwordHash: _, ...result } = customer;
     return result;
   }
@@ -71,8 +68,6 @@ export class CustomerProfileController {
       body,
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { passwordHash, ...result } = customer;
     const { passwordHash: _, ...result } = customer;
     return {
       message: 'Profile updated successfully',
