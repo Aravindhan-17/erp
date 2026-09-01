@@ -58,4 +58,3 @@ export { default as Electronics1 } from "./Electronics/Electronics-1.webp";
 export { default as Electronics2 } from "./Electronics/Electronics-2.avif";
 export { default as Electronics3 } from "./Electronics/Electronics-3.avif";
 export { default as Electronics4 } from "./Electronics/Electronics-4.webp";
-

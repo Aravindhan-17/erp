@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  MANAGER
+}
+
+
+enum Gender {
+  MALE
+  FEMALE
+  NON_BINARY
+  PREFER_NOT_TO_SAY
+}
+
+model AdminUser {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String
+  role         AdminRole @default(SUPER_ADMIN)
+  isActive     Boolean   @default(true)
+  lastLogin    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  sessions AdminSession[]
+}
+
+model AdminSession {
+  id          String   @id @default(uuid())
+  adminUserId String
+  hashedToken String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+
+  adminUser AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+}
+
+model Customer {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  phone        String?   @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+
+  dob          DateTime?
+  gender       Gender?
+  profileImage String?
+  isActive     Boolean   @default(true)
+  lastLogin    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  sessions CustomerSession[]
+  addresses CustomerAddress[]
+}
+
+model CustomerSession {
+  id          String   @id @default(uuid())
+  customerId  String
+  hashedToken String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
+
+model CustomerAddress {
+  id                   String   @id @default(uuid())
+  customerId           String
+  name                 String
+  fullName             String
+  phone                String
+  addressLine1         String
+  addressLine2         String?
+  city                 String
+  state                String
+  zip                  String
+  country              String
+  deliveryInstructions String?
+  isDefaultShipping    Boolean  @default(false)
+  isDefaultBilling     Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
+

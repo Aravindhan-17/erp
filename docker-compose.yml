@@ -7,9 +7,9 @@ services:
     container_name: flasherp_postgres
     restart: always
     environment:
-      POSTGRES_USER: flasherp_user
-      POSTGRES_PASSWORD: flasherp_password
-      POSTGRES_DB: flasherp_db
+      POSTGRES_USER: ${POSTGRES_USER:-flasherp_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-flasherp_password}
+      POSTGRES_DB: ${POSTGRES_DB:-flasherp_db}
     ports:
       - "5433:5432"
     volumes:
@@ -47,7 +47,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3001
-      DATABASE_URL: postgres://flasherp_user:flasherp_password@postgres:5432/flasherp_db
+      DATABASE_URL: postgres://${POSTGRES_USER:-flasherp_user}:${POSTGRES_PASSWORD:-flasherp_password}@postgres:5432/${POSTGRES_DB:-flasherp_db}
       REDIS_HOST: redis
       REDIS_PORT: 6379
     depends_on:

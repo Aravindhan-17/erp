@@ -115,7 +115,9 @@ export function SuccessView({ product, orderId }: SuccessViewProps) {
         </div>
       </div>
 
-      <p className="mb-8 font-medium text-gray-600">We&apos;ll notify you when the deal goes live.</p>
+      <p className="mb-8 font-medium text-gray-600">
+        We&apos;ll notify you when the deal goes live.
+      </p>
 
       {/* Action Buttons */}
       <div className="mb-12 flex w-full flex-col gap-4 sm:flex-row">

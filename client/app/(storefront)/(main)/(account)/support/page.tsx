@@ -11,7 +11,7 @@ import {
   Clock,
   CheckCircle2,
 } from "lucide-react";
-import { Modal } from "../../../components/modal";
+import { Modal } from "@/components/modal";
 
 export default function SupportPage() {
   const [tickets] = useState([

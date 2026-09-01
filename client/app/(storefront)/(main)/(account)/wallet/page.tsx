@@ -10,7 +10,7 @@ import {
   ArrowUpRight,
   ArrowDownLeft,
 } from "lucide-react";
-import { Modal } from "../../../components/modal";
+import { Modal } from "@/components/modal";
 
 export default function WalletPage() {
   const [walletBalance, setWalletBalance] = useState(120.5);

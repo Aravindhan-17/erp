@@ -59,8 +59,7 @@ export default function CheckoutPage() {
   const tax = Math.round(subtotal * 0.05);
   const total = subtotal + shipping + tax;
 
-  const handlePlaceOrder = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handlePlaceOrder = () => {
     setCurrentState("processing");
   };
 
@@ -108,7 +107,33 @@ export default function CheckoutPage() {
 // Sub-Components (Kept in same file for Single-Page simplicity)
 // ---------------------------------------------------------
 
-function CheckoutFormView({ cartItems, subtotal, shipping, tax, total, onPlaceOrder }: any) {
+interface CartItem {
+  id: string | number;
+  image: string;
+  name: string;
+  category: string;
+  quantity: number;
+  flashPrice?: number;
+  originalPrice: number;
+}
+
+interface CheckoutFormViewProps {
+  cartItems: CartItem[];
+  subtotal: number;
+  shipping: number;
+  tax: number;
+  total: number;
+  onPlaceOrder: () => void;
+}
+
+function CheckoutFormView({
+  cartItems,
+  subtotal,
+  shipping,
+  tax,
+  total,
+  onPlaceOrder,
+}: CheckoutFormViewProps) {
   const {
     register,
     handleSubmit,
@@ -445,7 +470,7 @@ function CheckoutFormView({ cartItems, subtotal, shipping, tax, total, onPlaceOr
           <div className="sticky top-24 rounded-2xl border border-gray-200 bg-gray-50 p-6 xl:p-8">
             <h2 className="mb-6 text-xl font-bold text-gray-900">Order Summary</h2>
             <div className="mb-6 space-y-5 border-b border-gray-200 pb-6">
-              {cartItems.map((item: any) => (
+              {cartItems.map((item) => (
                 <div key={item.id} className="flex items-center gap-4">
                   <div className="relative h-16 w-16 shrink-0">
                     <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
@@ -515,7 +540,13 @@ function CheckoutFormView({ cartItems, subtotal, shipping, tax, total, onPlaceOr
   );
 }
 
-function ProcessingView({ onSuccess, onFail, total }: any) {
+interface ProcessingViewProps {
+  onSuccess: (orderId: string) => void;
+  onFail: () => void;
+  total: number;
+}
+
+function ProcessingView({ onSuccess, onFail, total }: ProcessingViewProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const steps = ["Verifying Payment", "Processing", "Confirming Order"];
 
@@ -581,7 +612,16 @@ function ProcessingView({ onSuccess, onFail, total }: any) {
   );
 }
 
-function SuccessView({ cartItems, subtotal, shipping, tax, total, orderNumber }: any) {
+interface SuccessViewProps {
+  cartItems: CartItem[];
+  subtotal: number;
+  shipping: number;
+  tax: number;
+  total: number;
+  orderNumber: string;
+}
+
+function SuccessView({ cartItems, subtotal, shipping, tax, total, orderNumber }: SuccessViewProps) {
   return (
     <div className="mx-auto max-w-4xl py-6">
       <div className="mb-10 text-center">
@@ -604,7 +644,16 @@ function SuccessView({ cartItems, subtotal, shipping, tax, total, orderNumber }:
               Order Items
             </h2>
             <div className="space-y-6">
-              {cartItems.map((item: any) => (
+              {(
+                cartItems as {
+                  id: string;
+                  image: string;
+                  name: string;
+                  quantity: number;
+                  flashPrice?: number;
+                  originalPrice: number;
+                }[]
+              ).map((item) => (
                 <div key={item.id} className="flex items-center gap-4">
                   <div className="relative h-16 w-16 shrink-0 rounded-xl border border-gray-100 bg-white p-2">
                     <Image
@@ -681,7 +730,11 @@ function SuccessView({ cartItems, subtotal, shipping, tax, total, orderNumber }:
   );
 }
 
-function FailedView({ onRetry }: any) {
+interface FailedViewProps {
+  onRetry: () => void;
+}
+
+function FailedView({ onRetry }: FailedViewProps) {
   return (
     <div className="mx-auto flex w-full max-w-lg flex-col items-center justify-center py-20 text-center">
       <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-red-100">

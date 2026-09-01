@@ -13,7 +13,10 @@ export default function ProfilePage() {
     phone: "+1 (555) 123-4567",
     dob: "1992-08-15",
     gender: "Male",
+    profileImage: "",
   });
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: "",
@@ -29,6 +32,36 @@ export default function ProfilePage() {
   const handlePasswordUpdate = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate API call to update password
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("http://localhost:3001/api/customer/profile/image", {
+        method: "POST",
+        // Note: For a real app, you would include auth headers here (e.g. Authorization: Bearer ...)
+        // Currently it's simulated as we are using credentials with cors
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload image");
+      }
+
+      const result = await response.json();
+      setUser({ ...user, profileImage: `http://localhost:3001${result.data.profileImage}` });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      alert("Failed to upload image.");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
@@ -54,10 +87,10 @@ export default function ProfilePage() {
 
             <form onSubmit={handleProfileUpdate} className="flex flex-col gap-6 p-6">
               <div className="flex flex-col items-center gap-8 border-b border-gray-100 pb-8 sm:flex-row sm:items-start">
-                <div className="group relative cursor-pointer">
+                <div className="group relative cursor-pointer" onClick={() => fileInputRef.current?.click()}>
                   <div className="h-28 w-28 overflow-hidden rounded-full border-4 border-gray-50">
                     <Image
-                      src={UserAvatar}
+                      src={user.profileImage || UserAvatar}
                       alt="User"
                       width={112}
                       height={112}
@@ -80,14 +113,24 @@ export default function ProfilePage() {
                     Maximum upload size is 2 MB. JPEG, PNG, or GIF allowed.
                   </p>
                   <div className="mt-4 flex gap-3">
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      className="hidden"
+                      accept="image/jpeg, image/png, image/gif"
+                      onChange={handleImageUpload}
+                    />
                     <button
                       type="button"
-                      className="rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={isUploading}
+                      className="rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
                     >
-                      Upload new
+                      {isUploading ? "Uploading..." : "Upload new"}
                     </button>
                     <button
                       type="button"
+                      onClick={() => setUser({ ...user, profileImage: "" })}
                       className="rounded-xl px-4 py-2 text-sm font-medium text-red-500 transition-colors hover:bg-red-50"
                     >
                       Remove
@@ -185,8 +228,8 @@ export default function ProfilePage() {
               <div className="flex flex-1 flex-col justify-between p-6">
                 <div>
                   <p className="mb-4 text-sm text-gray-500">
-                    Add an extra layer of security to your account. We&apos;ll ask for a code in addition
-                    to your password.
+                    Add an extra layer of security to your account. We&apos;ll ask for a code in
+                    addition to your password.
                   </p>
                   <div className="mb-4 flex items-center justify-between rounded-xl border border-gray-200 p-4">
                     <div className="flex items-center gap-3">

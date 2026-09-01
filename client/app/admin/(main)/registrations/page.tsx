@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 
-
 const registrations = [
   {
     id: "REG-24081",
@@ -98,17 +97,11 @@ export default function RegistrationsPage() {
     });
   }, [activeTab, search]);
 
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filteredRegistrations.length / 6)
-  );
+  const totalPages = Math.max(1, Math.ceil(filteredRegistrations.length / 6));
 
   const currentPage = Math.min(page, totalPages);
 
-  const currentRegistrations = filteredRegistrations.slice(
-    (currentPage - 1) * 6,
-    currentPage * 6
-  );
+  const currentRegistrations = filteredRegistrations.slice((currentPage - 1) * 6, currentPage * 6);
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -121,7 +114,7 @@ export default function RegistrationsPage() {
   };
 
   return (
-    <div className="min-w-0 overflow-x-hidden bg-transparent font-poppins">
+    <div className="font-poppins min-w-0 overflow-x-hidden bg-transparent">
       {/* ================= HEADER ================= */}
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-start">
         <div>
@@ -167,8 +160,8 @@ export default function RegistrationsPage() {
         {/* Total registrations */}
         <div
           className="
+            min-h-27.5
             flex
-            min-h-[110px]
             items-center
             justify-between
             rounded-2xl
@@ -185,21 +178,19 @@ export default function RegistrationsPage() {
               Total registrations
             </p>
 
-            <p className="mt-3 text-3xl font-semibold text-gray-900">
-              6
-            </p>
+            <p className="mt-3 text-3xl font-semibold text-gray-900">6</p>
           </div>
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50">
-            <Users className="bg-[#f0ebff] text-[#6030e8]" size={22} />
+          <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-2xl">
+            <Users className="text-primary bg-[#f0ebff]" size={22} />
           </div>
         </div>
 
         {/* Paid access */}
         <div
           className="
+            min-h-27.5
             flex
-            min-h-[110px]
             items-center
             justify-between
             rounded-2xl
@@ -216,21 +207,19 @@ export default function RegistrationsPage() {
               Paid access passes
             </p>
 
-            <p className="mt-3 text-3xl font-semibold text-gray-900">
-              5
-            </p>
+            <p className="mt-3 text-3xl font-semibold text-gray-900">5</p>
           </div>
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50">
-            <CreditCard className="bg-[#f0ebff] text-[#6030e8]" size={22} />
+          <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-2xl">
+            <CreditCard className="text-primary bg-[#f0ebff]" size={22} />
           </div>
         </div>
 
         {/* Revenue */}
         <div
           className="
+            min-h-27.5
             flex
-            min-h-[110px]
             items-center
             justify-between
             rounded-2xl
@@ -247,21 +236,19 @@ export default function RegistrationsPage() {
               Registration revenue
             </p>
 
-            <p className="mt-3 text-3xl font-semibold text-gray-900">
-              ₹5
-            </p>
+            <p className="mt-3 text-3xl font-semibold text-gray-900">₹5</p>
           </div>
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50">
-            <Eye className="bg-[#f0ebff] text-[#6030e8]" size={22} />
+          <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-2xl">
+            <Eye className="text-primary bg-[#f0ebff]" size={22} />
           </div>
         </div>
 
         {/* Converted */}
         <div
           className="
+            min-h-27.5
             flex
-            min-h-[110px]
             items-center
             justify-between
             rounded-2xl
@@ -278,13 +265,11 @@ export default function RegistrationsPage() {
               Access converted
             </p>
 
-            <p className="mt-3 text-3xl font-semibold text-gray-900">
-              2
-            </p>
+            <p className="mt-3 text-3xl font-semibold text-gray-900">2</p>
           </div>
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50">
-            <TrendingUp className="bg-[#f0ebff] text-[#6030e8]" size={22} />
+          <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-2xl">
+            <TrendingUp className="text-primary bg-[#f0ebff]" size={22} />
           </div>
         </div>
       </div>
@@ -292,7 +277,7 @@ export default function RegistrationsPage() {
       {/* ================= FILTERS ================= */}
       <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         {/* Tabs */}
-        <div className="flex gap-1 w-fit max-w-full overflow-x-auto rounded-xl bg-transparent hide-scrollbar">
+        <div className="hide-scrollbar flex w-fit max-w-full gap-1 overflow-x-auto rounded-xl bg-transparent">
           {["All", "Paid", "Refunded", "Access used"].map((tab) => (
             <button
               key={tab}
@@ -309,7 +294,7 @@ export default function RegistrationsPage() {
                 ${
                   activeTab === tab
                     ? "bg-white text-gray-900 shadow-sm ring-1 ring-gray-100"
-                  : "text-gray-500 hover:bg-white hover:text-gray-900"
+                    : "text-gray-500 hover:bg-white hover:text-gray-900"
                 }
               `}
             >
@@ -321,6 +306,7 @@ export default function RegistrationsPage() {
         {/* Search */}
         <div
           className="
+            lg:w-85
             flex
             w-full
             items-center
@@ -332,7 +318,6 @@ export default function RegistrationsPage() {
             px-4
             py-2.5
             shadow-sm
-            lg:w-[340px]
           "
         >
           <Search size={17} className="shrink-0 text-gray-400" />
@@ -368,8 +353,8 @@ export default function RegistrationsPage() {
         "
       >
         {/* Horizontal scroll */}
-        <div className="w-full overflow-x-auto hide-scrollbar">
-          <table className="w-full min-w-[1050px] border-collapse">
+        <div className="hide-scrollbar w-full overflow-x-auto">
+          <table className="min-w-262.5 w-full border-collapse">
             {/* TABLE HEADER */}
             <thead>
               <tr className="border-b border-gray-100">
@@ -414,10 +399,10 @@ export default function RegistrationsPage() {
                   <tr
                     key={item.id}
                     className="
+                      hover:bg-primary/5
                       border-b
                       border-gray-100
                       transition-colors
-                      hover:bg-violet-50/60
                     "
                   >
                     {/* Registration */}
@@ -434,9 +419,7 @@ export default function RegistrationsPage() {
                           {item.customer}
                         </p>
 
-                        <p className="mt-0.5 text-xs text-gray-400">
-                          {item.email}
-                        </p>
+                        <p className="mt-0.5 text-xs text-gray-400">{item.email}</p>
                       </div>
                     </td>
 
@@ -490,7 +473,7 @@ export default function RegistrationsPage() {
                           ${
                             item.access === "Revoked"
                               ? "bg-red-50 text-red-500"
-                              : "bg-violet-50 text-violet-600"
+                              : "bg-primary/10 text-primary"
                           }
                         `}
                       >
@@ -512,6 +495,9 @@ export default function RegistrationsPage() {
                           type="button"
                           title={`View ${item.id}`}
                           className="
+                            hover:border-primary/30
+                            hover:bg-primary/10
+                            hover:text-primary
                             flex
                             h-10
                             w-10
@@ -524,9 +510,6 @@ export default function RegistrationsPage() {
                             text-gray-700
                             shadow-sm
                             transition-all
-                            hover:border-violet-200
-                            hover:bg-violet-50
-                            hover:text-violet-600
                           "
                         >
                           <Eye size={16} />
@@ -537,10 +520,7 @@ export default function RegistrationsPage() {
                 ))
               ) : (
                 <tr>
-                  <td
-                    colSpan={8}
-                    className="px-5 py-12 text-center text-sm text-gray-400"
-                  >
+                  <td colSpan={8} className="px-5 py-12 text-center text-sm text-gray-400">
                     No registrations found.
                   </td>
                 </tr>
@@ -565,16 +545,9 @@ export default function RegistrationsPage() {
           "
         >
           <p className="text-xs text-gray-500">
-            Showing{" "}
-            {filteredRegistrations.length === 0
-              ? 0
-              : (currentPage - 1) * 6 + 1}{" "}
-            to{" "}
-            {Math.min(
-              currentPage * 6,
-              filteredRegistrations.length
-            )}{" "}
-            of {filteredRegistrations.length} registrations
+            Showing {filteredRegistrations.length === 0 ? 0 : (currentPage - 1) * 6 + 1} to{" "}
+            {Math.min(currentPage * 6, filteredRegistrations.length)} of{" "}
+            {filteredRegistrations.length} registrations
           </p>
 
           <div className="flex items-center gap-2">
@@ -582,9 +555,7 @@ export default function RegistrationsPage() {
             <button
               type="button"
               disabled={currentPage === 1}
-              onClick={() =>
-                setPage((prev) => Math.max(1, prev - 1))
-              }
+              onClick={() => setPage((prev) => Math.max(1, prev - 1))}
               className="
                 flex
                 h-8
@@ -606,10 +577,7 @@ export default function RegistrationsPage() {
             </button>
 
             {/* Page number */}
-            {Array.from(
-              { length: totalPages },
-              (_, index) => index + 1
-            ).map((pageNumber) => (
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
               <button
                 key={pageNumber}
                 type="button"
@@ -627,8 +595,8 @@ export default function RegistrationsPage() {
                   transition-all
                   ${
                     currentPage === pageNumber
-                      ? "bg-gradient-to-r from-[#6631e8] to-[#5120d3] text-xs font-semibold text-white shadow-[0_5px_15px_rgba(91,33,216,0.25)]"
-                      : "border border-gray-200 bg-white text-gray-600 hover:border-primary/30 hover:text-primary"
+                      ? "bg-primary hover:bg-primary-hover shadow-primary/20 text-xs font-semibold text-white shadow-md"
+                      : "hover:border-primary/30 hover:text-primary border border-gray-200 bg-white text-gray-600"
                   }
                 `}
               >
@@ -640,11 +608,7 @@ export default function RegistrationsPage() {
             <button
               type="button"
               disabled={currentPage === totalPages}
-              onClick={() =>
-                setPage((prev) =>
-                  Math.min(totalPages, prev + 1)
-                )
-              }
+              onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
               className="
                 flex
                 h-8

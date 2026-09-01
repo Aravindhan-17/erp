@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
-import { Modal } from "../../../components/modal";
+import { Modal } from "@/components/modal";
 
 export default function AddressesPage() {
   const [addresses, setAddresses] = useState([
@@ -73,7 +73,7 @@ export default function AddressesPage() {
         {/* Add Address Card */}
         <button
           onClick={() => setIsAddressModalOpen(true)}
-          className="hover:border-secondary hover:text-secondary hover:bg-secondary/5 flex h-full min-h-[280px] flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 p-6 text-gray-500 transition-all"
+          className="hover:border-secondary hover:text-secondary hover:bg-secondary/5 min-h-70 flex h-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 p-6 text-gray-500 transition-all"
         >
           <div className="rounded-full border border-gray-100 bg-white p-3 shadow-sm">
             <Plus size={32} />

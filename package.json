@@ -8,7 +8,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev:server": "npm run start:dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build:server": "npm run build --prefix server",
+    "build:client": "npm run build --prefix client",
+    "build": "npm run build:client && npm run build:server",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client"
   },
   "repository": {
     "type": "git",
@@ -23,6 +30,7 @@
   },
   "homepage": "https://github.com/Hattussa-IT-Solution/erp#readme",
   "devDependencies": {
+    "concurrently": "^10.0.5",
     "husky": "^9.1.7"
   }
 }
