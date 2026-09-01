@@ -35,7 +35,7 @@ export class TransformInterceptor<T> implements NestInterceptor<
               ? typedData.message
               : String(typedData.message);
           // Create a shallow copy without the message property for the data payload
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
           const { message: _, ...rest } = typedData;
 
           // If the only property was message, data becomes empty object,

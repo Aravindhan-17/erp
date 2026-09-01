@@ -6,9 +6,13 @@ import { setupSwagger } from './shared/utils/setup-swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { GlobalExceptionFilter } from './shared/filters/global-exception.filter';
 import { TransformInterceptor } from './shared/interceptors/transform.interceptor';
+import * as express from 'express';
+import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
   app.useGlobalPipes(
     new ValidationPipe({

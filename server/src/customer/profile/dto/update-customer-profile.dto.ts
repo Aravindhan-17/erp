@@ -1,4 +1,6 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString, IsDate, IsEnum } from 'class-validator';
+import { Gender } from '@prisma/client';
+import { Type } from 'class-transformer';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateCustomerProfileDto {
@@ -16,4 +18,21 @@ export class UpdateCustomerProfileDto {
   @IsOptional()
   @IsString()
   phone?: string;
+
+  @ApiPropertyOptional({
+    description: 'The date of birth of the customer',
+    type: Date,
+  })
+  @IsOptional()
+  @Type(() => Date)
+  @IsDate()
+  dob?: Date;
+
+  @ApiPropertyOptional({
+    description: 'The gender of the customer',
+    enum: Gender,
+  })
+  @IsOptional()
+  @IsEnum(Gender)
+  gender?: Gender;
 }

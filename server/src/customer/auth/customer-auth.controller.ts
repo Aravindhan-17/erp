@@ -55,7 +55,6 @@ export class CustomerAuthController {
       passwordHash,
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash: _, ...result } = customer;
     return {
       message: 'Signed up successfully',

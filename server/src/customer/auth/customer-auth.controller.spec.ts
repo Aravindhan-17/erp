@@ -68,7 +68,6 @@ describe('CustomerAuthController', () => {
         phone: '123',
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { passwordHash: _, ...expectedCustomer } = mockCustomer;
       expect(result).toEqual({
         message: 'Signed up successfully',

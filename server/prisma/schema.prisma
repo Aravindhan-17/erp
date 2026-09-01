@@ -16,6 +16,13 @@ enum AdminRole {
   MANAGER
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  NON_BINARY
+  PREFER_NOT_TO_SAY
+}
+
 model AdminUser {
   id           String    @id @default(uuid())
   email        String    @unique
@@ -46,11 +53,13 @@ model Customer {
   passwordHash String
   firstName    String
   lastName     String
+  dob          DateTime?
+  gender       Gender?
+  profileImage String?
   isActive     Boolean   @default(true)
   lastLogin    DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
-
   sessions CustomerSession[]
 }
 
@@ -63,3 +72,5 @@ model CustomerSession {
 
   customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
 }
+
+

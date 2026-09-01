@@ -9,7 +9,14 @@ import {
   UnauthorizedException,
   HttpCode,
   HttpStatus,
+  Post,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 import {
   ApiTags,
   ApiOperation,
@@ -19,6 +26,7 @@ import {
 import { CustomerUsersService } from '../users/customer-users.service';
 import { CustomerJwtAuthGuard } from '../auth/guards/customer-jwt-auth.guard';
 import { UpdateCustomerProfileDto } from './dto/update-customer-profile.dto';
+
 import { UpdateCustomerPasswordDto } from './dto/update-customer-password.dto';
 import * as bcrypt from 'bcrypt';
 
@@ -33,12 +41,12 @@ export class CustomerProfileController {
   @ApiResponse({ status: 200, description: 'Returns the customer profile.' })
   @Get()
   async getProfile(@Request() req: { user: Record<string, any> }) {
-    const customerId = req.user.sub as string;
+    const customerId = req.user.id as string;
     const customer = await this.customerUsersService.findById(customerId);
     if (!customer) {
       throw new UnauthorizedException('Customer not found');
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const { passwordHash: _, ...result } = customer;
     return result;
   }
@@ -50,16 +58,72 @@ export class CustomerProfileController {
     @Request() req: { user: Record<string, any> },
     @Body() body: UpdateCustomerProfileDto,
   ) {
-    const customerId = req.user.sub as string;
+    const customerId = req.user.id as string;
     const customer = await this.customerUsersService.updateProfile(
       customerId,
       body,
     );
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const { passwordHash: _, ...result } = customer;
     return {
       message: 'Profile updated successfully',
       customer: result,
+    };
+  }
+
+  @ApiOperation({ summary: 'Upload customer profile image' })
+  @ApiResponse({
+    status: 201,
+    description: 'Profile image uploaded successfully.',
+  })
+  @Post('image')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads/profiles',
+        filename: (req, file, callback) => {
+          const uniqueSuffix =
+            Date.now() + '-' + Math.round(Math.random() * 1e9);
+          const ext = extname(file.originalname);
+          const filename = `${uniqueSuffix}${ext}`;
+          callback(null, filename);
+        },
+      }),
+      fileFilter: (req, file, callback) => {
+        if (!file.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
+          return callback(
+            new BadRequestException('Only image files are allowed!'),
+            false,
+          );
+        }
+        callback(null, true);
+      },
+      limits: {
+        fileSize: 2 * 1024 * 1024, // 2MB
+      },
+    }),
+  )
+  async uploadProfileImage(
+    @Request() req: { user: Record<string, any> },
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if (!file) {
+      throw new BadRequestException('No file uploaded');
+    }
+
+    const customerId = req.user.id as string;
+    const profileImageUrl = `/uploads/profiles/${file.filename}`;
+
+    const customer = await this.customerUsersService.updateProfile(customerId, {
+      profileImage: profileImageUrl,
+    });
+
+    const { passwordHash: _, ...result } = customer;
+
+    return {
+      message: 'Profile image uploaded successfully',
+      customer: result,
+      profileImage: profileImageUrl,
     };
   }
 
@@ -72,7 +136,7 @@ export class CustomerProfileController {
     @Request() req: { user: Record<string, any> },
     @Body() body: UpdateCustomerPasswordDto,
   ) {
-    const customerId = req.user.sub as string;
+    const customerId = req.user.id as string;
     const customer = await this.customerUsersService.findById(customerId);
 
     if (!customer) {
@@ -91,7 +155,7 @@ export class CustomerProfileController {
     await this.customerUsersService.updatePassword(customerId, newPasswordHash);
 
     return {
-      message: 'Password changed successfully',
+      message: 'Password updated successfully',
     };
   }
 }
