@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { ChevronDown } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Settings — FlashERP Admin",
@@ -21,7 +20,7 @@ export default function SettingsPage() {
       <div
         className="
           w-full
-          max-w-[590px]
+          max-w-147.5
           rounded-2xl
           border
           border-gray-200
