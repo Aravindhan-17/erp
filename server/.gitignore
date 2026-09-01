@@ -39,3 +39,6 @@ lerna-debug.log*
 .claude/
 .windsurf/
 skills-lock.json
+
+# Uploads
+uploads/
