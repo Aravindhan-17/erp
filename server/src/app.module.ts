@@ -7,6 +7,7 @@ import { HealthModule } from './shared/health/health.module';
 import { CustomerUsersModule } from './customer/users/customer-users.module';
 import { CustomerAuthModule } from './customer/auth/customer-auth.module';
 import { CustomerProfileModule } from './customer/profile/customer-profile.module';
+import { AdminCustomersModule } from './admin/customers/admin-customers.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { CustomerProfileModule } from './customer/profile/customer-profile.modul
     CustomerUsersModule,
     CustomerAuthModule,
     CustomerProfileModule,
+    AdminCustomersModule,
   ],
   controllers: [],
   providers: [],

@@ -16,7 +16,6 @@ enum AdminRole {
   MANAGER
 }
 
-
 enum Gender {
   MALE
   FEMALE
@@ -48,22 +47,27 @@ model AdminSession {
 }
 
 model Customer {
-  id           String    @id @default(uuid())
-  email        String    @unique
-  phone        String?   @unique
+  id           String  @id @default(uuid())
+  email        String  @unique
+  phone        String? @unique
   passwordHash String
   firstName    String
   lastName     String
 
-  dob          DateTime?
-  gender       Gender?
-  profileImage String?
-  isActive     Boolean   @default(true)
-  lastLogin    DateTime?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  sessions CustomerSession[]
-  addresses CustomerAddress[]
+  dob           DateTime?
+  gender        Gender?
+  profileImage  String?
+  lifetimeSpend Decimal           @default(0.00)
+  ordersCount   Int               @default(0)
+  isActive      Boolean           @default(true)
+  lastLogin     DateTime?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  sessions      CustomerSession[]
+  addresses     CustomerAddress[]
+  wallet        CustomerWallet?
+  orders        Order[]
+  tickets       Ticket[]
 }
 
 model CustomerSession {
@@ -97,3 +101,73 @@ model CustomerAddress {
   customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
 }
 
+model CustomerWallet {
+  id         String   @id @default(uuid())
+  customerId String   @unique
+  balance    Decimal  @default(0.00)
+  currency   String   @default("INR")
+  updatedAt  DateTime @updatedAt
+
+  customer     Customer            @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  transactions WalletTransaction[]
+}
+
+enum TransactionType {
+  CREDIT // Adding money
+  DEBIT // Removing money
+}
+
+model WalletTransaction {
+  id          String          @id @default(uuid())
+  walletId    String
+  amount      Decimal
+  type        TransactionType
+  description String?
+  createdAt   DateTime        @default(now())
+
+  wallet CustomerWallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  customerId  String
+  status      OrderStatus @default(PENDING)
+  totalAmount Decimal     @default(0.00)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model Ticket {
+  id         String         @id @default(uuid())
+  customerId String
+  subject    String
+  status     TicketStatus   @default(OPEN)
+  priority   TicketPriority @default(LOW)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
