@@ -16,6 +16,7 @@ enum AdminRole {
   MANAGER
 }
 
+
 enum Gender {
   MALE
   FEMALE
@@ -53,6 +54,7 @@ model Customer {
   passwordHash String
   firstName    String
   lastName     String
+
   dob          DateTime?
   gender       Gender?
   profileImage String?
@@ -61,6 +63,7 @@ model Customer {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   sessions CustomerSession[]
+  addresses CustomerAddress[]
 }
 
 model CustomerSession {
@@ -73,4 +76,24 @@ model CustomerSession {
   customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
 }
 
+model CustomerAddress {
+  id                   String   @id @default(uuid())
+  customerId           String
+  name                 String
+  fullName             String
+  phone                String
+  addressLine1         String
+  addressLine2         String?
+  city                 String
+  state                String
+  zip                  String
+  country              String
+  deliveryInstructions String?
+  isDefaultShipping    Boolean  @default(false)
+  isDefaultBilling     Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
 

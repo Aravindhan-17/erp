@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../shared/prisma/prisma.service';
+import { Customer, Prisma, CustomerAddress } from '@prisma/client';
 import { Customer, Prisma, Gender } from '@prisma/client';
 
 @Injectable()
@@ -45,6 +46,69 @@ export class CustomerUsersService {
     return this.prisma.customer.update({
       where: { id },
       data,
+    });
+  }
+
+  // Address Management
+  async getAddresses(customerId: string): Promise<CustomerAddress[]> {
+    return this.prisma.customerAddress.findMany({
+      where: { customerId },
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
+  async createAddress(
+    customerId: string,
+    data: Omit<Prisma.CustomerAddressUncheckedCreateInput, 'customerId'>,
+  ): Promise<CustomerAddress> {
+    if (data.isDefaultShipping) {
+      await this.prisma.customerAddress.updateMany({
+        where: { customerId, isDefaultShipping: true },
+        data: { isDefaultShipping: false },
+      });
+    }
+    if (data.isDefaultBilling) {
+      await this.prisma.customerAddress.updateMany({
+        where: { customerId, isDefaultBilling: true },
+        data: { isDefaultBilling: false },
+      });
+    }
+
+    return this.prisma.customerAddress.create({
+      data: {
+        ...data,
+        customerId,
+      },
+    });
+  }
+
+  async updateAddress(
+    customerId: string,
+    addressId: string,
+    data: Omit<Prisma.CustomerAddressUncheckedUpdateInput, 'customerId'>,
+  ): Promise<CustomerAddress> {
+    if (data.isDefaultShipping) {
+      await this.prisma.customerAddress.updateMany({
+        where: { customerId, isDefaultShipping: true, id: { not: addressId } },
+        data: { isDefaultShipping: false },
+      });
+    }
+    if (data.isDefaultBilling) {
+      await this.prisma.customerAddress.updateMany({
+        where: { customerId, isDefaultBilling: true, id: { not: addressId } },
+        data: { isDefaultBilling: false },
+      });
+    }
+
+    return this.prisma.customerAddress.update({
+      where: { id: addressId, customerId },
+      data,
+    });
+  }
+
+  async deleteAddress(customerId: string, addressId: string): Promise<void> {
+    await this.prisma.customerAddress.delete({
+      where: { id: addressId, customerId },
     });
   }
 }

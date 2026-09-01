@@ -9,6 +9,9 @@ import {
   UnauthorizedException,
   HttpCode,
   HttpStatus,
+  Param,
+  Delete,
+  Post,
   Post,
   UseInterceptors,
   UploadedFile,
@@ -26,6 +29,8 @@ import {
 import { CustomerUsersService } from '../users/customer-users.service';
 import { CustomerJwtAuthGuard } from '../auth/guards/customer-jwt-auth.guard';
 import { UpdateCustomerProfileDto } from './dto/update-customer-profile.dto';
+import { CreateCustomerAddressDto } from './dto/create-customer-address.dto';
+import { UpdateCustomerAddressDto } from './dto/update-customer-address.dto';
 
 import { UpdateCustomerPasswordDto } from './dto/update-customer-password.dto';
 import * as bcrypt from 'bcrypt';
@@ -47,6 +52,8 @@ export class CustomerProfileController {
       throw new UnauthorizedException('Customer not found');
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { passwordHash, ...result } = customer;
     const { passwordHash: _, ...result } = customer;
     return result;
   }
@@ -64,6 +71,8 @@ export class CustomerProfileController {
       body,
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { passwordHash, ...result } = customer;
     const { passwordHash: _, ...result } = customer;
     return {
       message: 'Profile updated successfully',
@@ -156,6 +165,66 @@ export class CustomerProfileController {
 
     return {
       message: 'Password updated successfully',
+    };
+  }
+
+  @ApiOperation({ summary: 'Get all customer addresses' })
+  @ApiResponse({ status: 200, description: 'Returns all customer addresses.' })
+  @Get('addresses')
+  async getAddresses(@Request() req: { user: Record<string, any> }) {
+    const customerId = req.user.id as string;
+    return this.customerUsersService.getAddresses(customerId);
+  }
+
+  @ApiOperation({ summary: 'Add a new address' })
+  @ApiResponse({ status: 201, description: 'Address added successfully.' })
+  @Post('addresses')
+  async addAddress(
+    @Request() req: { user: Record<string, any> },
+    @Body() body: CreateCustomerAddressDto,
+  ) {
+    const customerId = req.user.id as string;
+    const address = await this.customerUsersService.createAddress(
+      customerId,
+      body,
+    );
+    return {
+      message: 'Address added successfully',
+      address,
+    };
+  }
+
+  @ApiOperation({ summary: 'Update an address' })
+  @ApiResponse({ status: 200, description: 'Address updated successfully.' })
+  @Put('addresses/:id')
+  async updateAddress(
+    @Request() req: { user: Record<string, any> },
+    @Param('id') addressId: string,
+    @Body() body: UpdateCustomerAddressDto,
+  ) {
+    const customerId = req.user.id as string;
+    const address = await this.customerUsersService.updateAddress(
+      customerId,
+      addressId,
+      body,
+    );
+    return {
+      message: 'Address updated successfully',
+      address,
+    };
+  }
+
+  @ApiOperation({ summary: 'Delete an address' })
+  @ApiResponse({ status: 200, description: 'Address deleted successfully.' })
+  @Delete('addresses/:id')
+  async deleteAddress(
+    @Request() req: { user: Record<string, any> },
+    @Param('id') addressId: string,
+  ) {
+    const customerId = req.user.id as string;
+    await this.customerUsersService.deleteAddress(customerId, addressId);
+    return {
+      message: 'Address deleted successfully',
     };
   }
 }
