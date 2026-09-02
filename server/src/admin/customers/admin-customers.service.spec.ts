@@ -14,6 +14,9 @@ describe('AdminCustomersService', () => {
       findUnique: jest.fn(),
       update: jest.fn(),
     },
+    customerSession: {
+      deleteMany: jest.fn(),
+    },
     order: {
       findMany: jest.fn(),
     },
@@ -156,6 +159,41 @@ describe('AdminCustomersService', () => {
         data: { isActive: false },
         select: { id: true, isActive: true },
       });
+    });
+
+    it('should revoke all active sessions when suspending a customer', async () => {
+      mockPrismaService.customer.findUnique.mockResolvedValue({ id: '1' });
+      mockPrismaService.customer.update.mockResolvedValue({
+        id: '1',
+        isActive: false,
+      });
+      mockPrismaService.customerSession.deleteMany.mockResolvedValue({
+        count: 2,
+      });
+
+      const result = await service.toggleSuspend('1', false);
+
+      expect(result).toEqual({ id: '1', isActive: false });
+      expect(mockPrismaService.customerSession.deleteMany).toHaveBeenCalledWith(
+        {
+          where: { customerId: '1' },
+        },
+      );
+    });
+
+    it('should not revoke sessions when reactivating a customer', async () => {
+      mockPrismaService.customer.findUnique.mockResolvedValue({ id: '1' });
+      mockPrismaService.customer.update.mockResolvedValue({
+        id: '1',
+        isActive: true,
+      });
+
+      const result = await service.toggleSuspend('1', true);
+
+      expect(result).toEqual({ id: '1', isActive: true });
+      expect(
+        mockPrismaService.customerSession.deleteMany,
+      ).not.toHaveBeenCalled();
     });
 
     it('should throw NotFoundException if customer to suspend not found', async () => {

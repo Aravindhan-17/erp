@@ -91,7 +91,7 @@ export class CustomerAuthService {
     if (!rtMatches) return null;
 
     const customer = await this.customerUsersService.findById(customerId);
-    if (!customer) return null;
+    if (!customer || !customer.isActive) return null;
 
     const tokens = await this.getTokens(customer.id, customer.email, sessionId);
     const newHashedToken = await bcrypt.hash(tokens.refreshToken, 10);
@@ -115,7 +115,7 @@ export class CustomerAuthService {
 
   async forgotPassword(email: string) {
     const customer = await this.customerUsersService.findByEmail(email);
-    if (!customer) {
+    if (!customer || !customer.isActive) {
       // Return successfully to prevent email enumeration
       return true;
     }
@@ -145,7 +145,7 @@ export class CustomerAuthService {
       }
 
       const customer = await this.customerUsersService.findById(decoded.sub);
-      if (!customer) {
+      if (!customer || !customer.isActive) {
         return false;
       }
 

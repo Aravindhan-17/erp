@@ -118,6 +118,92 @@ describe('CustomerAuthService', () => {
     });
   });
 
+  describe('refreshTokens', () => {
+    it('should return null when the session does not exist', async () => {
+      prismaService.customerSession.findUnique.mockResolvedValue(null);
+
+      const result = await service.refreshTokens(
+        '1',
+        'refresh-token',
+        'missing-session',
+      );
+
+      expect(result).toBeNull();
+      expect(jwtService.signAsync).not.toHaveBeenCalled();
+    });
+
+    it('should return null when the refresh token does not match', async () => {
+      prismaService.customerSession.findUnique.mockResolvedValue({
+        id: 'session-1',
+        hashedToken: 'hashed-token',
+        expiresAt: new Date(Date.now() + 86400000),
+      });
+      customerUsersService.findById.mockResolvedValue(mockCustomer);
+      (bcrypt.compare as jest.Mock).mockResolvedValue(false);
+
+      const result = await service.refreshTokens(
+        '1',
+        'wrong-refresh-token',
+        'session-1',
+      );
+
+      expect(result).toBeNull();
+      expect(jwtService.signAsync).not.toHaveBeenCalled();
+    });
+
+    it('should return null when the customer account is suspended', async () => {
+      prismaService.customerSession.findUnique.mockResolvedValue({
+        id: 'session-1',
+        hashedToken: 'hashed-token',
+        expiresAt: new Date(Date.now() + 86400000),
+      });
+      customerUsersService.findById.mockResolvedValue({
+        ...mockCustomer,
+        isActive: false,
+      });
+      (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+
+      const result = await service.refreshTokens(
+        '1',
+        'refresh-token',
+        'session-1',
+      );
+
+      expect(result).toBeNull();
+      expect(jwtService.signAsync).not.toHaveBeenCalled();
+    });
+
+    it('should return new tokens for an active customer with a valid session', async () => {
+      prismaService.customerSession.findUnique.mockResolvedValue({
+        id: 'session-1',
+        hashedToken: 'hashed-token',
+        expiresAt: new Date(Date.now() + 86400000),
+      });
+      customerUsersService.findById.mockResolvedValue(mockCustomer);
+      (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+      (bcrypt.hash as jest.Mock).mockResolvedValue('new-hashed-token');
+      prismaService.customerSession.update.mockResolvedValue({ id: 'session-1' });
+
+      const result = await service.refreshTokens(
+        '1',
+        'refresh-token',
+        'session-1',
+      );
+
+      expect(result).toEqual({
+        access_token: 'mock-jwt-token',
+        refresh_token: 'mock-jwt-token',
+      });
+      expect(prismaService.customerSession.update).toHaveBeenCalledWith({
+        where: { id: 'session-1' },
+        data: {
+          hashedToken: 'new-hashed-token',
+          expiresAt: expect.any(Date),
+        },
+      });
+    });
+  });
+
   describe('forgotPassword', () => {
     it('should return true if customer not found', async () => {
       customerUsersService.findByEmail.mockResolvedValue(null);
@@ -134,6 +220,13 @@ describe('CustomerAuthService', () => {
         { sub: mockCustomer.id },
         { secret: 'mock-secret' + mockCustomer.passwordHash, expiresIn: '15m' },
       );
+    });
+
+    it('should return true if customer is suspended to prevent enumeration', async () => {
+      customerUsersService.findByEmail.mockResolvedValue({ ...mockCustomer, isActive: false });
+      const result = await service.forgotPassword('customer@test.com');
+      expect(result).toBe(true);
+      expect(jwtService.signAsync).not.toHaveBeenCalled();
     });
   });
 
@@ -173,6 +266,15 @@ describe('CustomerAuthService', () => {
       const result = await service.resetPassword('invalid-token', 'newpass');
 
       expect(result).toBe(false);
+    });
+    it('should return false if customer is suspended', async () => {
+      jwtService.decode.mockReturnValue({ sub: mockCustomer.id });
+      customerUsersService.findById.mockResolvedValue({ ...mockCustomer, isActive: false });
+
+      const result = await service.resetPassword('valid-token', 'newpass');
+
+      expect(result).toBe(false);
+      expect(jwtService.verifyAsync).not.toHaveBeenCalled();
     });
   });
 });

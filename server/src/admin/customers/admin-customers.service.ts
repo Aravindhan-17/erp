@@ -108,6 +108,12 @@ export class AdminCustomersService {
       throw new NotFoundException(`Customer with ID ${id} not found`);
     }
 
+    if (!isActive) {
+      await this.prisma.customerSession.deleteMany({
+        where: { customerId: id },
+      });
+    }
+
     return this.prisma.customer.update({
       where: { id },
       data: { isActive },
