@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Eye, Search, ChevronDown, Download, MapPin } from "lucide-react";
+import { Eye, Search, ChevronDown, Download, MapPin, Ban, UserCheck } from "lucide-react";
 import { Modal } from "@/components/modal";
 
-const customers = [
+const initialCustomers = [
   {
     id: 1,
     name: "Aarav Ramesh",
@@ -158,9 +158,9 @@ const customers = [
 ];
 
 export function CustomersClient() {
-  const [viewingCustomer, setViewingCustomer] = useState<(typeof customers)[0] | null>(null);
+  const [customers, setCustomers] = useState(initialCustomers);
+  const [viewingCustomer, setViewingCustomer] = useState<(typeof initialCustomers)[0] | null>(null);
 
-  // Helper to get initials
   const getInitials = (name: string) => {
     return name
       .split(" ")
@@ -168,6 +168,23 @@ export function CustomersClient() {
       .join("")
       .toUpperCase()
       .substring(0, 2);
+  };
+
+  const handleToggleSuspend = (id: number) => {
+    setCustomers((prev) =>
+      prev.map((c) => {
+        if (c.id === id) {
+          return { ...c, status: c.status === "Suspended" ? "Active" : "Suspended" };
+        }
+        return c;
+      })
+    );
+    
+    if (viewingCustomer?.id === id) {
+      setViewingCustomer((prev) =>
+        prev ? { ...prev, status: prev.status === "Suspended" ? "Active" : "Suspended" } : null
+      );
+    }
   };
 
   return (
@@ -226,45 +243,58 @@ export function CustomersClient() {
         <div className="hide-scrollbar w-full overflow-x-auto">
           <table className="min-w-275 w-full border-collapse">
             <thead>
-              <tr className="border-b border-gray-100">
-                <th className="w-60 px-5 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+              <tr className="border-b border-gray-100 bg-gray-50/50">
+                <th className="w-60 px-5 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-500">
                   Customer
                 </th>
-                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-500">
                   Segment
                 </th>
-                <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-gray-500">
                   Registrations
                 </th>
-                <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-gray-500">
                   Orders
                 </th>
-                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-500">
                   Total Spend
                 </th>
-                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-500">
                   Last Activity
                 </th>
-                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wide text-gray-500">
                   Status
                 </th>
-                <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-gray-400">
+                <th className="px-4 py-4 text-center text-[12px] font-semibold uppercase tracking-wide text-gray-500">
                   Actions
                 </th>
               </tr>
             </thead>
 
-            <tbody>
+            <tbody className="divide-y divide-gray-100">
               {customers.map((customer) => (
                 <tr
                   key={customer.id}
-                  className="hover:bg-primary/5 border-b border-gray-100 transition-colors"
+                  className={`transition-colors ${
+                    customer.status === "Suspended" ? "bg-red-50/30" : "hover:bg-primary/5 bg-white"
+                  }`}
                 >
                   <td className="px-5 py-4">
-                    <div className="min-w-52.5">
-                      <p className="text-sm font-semibold text-gray-800">{customer.name}</p>
-                      <p className="mt-0.5 text-xs text-gray-400">{customer.email}</p>
-                      <p className="mt-0.5 text-xs text-gray-400">{customer.phone}</p>
+                    <div className="min-w-52.5 flex items-center gap-3">
+                      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white shadow-sm ${
+                        customer.status === "Suspended" 
+                          ? "bg-red-300"
+                          : "bg-linear-to-br from-violet-500 to-fuchsia-500"
+                      }`}>
+                        {getInitials(customer.name)}
+                      </div>
+                      <div>
+                        <p className={`text-sm font-semibold ${customer.status === "Suspended" ? "text-gray-500 line-through decoration-red-300" : "text-gray-800"}`}>
+                          {customer.name}
+                        </p>
+                        <p className="mt-0.5 text-xs text-gray-400">{customer.email}</p>
+                        <p className="mt-0.5 text-xs text-gray-400">{customer.phone}</p>
+                      </div>
                     </div>
                   </td>
                   <td className="px-4 py-4">
@@ -302,22 +332,36 @@ export function CustomersClient() {
                     <span
                       className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[12px] font-semibold ${
                         customer.status === "Review"
-                          ? "bg-amber-50 text-amber-600"
-                          : "bg-emerald-50 text-emerald-600"
+                          ? "bg-amber-50 text-amber-600 border border-amber-200/50"
+                          : customer.status === "Suspended"
+                            ? "bg-red-50 text-red-600 border border-red-200/50"
+                            : "bg-emerald-50 text-emerald-600 border border-emerald-200/50"
                       }`}
                     >
                       {customer.status}
                     </span>
                   </td>
                   <td className="px-4 py-4">
-                    <div className="flex justify-center">
+                    <div className="flex justify-center gap-2">
                       <button
                         type="button"
-                        title="View customer"
+                        title="View customer profile"
                         onClick={() => setViewingCustomer(customer)}
-                        className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all"
+                        className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 shadow-xs transition-all"
                       >
                         <Eye size={16} />
+                      </button>
+                      <button
+                        type="button"
+                        title={customer.status === "Suspended" ? "Unsuspend customer" : "Suspend customer"}
+                        onClick={() => handleToggleSuspend(customer.id)}
+                        className={`flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-xs transition-all ${
+                          customer.status === "Suspended"
+                            ? "text-emerald-600 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
+                            : "text-red-500 hover:border-red-300 hover:bg-red-50 hover:text-red-600"
+                        }`}
+                      >
+                        {customer.status === "Suspended" ? <UserCheck size={16} /> : <Ban size={16} />}
                       </button>
                     </div>
                   </td>
@@ -332,26 +376,41 @@ export function CustomersClient() {
       <Modal
         isOpen={!!viewingCustomer}
         onClose={() => setViewingCustomer(null)}
-        title="Customer profile"
+        title="Customer Profile"
         maxWidth="2xl"
       >
         {viewingCustomer && (
           <div className="mt-4 space-y-8">
             {/* Header info */}
-            <div className="flex items-start gap-5">
-              <div className="bg-linear-to-br flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl from-violet-500 to-fuchsia-500 text-xl font-bold text-white shadow-md">
-                {getInitials(viewingCustomer.name)}
-              </div>
-              <div className="min-w-0 flex-1">
-                <h2 className="text-xl font-bold text-gray-900">{viewingCustomer.name}</h2>
-                <div className="mt-2 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-4">
-                  <p className="text-sm font-medium text-gray-500">{viewingCustomer.email}</p>
-                  <p className="hidden text-gray-300 sm:block">•</p>
-                  <p className="text-sm font-medium text-gray-500">{viewingCustomer.phone}</p>
+            <div className="flex items-start justify-between gap-5">
+              <div className="flex items-center gap-5">
+                <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-xl font-bold text-white shadow-md ${
+                  viewingCustomer.status === "Suspended"
+                    ? "bg-red-300"
+                    : "bg-linear-to-br from-violet-500 to-fuchsia-500"
+                }`}>
+                  {getInitials(viewingCustomer.name)}
                 </div>
-                <div className="mt-2 flex items-center gap-1.5 text-gray-500">
-                  <MapPin size={14} />
-                  <p className="text-sm font-medium">{viewingCustomer.location}</p>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-3">
+                    <h2 className={`text-xl font-bold ${viewingCustomer.status === "Suspended" ? "text-gray-500 line-through decoration-red-300" : "text-gray-900"}`}>
+                      {viewingCustomer.name}
+                    </h2>
+                    {viewingCustomer.status === "Suspended" && (
+                      <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-bold text-red-600 uppercase tracking-wide">
+                        Suspended
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-2 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-4">
+                    <p className="text-sm font-medium text-gray-500">{viewingCustomer.email}</p>
+                    <p className="hidden text-gray-300 sm:block">•</p>
+                    <p className="text-sm font-medium text-gray-500">{viewingCustomer.phone}</p>
+                  </div>
+                  <div className="mt-2 flex items-center gap-1.5 text-gray-500">
+                    <MapPin size={14} />
+                    <p className="text-sm font-medium">{viewingCustomer.location}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -456,12 +515,25 @@ export function CustomersClient() {
               </div>
             </div>
 
-            {/* Footer Close Button */}
-            <div className="pt-2">
+            {/* Footer Buttons */}
+            <div className="pt-4 flex gap-3 sm:flex-row flex-col-reverse">
+              <button
+                type="button"
+                onClick={() => handleToggleSuspend(viewingCustomer.id)}
+                className={`w-full sm:w-auto rounded-xl border py-3 px-6 text-sm font-semibold shadow-sm transition flex items-center justify-center gap-2 ${
+                  viewingCustomer.status === "Suspended"
+                    ? "border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                    : "border-red-200 bg-red-50 text-red-700 hover:bg-red-100"
+                }`}
+              >
+                {viewingCustomer.status === "Suspended" ? <UserCheck size={16} /> : <Ban size={16} />}
+                {viewingCustomer.status === "Suspended" ? "Unsuspend Account" : "Suspend Account"}
+              </button>
+              <div className="flex-1"></div>
               <button
                 type="button"
                 onClick={() => setViewingCustomer(null)}
-                className="bg-primary w-full rounded-xl border border-gray-200 py-3 text-sm font-semibold text-white shadow-sm transition"
+                className="bg-primary w-full sm:w-auto rounded-xl border border-gray-200 py-3 px-8 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
               >
                 Close
               </button>
