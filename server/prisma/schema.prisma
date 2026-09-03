@@ -171,3 +171,33 @@ model Ticket {
 
   customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
 }
+
+enum CategoryStatus {
+  ACTIVE
+  UPCOMING
+  INACTIVE
+}
+
+enum Industry {
+  RETAIL
+  WHOLESALE
+  B2B
+}
+
+model Category {
+  id          String         @id @default(uuid())
+  name        String
+  slug        String         @unique
+  description String?
+  parentId    String?        // Supports deep nesting
+  bannerUrl   String?        // Promotional banner image URL
+  imageUrl    String?        // Category icon or small image
+  status      CategoryStatus @default(ACTIVE)
+  industry    Industry       @default(RETAIL)
+  isActive    Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children    Category[] @relation("CategoryHierarchy")
+}

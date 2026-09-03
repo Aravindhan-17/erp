@@ -182,7 +182,9 @@ describe('CustomerAuthService', () => {
       customerUsersService.findById.mockResolvedValue(mockCustomer);
       (bcrypt.compare as jest.Mock).mockResolvedValue(true);
       (bcrypt.hash as jest.Mock).mockResolvedValue('new-hashed-token');
-      prismaService.customerSession.update.mockResolvedValue({ id: 'session-1' });
+      prismaService.customerSession.update.mockResolvedValue({
+        id: 'session-1',
+      });
 
       const result = await service.refreshTokens(
         '1',
@@ -198,6 +200,7 @@ describe('CustomerAuthService', () => {
         where: { id: 'session-1' },
         data: {
           hashedToken: 'new-hashed-token',
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           expiresAt: expect.any(Date),
         },
       });
@@ -223,7 +226,10 @@ describe('CustomerAuthService', () => {
     });
 
     it('should return true if customer is suspended to prevent enumeration', async () => {
-      customerUsersService.findByEmail.mockResolvedValue({ ...mockCustomer, isActive: false });
+      customerUsersService.findByEmail.mockResolvedValue({
+        ...mockCustomer,
+        isActive: false,
+      });
       const result = await service.forgotPassword('customer@test.com');
       expect(result).toBe(true);
       expect(jwtService.signAsync).not.toHaveBeenCalled();
@@ -248,13 +254,16 @@ describe('CustomerAuthService', () => {
       expect(jwtService.verifyAsync).toHaveBeenCalledWith('valid-token', {
         secret: 'mock-secret' + mockCustomer.passwordHash,
       });
+
       expect(customerUsersService.updatePassword).toHaveBeenCalledWith(
         mockCustomer.id,
         'newhashedpass',
       );
+
       expect(prismaService.customerSession.deleteMany).toHaveBeenCalledWith({
         where: { customerId: mockCustomer.id },
       });
+      
       expect(result).toBe(true);
     });
 
@@ -267,9 +276,13 @@ describe('CustomerAuthService', () => {
 
       expect(result).toBe(false);
     });
+
     it('should return false if customer is suspended', async () => {
       jwtService.decode.mockReturnValue({ sub: mockCustomer.id });
-      customerUsersService.findById.mockResolvedValue({ ...mockCustomer, isActive: false });
+      customerUsersService.findById.mockResolvedValue({
+        ...mockCustomer,
+        isActive: false,
+      });
 
       const result = await service.resetPassword('valid-token', 'newpass');
 
@@ -278,3 +291,12 @@ describe('CustomerAuthService', () => {
     });
   });
 });
+
+// **Yesterday:**
+// Worked on the Admin Categories Management module, including category schema, backend APIs, frontend UI integration, and customer account suspension controls.
+
+// **Today:**
+// Working on attaching rich promotional banners to specific product categories and integrating the required backend and frontend functionality.
+
+// **Blockers:**
+// None.
