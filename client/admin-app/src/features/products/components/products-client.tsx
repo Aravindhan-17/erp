@@ -135,7 +135,6 @@ export function ProductsClient() {
             bg-primary
             hover:bg-primary-hover
             shadow-primary/20
-            shadow-primary/20
             inline-flex
             w-fit items-center
             gap-2
@@ -145,7 +144,6 @@ export function ProductsClient() {
             text-sm
             font-semibold text-white
             shadow-md
-            
             transition hover:shadow-md
           "
         >

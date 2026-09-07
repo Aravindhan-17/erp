@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedCategoriesRouteImport } from './routes/_authenticated/categories'
 import { Route as AuthenticatedCustomersRouteImport } from './routes/_authenticated/customers'
@@ -21,10 +22,16 @@ import { Route as AuthenticatedProductsRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedRegistrationsRouteImport } from './routes/_authenticated/registrations'
 import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated/reports'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthenticatedDealsDealIdRouteImport } from './routes/_authenticated/deals/$dealId'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
@@ -83,6 +90,11 @@ const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthenticatedDealsDealIdRoute =
   AuthenticatedDealsDealIdRouteImport.update({
     id: '/$dealId',
@@ -92,6 +104,7 @@ const AuthenticatedDealsDealIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
+  '/auth': typeof AuthRouteWithChildren
   '/categories': typeof AuthenticatedCategoriesRoute
   '/customers': typeof AuthenticatedCustomersRoute
   '/deals': typeof AuthenticatedDealsRouteWithChildren
@@ -102,9 +115,11 @@ export interface FileRoutesByFullPath {
   '/registrations': typeof AuthenticatedRegistrationsRoute
   '/reports': typeof AuthenticatedReportsRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/auth/login': typeof AuthLoginRoute
   '/deals/$dealId': typeof AuthenticatedDealsDealIdRoute
 }
 export interface FileRoutesByTo {
+  '/auth': typeof AuthRouteWithChildren
   '/categories': typeof AuthenticatedCategoriesRoute
   '/customers': typeof AuthenticatedCustomersRoute
   '/deals': typeof AuthenticatedDealsRouteWithChildren
@@ -115,12 +130,14 @@ export interface FileRoutesByTo {
   '/registrations': typeof AuthenticatedRegistrationsRoute
   '/reports': typeof AuthenticatedReportsRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/auth/login': typeof AuthLoginRoute
   '/': typeof AuthenticatedIndexRoute
   '/deals/$dealId': typeof AuthenticatedDealsDealIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/auth': typeof AuthRouteWithChildren
   '/_authenticated/categories': typeof AuthenticatedCategoriesRoute
   '/_authenticated/customers': typeof AuthenticatedCustomersRoute
   '/_authenticated/deals': typeof AuthenticatedDealsRouteWithChildren
@@ -131,6 +148,7 @@ export interface FileRoutesById {
   '/_authenticated/registrations': typeof AuthenticatedRegistrationsRoute
   '/_authenticated/reports': typeof AuthenticatedReportsRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/auth/login': typeof AuthLoginRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/deals/$dealId': typeof AuthenticatedDealsDealIdRoute
 }
@@ -138,6 +156,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/categories'
     | '/customers'
     | '/deals'
@@ -148,9 +167,11 @@ export interface FileRouteTypes {
     | '/registrations'
     | '/reports'
     | '/settings'
+    | '/auth/login'
     | '/deals/$dealId'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/auth'
     | '/categories'
     | '/customers'
     | '/deals'
@@ -161,11 +182,13 @@ export interface FileRouteTypes {
     | '/registrations'
     | '/reports'
     | '/settings'
+    | '/auth/login'
     | '/'
     | '/deals/$dealId'
   id:
     | '__root__'
     | '/_authenticated'
+    | '/auth'
     | '/_authenticated/categories'
     | '/_authenticated/customers'
     | '/_authenticated/deals'
@@ -176,12 +199,14 @@ export interface FileRouteTypes {
     | '/_authenticated/registrations'
     | '/_authenticated/reports'
     | '/_authenticated/settings'
+    | '/auth/login'
     | '/_authenticated/'
     | '/_authenticated/deals/$dealId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -191,6 +216,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/': {
@@ -270,6 +302,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/_authenticated/deals/$dealId': {
       id: '/_authenticated/deals/$dealId'
       path: '/$dealId'
@@ -323,8 +362,19 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
 )
 
+interface AuthRouteChildren {
+  AuthLoginRoute: typeof AuthLoginRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthLoginRoute: AuthLoginRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  AuthRoute: AuthRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
