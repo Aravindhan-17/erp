@@ -189,15 +189,50 @@ model Category {
   name        String
   slug        String         @unique
   description String?
-  parentId    String?        // Supports deep nesting
-  bannerUrl   String?        // Promotional banner image URL
-  imageUrl    String?        // Category icon or small image
+  parentId    String? // Supports deep nesting
+  bannerUrl   String? // Promotional banner image URL
+  imageUrl    String? // Category icon or small image
   status      CategoryStatus @default(ACTIVE)
   industry    Industry       @default(RETAIL)
   isActive    Boolean        @default(true)
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
 
-  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
-  children    Category[] @relation("CategoryHierarchy")
+  parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children Category[] @relation("CategoryHierarchy")
+  products Product[]
+}
+
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+  OUT_OF_STOCK
+}
+
+model Product {
+  id               String        @id @default(uuid())
+  name             String
+  slug             String        @unique
+  shortDescription String?
+  description      String?
+  categoryId       String
+  brand            String?
+  price            Decimal
+  salePrice        Decimal?
+  stock            Int           @default(0)
+  images           String[]
+  status           ProductStatus @default(ACTIVE)
+
+  // Flash Deal Specific Fields
+  isFlashDeal        Boolean   @default(false)
+  flashDealStartTime DateTime?
+  flashDealEndTime   DateTime?
+  registrationFee    Decimal?
+  minOrderValue      Decimal?
+  maxQuantityPerUser Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }

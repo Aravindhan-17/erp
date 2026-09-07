@@ -1,13 +1,13 @@
 # ERP & Flash Deals Platform
 
 Welcome to the ERP and Flash Deals platform repository by **Hattussa IT Solution**. 
-This is a full-stack monorepo consisting of a Next.js frontend application (client) and a backend service (server).
+This is a full-stack monorepo consisting of a React + Vite frontend application (client) and a backend service (server).
 
 ## 📂 Project Structure
 
 ```text
 .
-├── client/                 # Frontend application (Next.js 15, React, Tailwind CSS)
+├── client/                 # Frontend application (React + Vite, Tailwind CSS)
 ├── server/                 # Backend application (NestJS, TypeScript)
 ├── docs/                   # Project documentation
 ├── demo/                   # Demo assets or materials

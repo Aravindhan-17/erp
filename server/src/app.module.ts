@@ -9,6 +9,8 @@ import { CustomerAuthModule } from './customer/auth/customer-auth.module';
 import { CustomerProfileModule } from './customer/profile/customer-profile.module';
 import { AdminCustomersModule } from './admin/customers/admin-customers.module';
 import { CategoriesModule } from './admin/categories/categories.module';
+import { AdminProductsModule } from './admin/products/products.module';
+import { CustomerProductsModule } from './customer/products/products.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { CategoriesModule } from './admin/categories/categories.module';
     CustomerProfileModule,
     AdminCustomersModule,
     CategoriesModule,
+    AdminProductsModule,
+    CustomerProductsModule,
   ],
   controllers: [],
   providers: [],
