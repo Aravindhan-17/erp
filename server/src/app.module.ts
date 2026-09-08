@@ -1,12 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AdminUsersModule } from './admin/users/admin-users.module';
-import { AdminAuthModule } from './admin/auth/admin-auth.module';
-import { PrismaModule } from './shared/prisma/prisma.module';
-import { HealthModule } from './shared/health/health.module';
-import { CustomerUsersModule } from './customer/users/customer-users.module';
-import { CustomerAuthModule } from './customer/auth/customer-auth.module';
-import { CustomerProfileModule } from './customer/profile/customer-profile.module';
+import { PrismaModule } from './core/database/prisma.module';
+import { HealthModule } from './core/health/health.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -14,12 +10,8 @@ import { CustomerProfileModule } from './customer/profile/customer-profile.modul
       isGlobal: true,
     }),
     PrismaModule,
-    AdminUsersModule,
-    AdminAuthModule,
     HealthModule,
-    CustomerUsersModule,
-    CustomerAuthModule,
-    CustomerProfileModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
