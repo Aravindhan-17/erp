@@ -2,10 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
-import { setupSwagger } from './shared/utils/setup-swagger';
+import { setupSwagger } from './core/config/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { GlobalExceptionFilter } from './shared/filters/global-exception.filter';
-import { TransformInterceptor } from './shared/interceptors/transform.interceptor';
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import * as express from 'express';
 import { join } from 'path';
 
@@ -30,9 +30,11 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin:
-      configService.get<string>('NEXT_PUBLIC_API_URL') ||
-      'http://localhost:3000',
+    origin: [
+      configService.get<string>('NEXT_PUBLIC_API_URL') || 'http://localhost:3000',
+      configService.get<string>('CLIENT_APP_URL') || 'http://localhost:5173',
+      configService.get<string>('ADMIN_APP_URL') || 'http://localhost:5174'
+    ],
     credentials: true,
   });
 
