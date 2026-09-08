@@ -21,8 +21,9 @@ export const useLogin = ({ mutationConfig }: UseLoginOptions = {}) => {
     ...restConfig,
     mutationFn: login,
     onSuccess: (...args) => {
-      const data = args[0];
-      setAuth(data.admin, data.access_token);
+      const [response] = args;
+      const { admin, access_token } = response.data;
+      setAuth(admin, access_token);
       toast.success("Logged in successfully");
       onSuccess?.(...args);
     },

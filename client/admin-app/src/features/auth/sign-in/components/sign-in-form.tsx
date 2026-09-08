@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, type LoginFormData } from "@/lib/validations/auth";
-import { useLogin } from "../api/sign-in";
-import { useNavigate } from "@tanstack/react-router";
+import { loginSchema, type LoginFormData } from "@/features/auth/schema";
+import { useLogin } from "@/features/auth/api/sign-in";
+import { useNavigate, Link } from "@tanstack/react-router";
 
-export function LoginForm() {
+export function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { mutate: login, isPending } = useLogin();
@@ -20,7 +20,6 @@ export function LoginForm() {
     defaultValues: {
       email: "",
       password: "",
-      rememberMe: true,
     },
   });
 
@@ -99,24 +98,13 @@ export function LoginForm() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
-        <label className="flex cursor-pointer items-center gap-2 group">
-          <input
-            type="checkbox"
-            {...register("rememberMe")}
-            className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-600 dark:border-slate-700 dark:bg-slate-900 dark:checked:bg-indigo-500"
-          />
-          <span className="text-sm font-medium text-slate-700 group-hover:text-indigo-600 transition-colors dark:text-slate-300 dark:group-hover:text-indigo-400">
-            Remember Me
-          </span>
-        </label>
-
-        <a
-          href="#"
+      <div className="flex items-center justify-end">
+        <Link
+          to="/auth/forgot-password"
           className="text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-400"
         >
           Forgot Password?
-        </a>
+        </Link>
       </div>
 
       <button

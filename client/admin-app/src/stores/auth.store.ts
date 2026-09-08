@@ -3,8 +3,6 @@ import { setupInterceptors, axiosPublic } from "../lib/api-client";
 
 interface AdminUser {
   id: string;
-  firstName: string;
-  lastName: string;
   email: string;
   role: string;
 }
@@ -20,19 +18,24 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set, get) => {
-  let initialized = false;
+  let initPromise: Promise<void> | null = null;
 
   const refreshUser = async () => {
     try {
       const res = await axiosPublic.post("/auth/admin/refresh", {}, {
         withCredentials: true,
       });
-      const data = res.data;
+      const payload = res.data;
+      const data = payload?.data || payload;
+
       if (data && data.access_token) {
         const meRes = await axiosPublic.get("/auth/admin/me", {
           headers: { Authorization: `Bearer ${data.access_token}` },
         });
-        set({ token: data.access_token, user: meRes.data, isLoading: false });
+        const mePayload = meRes.data;
+        const userData = mePayload?.data || mePayload;
+
+        set({ token: data.access_token, user: userData, isLoading: false });
         return { accessToken: data.access_token };
       }
       return null;
@@ -66,13 +69,18 @@ export const useAuthStore = create<AuthState>((set, get) => {
       }
     },
     initAuth: async () => {
-      if (initialized) return;
-      initialized = true;
-      try {
-        await refreshUser();
-      } catch (e) {
-        // Ignored
+      if (!initPromise) {
+        initPromise = (async () => {
+          try {
+            await refreshUser();
+          } catch (e) {
+            // Ignored
+          } finally {
+            set({ isLoading: false });
+          }
+        })();
       }
+      await initPromise;
     }
   };
 });

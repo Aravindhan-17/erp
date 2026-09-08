@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
+import { useAuthStore } from "@/stores/auth.store";
 
 import {
   LayoutDashboard,
@@ -19,11 +20,14 @@ import {
   Menu,
   X,
   Tags,
+  MessageSquare,
+  Wallet,
 } from "lucide-react";
-import { ErpLogoWhite } from "../assets/images";
+import { ErpLogoWhite } from "../../assets/images";
 
 export function AdminLayout() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const user = useAuthStore((s) => s.user);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menuItems = [
@@ -36,6 +40,8 @@ export function AdminLayout() {
     { label: "Orders", to: "/orders", icon: ShoppingCart },
     { label: "Registrations", to: "/registrations", icon: ClipboardList },
     { label: "Customers", to: "/customers", icon: Users },
+    { label: "Customer Wallets", to: "/wallets", icon: Wallet },
+    { label: "Support Tickets", to: "/tickets", icon: MessageSquare },
     { label: "Reports", to: "/reports", icon: BarChart3 },
   ];
 
@@ -62,9 +68,8 @@ export function AdminLayout() {
       )}
 
       <aside
-        className={`z-60 w-67.5 bg-linear-to-b fixed left-0 top-0 flex h-screen flex-col from-[#24005f] via-[#27006d] to-[#16003e] text-white shadow-2xl transition-transform duration-300 ease-in-out lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`z-60 w-67.5 bg-linear-to-b fixed left-0 top-0 flex h-screen flex-col from-[#24005f] via-[#27006d] to-[#16003e] text-white shadow-2xl transition-transform duration-300 ease-in-out lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="h-18 flex shrink-0 items-center justify-between border-b border-white/10 px-6">
           <Link to="/" onClick={closeSidebar} className="flex items-center gap-3">
@@ -90,9 +95,8 @@ export function AdminLayout() {
                   key={item.to}
                   to={item.to}
                   onClick={closeSidebar}
-                  className={`min-h-11.5 group flex items-center gap-3 rounded-xl px-4 py-3 text-[13.5px] font-medium transition-all duration-200 ${
-                    active ? "bg-primary text-white shadow-md" : "hover:bg-primary/50 text-purple-100 hover:text-white"
-                  }`}
+                  className={`min-h-11.5 group flex items-center gap-3 rounded-xl px-4 py-3 text-[13.5px] font-medium transition-all duration-200 ${active ? "bg-primary text-white shadow-md" : "hover:bg-primary/50 text-purple-100 hover:text-white"
+                    }`}
                 >
                   <Icon size={19} strokeWidth={active ? 2.4 : 2} className={active ? "text-white" : "text-purple-200 group-hover:text-white"} />
                   <span className="truncate">{item.label}</span>
@@ -109,9 +113,8 @@ export function AdminLayout() {
             <Link
               to="/settings"
               onClick={closeSidebar}
-              className={`min-h-11.5 group flex items-center gap-3 rounded-xl px-4 py-3 text-[13.5px] font-medium transition-all ${
-                isActive("/settings") ? "bg-primary text-white shadow-md" : "hover:bg-primary/50 text-purple-100 hover:text-white"
-              }`}
+              className={`min-h-11.5 group flex items-center gap-3 rounded-xl px-4 py-3 text-[13.5px] font-medium transition-all ${isActive("/settings") ? "bg-primary text-white shadow-md" : "hover:bg-primary/50 text-purple-100 hover:text-white"
+                }`}
             >
               <Settings size={19} className="text-purple-200 group-hover:text-white" />
               <span>Settings</span>
@@ -159,17 +162,15 @@ export function AdminLayout() {
               </button>
 
               <button type="button" className="flex h-10 items-center gap-2 rounded-xl border border-gray-200 bg-white px-2 sm:px-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#eee9ff] text-[11px] font-bold text-[#5b21e8]">SK</div>
-                <span className="hidden text-sm font-semibold text-gray-800 md:block">Sanya K.</span>
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#eee9ff] text-[11px] font-bold text-[#5b21e8] uppercase">
+                  {user?.email ? user.email[0] : "A"}
+                </div>
+                <span className="hidden text-sm font-semibold text-gray-800 md:block">
+                  {user?.email ? user.email.split("@")[0] : "Admin"}
+                </span>
               </button>
 
-              <a href="#" className="hidden h-10 items-center rounded-xl border border-gray-200 bg-white px-4 text-xs font-medium text-gray-600 transition hover:bg-gray-50 lg:flex xl:px-5 xl:text-sm">
-                Customer site
-              </a>
 
-              <div className="bg-primary hover:bg-primary-hover flex h-9 items-center justify-center rounded-full px-4 text-xs font-semibold text-white shadow-md sm:flex xl:px-5 xl:text-sm">
-                Admin ERP
-              </div>
             </div>
           </div>
         </header>
