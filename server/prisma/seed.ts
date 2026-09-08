@@ -28,6 +28,25 @@ async function main() {
   } else {
     console.log(`Admin user already exists: ${existingAdmin.email}`);
   }
+  const archerEmail = 'archer@yopmail.com';
+  const existingArcher = await prisma.adminUser.findUnique({
+    where: { email: archerEmail },
+  });
+
+  if (!existingArcher) {
+    const passwordHash = await bcrypt.hash('archer123', 10);
+    const admin = await prisma.adminUser.create({
+      data: {
+        email: archerEmail,
+        passwordHash,
+        role: AdminRole.SUPER_ADMIN,
+        isActive: true,
+      },
+    });
+    console.log(`Created admin user: ${admin.email} (pass: archer123)`);
+  } else {
+    console.log(`Admin user already exists: ${existingArcher.email}`);
+  }
 }
 
 main()
