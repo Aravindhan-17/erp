@@ -7,6 +7,7 @@ interface Customer {
   lastName: string;
   email: string;
   phone?: string;
+  profileImage?: string;
 }
 
 interface AuthState {
@@ -20,8 +21,8 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set, get) => {
-  // Initialization state flag
-  let initialized = false;
+  // Initialization promise for deduplication
+  let initPromise: Promise<void> | null = null;
 
   // We define the refresh logic that the interceptor will use
   const refreshUser = async () => {
@@ -71,13 +72,18 @@ export const useAuthStore = create<AuthState>((set, get) => {
       }
     },
     initAuth: async () => {
-      if (initialized) return;
-      initialized = true;
-      try {
-        await refreshUser();
-      } catch (e) {
-        // Refresh failed, probably no session. That's fine.
+      if (!initPromise) {
+        initPromise = (async () => {
+          try {
+            await refreshUser();
+          } catch (e) {
+            // Ignored
+          } finally {
+            set({ isLoading: false });
+          }
+        })();
       }
+      await initPromise;
     }
   };
 });

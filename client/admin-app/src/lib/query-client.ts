@@ -1,6 +1,6 @@
 import { QueryCache, QueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { handleServerError } from "./utils/handle-server-error";
+import { handleServerError } from "../utils/handle-server-error";
 import { toast } from "sonner";
 
 export const queryClient = new QueryClient({
