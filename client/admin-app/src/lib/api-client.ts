@@ -1,7 +1,7 @@
 import axios, { isAxiosError, type InternalAxiosRequestConfig } from "axios";
+import { env } from "@/config/env";
 
-// Assuming the NestJS backend is running on 3001 and mapped to /api or directly
-const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const baseUrl = env.API_URL;
 
 export const axiosPublic = axios.create({
   baseURL: baseUrl,

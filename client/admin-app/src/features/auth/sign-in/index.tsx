@@ -1,11 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { LoginForm } from '@/features/auth/components/login-form'
+import { SignInForm } from './components/sign-in-form';
 
-export const Route = createFileRoute('/auth/login')({
-  component: LoginPage,
-})
-
-function LoginPage() {
+export function SignInPage() {
   return (
     <div className="mx-auto w-full max-w-sm lg:max-w-md">
       <div className="mb-10 flex flex-col gap-2">
@@ -17,7 +12,7 @@ function LoginPage() {
         </p>
       </div>
 
-      <LoginForm />
+      <SignInForm />
     </div>
-  )
+  );
 }
