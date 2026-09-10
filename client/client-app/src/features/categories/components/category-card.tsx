@@ -1,4 +1,3 @@
-
 import { Link } from "@tanstack/react-router";
 
 export type CategoryType = {
@@ -6,7 +5,6 @@ export type CategoryType = {
   title: string;
   products: number;
   image: string | any;
-  industry?: string;
   status?: string;
 };
 

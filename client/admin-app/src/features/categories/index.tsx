@@ -1,5 +1,10 @@
-import { CategoriesPage } from './components/categories-page';
+import { CategoriesProvider } from "./context/categories-provider";
+import { CategoriesContent } from "./components/categories-content";
 
-export default function Categories() {
-  return <CategoriesPage />;
+export function CategoriesPage() {
+  return (
+    <CategoriesProvider>
+      <CategoriesContent />
+    </CategoriesProvider>
+  );
 }

@@ -1,4 +1,4 @@
-import axios, { isAxiosError, type InternalAxiosRequestConfig } from "axios";
+import axios, { isAxiosError, type InternalAxiosRequestConfig, type AxiosResponse } from "axios";
 import { env } from "@/config/env";
 
 const baseUrl = env.API_URL;
@@ -7,6 +7,20 @@ export const axiosPublic = axios.create({
   baseURL: baseUrl,
   withCredentials: true,
 });
+
+const unwrapResponseData = (response: AxiosResponse) => {
+  if (
+    response.data &&
+    typeof response.data === "object" &&
+    "success" in response.data &&
+    "data" in response.data
+  ) {
+    response.data = response.data.data;
+  }
+  return response;
+};
+
+axiosPublic.interceptors.response.use(unwrapResponseData);
 
 export const axiosPrivate = axios.create({
   baseURL: baseUrl,
@@ -33,7 +47,7 @@ export const setupInterceptors = (
   );
 
   const responseIntercept = axiosPrivate.interceptors.response.use(
-    (response) => response,
+    unwrapResponseData,
     async (error) => {
       const prevRequest = error?.config;
 
