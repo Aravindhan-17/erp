@@ -2,18 +2,19 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { PrismaModule } from './core/database/prisma.module';
-import { HealthModule } from './core/health/health.module';
-import { AdminAuthModule } from './modules/auth/admin/admin-auth.module';
-import { CustomerAuthModule } from './modules/auth/customer/customer-auth.module';
-import { StorageModule } from './core/storage/storage.module';
-import { CategoryModule } from './modules/category/category.module';
+import { QueueModule } from './core/queue/queue.module';
 import { OutboxModule } from './modules/outbox/outbox.module';
 import { AssetModule } from './modules/asset/asset.module';
+import { AssetProcessor } from './modules/asset/asset.processor';
+import { AssetCleanupScheduler } from './modules/asset/asset-cleanup.scheduler';
+import { EmailModule } from './core/email/email.module';
+import { EmailProcessor } from './core/email/email.processor';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: '.env',
     }),
     LoggerModule.forRoot({
       pinoHttp: {
@@ -24,15 +25,12 @@ import { AssetModule } from './modules/asset/asset.module';
       },
     }),
     PrismaModule,
-    HealthModule,
-    AdminAuthModule,
-    CustomerAuthModule,
-    StorageModule,
-    CategoryModule,
+    QueueModule,
     OutboxModule,
     AssetModule,
+    EmailModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [AssetProcessor, AssetCleanupScheduler, EmailProcessor],
 })
-export class AppModule {}
+export class WorkerModule {}

@@ -162,7 +162,9 @@ export class AdminAuthController {
   })
   async forgotPassword(@Body() body: AdminForgotPasswordDto) {
     await this.authService.forgotPassword(body.email);
-    return { message: 'If the email exists, a password reset link has been sent.' };
+    return {
+      message: 'If the email exists, a password reset link has been sent.',
+    };
   }
 
   @Post('reset-password')

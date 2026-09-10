@@ -18,7 +18,7 @@ export class AdminJwtRefreshStrategy extends PassportStrategy(
       ]),
       ignoreExpiration: false,
       secretOrKey:
-        configService.get<string>('JWT_REFRESH_SECRET') ||
+        configService.get<string>('ADMIN_JWT_REFRESH_SECRET') ||
         'supersecretrefreshjwtsecret',
       passReqToCallback: true,
     });

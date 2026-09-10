@@ -41,7 +41,9 @@ export class CustomerAuthController {
   @ApiResponse({ status: 401, description: 'Email already in use.' })
   @Post('sign-up')
   async signUp(@Body() body: SignUpCustomerDto) {
-    const existing = await this.prisma.customer.findUnique({ where: { email: body.email } });
+    const existing = await this.prisma.customer.findUnique({
+      where: { email: body.email },
+    });
     if (existing) {
       throw new UnauthorizedException('Email already in use');
     }

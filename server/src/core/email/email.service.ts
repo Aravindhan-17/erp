@@ -12,13 +12,16 @@ export class EmailService {
     const apiKey = this.configService.get<string>('RESEND_API_KEY');
     this.resend = new Resend(apiKey);
     // You should verify this domain in Resend. Using a fallback for testing if not set.
-    this.defaultFrom = this.configService.get<string>('EMAIL_FROM') || 'FlashERP Admin <onboarding@resend.dev>';
+    this.defaultFrom =
+      this.configService.get<string>('EMAIL_FROM') ||
+      'FlashERP Admin <onboarding@resend.dev>';
   }
 
   async sendPasswordResetEmail(to: string, resetToken: string) {
-    // Assuming frontend runs on localhost:5173 for development, 
+    // Assuming frontend runs on localhost:5173 for development,
     // ideally this should come from an environment variable (e.g. FRONTEND_URL).
-    const frontendUrl = this.configService.get<string>('FRONTEND_URL') || 'http://localhost:5173';
+    const frontendUrl =
+      this.configService.get<string>('FRONTEND_URL') || 'http://localhost:5173';
     const resetLink = `${frontendUrl}/auth/reset-password?token=${resetToken}`;
 
     try {

@@ -181,12 +181,6 @@ enum CategoryStatus {
   INACTIVE
 }
 
-enum Industry {
-  RETAIL
-  WHOLESALE
-  B2B
-}
-
 model Category {
   id          String         @id @default(uuid())
   name        String
@@ -196,7 +190,6 @@ model Category {
   bannerUrl   String? // Promotional banner image URL
   imageUrl    String? // Category icon or small image
   status      CategoryStatus @default(ACTIVE)
-  industry    Industry       @default(RETAIL)
   isActive    Boolean        @default(true)
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
@@ -204,6 +197,12 @@ model Category {
   parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
   children Category[] @relation("CategoryHierarchy")
   products Product[]
+
+  imageAssetId  String? @unique
+  bannerAssetId String? @unique
+
+  imageAsset  Asset? @relation("CategoryImage", fields: [imageAssetId], references: [id])
+  bannerAsset Asset? @relation("CategoryBanner", fields: [bannerAssetId], references: [id])
 }
 
 enum ProductStatus {
@@ -238,4 +237,67 @@ model Product {
   updatedAt DateTime @updatedAt
 
   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
+
+enum AssetStatus {
+  UPLOAD_PENDING
+  TEMPORARY
+  ACTIVE
+  DELETE_PENDING
+  DELETED
+}
+
+model Asset {
+  id              String      @id @default(uuid())
+  storageKey      String      @unique
+  status          AssetStatus @default(UPLOAD_PENDING)
+  createdBy       String
+  contentType     String?
+  byteSize        Int?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  confirmedAt     DateTime?
+  deletePendingAt DateTime?
+  deletedAt       DateTime?
+  lastError       String?
+
+  categoryImage  Category? @relation("CategoryImage")
+  categoryBanner Category? @relation("CategoryBanner")
+}
+
+enum OutboxStatus {
+  PENDING
+  PROCESSING
+  PROCESSED
+  FAILED
+}
+
+model OutboxEvent {
+  id            String       @id @default(uuid())
+  eventType     String
+  payload       Json
+  status        OutboxStatus @default(PENDING)
+  attempts      Int          @default(0)
+  claimedAt     DateTime?
+  claimToken    String? // UUID string
+  lastAttemptAt DateTime?
+  nextAttemptAt DateTime?
+  createdAt     DateTime     @default(now())
+  processedAt   DateTime?
+  lastError     String?
+
+  @@index([status, createdAt, nextAttemptAt])
+  @@index([status, claimedAt])
+}
+
+model EmailDelivery {
+  id             String   @id @default(uuid())
+  idempotencyKey String   @unique
+  to             String
+  subject        String
+  status         String   @default("PENDING")
+  attempts       Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  lastError      String?
 }
