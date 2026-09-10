@@ -5,7 +5,11 @@ import { PrismaService } from '../../../core/database/prisma.service';
 import { ConfigService } from '@nestjs/config';
 import { randomUUID, randomBytes, createHash } from 'crypto';
 import { EmailService } from '../../../core/email/email.service';
-import { BadRequestException, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 
 export interface AdminUserPayload {
   id: string;
@@ -23,16 +27,13 @@ export class AdminAuthService {
     private emailService: EmailService,
   ) {}
 
-  async validateAdmin(
-    email: string,
-    pass: string,
-  ): Promise<AdminUserPayload> {
+  async validateAdmin(email: string, pass: string): Promise<AdminUserPayload> {
     const admin = await this.prisma.adminUser.findUnique({ where: { email } });
-    
+
     if (!admin || !admin.isActive) {
       throw new NotFoundException('User does not exist');
     }
-    
+
     const isMatch = await bcrypt.compare(pass, admin.passwordHash);
     if (!isMatch) {
       throw new UnauthorizedException('Incorrect password');
@@ -55,14 +56,14 @@ export class AdminAuthService {
       this.jwtService.signAsync(
         { sub: adminId, email, role, sessionId },
         {
-          secret: this.configService.get<string>('JWT_SECRET'),
+          secret: this.configService.get<string>('ADMIN_JWT_SECRET'),
           expiresIn: '15m',
         },
       ),
       this.jwtService.signAsync(
         { sub: adminId, email, role, sessionId },
         {
-          secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+          secret: this.configService.get<string>('ADMIN_JWT_REFRESH_SECRET'),
           expiresIn: '7d',
         },
       ),
@@ -132,7 +133,9 @@ export class AdminAuthService {
     const rtMatches = await bcrypt.compare(refreshToken, session.hashedToken);
     if (!rtMatches) return null;
 
-    const admin = await this.prisma.adminUser.findUnique({ where: { id: adminId } });
+    const admin = await this.prisma.adminUser.findUnique({
+      where: { id: adminId },
+    });
     if (!admin) return null;
 
     const tokens = await this.getTokens(
@@ -169,7 +172,7 @@ export class AdminAuthService {
 
     const resetToken = randomBytes(32).toString('hex');
     const hashedToken = createHash('sha256').update(resetToken).digest('hex');
-    
+
     const expires = new Date();
     expires.setHours(expires.getHours() + 1);
 
@@ -186,7 +189,7 @@ export class AdminAuthService {
 
   async resetPassword(token: string, newPassword: string): Promise<void> {
     const hashedToken = createHash('sha256').update(token).digest('hex');
-    
+
     const admin = await this.prisma.adminUser.findFirst({
       where: {
         resetPasswordToken: hashedToken,

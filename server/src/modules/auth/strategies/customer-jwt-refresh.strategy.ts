@@ -19,7 +19,7 @@ export class CustomerJwtRefreshStrategy extends PassportStrategy(
       ]),
       ignoreExpiration: false,
       secretOrKey:
-        configService.get<string>('JWT_REFRESH_SECRET') ||
+        configService.get<string>('CUSTOMER_JWT_REFRESH_SECRET') ||
         'super-refresh-secret',
       passReqToCallback: true,
     });

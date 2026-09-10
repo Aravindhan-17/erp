@@ -18,7 +18,9 @@ export class CustomerAuthService {
     email: string,
     pass: string,
   ): Promise<Omit<Customer, 'passwordHash'> | null> {
-    const customer = await this.prisma.customer.findUnique({ where: { email } });
+    const customer = await this.prisma.customer.findUnique({
+      where: { email },
+    });
     if (customer && customer.isActive) {
       const isMatch = await bcrypt.compare(pass, customer.passwordHash);
       if (isMatch) {
@@ -88,7 +90,9 @@ export class CustomerAuthService {
     const rtMatches = await bcrypt.compare(refreshToken, session.hashedToken);
     if (!rtMatches) return null;
 
-    const customer = await this.prisma.customer.findUnique({ where: { id: customerId } });
+    const customer = await this.prisma.customer.findUnique({
+      where: { id: customerId },
+    });
     if (!customer || !customer.isActive) return null;
 
     const tokens = await this.getTokens(customer.id, customer.email, sessionId);
@@ -112,15 +116,17 @@ export class CustomerAuthService {
   }
 
   async forgotPassword(email: string) {
-    const customer = await this.prisma.customer.findUnique({ where: { email } });
+    const customer = await this.prisma.customer.findUnique({
+      where: { email },
+    });
     if (!customer || !customer.isActive) {
       // Return successfully to prevent email enumeration
       return true;
     }
 
     const secret =
-      (this.configService.get<string>('JWT_SECRET') || 'super-secret') +
-      customer.passwordHash;
+      (this.configService.get<string>('CUSTOMER_JWT_SECRET') ||
+        'super-secret') + customer.passwordHash;
 
     const token = await this.jwtService.signAsync(
       { sub: customer.id },
@@ -142,14 +148,16 @@ export class CustomerAuthService {
         return false;
       }
 
-      const customer = await this.prisma.customer.findUnique({ where: { id: decoded.sub } });
+      const customer = await this.prisma.customer.findUnique({
+        where: { id: decoded.sub },
+      });
       if (!customer || !customer.isActive) {
         return false;
       }
 
       const secret =
-        (this.configService.get<string>('JWT_SECRET') || 'super-secret') +
-        customer.passwordHash;
+        (this.configService.get<string>('CUSTOMER_JWT_SECRET') ||
+          'super-secret') + customer.passwordHash;
 
       // Verify token specifically with this user's secret
       await this.jwtService.verifyAsync(token, { secret });
@@ -182,12 +190,14 @@ export class CustomerAuthService {
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(jwtPayload, {
-        secret: this.configService.get<string>('JWT_SECRET') || 'super-secret',
+        secret:
+          this.configService.get<string>('CUSTOMER_JWT_SECRET') ||
+          'super-secret',
         expiresIn: '15m',
       }),
       this.jwtService.signAsync(jwtPayload, {
         secret:
-          this.configService.get<string>('JWT_REFRESH_SECRET') ||
+          this.configService.get<string>('CUSTOMER_JWT_REFRESH_SECRET') ||
           'super-refresh-secret',
         expiresIn: '7d',
       }),

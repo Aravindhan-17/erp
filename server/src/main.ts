@@ -4,15 +4,14 @@ import cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
 import { setupSwagger } from './core/config/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { Logger as PinoLogger } from 'nestjs-pino';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
-import * as express from 'express';
-import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
-  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
+  app.useLogger(app.get(PinoLogger));
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -31,9 +30,10 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      configService.get<string>('NEXT_PUBLIC_API_URL') || 'http://localhost:3000',
+      configService.get<string>('NEXT_PUBLIC_API_URL') ||
+        'http://localhost:3000',
       configService.get<string>('CLIENT_APP_URL') || 'http://localhost:5173',
-      configService.get<string>('ADMIN_APP_URL') || 'http://localhost:5174'
+      configService.get<string>('ADMIN_APP_URL') || 'http://localhost:5174',
     ],
     credentials: true,
   });
