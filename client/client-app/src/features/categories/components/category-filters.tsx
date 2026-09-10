@@ -1,10 +1,3 @@
-
-const industries = [
-  { label: "Retail", count: 42 },
-  { label: "Wholesale", count: 28 },
-  { label: "B2B", count: 15 },
-];
-
 const statuses = [
   { label: "Active", color: "bg-[#017B24]", count: 85 },
   { label: "Upcoming", color: "bg-[#F3380B]", count: 12 },
@@ -18,24 +11,6 @@ export function CategoryFilters() {
       <div className="mb-6 flex items-center justify-between">
         <h3 className="text-xl font-semibold">Filters</h3>
         <button className="text-secondary text-sm font-medium hover:underline">Clear All</button>
-      </div>
-
-      {/* Industry Type */}
-      <div>
-        <h4 className="mb-4 font-semibold">Industry Type</h4>
-        <div className="space-y-3">
-          {industries.map((item) => (
-            <label key={item.label} className="flex cursor-pointer items-center justify-between">
-              <div className="flex items-center gap-3">
-                <input type="checkbox" className="h-4 w-4 rounded border-gray-300" />
-                <span className="text-sm">{item.label}</span>
-              </div>
-              <span className="rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
-                {item.count}
-              </span>
-            </label>
-          ))}
-        </div>
       </div>
 
       <hr className="my-6" />

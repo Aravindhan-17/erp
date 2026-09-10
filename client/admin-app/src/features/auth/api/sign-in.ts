@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useAuthStore } from "@/stores/auth.store";
 import type { MutationConfig } from "@/types/query";
 
-export const login = async (data: any) => {
+export const login = async (data: { email: string; password?: string }) => {
   const res = await axiosPublic.post("/auth/admin/sign-in", data);
   return res.data;
 };

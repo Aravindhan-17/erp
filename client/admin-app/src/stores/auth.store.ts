@@ -73,7 +73,7 @@ export const useAuthStore = create<AuthState>((set, get) => {
         initPromise = (async () => {
           try {
             await refreshUser();
-          } catch (e) {
+          } catch {
             // Ignored
           } finally {
             set({ isLoading: false });

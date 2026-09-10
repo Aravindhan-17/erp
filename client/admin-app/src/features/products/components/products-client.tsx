@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Modal } from '@/components/modal';
+import { DataTable } from '@/components/ui/data-table';
+import { columns } from './columns';
 
 const products = [
   {
@@ -153,125 +155,41 @@ export function ProductsClient() {
       </div>
 
       {/* PRODUCT TABLE CARD */}
-      <div className="mt-6 w-full  overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(30,20,80,0.04)]">
-        <div className="hide-scrollbar w-full overflow-x-auto">
-          <table className="min-w-300 w-full border-collapse">
-            <thead>
-              <tr className="border-b border-gray-100 bg-gray-50/40">
-                <th className="w-77.5 px-5 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-6">
-                  Product
-                </th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
-                  SKU
-                </th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
-                  Category
-                </th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
-                  MRP
-                </th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
-                  Flash Price
-                </th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
-                  Opening Stock
-                </th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
-                  Available
-                </th>
-                <th className="px-3 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400">
-                  Status
-                </th>
-                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-wide text-gray-400 sm:px-6">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr
-                  key={product.id}
-                  className="hover:bg-primary/5 group border-b border-gray-100 transition-colors last:border-b-0"
-                >
-                  <td className="px-5 py-3 sm:px-6">
-                    <div className="flex items-center gap-3">
-                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-gray-100 sm:h-11 sm:w-11">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          
-                          
-                          className="object-cover w-full h-full object-cover"
-                        />
-                      </div>
-                      <p className="max-w-55 text-xs font-semibold leading-5 text-gray-800 sm:text-sm">
-                        {product.name}
-                      </p>
-                    </div>
-                  </td>
-                  <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-medium text-gray-600">
-                      {product.sku}
-                    </span>
-                  </td>
-                  <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-medium text-gray-600">
-                      {product.category}
-                    </span>
-                  </td>
-                  <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-semibold text-gray-700">
-                      {product.mrp}
-                    </span>
-                  </td>
-                  <td className="px-3 py-3">
-                    <span className="whitespace-nowrap text-xs font-semibold text-gray-800">
-                      {product.flashPrice}
-                    </span>
-                  </td>
-                  <td className="px-3 py-3">
-                    <span className="text-xs font-medium text-gray-700">
-                      {product.openingStock}
-                    </span>
-                  </td>
-                  <td className="px-3 py-3">
-                    <span
-                      className={`text-xs font-semibold ${product.available <= 1 ? "text-red-500" : "text-gray-700"}`}
-                    >
-                      {product.available}
-                    </span>
-                  </td>
-                  <td className="px-3 py-3">
-                    <span
-                      className={`inline-flex whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-semibold ${product.status === "Active" ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"}`}
-                    >
-                      {product.status}
-                    </span>
-                  </td>
-                  <td className="px-5 py-3 sm:px-6">
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        title="Edit product"
-                        className="hover:border-primary/30 hover:bg-primary/10 hover:text-primary flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all"
-                      >
-                        <Pencil size={15} />
-                      </button>
-                      <button
-                        type="button"
-                        title="Delete product"
-                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-700 shadow-sm transition-all hover:border-red-100 hover:bg-red-50 hover:text-red-500"
-                      >
-                        <Trash2 size={15} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <DataTable 
+        columns={columns} 
+        data={products} 
+        searchKey="name"
+        filters={[
+          {
+            columnId: "category",
+            label: "All Categories",
+            options: [
+              { label: "Electronics", value: "Electronics" },
+              { label: "Fashion & Apparel", value: "Fashion & Apparel" },
+              { label: "Home Appliances", value: "Home Appliances" },
+              { label: "Mobile Accessories", value: "Mobile Accessories" },
+            ]
+          },
+          {
+            columnId: "status",
+            label: "All Statuses",
+            options: [
+              { label: "Active", value: "Active" },
+              { label: "Inactive", value: "Inactive" },
+            ]
+          }
+        ]}
+        bulkActions={
+          <>
+            <button className="h-9 px-3 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-sm hover:bg-gray-50 transition">
+              Mark as Active
+            </button>
+            <button className="h-9 px-3 rounded-lg border border-red-100 bg-red-50 text-red-600 text-xs font-medium shadow-sm hover:bg-red-100 transition">
+              Delete Selected
+            </button>
+          </>
+        }
+      />
 
       {/* ADD PRODUCT MODAL */}
       <Modal

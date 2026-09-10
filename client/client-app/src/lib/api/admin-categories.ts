@@ -7,7 +7,6 @@ export interface Category {
   bannerUrl?: string | null;
   imageUrl?: string | null;
   status: string;
-  industry: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -23,7 +22,6 @@ export interface CreateCategoryDto {
   bannerUrl?: string;
   imageUrl?: string;
   status?: string;
-  industry?: string;
   isActive?: boolean;
 }
 

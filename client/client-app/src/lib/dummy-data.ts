@@ -76,7 +76,6 @@ export const categories = [
     title: "Electronics",
     products: 121,
     image: CategoryElectronics,
-    industry: "Retail",
     status: "Active",
   },
   {
@@ -84,7 +83,6 @@ export const categories = [
     title: "Home Appliances",
     products: 88,
     image: CategoryHomeAppliances,
-    industry: "Wholesale",
     status: "Active",
   },
   {
@@ -92,7 +90,6 @@ export const categories = [
     title: "Fashion",
     products: 156,
     image: CategoryFashion,
-    industry: "Retail",
     status: "Active",
   },
   {
@@ -100,7 +97,6 @@ export const categories = [
     title: "Accessories",
     products: 95,
     image: CategoryAccessories,
-    industry: "B2B",
     status: "Active",
   },
   {
@@ -108,7 +104,6 @@ export const categories = [
     title: "Beauty",
     products: 79,
     image: CategoryBeauty,
-    industry: "Retail",
     status: "Active",
   },
   {
@@ -116,7 +111,6 @@ export const categories = [
     title: "Sports",
     products: 32,
     image: CategorySports,
-    industry: "Retail",
     status: "Active",
   },
   {
@@ -124,7 +118,6 @@ export const categories = [
     title: "Furniture",
     products: 45,
     image: CategoryHomeAppliances, // Fallback image for now
-    industry: "Wholesale",
     status: "Upcoming",
   },
   {
@@ -132,7 +125,6 @@ export const categories = [
     title: "Automotive",
     products: 12,
     image: CategoryAccessories, // Fallback image for now
-    industry: "B2B",
     status: "Upcoming",
   },
 ];
